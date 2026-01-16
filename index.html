@@ -1,1511 +1,796 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Roulette</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="media/logo.png">
-    <style>
-        * {
-            font-family: 'Space Mono', monospace;
-        }
-        
-        .brutal-shadow {
-            box-shadow: 4px 4px 0px 0px #000000;
-        }
-        
-        .brutal-shadow-yellow {
-            box-shadow: 4px 4px 0px 0px #FFE600;
-        }
-        
-        .brutal-shadow:hover {
-            box-shadow: 6px 6px 0px 0px #000000;
-            transform: translate(-2px, -2px);
-        }
-        
-        .brutal-shadow:active {
-            box-shadow: 2px 2px 0px 0px #000000;
-            transform: translate(2px, 2px);
-        }
-        
-        .spin-animation {
-            animation: spinText 0.1s linear infinite;
-        }
-        
-        @keyframes spinText {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        
-        @keyframes celebrate {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.05) rotate(-2deg); }
-            75% { transform: scale(1.05) rotate(2deg); }
-        }
-        
-        .celebrate {
-            animation: celebrate 0.5s ease-in-out 3;
-        }
-        
-        @keyframes confetti-fall {
-            0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
-        
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            top: -10px;
-            animation: confetti-fall 3s ease-out forwards;
-        }
-        
-        .movie-item {
-            transition: all 0.15s ease;
-        }
-        
-        .movie-item:hover {
-            transform: translateX(4px);
-            background-color: #FFE600;
-        }
-        
-        .movie-item.excluded {
-            opacity: 0.5;
-        }
-        
-        .movie-item.excluded:hover {
-            background-color: #e5e5e5;
-        }
-        
-        .scrollbar-brutal::-webkit-scrollbar {
-            width: 12px;
-        }
-        
-        .scrollbar-brutal::-webkit-scrollbar-track {
-            background: #ffffff;
-            border: 3px solid #000000;
-        }
-        
-        .scrollbar-brutal::-webkit-scrollbar-thumb {
-            background: #000000;
-        }
-        
-        .toast {
-            animation: slideIn 0.3s ease-out, slideOut 0.3s ease-in 2.7s forwards;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-        
-        .tab-button {
-            transition: all 0.15s ease;
-        }
-        
-        .tab-button.active {
-            background-color: #FFE600;
-            color: #000000;
-        }
-        
-        .tab-button:not(.active):hover {
-            background-color: #333333;
-        }
-        
-        .checkbox-brutal {
-            appearance: none;
-            width: 24px;
-            height: 24px;
-            border: 3px solid #000000;
-            background: #ffffff;
-            cursor: pointer;
-            flex-shrink: 0;
-            position: relative;
-        }
-        
-        .checkbox-brutal:checked {
-            background: #FFE600;
-        }
-        
-        .checkbox-brutal:checked::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 14px;
-            font-weight: bold;
-            color: #000000;
-        }
-        
-        .checkbox-brutal:hover {
-            transform: scale(1.1);
-        }
-        
-        .watched-item {
-            transition: all 0.15s ease;
-        }
-        
-        .watched-item:hover {
-            background-color: #f0f0f0;
-        }
-        
-        .edit-input {
-            background: #FFE600;
-            border: 3px solid #000000;
-            padding: 4px 8px;
-            font-family: 'Space Mono', monospace;
-            font-size: inherit;
-            font-weight: 500;
-            width: 100%;
-            outline: none;
-        }
-        
-        .edit-input:focus {
-            background: #ffffff;
-        }
-        
-        .date-input {
-            background: #FFE600;
-            border: 3px solid #000000;
-            padding: 2px 6px;
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            outline: none;
-            cursor: pointer;
-        }
-        
-        .date-input:focus {
-            background: #ffffff;
-        }
-        
-        .edit-btn {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            background: #ffffff;
-            color: #000000;
-            font-weight: bold;
-            border: 2px solid #000000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-        
-        .edit-btn:hover {
-            background: #FFE600;
-        }
-        
-        .save-btn {
-            background: #00CC66;
-            color: white;
-            border-color: #000000;
-        }
-        
-        .save-btn:hover {
-            background: #00AA55;
-        }
-        
-        .cancel-btn {
-            background: #999999;
-            color: white;
-            border-color: #000000;
-        }
-        
-        .cancel-btn:hover {
-            background: #777777;
-        }
-    </style>
-</head>
-<body class="bg-white min-h-screen">
-    <div id="app" class="max-w-2xl mx-auto p-4 md:p-8">
-        <!-- Header -->
-        <header class="mb-6 border-4 border-black bg-[#FFE600] p-4 brutal-shadow">
-            <h1 class="text-3xl md:text-5xl font-bold text-black uppercase tracking-tight text-center">
-                MOVIE<br>ROULETTE
-            </h1>
-            <p class="text-center text-black mt-2 text-sm uppercase">What should I watch?</p>
-        </header>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Movie Roulette V10.1 (Watched Info)</title>
+    
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-        <!-- Tab Navigation -->
-        <nav class="mb-6 flex border-4 border-black">
-            <button 
-                id="moviesTab" 
-                class="tab-button flex-1 p-3 text-lg font-bold uppercase bg-black text-white border-r-4 border-black active"
-                onclick="switchTab('movies')"
-            >
-                🎬 Movies
-            </button>
-            <button 
-                id="tvShowsTab" 
-                class="tab-button flex-1 p-3 text-lg font-bold uppercase bg-black text-white border-r-4 border-black"
-                onclick="switchTab('tvShows')"
-            >
-                📺 TV Shows
-            </button>
-            <button 
-                id="watchedTab" 
-                class="tab-button flex-1 p-3 text-lg font-bold uppercase bg-black text-white"
-                onclick="switchTab('watched')"
-            >
-                ✓ Watched
-            </button>
-        </nav>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-        <!-- Movies Tab Content -->
-        <div id="moviesContent" class="tab-content">
-            <!-- Add Movie Section -->
-            <section class="mb-6">
-                <form id="addMovieForm" class="flex flex-col md:flex-row gap-3">
-                    <input 
-                        type="text" 
-                        id="movieInput" 
-                        placeholder="Enter movie title..."
-                        class="flex-1 p-4 text-lg border-4 border-black bg-white placeholder-gray-500 focus:outline-none focus:bg-[#FFE600] transition-colors"
-                        autocomplete="off"
-                    >
-                    <button 
-                        type="submit" 
-                        class="bg-black text-white p-4 text-lg font-bold uppercase border-4 border-black brutal-shadow hover:bg-[#FFE600] hover:text-black transition-colors"
-                    >
-                        + ADD
-                    </button>
-                </form>
-            </section>
-
-            <!-- Movie List Section -->
-            <section class="mb-6">
-                <div class="flex justify-between items-center mb-4 border-b-4 border-black pb-2">
-                    <h2 class="text-xl font-bold uppercase">Your Movies</h2>
-                    <div class="flex gap-2 items-center">
-                        <span id="movieIncludedCount" class="bg-[#FFE600] text-black px-2 py-1 text-xs font-bold border-2 border-black">0 selected</span>
-                        <span id="movieCount" class="bg-black text-white px-3 py-1 text-sm font-bold">0</span>
-                    </div>
-                </div>
-                
-                <div id="movieList" class="border-4 border-black min-h-[200px] max-h-[300px] overflow-y-auto scrollbar-brutal bg-white">
-                    <div id="movieEmptyState" class="p-8 text-center text-gray-500">
-                        <p class="text-lg">🎬</p>
-                        <p class="uppercase text-sm mt-2">Add some movies to get started!</p>
-                    </div>
-                    <ul id="moviesContainer" class="hidden"></ul>
-                </div>
-            </section>
-
-            <!-- Roulette Section for Movies -->
-            <section class="mb-6">
-                <button 
-                    id="spinMovieButton" 
-                    disabled
-                    class="w-full p-6 text-2xl md:text-3xl font-bold uppercase border-4 border-black brutal-shadow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none disabled:hover:shadow-[4px_4px_0px_0px_#000000] bg-[#FFE600] text-black hover:bg-black hover:text-[#FFE600] transition-colors"
-                >
-                    🎰 SPIN THE ROULETTE
-                </button>
-            </section>
-        </div>
-
-        <!-- TV Shows Tab Content -->
-        <div id="tvShowsContent" class="tab-content hidden">
-            <!-- Add TV Show Section -->
-            <section class="mb-6">
-                <form id="addTvShowForm" class="flex flex-col md:flex-row gap-3">
-                    <input 
-                        type="text" 
-                        id="tvShowInput" 
-                        placeholder="Enter TV show title..."
-                        class="flex-1 p-4 text-lg border-4 border-black bg-white placeholder-gray-500 focus:outline-none focus:bg-[#FFE600] transition-colors"
-                        autocomplete="off"
-                    >
-                    <button 
-                        type="submit" 
-                        class="bg-black text-white p-4 text-lg font-bold uppercase border-4 border-black brutal-shadow hover:bg-[#FFE600] hover:text-black transition-colors"
-                    >
-                        + ADD
-                    </button>
-                </form>
-            </section>
-
-            <!-- TV Show List Section -->
-            <section class="mb-6">
-                <div class="flex justify-between items-center mb-4 border-b-4 border-black pb-2">
-                    <h2 class="text-xl font-bold uppercase">Your TV Shows</h2>
-                    <div class="flex gap-2 items-center">
-                        <span id="tvShowIncludedCount" class="bg-[#FFE600] text-black px-2 py-1 text-xs font-bold border-2 border-black">0 selected</span>
-                        <span id="tvShowCount" class="bg-black text-white px-3 py-1 text-sm font-bold">0</span>
-                    </div>
-                </div>
-                
-                <div id="tvShowList" class="border-4 border-black min-h-[200px] max-h-[300px] overflow-y-auto scrollbar-brutal bg-white">
-                    <div id="tvShowEmptyState" class="p-8 text-center text-gray-500">
-                        <p class="text-lg">📺</p>
-                        <p class="uppercase text-sm mt-2">Add some TV shows to get started!</p>
-                    </div>
-                    <ul id="tvShowsContainer" class="hidden"></ul>
-                </div>
-            </section>
-
-            <!-- Roulette Section for TV Shows -->
-            <section class="mb-6">
-                <button 
-                    id="spinTvShowButton" 
-                    disabled
-                    class="w-full p-6 text-2xl md:text-3xl font-bold uppercase border-4 border-black brutal-shadow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none disabled:hover:shadow-[4px_4px_0px_0px_#000000] bg-[#FFE600] text-black hover:bg-black hover:text-[#FFE600] transition-colors"
-                >
-                    🎰 SPIN THE ROULETTE
-                </button>
-            </section>
-        </div>
-
-        <!-- Watched Tab Content -->
-        <div id="watchedContent" class="tab-content hidden">
-            <!-- Watched Movies Section -->
-            <section class="mb-6">
-                <div class="flex justify-between items-center mb-4 border-b-4 border-black pb-2">
-                    <h2 class="text-xl font-bold uppercase">🎬 Watched Movies</h2>
-                    <span id="watchedMoviesCount" class="bg-black text-white px-3 py-1 text-sm font-bold">0</span>
-                </div>
-                
-                <div class="border-4 border-black min-h-[120px] max-h-[250px] overflow-y-auto scrollbar-brutal bg-white">
-                    <div id="watchedMoviesEmptyState" class="p-6 text-center text-gray-500">
-                        <p class="text-lg">🎬</p>
-                        <p class="uppercase text-sm mt-2">No movies watched yet!</p>
-                    </div>
-                    <ul id="watchedMoviesContainer" class="hidden"></ul>
-                </div>
-            </section>
-
-            <!-- Watched TV Shows Section -->
-            <section class="mb-6">
-                <div class="flex justify-between items-center mb-4 border-b-4 border-black pb-2">
-                    <h2 class="text-xl font-bold uppercase">📺 Watched TV Shows</h2>
-                    <span id="watchedTvShowsCount" class="bg-black text-white px-3 py-1 text-sm font-bold">0</span>
-                </div>
-                
-                <div class="border-4 border-black min-h-[120px] max-h-[250px] overflow-y-auto scrollbar-brutal bg-white">
-                    <div id="watchedTvShowsEmptyState" class="p-6 text-center text-gray-500">
-                        <p class="text-lg">📺</p>
-                        <p class="uppercase text-sm mt-2">No TV shows watched yet!</p>
-                    </div>
-                    <ul id="watchedTvShowsContainer" class="hidden"></ul>
-                </div>
-            </section>
-
-            <section>
-                <button 
-                    id="clearWatchedButton"
-                    class="w-full p-4 text-lg font-bold uppercase border-4 border-black brutal-shadow bg-white text-black hover:bg-red-500 hover:text-white transition-colors"
-                >
-                    🗑️ Clear Watch History
-                </button>
-            </section>
-        </div>
-
-        <!-- Spinning Display (shared) -->
-        <section id="spinningDisplay" class="hidden mb-6">
-            <div class="border-4 border-black bg-black p-8 text-center">
-                <p class="text-sm uppercase text-[#FFE600] mb-2">Selecting...</p>
-                <p id="spinningText" class="text-2xl md:text-4xl font-bold text-white spin-animation truncate"></p>
-            </div>
-        </section>
-
-        <!-- Result Display (shared) -->
-        <section id="resultDisplay" class="hidden mb-6">
-            <div class="border-4 border-black bg-[#FFE600] p-8 text-center brutal-shadow celebrate">
-                <p id="resultLabel" class="text-sm uppercase text-black mb-2">🎬 Tonight's Pick 🎬</p>
-                <p id="resultText" class="text-2xl md:text-4xl font-bold text-black break-words"></p>
-                <button 
-                    id="watchedButton"
-                    class="mt-4 px-4 py-2 bg-black text-white text-sm uppercase border-2 border-black hover:bg-white hover:text-black transition-colors"
-                >
-                    ✓ Mark as Watched
-                </button>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="border-t-4 border-black pt-4">
-            <div class="flex flex-col md:flex-row gap-4 justify-between items-center mb-4">
-                <p class="text-sm text-gray-600 uppercase">Press <kbd class="bg-black text-white px-2 py-1">Space</kbd> to spin</p>
-                <button 
-                    id="clearAllButton"
-                    class="px-4 py-2 bg-white text-black border-4 border-black text-sm font-bold uppercase brutal-shadow hover:bg-red-500 hover:text-white transition-colors"
-                >
-                    🗑️ Clear Current List
-                </button>
-            </div>
-            
-            <!-- Import/Export Section -->
-            <div class="border-4 border-black bg-gray-100 p-4">
-                <h3 class="text-sm font-bold uppercase mb-3 text-center">📦 Backup & Restore</h3>
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <button 
-                        id="exportButton"
-                        class="flex-1 px-4 py-3 bg-black text-white border-4 border-black text-sm font-bold uppercase brutal-shadow hover:bg-[#FFE600] hover:text-black transition-colors"
-                    >
-                        ⬇️ Export Data
-                    </button>
-                    <button 
-                        id="importButton"
-                        class="flex-1 px-4 py-3 bg-white text-black border-4 border-black text-sm font-bold uppercase brutal-shadow hover:bg-[#FFE600] transition-colors"
-                    >
-                        ⬆️ Import Data
-                    </button>
-                    <input 
-                        type="file" 
-                        id="importFileInput" 
-                        accept=".json"
-                        class="hidden"
-                    >
-                </div>
-                <p class="text-xs text-gray-500 mt-2 text-center uppercase">Export your lists to a file or import from a backup</p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Toast Container -->
-    <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2"></div>
-
-    <!-- Confetti Container -->
-    <div id="confettiContainer" class="pointer-events-none"></div>
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
-        // Storage keys
-        const STORAGE_KEYS = {
-            movies: 'movieRoulette_movies',
-            tvShows: 'movieRoulette_tvShows',
-            watched: 'movieRoulette_watched'
-        };
-        
-        // State
-        let movies = [];
-        let tvShows = [];
-        let watched = [];
-        let currentTab = 'movies';
-        let isSpinning = false;
-        let selectedItem = null;
-        let selectedItemType = null;
-        
-        // DOM Elements
-        const toastContainer = document.getElementById('toastContainer');
-        const confettiContainer = document.getElementById('confettiContainer');
-        const spinningDisplay = document.getElementById('spinningDisplay');
-        const spinningText = document.getElementById('spinningText');
-        const resultDisplay = document.getElementById('resultDisplay');
-        const resultText = document.getElementById('resultText');
-        const resultLabel = document.getElementById('resultLabel');
-        const watchedButton = document.getElementById('watchedButton');
-        const clearAllButton = document.getElementById('clearAllButton');
-        const clearWatchedButton = document.getElementById('clearWatchedButton');
-        
-        // Tab elements
-        const moviesTab = document.getElementById('moviesTab');
-        const tvShowsTab = document.getElementById('tvShowsTab');
-        const watchedTab = document.getElementById('watchedTab');
-        const moviesContent = document.getElementById('moviesContent');
-        const tvShowsContent = document.getElementById('tvShowsContent');
-        const watchedContent = document.getElementById('watchedContent');
-        
-        // Movies elements
-        const movieInput = document.getElementById('movieInput');
-        const addMovieForm = document.getElementById('addMovieForm');
-        const moviesContainer = document.getElementById('moviesContainer');
-        const movieEmptyState = document.getElementById('movieEmptyState');
-        const movieCount = document.getElementById('movieCount');
-        const movieIncludedCount = document.getElementById('movieIncludedCount');
-        const spinMovieButton = document.getElementById('spinMovieButton');
-        
-        // TV Shows elements
-        const tvShowInput = document.getElementById('tvShowInput');
-        const addTvShowForm = document.getElementById('addTvShowForm');
-        const tvShowsContainer = document.getElementById('tvShowsContainer');
-        const tvShowEmptyState = document.getElementById('tvShowEmptyState');
-        const tvShowCount = document.getElementById('tvShowCount');
-        const tvShowIncludedCount = document.getElementById('tvShowIncludedCount');
-        const spinTvShowButton = document.getElementById('spinTvShowButton');
-        
-        // Watched elements
-        const watchedMoviesContainer = document.getElementById('watchedMoviesContainer');
-        const watchedMoviesEmptyState = document.getElementById('watchedMoviesEmptyState');
-        const watchedMoviesCountEl = document.getElementById('watchedMoviesCount');
-        const watchedTvShowsContainer = document.getElementById('watchedTvShowsContainer');
-        const watchedTvShowsEmptyState = document.getElementById('watchedTvShowsEmptyState');
-        const watchedTvShowsCountEl = document.getElementById('watchedTvShowsCount');
-        
-        // Generate unique ID
-        function generateId() {
-            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bone: '#EFEEE5',
+                        'bone-dark': '#E5E4DB',
+                        verified: '#1D9BF0',
+                    },
+                    fontFamily: {
+                        mono: ['Space Mono', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    borderWidth: {
+                        '12': '12px',
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in': 'fadeIn 0.2s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    }
+                }
+            }
         }
-        
-        // Load data from localStorage
-        function loadData() {
+    </script>
+
+    <style type="text/tailwindcss">
+        body { font-family: theme('fontFamily.mono'); background-color: theme('colors.bone'); touch-action: manipulation; }
+        .scrollbar-receipt::-webkit-scrollbar { width: 8px; }
+        .scrollbar-receipt::-webkit-scrollbar-track { background: transparent; }
+        .scrollbar-receipt::-webkit-scrollbar-thumb { background: #000000; border-radius: 0; }
+        .spin-animation { animation: spinText 0.1s linear infinite; }
+        @keyframes spinText { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        @keyframes celebrate { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+        .celebrate { animation: celebrate 0.3s ease-in-out 3; }
+        @keyframes confetti-fall { 0% { transform: translateY(-100%) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+        .confetti { position: fixed; width: 8px; height: 8px; top: -10px; animation: confetti-fall 3s ease-out forwards; }
+        .toast { animation: slideIn 0.3s ease-out, slideOut 0.3s ease-in 4.0s forwards; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+        .list-item { transition: all 0.15s ease; }
+        .list-item:hover { background-color: theme('colors.bone-dark'); }
+        .list-item.excluded { opacity: 0.5; }
+        .checkbox-receipt { appearance: none; width: 18px; height: 18px; border: 1px solid #000000; background: transparent; cursor: pointer; flex-shrink: 0; position: relative; transition: all 0.1s ease; }
+        .checkbox-receipt:checked { background: #000000; }
+        .checkbox-receipt:checked::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: bold; color: theme('colors.bone'); }
+        .edit-input-receipt { background: transparent; border: none; border-bottom: 1px solid #000000; padding: 2px 4px; font-family: theme('fontFamily.mono'); font-size: inherit; width: 100%; outline: none; }
+        .edit-input-receipt:focus { border-bottom-width: 2px; }
+        .date-input-receipt { background: transparent; border: 1px solid #000000; padding: 2px 6px; font-family: theme('fontFamily.mono'); font-size: 11px; outline: none; cursor: pointer; }
+    </style>
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useCallback, useRef, useMemo } = React;
+
+        // --- SOUNDS ---
+        const playTick = () => {
             try {
-                const storedMovies = localStorage.getItem(STORAGE_KEYS.movies);
-                const storedTvShows = localStorage.getItem(STORAGE_KEYS.tvShows);
-                const storedWatched = localStorage.getItem(STORAGE_KEYS.watched);
-                
-                movies = storedMovies ? JSON.parse(storedMovies) : [];
-                tvShows = storedTvShows ? JSON.parse(storedTvShows) : [];
-                watched = storedWatched ? JSON.parse(storedWatched) : [];
-                
-                // Migration: convert old string format to object format
-                movies = movies.map(m => typeof m === 'string' ? { id: generateId(), title: m, included: true } : m);
-                tvShows = tvShows.map(t => typeof t === 'string' ? { id: generateId(), title: t, included: true } : t);
-            } catch (e) {
-                movies = [];
-                tvShows = [];
-                watched = [];
-            }
-            
-            renderAll();
-        }
-        
-        // Save data to localStorage
-        function saveData() {
-            localStorage.setItem(STORAGE_KEYS.movies, JSON.stringify(movies));
-            localStorage.setItem(STORAGE_KEYS.tvShows, JSON.stringify(tvShows));
-            localStorage.setItem(STORAGE_KEYS.watched, JSON.stringify(watched));
-        }
-        
-        // Switch tabs
-        function switchTab(tab) {
-            currentTab = tab;
-            
-            // Update tab buttons
-            moviesTab.classList.toggle('active', tab === 'movies');
-            tvShowsTab.classList.toggle('active', tab === 'tvShows');
-            watchedTab.classList.toggle('active', tab === 'watched');
-            
-            // Update content visibility
-            moviesContent.classList.toggle('hidden', tab !== 'movies');
-            tvShowsContent.classList.toggle('hidden', tab !== 'tvShows');
-            watchedContent.classList.toggle('hidden', tab !== 'watched');
-            
-            // Hide result when switching tabs
-            resultDisplay.classList.add('hidden');
-            spinningDisplay.classList.add('hidden');
-            selectedItem = null;
-            selectedItemType = null;
-        }
-        
-        // Show toast notification
-        function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-            toast.className = `toast px-4 py-3 border-4 border-black font-bold text-sm uppercase ${
-                type === 'success' ? 'bg-[#FFE600] text-black' : 'bg-red-500 text-white'
-            }`;
-            toast.textContent = message;
-            toastContainer.appendChild(toast);
-            
-            setTimeout(() => toast.remove(), 3000);
-        }
-        
-        // Create confetti
-        function createConfetti() {
-            const colors = ['#FFE600', '#000000', '#FF0080', '#00FF00', '#FF0000'];
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                confettiContainer.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 5000);
-            }
-        }
-        
-        // Escape HTML
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        // Render movies list
-        function renderMovies() {
-            const includedMovies = movies.filter(m => m.included);
-            movieCount.textContent = movies.length;
-            movieIncludedCount.textContent = `${includedMovies.length} selected`;
-            spinMovieButton.disabled = includedMovies.length === 0;
-            
-            if (movies.length === 0) {
-                movieEmptyState.classList.remove('hidden');
-                moviesContainer.classList.add('hidden');
-                return;
-            }
-            
-            movieEmptyState.classList.add('hidden');
-            moviesContainer.classList.remove('hidden');
-            
-            moviesContainer.innerHTML = movies.map((movie) => `
-                <li class="movie-item flex items-center gap-3 p-4 border-b-2 border-black last:border-b-0 cursor-default ${!movie.included ? 'excluded' : ''}" id="movie-${movie.id}">
-                    <input 
-                        type="checkbox" 
-                        class="checkbox-brutal"
-                        ${movie.included ? 'checked' : ''}
-                        onchange="toggleIncluded('movies', '${movie.id}')"
-                        title="${movie.included ? 'Exclude from spin' : 'Include in spin'}"
-                    >
-                    <span class="truncate flex-1 font-medium ${!movie.included ? 'line-through' : ''}" id="title-movie-${movie.id}">${escapeHtml(movie.title)}</span>
-                    <button 
-                        onclick="startEditItem('movies', '${movie.id}')"
-                        class="edit-btn"
-                        title="Edit title"
-                    >
-                        ✎
-                    </button>
-                    <button 
-                        onclick="deleteItem('movies', '${movie.id}')"
-                        class="flex-shrink-0 w-8 h-8 bg-black text-white font-bold hover:bg-red-500 transition-colors flex items-center justify-center"
-                        title="Remove"
-                    >
-                        ✕
-                    </button>
-                </li>
-            `).join('');
-        }
-        
-        // Render TV shows list
-        function renderTvShows() {
-            const includedTvShows = tvShows.filter(t => t.included);
-            tvShowCount.textContent = tvShows.length;
-            tvShowIncludedCount.textContent = `${includedTvShows.length} selected`;
-            spinTvShowButton.disabled = includedTvShows.length === 0;
-            
-            if (tvShows.length === 0) {
-                tvShowEmptyState.classList.remove('hidden');
-                tvShowsContainer.classList.add('hidden');
-                return;
-            }
-            
-            tvShowEmptyState.classList.add('hidden');
-            tvShowsContainer.classList.remove('hidden');
-            
-            tvShowsContainer.innerHTML = tvShows.map((show) => `
-                <li class="movie-item flex items-center gap-3 p-4 border-b-2 border-black last:border-b-0 cursor-default ${!show.included ? 'excluded' : ''}" id="tvshow-${show.id}">
-                    <input 
-                        type="checkbox" 
-                        class="checkbox-brutal"
-                        ${show.included ? 'checked' : ''}
-                        onchange="toggleIncluded('tvShows', '${show.id}')"
-                        title="${show.included ? 'Exclude from spin' : 'Include in spin'}"
-                    >
-                    <span class="truncate flex-1 font-medium ${!show.included ? 'line-through' : ''}" id="title-tvshow-${show.id}">${escapeHtml(show.title)}</span>
-                    <button 
-                        onclick="startEditItem('tvShows', '${show.id}')"
-                        class="edit-btn"
-                        title="Edit title"
-                    >
-                        ✎
-                    </button>
-                    <button 
-                        onclick="deleteItem('tvShows', '${show.id}')"
-                        class="flex-shrink-0 w-8 h-8 bg-black text-white font-bold hover:bg-red-500 transition-colors flex items-center justify-center"
-                        title="Remove"
-                    >
-                        ✕
-                    </button>
-                </li>
-            `).join('');
-        }
-        
-        // Render watched list
-        function renderWatched() {
-            // Separate movies and TV shows
-            const watchedMovies = watched.filter(item => item.type === 'movie');
-            const watchedTvShows = watched.filter(item => item.type === 'tvShow');
-            
-            // Update counts
-            watchedMoviesCountEl.textContent = watchedMovies.length;
-            watchedTvShowsCountEl.textContent = watchedTvShows.length;
-            
-            // Render watched movies
-            if (watchedMovies.length === 0) {
-                watchedMoviesEmptyState.classList.remove('hidden');
-                watchedMoviesContainer.classList.add('hidden');
-            } else {
-                watchedMoviesEmptyState.classList.add('hidden');
-                watchedMoviesContainer.classList.remove('hidden');
-                
-                // Sort by date, most recent first
-                const sortedMovies = [...watchedMovies].sort((a, b) => new Date(b.watchedDate) - new Date(a.watchedDate));
-                
-                watchedMoviesContainer.innerHTML = sortedMovies.map((item) => `
-                    <li class="watched-item flex items-center gap-3 p-4 border-b-2 border-black last:border-b-0" id="watched-${item.id}">
-                        <div class="flex-1 min-w-0">
-                            <span class="truncate block font-medium" id="watched-title-${item.id}">${escapeHtml(item.title)}</span>
-                            <div class="flex items-center gap-2 mt-1">
-                                <span class="text-xs text-gray-500 uppercase" id="watched-date-${item.id}">${formatDate(item.watchedDate)}</span>
-                                <button 
-                                    onclick="startEditWatchedDate('${item.id}')"
-                                    class="text-xs text-gray-400 hover:text-black transition-colors"
-                                    title="Edit date"
-                                >
-                                    ✎
-                                </button>
-                            </div>
-                        </div>
-                        <button 
-                            onclick="startEditWatchedTitle('${item.id}')"
-                            class="edit-btn"
-                            title="Edit title"
-                        >
-                            ✎
-                        </button>
-                        <button 
-                            onclick="restoreItem('${item.id}')"
-                            class="flex-shrink-0 px-2 py-1 bg-[#FFE600] text-black text-xs font-bold border-2 border-black hover:bg-black hover:text-white transition-colors"
-                            title="Restore to list"
-                        >
-                            ↩
-                        </button>
-                        <button 
-                            onclick="deleteWatched('${item.id}')"
-                            class="flex-shrink-0 w-8 h-8 bg-black text-white font-bold hover:bg-red-500 transition-colors flex items-center justify-center"
-                            title="Remove from history"
-                        >
-                            ✕
-                        </button>
-                    </li>
-                `).join('');
-            }
-            
-            // Render watched TV shows
-            if (watchedTvShows.length === 0) {
-                watchedTvShowsEmptyState.classList.remove('hidden');
-                watchedTvShowsContainer.classList.add('hidden');
-            } else {
-                watchedTvShowsEmptyState.classList.add('hidden');
-                watchedTvShowsContainer.classList.remove('hidden');
-                
-                // Sort by date, most recent first
-                const sortedTvShows = [...watchedTvShows].sort((a, b) => new Date(b.watchedDate) - new Date(a.watchedDate));
-                
-                watchedTvShowsContainer.innerHTML = sortedTvShows.map((item) => `
-                    <li class="watched-item flex items-center gap-3 p-4 border-b-2 border-black last:border-b-0" id="watched-${item.id}">
-                        <div class="flex-1 min-w-0">
-                            <span class="truncate block font-medium" id="watched-title-${item.id}">${escapeHtml(item.title)}</span>
-                            <div class="flex items-center gap-2 mt-1">
-                                <span class="text-xs text-gray-500 uppercase" id="watched-date-${item.id}">${formatDate(item.watchedDate)}</span>
-                                <button 
-                                    onclick="startEditWatchedDate('${item.id}')"
-                                    class="text-xs text-gray-400 hover:text-black transition-colors"
-                                    title="Edit date"
-                                >
-                                    ✎
-                                </button>
-                            </div>
-                        </div>
-                        <button 
-                            onclick="startEditWatchedTitle('${item.id}')"
-                            class="edit-btn"
-                            title="Edit title"
-                        >
-                            ✎
-                        </button>
-                        <button 
-                            onclick="restoreItem('${item.id}')"
-                            class="flex-shrink-0 px-2 py-1 bg-[#FFE600] text-black text-xs font-bold border-2 border-black hover:bg-black hover:text-white transition-colors"
-                            title="Restore to list"
-                        >
-                            ↩
-                        </button>
-                        <button 
-                            onclick="deleteWatched('${item.id}')"
-                            class="flex-shrink-0 w-8 h-8 bg-black text-white font-bold hover:bg-red-500 transition-colors flex items-center justify-center"
-                            title="Remove from history"
-                        >
-                            ✕
-                        </button>
-                    </li>
-                `).join('');
-            }
-        }
-        
-        // Format date
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        }
-        
-        // Render all lists
-        function renderAll() {
-            renderMovies();
-            renderTvShows();
-            renderWatched();
-        }
-        
-        // Toggle included status
-        function toggleIncluded(type, id) {
-            const list = type === 'movies' ? movies : tvShows;
-            const item = list.find(i => i.id === id);
-            if (item) {
-                item.included = !item.included;
-                saveData();
-                renderAll();
-            }
-        }
-        
-        // Add item
-        function addItem(type, title) {
-            const trimmedTitle = title.trim();
-            
-            if (!trimmedTitle) {
-                showToast('Please enter a title', 'error');
-                return false;
-            }
-            
-            const list = type === 'movies' ? movies : tvShows;
-            
-            // Check for duplicates
-            if (list.some(i => i.title.toLowerCase() === trimmedTitle.toLowerCase())) {
-                showToast(`${type === 'movies' ? 'Movie' : 'TV Show'} already in list!`, 'error');
-                return false;
-            }
-            
-            list.push({
-                id: generateId(),
-                title: trimmedTitle,
-                included: true
-            });
-            
-            saveData();
-            renderAll();
-            showToast(`Added "${trimmedTitle}"`);
-            
-            // Hide result if showing
-            resultDisplay.classList.add('hidden');
-            selectedItem = null;
-            selectedItemType = null;
-            
-            return true;
-        }
-        
-        // Delete item
-        function deleteItem(type, id) {
-            const list = type === 'movies' ? movies : tvShows;
-            const index = list.findIndex(i => i.id === id);
-            
-            if (index > -1) {
-                const removed = list.splice(index, 1)[0];
-                saveData();
-                renderAll();
-                showToast(`Removed "${removed.title}"`);
-                
-                // Hide result if the selected item was deleted
-                if (selectedItem && selectedItem.id === id) {
-                    resultDisplay.classList.add('hidden');
-                    selectedItem = null;
-                    selectedItemType = null;
-                }
-            }
-        }
-        
-        // Delete watched item
-        function deleteWatched(id) {
-            const index = watched.findIndex(i => i.id === id);
-            if (index > -1) {
-                const removed = watched.splice(index, 1)[0];
-                saveData();
-                renderWatched();
-                showToast(`Removed "${removed.title}" from history`);
-            }
-        }
-        
-        // Restore item from watched
-        function restoreItem(id) {
-            const index = watched.findIndex(i => i.id === id);
-            if (index > -1) {
-                const item = watched.splice(index, 1)[0];
-                const newItem = {
-                    id: generateId(),
-                    title: item.title,
-                    included: true
-                };
-                
-                if (item.type === 'movie') {
-                    movies.push(newItem);
-                } else {
-                    tvShows.push(newItem);
-                }
-                
-                saveData();
-                renderAll();
-                showToast(`Restored "${item.title}"`);
-            }
-        }
-        
-        // Clear all items in current list
-        function clearAll() {
-            if (currentTab === 'watched') return;
-            
-            const list = currentTab === 'movies' ? movies : tvShows;
-            const typeName = currentTab === 'movies' ? 'movies' : 'TV shows';
-            
-            if (list.length === 0) return;
-            
-            if (confirm(`Are you sure you want to clear all ${typeName}?`)) {
-                if (currentTab === 'movies') {
-                    movies = [];
-                } else {
-                    tvShows = [];
-                }
-                saveData();
-                renderAll();
-                resultDisplay.classList.add('hidden');
-                selectedItem = null;
-                selectedItemType = null;
-                showToast(`All ${typeName} cleared`);
-            }
-        }
-        
-        // Clear watched history
-        function clearWatched() {
-            if (watched.length === 0) return;
-            
-            if (confirm('Are you sure you want to clear your watch history?')) {
-                watched = [];
-                saveData();
-                renderWatched();
-                showToast('Watch history cleared');
-            }
-        }
-        
-        // Spin the roulette
-        function spinRoulette(type) {
-            const list = type === 'movies' ? movies : tvShows;
-            const includedItems = list.filter(i => i.included);
-            
-            if (isSpinning || includedItems.length === 0) return;
-            
-            isSpinning = true;
-            spinMovieButton.disabled = true;
-            spinTvShowButton.disabled = true;
-            resultDisplay.classList.add('hidden');
-            spinningDisplay.classList.remove('hidden');
-            
-            const spinDuration = 2500;
-            const startTime = Date.now();
-            
-            function animate() {
-                const elapsed = Date.now() - startTime;
-                const progress = elapsed / spinDuration;
-                const interval = 50 + (progress * 300);
-                
-                if (elapsed < spinDuration) {
-                    const randomIndex = Math.floor(Math.random() * includedItems.length);
-                    spinningText.textContent = includedItems[randomIndex].title;
-                    setTimeout(animate, interval);
-                } else {
-                    // Final selection
-                    const finalIndex = Math.floor(Math.random() * includedItems.length);
-                    selectedItem = includedItems[finalIndex];
-                    selectedItemType = type;
-                    
-                    spinningDisplay.classList.add('hidden');
-                    resultLabel.textContent = type === 'movies' ? '🎬 Tonight\'s Movie 🎬' : '📺 Tonight\'s Show 📺';
-                    resultText.textContent = selectedItem.title;
-                    resultDisplay.classList.remove('hidden');
-                    
-                    createConfetti();
-                    
-                    const resultCard = resultDisplay.querySelector('div');
-                    resultCard.classList.remove('celebrate');
-                    void resultCard.offsetWidth;
-                    resultCard.classList.add('celebrate');
-                    
-                    isSpinning = false;
-                    renderAll(); // Re-enable spin buttons based on included items
-                }
-            }
-            
-            animate();
-        }
-        
-        // Mark as watched
-        function markAsWatched() {
-            if (!selectedItem || !selectedItemType) return;
-            
-            const list = selectedItemType === 'movies' ? movies : tvShows;
-            const index = list.findIndex(i => i.id === selectedItem.id);
-            
-            if (index > -1) {
-                const item = list.splice(index, 1)[0];
-                
-                watched.push({
-                    id: generateId(),
-                    title: item.title,
-                    type: selectedItemType === 'movies' ? 'movie' : 'tvShow',
-                    watchedDate: new Date().toISOString()
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(150, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.05);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.05);
+            } catch(e) {}
+        };
+
+        const playWin = () => {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+                [440, 554.37, 659.25].forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.type = 'triangle';
+                    osc.frequency.value = freq;
+                    gain.gain.setValueAtTime(0, ctx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.1, ctx.currentTime + 0.1 + (i*0.05));
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.5);
+                    osc.start(ctx.currentTime + (i*0.05));
+                    osc.stop(ctx.currentTime + 2);
                 });
-                
-                saveData();
-                renderAll();
-                showToast(`Marked "${item.title}" as watched!`);
-                resultDisplay.classList.add('hidden');
-                selectedItem = null;
-                selectedItemType = null;
+            } catch(e) {}
+        };
+
+        // --- CONSTANTS ---
+        const GENRES = {
+            28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy', 80: 'Crime', 
+            99: 'Documentary', 18: 'Drama', 10751: 'Family', 14: 'Fantasy', 36: 'History', 
+            27: 'Horror', 10402: 'Music', 9648: 'Mystery', 10749: 'Romance', 878: 'Sci-Fi', 
+            10770: 'TV Movie', 53: 'Thriller', 10752: 'War', 37: 'Western'
+        };
+
+        const TRANSLATIONS = {
+            'en-US': {
+                TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', TAB_MOVIES: 'MOVIES', TAB_TV: 'TV SHOWS', TAB_WATCHED: 'WATCHED',
+                PLACEHOLDER_MOVIES: 'ENTER MOVIE TITLE...', PLACEHOLDER_TV: 'ENTER TV SHOW TITLE...', BTN_ADD: 'ADD',
+                HEADER_MOVIES: 'YOUR MOVIES', HEADER_TV: 'YOUR TV SHOWS', SELECTED: 'SELECTED', EMPTY_LIST: 'Add items to get started!',
+                EMPTY_WATCHED: 'Nothing here yet', SPIN_BTN: 'SPIN THE ROULETTE', SPINNING: 'SELECTING...', WINNER_MOVIE: "TONIGHT'S MOVIE",
+                WINNER_TV: "TONIGHT'S SHOW", BTN_WATCHED: 'MARK AS WATCHED', HEADER_WATCHED_MOVIES: 'WATCHED MOVIES', HEADER_WATCHED_TV: 'WATCHED TV SHOWS',
+                BTN_CLEAR_HISTORY: 'CLEAR HISTORY', BTN_CLEAR_LIST: 'CLEAR LIST', FOOTER_TIP: 'Press SPACE to spin', EXPORT: 'EXPORT DATA',
+                IMPORT: 'IMPORT DATA', SETTINGS_TITLE: 'SETTINGS', SETTINGS_API_LABEL: 'TMDB API KEY (v3)', SETTINGS_LANG_LABEL: 'LANGUAGE',
+                SETTINGS_SAVE: 'SAVE', SETTINGS_CANCEL: 'CANCEL', TOAST_ADDED: 'Added', TOAST_EXIST: 'Already in list!', TOAST_EMPTY: 'Please enter a title',
+                UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot description available.', FILTERS: 'FILTERS', FILTER_GENRE: 'GENRE', FILTER_TIME: 'RUNTIME',
+                TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', SOUND: 'SOUND', CLEAR_FILTERS: 'CLEAR FILTERS'
+            },
+            'pt-PT': {
+                TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', TAB_MOVIES: 'FILMES', TAB_TV: 'SÉRIES', TAB_WATCHED: 'VISTOS',
+                PLACEHOLDER_MOVIES: 'NOME DO FILME...', PLACEHOLDER_TV: 'NOME DA SÉRIE...', BTN_ADD: 'ADICIONAR',
+                HEADER_MOVIES: 'SEUS FILMES', HEADER_TV: 'SUAS SÉRIES', SELECTED: 'SELECIONADOS', EMPTY_LIST: 'Adicione itens para começar!',
+                EMPTY_WATCHED: 'Nada aqui ainda', SPIN_BTN: 'GIRAR A ROLETA', SPINNING: 'SELECIONANDO...', WINNER_MOVIE: "FILME DA NOITE",
+                WINNER_TV: "SÉRIE DA NOITE", BTN_WATCHED: 'MARCAR COMO VISTO', HEADER_WATCHED_MOVIES: 'FILMES VISTOS', HEADER_WATCHED_TV: 'SÉRIES VISTAS',
+                BTN_CLEAR_HISTORY: 'LIMPAR HISTÓRICO', BTN_CLEAR_LIST: 'LIMPAR LISTA', FOOTER_TIP: 'Pressione ESPAÇO para girar', EXPORT: 'EXPORTAR DADOS',
+                IMPORT: 'IMPORTAR DADOS', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_API_LABEL: 'CHAVE API TMDB (v3)', SETTINGS_LANG_LABEL: 'IDIOMA',
+                SETTINGS_SAVE: 'GUARDAR', SETTINGS_CANCEL: 'CANCELAR', TOAST_ADDED: 'Adicionado', TOAST_EXIST: 'Já está na lista!', TOAST_EMPTY: 'Por favor insira um título',
+                UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição disponível.', FILTERS: 'FILTROS', FILTER_GENRE: 'GÉNERO', FILTER_TIME: 'DURAÇÃO',
+                TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', SOUND: 'SOM', CLEAR_FILTERS: 'LIMPAR FILTROS'
             }
+        };
+
+        const STORAGE_KEYS = {
+            movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', watched: 'movieRoulette_watched',
+            tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound'
+        };
+
+        function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2); }
+        function formatDate(dateString, lang = 'en-US') { if (!dateString) return ''; const date = new Date(dateString); return date.toLocaleDateString(lang, { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase(); }
+
+        const VerifiedBadge = () => (<svg viewBox="0 0 24 24" className="w-4 h-4 text-verified fill-current ml-1" title="Verified"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z" /></svg>);
+        const InfoIcon = () => (<svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>);
+
+        function Toast({ message, type }) {
+            return (<div className={`toast px-4 py-3 border border-black font-bold text-xs uppercase tracking-wide shadow-lg ${type === 'success' ? 'bg-black text-[#EFEEE5]' : 'bg-red-600 text-white'}`}>{message}</div>);
         }
-        
-        // Start editing an item title (movies or TV shows)
-        function startEditItem(type, id) {
-            const list = type === 'movies' ? movies : tvShows;
-            const item = list.find(i => i.id === id);
-            if (!item) return;
-            
-            const prefix = type === 'movies' ? 'movie' : 'tvshow';
-            const titleSpan = document.getElementById(`title-${prefix}-${id}`);
-            const listItem = document.getElementById(`${prefix}-${id}`);
-            
-            if (!titleSpan || !listItem) return;
-            
-            // Replace span with input
-            const currentTitle = item.title;
-            titleSpan.outerHTML = `
-                <input 
-                    type="text" 
-                    class="edit-input flex-1" 
-                    id="edit-input-${id}"
-                    value="${escapeHtml(currentTitle)}"
-                    onkeydown="handleEditKeydown(event, '${type}', '${id}')"
-                >
-            `;
-            
-            // Replace edit button with save/cancel buttons
-            const editBtn = listItem.querySelector('.edit-btn');
-            if (editBtn) {
-                editBtn.outerHTML = `
-                    <button 
-                        onclick="saveEditItem('${type}', '${id}')"
-                        class="edit-btn save-btn"
-                        title="Save"
-                    >
-                        ✓
-                    </button>
-                    <button 
-                        onclick="cancelEditItem('${type}', '${id}')"
-                        class="edit-btn cancel-btn"
-                        title="Cancel"
-                    >
-                        ✕
-                    </button>
-                `;
-            }
-            
-            // Focus the input
-            const input = document.getElementById(`edit-input-${id}`);
-            if (input) {
-                input.focus();
-                input.select();
-            }
+
+        function Confetti() {
+            const colors = ['#000000', '#333333', '#666666', '#999999', '#EFEEE5'];
+            return <div className="pointer-events-none fixed inset-0 z-50">{Array.from({ length: 30 }).map((_, i) => <div key={i} className="confetti" style={{ left: `${Math.random()*100}vw`, backgroundColor: colors[Math.floor(Math.random()*colors.length)], animationDelay: `${Math.random()*0.5}s`, animationDuration: `${Math.random()*2+2}s` }} />)}</div>;
         }
-        
-        // Handle keyboard events during editing
-        function handleEditKeydown(event, type, id) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                saveEditItem(type, id);
-            } else if (event.key === 'Escape') {
-                event.preventDefault();
-                cancelEditItem(type, id);
-            }
+
+        // --- NEW COMPONENT: INFO MODAL ---
+        function InfoModal({ item, onClose, t }) {
+            if (!item || !item.tmdbData) return null;
+            const data = item.tmdbData;
+            
+            return (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={onClose}>
+                    <div className="max-w-2xl w-full bg-black text-bone border-2 border-bone shadow-2xl relative overflow-hidden" onClick={e => e.stopPropagation()}>
+                        {data.backdrop_path && (
+                            <div className="absolute inset-0 z-0 opacity-40">
+                                <img src={`https://image.tmdb.org/t/p/w780${data.backdrop_path}`} className="w-full h-full object-cover filter grayscale contrast-125" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+                            </div>
+                        )}
+                        <button onClick={onClose} className="absolute top-2 right-2 z-20 bg-black/50 text-white hover:bg-white hover:text-black rounded-full p-2 transition-colors">
+                            ✕
+                        </button>
+                        <div className="relative z-10 p-6 flex flex-col md:flex-row gap-6">
+                            {data.poster_path ? (
+                                <img src={`https://image.tmdb.org/t/p/w342${data.poster_path}`} className="w-32 h-48 md:w-40 md:h-60 object-cover border-2 border-bone shadow-lg flex-shrink-0 mx-auto md:mx-0" />
+                            ) : (
+                                <div className="w-32 h-48 bg-gray-800 border-2 border-bone flex items-center justify-center mx-auto md:mx-0"><span className="text-4xl">?</span></div>
+                            )}
+                            <div className="flex-1 text-center md:text-left">
+                                <h2 className="text-3xl font-black uppercase leading-tight font-sans mb-2 flex items-center justify-center md:justify-start gap-2">
+                                    {data.title || item.title} <VerifiedBadge />
+                                </h2>
+                                <div className="flex flex-wrap justify-center md:justify-start gap-3 text-xs font-mono text-gray-400 mb-4">
+                                    <span>{data.release_date?.split('-')[0] || t('UNKNOWN_YEAR')}</span>
+                                    <span>★ {data.vote_average?.toFixed(1) || 'N/A'}</span>
+                                    {data.runtime > 0 && <span>{data.runtime}m</span>}
+                                </div>
+                                <p className="text-sm text-gray-300 line-clamp-6 leading-relaxed mb-6 font-sans">{data.overview || t('NO_PLOT')}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
         }
-        
-        // Save edited item title
-        function saveEditItem(type, id) {
-            const list = type === 'movies' ? movies : tvShows;
-            const item = list.find(i => i.id === id);
-            if (!item) return;
+
+        function SettingsModal({ isOpen, onClose, apiKey, setApiKey, language, setLanguage, soundEnabled, setSoundEnabled, t }) {
+            const [inputKey, setInputKey] = useState(apiKey || '');
+            const [inputLang, setInputLang] = useState(language || 'en-US');
             
-            const input = document.getElementById(`edit-input-${id}`);
-            if (!input) return;
-            
-            const newTitle = input.value.trim();
-            
-            if (!newTitle) {
-                showToast('Title cannot be empty', 'error');
-                return;
-            }
-            
-            // Check for duplicates (excluding current item)
-            const duplicate = list.find(i => i.id !== id && i.title.toLowerCase() === newTitle.toLowerCase());
-            if (duplicate) {
-                showToast(`"${newTitle}" already exists!`, 'error');
-                return;
-            }
-            
-            item.title = newTitle;
-            saveData();
-            renderAll();
-            showToast('Title updated!');
+            useEffect(() => { setInputKey(apiKey || ''); setInputLang(language || 'en-US'); }, [apiKey, language]);
+
+            if (!isOpen) return null;
+            return (
+                <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+                    <div className="bg-[#EFEEE5] border-4 border-black p-6 w-full max-w-md shadow-2xl relative">
+                        <h2 className="text-xl font-black uppercase mb-4 font-sans">{t('SETTINGS_TITLE')}</h2>
+                        <div className="mb-4">
+                            <label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_LANG_LABEL')}</label>
+                            <select value={inputLang} onChange={(e) => setInputLang(e.target.value)} className="w-full p-3 border border-black bg-transparent text-sm font-mono focus:outline-none focus:border-b-4 transition-all uppercase"><option value="en-US">English</option><option value="pt-PT">Português</option></select>
+                        </div>
+                        <div className="mb-4 flex items-center gap-3">
+                            <input type="checkbox" checked={soundEnabled} onChange={(e) => setSoundEnabled(e.target.checked)} className="checkbox-receipt" id="soundToggle" />
+                            <label htmlFor="soundToggle" className="text-xs font-bold uppercase cursor-pointer">{t('SOUND')}</label>
+                        </div>
+                        <div className="mb-6">
+                            <label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_API_LABEL')}</label>
+                            <input type="text" value={inputKey} onChange={(e) => setInputKey(e.target.value)} placeholder="Paste key..." className="w-full p-3 border border-black bg-transparent text-sm font-mono focus:outline-none focus:border-b-4 transition-all" />
+                        </div>
+                        <div className="flex gap-3 justify-end">
+                            <button onClick={onClose} className="px-4 py-2 text-xs font-bold uppercase border border-black hover:bg-black/5">{t('SETTINGS_CANCEL')}</button>
+                            <button onClick={() => { setApiKey(inputKey.trim()); setLanguage(inputLang); onClose(); }} className="px-4 py-2 text-xs font-bold uppercase bg-black text-[#EFEEE5] hover:bg-gray-800">{t('SETTINGS_SAVE')}</button>
+                        </div>
+                    </div>
+                </div>
+            );
         }
-        
-        // Cancel editing item title
-        function cancelEditItem(type, id) {
-            renderAll();
-        }
-        
-        // Start editing watched item title
-        function startEditWatchedTitle(id) {
-            const item = watched.find(i => i.id === id);
-            if (!item) return;
-            
-            const titleSpan = document.getElementById(`watched-title-${id}`);
-            const listItem = document.getElementById(`watched-${id}`);
-            
-            if (!titleSpan || !listItem) return;
-            
-            // Replace span with input
-            const currentTitle = item.title;
-            titleSpan.outerHTML = `
-                <input 
-                    type="text" 
-                    class="edit-input" 
-                    id="edit-watched-title-${id}"
-                    value="${escapeHtml(currentTitle)}"
-                    onkeydown="handleWatchedTitleKeydown(event, '${id}')"
-                >
-            `;
-            
-            // Replace edit button with save/cancel buttons
-            const editBtn = listItem.querySelector('.edit-btn');
-            if (editBtn) {
-                editBtn.outerHTML = `
-                    <button 
-                        onclick="saveWatchedTitle('${id}')"
-                        class="edit-btn save-btn"
-                        title="Save"
-                    >
-                        ✓
-                    </button>
-                    <button 
-                        onclick="cancelWatchedEdit()"
-                        class="edit-btn cancel-btn"
-                        title="Cancel"
-                    >
-                        ✕
-                    </button>
-                `;
-            }
-            
-            // Focus the input
-            const input = document.getElementById(`edit-watched-title-${id}`);
-            if (input) {
-                input.focus();
-                input.select();
-            }
-        }
-        
-        // Handle keyboard for watched title edit
-        function handleWatchedTitleKeydown(event, id) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                saveWatchedTitle(id);
-            } else if (event.key === 'Escape') {
-                event.preventDefault();
-                cancelWatchedEdit();
-            }
-        }
-        
-        // Save watched item title
-        function saveWatchedTitle(id) {
-            const item = watched.find(i => i.id === id);
-            if (!item) return;
-            
-            const input = document.getElementById(`edit-watched-title-${id}`);
-            if (!input) return;
-            
-            const newTitle = input.value.trim();
-            
-            if (!newTitle) {
-                showToast('Title cannot be empty', 'error');
-                return;
-            }
-            
-            item.title = newTitle;
-            saveData();
-            renderWatched();
-            showToast('Title updated!');
-        }
-        
-        // Cancel watched edit
-        function cancelWatchedEdit() {
-            renderWatched();
-        }
-        
-        // Start editing watched date
-        function startEditWatchedDate(id) {
-            const item = watched.find(i => i.id === id);
-            if (!item) return;
-            
-            const dateSpan = document.getElementById(`watched-date-${id}`);
-            if (!dateSpan) return;
-            
-            // Get current date in YYYY-MM-DD format
-            const currentDate = new Date(item.watchedDate);
-            const dateValue = currentDate.toISOString().split('T')[0];
-            
-            // Replace span with date input
-            dateSpan.parentElement.innerHTML = `
-                <input 
-                    type="date" 
-                    class="date-input" 
-                    id="edit-date-${id}"
-                    value="${dateValue}"
-                    onchange="saveWatchedDate('${id}')"
-                    onkeydown="handleDateKeydown(event, '${id}')"
-                >
-                <button 
-                    onclick="cancelWatchedEdit()"
-                    class="text-xs text-gray-400 hover:text-red-500 transition-colors ml-1"
-                    title="Cancel"
-                >
-                    ✕
-                </button>
-            `;
-            
-            // Focus the input
-            const input = document.getElementById(`edit-date-${id}`);
-            if (input) {
-                input.focus();
-            }
-        }
-        
-        // Handle keyboard for date edit
-        function handleDateKeydown(event, id) {
-            if (event.key === 'Escape') {
-                event.preventDefault();
-                cancelWatchedEdit();
-            }
-        }
-        
-        // Save watched date
-        function saveWatchedDate(id) {
-            const item = watched.find(i => i.id === id);
-            if (!item) return;
-            
-            const input = document.getElementById(`edit-date-${id}`);
-            if (!input || !input.value) return;
-            
-            // Create date at noon to avoid timezone issues
-            const newDate = new Date(input.value + 'T12:00:00');
-            item.watchedDate = newDate.toISOString();
-            
-            saveData();
-            renderWatched();
-            showToast('Date updated!');
-        }
-        
-        // Event Listeners
-        addMovieForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (addItem('movies', movieInput.value)) {
-                movieInput.value = '';
-            }
-            movieInput.focus();
-        });
-        
-        addTvShowForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (addItem('tvShows', tvShowInput.value)) {
-                tvShowInput.value = '';
-            }
-            tvShowInput.focus();
-        });
-        
-        spinMovieButton.addEventListener('click', () => spinRoulette('movies'));
-        spinTvShowButton.addEventListener('click', () => spinRoulette('tvShows'));
-        clearAllButton.addEventListener('click', clearAll);
-        clearWatchedButton.addEventListener('click', clearWatched);
-        watchedButton.addEventListener('click', markAsWatched);
-        
-        // Keyboard shortcut: Spacebar to spin
-        document.addEventListener('keydown', (e) => {
-            const activeElement = document.activeElement;
-            const isTyping = activeElement === movieInput || activeElement === tvShowInput;
-            
-            if (e.code === 'Space' && !isTyping && currentTab !== 'watched') {
-                e.preventDefault();
-                spinRoulette(currentTab);
-            }
-        });
-        
-        // Export/Import elements
-        const exportButton = document.getElementById('exportButton');
-        const importButton = document.getElementById('importButton');
-        const importFileInput = document.getElementById('importFileInput');
-        
-        // Export data to JSON file
-        function exportData() {
-            const data = {
-                version: 1,
-                exportDate: new Date().toISOString(),
-                movies: movies,
-                tvShows: tvShows,
-                watched: watched
-            };
-            
-            const jsonString = JSON.stringify(data, null, 2);
-            const blob = new Blob([jsonString], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `movie-roulette-backup-${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showToast('Data exported successfully!');
-        }
-        
-        // Import data from JSON file
-        function importData(file) {
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
+
+        function SearchInput({ type, placeholder, onAdd, apiKey, language }) {
+            const [query, setQuery] = useState('');
+            const [suggestions, setSuggestions] = useState([]);
+            const [loading, setLoading] = useState(false);
+            const wrapperRef = useRef(null);
+
+            useEffect(() => {
+                if (!apiKey || query.length < 2) { setSuggestions([]); return; }
+                const timer = setTimeout(async () => {
+                    setLoading(true);
+                    try {
+                        const endpoint = type === 'movies' ? 'movie' : 'tv';
+                        const res = await fetch(`https://api.themoviedb.org/3/search/${endpoint}?api_key=${apiKey}&query=${encodeURIComponent(query)}&language=${language}&include_adult=false`);
+                        const data = await res.json();
+                        if (data.results) setSuggestions(data.results.slice(0, 5));
+                    } catch (e) { console.error(e); }
+                    setLoading(false);
+                }, 400);
+                return () => clearTimeout(timer);
+            }, [query, apiKey, type, language]);
+
+            useEffect(() => {
+                const handleClickOutside = (event) => { if (wrapperRef.current && !wrapperRef.current.contains(event.target)) setSuggestions([]); };
+                document.addEventListener("mousedown", handleClickOutside);
+                return () => document.removeEventListener("mousedown", handleClickOutside);
+            }, []);
+
+            const handleSelect = async (item) => {
+                setLoading(true);
+                let runtime = 0;
+                let genres = item.genre_ids || [];
                 try {
-                    const data = JSON.parse(e.target.result);
-                    
-                    // Validate the data structure
-                    if (!data.movies && !data.tvShows && !data.watched) {
-                        throw new Error('Invalid backup file format');
-                    }
-                    
-                    // Ask user how to handle import
-                    const mergeChoice = confirm(
-                        'How would you like to import?\n\n' +
-                        'OK = Merge with existing data\n' +
-                        'Cancel = Replace all existing data'
-                    );
-                    
-                    if (mergeChoice) {
-                        // Merge: add items that don't exist
-                        if (Array.isArray(data.movies)) {
-                            data.movies.forEach(item => {
-                                const exists = movies.some(m => m.title.toLowerCase() === item.title.toLowerCase());
-                                if (!exists) {
-                                    movies.push({
-                                        id: generateId(),
-                                        title: item.title,
-                                        included: item.included !== undefined ? item.included : true
-                                    });
-                                }
-                            });
-                        }
-                        
-                        if (Array.isArray(data.tvShows)) {
-                            data.tvShows.forEach(item => {
-                                const exists = tvShows.some(t => t.title.toLowerCase() === item.title.toLowerCase());
-                                if (!exists) {
-                                    tvShows.push({
-                                        id: generateId(),
-                                        title: item.title,
-                                        included: item.included !== undefined ? item.included : true
-                                    });
-                                }
-                            });
-                        }
-                        
-                        if (Array.isArray(data.watched)) {
-                            data.watched.forEach(item => {
-                                const exists = watched.some(w => 
-                                    w.title.toLowerCase() === item.title.toLowerCase() && 
-                                    w.type === item.type
-                                );
-                                if (!exists) {
-                                    watched.push({
-                                        id: generateId(),
-                                        title: item.title,
-                                        type: item.type,
-                                        watchedDate: item.watchedDate || new Date().toISOString()
-                                    });
-                                }
-                            });
-                        }
-                        
-                        showToast('Data merged successfully!');
-                    } else {
-                        // Replace: overwrite all data
-                        movies = (data.movies || []).map(item => ({
-                            id: generateId(),
-                            title: item.title || item,
-                            included: item.included !== undefined ? item.included : true
-                        }));
-                        
-                        tvShows = (data.tvShows || []).map(item => ({
-                            id: generateId(),
-                            title: item.title || item,
-                            included: item.included !== undefined ? item.included : true
-                        }));
-                        
-                        watched = (data.watched || []).map(item => ({
-                            id: generateId(),
-                            title: item.title,
-                            type: item.type,
-                            watchedDate: item.watchedDate || new Date().toISOString()
-                        }));
-                        
-                        showToast('Data replaced successfully!');
-                    }
-                    
-                    saveData();
-                    renderAll();
-                    
-                    // Reset file input
-                    importFileInput.value = '';
-                    
-                } catch (error) {
-                    console.error('Import error:', error);
-                    showToast('Failed to import: Invalid file format', 'error');
-                    importFileInput.value = '';
-                }
+                    const endpoint = type === 'movies' ? 'movie' : 'tv';
+                    const detailRes = await fetch(`https://api.themoviedb.org/3/${endpoint}/${item.id}?api_key=${apiKey}&language=${language}`);
+                    const detailData = await detailRes.json();
+                    runtime = detailData.runtime || (detailData.episode_run_time ? detailData.episode_run_time[0] : 0) || 0;
+                    genres = detailData.genres ? detailData.genres.map(g => g.id) : genres;
+                } catch(e) {}
+
+                const metadata = {
+                    id: item.id, poster_path: item.poster_path, backdrop_path: item.backdrop_path,
+                    overview: item.overview, release_date: item.release_date || item.first_air_date,
+                    vote_average: item.vote_average, title: item.title || item.name,
+                    runtime: runtime, genre_ids: genres
+                };
+                onAdd(metadata.title, metadata);
+                setQuery(''); setSuggestions([]); setLoading(false);
             };
-            
-            reader.onerror = function() {
-                showToast('Failed to read file', 'error');
-                importFileInput.value = '';
-            };
-            
-            reader.readAsText(file);
+
+            const handleSubmit = (e) => { e.preventDefault(); if (query.trim()) { onAdd(query, null); setQuery(''); setSuggestions([]); } };
+
+            return (
+                <div className="relative flex-1" ref={wrapperRef}>
+                    <form onSubmit={handleSubmit} className="relative">
+                        <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={placeholder} className="w-full p-3 text-sm bg-transparent border-b border-black placeholder-gray-500 focus:outline-none focus:border-b-2 uppercase pr-8" autoComplete="off" />
+                        {loading && <div className="absolute right-2 top-3 w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>}
+                    </form>
+                    {suggestions.length > 0 && (
+                        <div className="absolute top-full left-0 right-0 bg-white border-2 border-black border-t-0 z-50 shadow-xl max-h-60 overflow-y-auto">
+                            {suggestions.map(s => (
+                                <div key={s.id} onClick={() => handleSelect(s)} className="p-2 hover:bg-gray-100 cursor-pointer flex gap-3 items-center border-b border-gray-100 last:border-0">
+                                    {s.poster_path ? <img src={`https://image.tmdb.org/t/p/w92${s.poster_path}`} className="w-8 h-12 object-cover bg-gray-200" /> : <div className="w-8 h-12 bg-gray-200 flex items-center justify-center text-[8px]">NO IMG</div>}
+                                    <div className="flex-1 min-w-0">
+                                        <p className="text-sm font-bold truncate text-black uppercase">{s.title || s.name}</p>
+                                        <p className="text-xs text-gray-500">{(s.release_date || s.first_air_date || '').split('-')[0]} {s.vote_average ? ` • ★ ${s.vote_average.toFixed(1)}` : ''}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
         }
-        
-        // Export button click
-        exportButton.addEventListener('click', exportData);
-        
-        // Import button click - trigger file input
-        importButton.addEventListener('click', () => {
-            importFileInput.click();
-        });
-        
-        // File input change - process the file
-        importFileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                if (!file.name.endsWith('.json')) {
-                    showToast('Please select a JSON file', 'error');
-                    importFileInput.value = '';
-                    return;
+
+        function FilterPanel({ isOpen, onClose, filters, setFilters, t }) {
+            if (!isOpen) return null;
+            const toggleGenre = (id) => {
+                const newGenres = filters.genres.includes(id) ? filters.genres.filter(g => g !== id) : [...filters.genres, id];
+                setFilters({ ...filters, genres: newGenres });
+            };
+            const toggleTime = (val) => {
+                setFilters({ ...filters, time: filters.time === val ? null : val });
+            };
+
+            return (
+                <div className="mb-6 p-4 border-2 border-black bg-white/50">
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="font-bold uppercase text-xs tracking-wider">{t('FILTERS')}</h3>
+                        <button onClick={onClose} className="text-xs underline">CLOSE</button>
+                    </div>
+                    <div className="mb-4">
+                        <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_TIME')}</p>
+                        <div className="flex flex-wrap gap-2">
+                            {['short', 'medium', 'long'].map(time => (
+                                <button key={time} onClick={() => toggleTime(time)} className={`px-2 py-1 text-[10px] uppercase border ${filters.time === time ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>
+                                    {time === 'short' ? t('TIME_SHORT') : time === 'medium' ? t('TIME_MED') : t('TIME_LONG')}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_GENRE')}</p>
+                        <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
+                            {Object.entries(GENRES).map(([id, name]) => (
+                                <button key={id} onClick={() => toggleGenre(parseInt(id))} className={`px-2 py-1 text-[10px] uppercase border ${filters.genres.includes(parseInt(id)) ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>
+                                    {name}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function App() {
+            const [movies, setMovies] = useState([]);
+            const [tvShows, setTvShows] = useState([]);
+            const [watched, setWatched] = useState([]);
+            const [apiKey, setApiKey] = useState('');
+            const [language, setLanguage] = useState('en-US');
+            const [soundEnabled, setSoundEnabled] = useState(true);
+            const [currentTab, setCurrentTab] = useState('movies');
+            const [isSpinning, setIsSpinning] = useState(false);
+            const [spinningText, setSpinningText] = useState('');
+            const [selectedItem, setSelectedItem] = useState(null);
+            const [selectedItemType, setSelectedItemType] = useState(null);
+            const [showResult, setShowResult] = useState(false);
+            const [showConfetti, setShowConfetti] = useState(false);
+            const [showSettings, setShowSettings] = useState(false);
+            const [showFilters, setShowFilters] = useState(false);
+            const [filters, setFilters] = useState({ genres: [], time: null });
+            const [toasts, setToasts] = useState([]);
+            const [editingId, setEditingId] = useState(null);
+            const [editingValue, setEditingValue] = useState('');
+            const [editingDateId, setEditingDateId] = useState(null);
+            const [viewingItem, setViewingItem] = useState(null);
+            const fileInputRef = useRef(null);
+
+            const t = (key) => TRANSLATIONS[language][key] || key;
+
+            useEffect(() => {
+                try {
+                    const sm = localStorage.getItem(STORAGE_KEYS.movies); if (sm) setMovies(JSON.parse(sm));
+                    const st = localStorage.getItem(STORAGE_KEYS.tvShows); if (st) setTvShows(JSON.parse(st));
+                    const sw = localStorage.getItem(STORAGE_KEYS.watched); if (sw) setWatched(JSON.parse(sw));
+                    const sk = localStorage.getItem(STORAGE_KEYS.tmdbKey); if (sk) setApiKey(sk);
+                    const sl = localStorage.getItem(STORAGE_KEYS.language); if (sl) setLanguage(sl);
+                    const ss = localStorage.getItem(STORAGE_KEYS.sound); if (ss) setSoundEnabled(JSON.parse(ss));
+                } catch (e) {}
+            }, []);
+
+            useEffect(() => localStorage.setItem(STORAGE_KEYS.movies, JSON.stringify(movies)), [movies]);
+            useEffect(() => localStorage.setItem(STORAGE_KEYS.tvShows, JSON.stringify(tvShows)), [tvShows]);
+            useEffect(() => localStorage.setItem(STORAGE_KEYS.watched, JSON.stringify(watched)), [watched]);
+            useEffect(() => { if(apiKey) localStorage.setItem(STORAGE_KEYS.tmdbKey, apiKey); else localStorage.removeItem(STORAGE_KEYS.tmdbKey); }, [apiKey]);
+            useEffect(() => localStorage.setItem(STORAGE_KEYS.language, language), [language]);
+            useEffect(() => localStorage.setItem(STORAGE_KEYS.sound, JSON.stringify(soundEnabled)), [soundEnabled]);
+
+            const showToast = useCallback((message, type = 'success') => {
+                const id = generateId(); setToasts(prev => [...prev, { id, message, type }]); setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 4500);
+            }, []);
+
+            const handleAdd = async (title, metadata) => {
+                const trimmedTitle = title.trim(); if (!trimmedTitle) return;
+                const list = currentTab === 'movies' ? movies : tvShows;
+                if (list.some(i => i.title.toLowerCase() === trimmedTitle.toLowerCase())) { showToast(t('TOAST_EXIST'), 'error'); return; }
+                const newItem = { id: generateId(), title: metadata ? metadata.title : trimmedTitle, included: true, tmdbData: metadata };
+                if (currentTab === 'movies') setMovies(prev => [...prev, newItem]); else setTvShows(prev => [...prev, newItem]);
+                showToast(`${t('TOAST_ADDED')} "${newItem.title}"`);
+            };
+
+            const deleteItem = useCallback((type, id) => {
+                if (type === 'movies') setMovies(prev => prev.filter(m => m.id !== id)); else setTvShows(prev => prev.filter(t => t.id !== id));
+                if (selectedItem?.id === id) { setShowResult(false); setSelectedItem(null); }
+            }, [selectedItem]);
+
+            const toggleIncluded = useCallback((type, id) => {
+                if (type === 'movies') setMovies(prev => prev.map(m => m.id === id ? { ...m, included: !m.included } : m));
+                else setTvShows(prev => prev.map(t => t.id === id ? { ...t, included: !t.included } : t));
+            }, []);
+
+            const visibleItems = useMemo(() => {
+                const list = currentTab === 'movies' ? movies : tvShows;
+                if (filters.genres.length === 0 && !filters.time) return list;
+                return list.filter(item => {
+                    if (!item.tmdbData) return false; 
+                    if (filters.genres.length > 0) {
+                        const itemGenres = item.tmdbData?.genre_ids || [];
+                        if (!filters.genres.some(id => itemGenres.includes(id))) return false;
+                    }
+                    if (filters.time) {
+                        const r = item.tmdbData?.runtime;
+                        if (!r) return false; 
+                        if (filters.time === 'short' && r > 90) return false;
+                        if (filters.time === 'medium' && (r <= 90 || r > 120)) return false;
+                        if (filters.time === 'long' && r <= 120) return false;
+                    }
+                    return true;
+                });
+            }, [movies, tvShows, currentTab, filters]);
+
+            const spinCandidates = visibleItems.filter(i => i.included);
+
+            const spinRoulette = useCallback(() => {
+                if (isSpinning || spinCandidates.length === 0) return;
+                setIsSpinning(true); setShowResult(false);
+                const spinDuration = 2500; const startTime = Date.now();
+                const animate = () => {
+                    const elapsed = Date.now() - startTime;
+                    const progress = elapsed / spinDuration;
+                    const interval = 50 + (progress * 300);
+                    if (soundEnabled && Math.random() > 0.5) playTick(); 
+                    if (elapsed < spinDuration) {
+                        const randomIndex = Math.floor(Math.random() * spinCandidates.length);
+                        setSpinningText(spinCandidates[randomIndex].title);
+                        setTimeout(animate, interval);
+                    } else {
+                        const finalIndex = Math.floor(Math.random() * spinCandidates.length);
+                        const selected = spinCandidates[finalIndex];
+                        setSelectedItem(selected); setSelectedItemType(currentTab); setShowResult(true); 
+                        setShowConfetti(true); setTimeout(() => setShowConfetti(false), 5000); 
+                        setIsSpinning(false);
+                        if (soundEnabled) playWin();
+                        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+                    }
+                };
+                animate();
+            }, [spinCandidates, isSpinning, currentTab, soundEnabled]);
+
+            const markAsWatched = useCallback(() => {
+                if (!selectedItem || !selectedItemType) return;
+                const newWatched = { id: generateId(), title: selectedItem.title, type: selectedItemType === 'movies' ? 'movie' : 'tvShow', watchedDate: new Date().toISOString(), tmdbData: selectedItem.tmdbData };
+                if (selectedItemType === 'movies') setMovies(prev => prev.filter(m => m.id !== selectedItem.id));
+                else setTvShows(prev => prev.filter(t => t.id !== selectedItem.id));
+                setWatched(prev => [...prev, newWatched]);
+                setShowResult(false); setSelectedItem(null);
+            }, [selectedItem, selectedItemType]);
+
+            const restoreItem = useCallback((id) => {
+                const item = watched.find(w => w.id === id); if (!item) return;
+                const newItem = { id: generateId(), title: item.title, included: true, tmdbData: item.tmdbData };
+                if (item.type === 'movie') setMovies(prev => [...prev, newItem]); else setTvShows(prev => [...prev, newItem]);
+                setWatched(prev => prev.filter(w => w.id !== id));
+            }, [watched]);
+
+            const deleteWatched = useCallback((id) => { setWatched(prev => prev.filter(w => w.id !== id)); }, []);
+            
+            const clearAll = useCallback(() => {
+                if (currentTab === 'watched') return;
+                if (confirm('Are you sure?')) {
+                    if (currentTab === 'movies') setMovies([]); else setTvShows([]);
+                    setShowResult(false);
                 }
-                importData(file);
-            }
-        });
-        
-        // Initialize
-        loadData();
+            }, [currentTab, movies, tvShows]);
+
+            const clearWatched = useCallback(() => { if (confirm('Clear history?')) { setWatched([]); } }, []);
+
+            const saveEdit = (type, id) => {
+                const newTitle = editingValue.trim(); if (!newTitle) return;
+                const updater = item => item.id === id ? { ...item, title: newTitle } : item;
+                if (type === 'movies') setMovies(prev => prev.map(updater));
+                else if (type === 'tvShows') setTvShows(prev => prev.map(updater));
+                else setWatched(prev => prev.map(w => w.id === id ? { ...w, title: newTitle } : w));
+                setEditingId(null);
+            };
+
+            const saveDate = (id, dateValue) => {
+                const newDate = new Date(dateValue + 'T12:00:00');
+                setWatched(prev => prev.map(w => w.id === id ? { ...w, watchedDate: newDate.toISOString() } : w));
+                setEditingDateId(null);
+            };
+
+            const exportData = () => {
+                const data = { version: 10, exportDate: new Date().toISOString(), movies, tvShows, watched, apiKey, language, soundEnabled };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v10-1-${new Date().toISOString().split('T')[0]}.json`;
+                document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+                showToast(t('EXPORT'));
+            };
+
+            const importData = (file) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        if (!data.movies && !data.tvShows) throw new Error('Invalid file');
+                        if (confirm('Merge (OK) or Replace (Cancel)?')) {
+                            const unique = (arr, existing) => arr.filter(i => !existing.some(e => e.title.toLowerCase() === i.title.toLowerCase()));
+                            if(data.movies) setMovies(prev => [...prev, ...unique(data.movies, prev)]);
+                            if(data.tvShows) setTvShows(prev => [...prev, ...unique(data.tvShows, prev)]);
+                            if(data.watched) setWatched(prev => [...prev, ...data.watched]);
+                        } else {
+                            if(data.movies) setMovies(data.movies);
+                            if(data.tvShows) setTvShows(data.tvShows);
+                            if(data.watched) setWatched(data.watched);
+                        }
+                        if (data.apiKey) setApiKey(data.apiKey);
+                        if (data.language) setLanguage(data.language);
+                        if (data.soundEnabled !== undefined) setSoundEnabled(data.soundEnabled);
+                        showToast('Import successful');
+                    } catch (err) { showToast('Import failed', 'error'); }
+                };
+                reader.readAsText(file);
+            };
+
+            useEffect(() => {
+                const handleKeydown = (e) => {
+                    const target = e.target;
+                    const isTyping = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA';
+                    if (e.code === 'Space' && !isTyping && currentTab !== 'watched' && !showSettings && !showFilters && !viewingItem) { e.preventDefault(); spinRoulette(); }
+                };
+                document.addEventListener('keydown', handleKeydown);
+                return () => document.removeEventListener('keydown', handleKeydown);
+            }, [currentTab, spinRoulette, showSettings, showFilters, viewingItem]);
+
+            const watchedMovies = watched.filter(w => w.type === 'movie').sort((a, b) => new Date(b.watchedDate) - new Date(a.watchedDate));
+            const watchedTvShows = watched.filter(w => w.type === 'tvShow').sort((a, b) => new Date(b.watchedDate) - new Date(a.watchedDate));
+
+            return (
+                <div className="min-h-screen bg-bone text-black relative">
+                    <div className="max-w-2xl mx-auto p-4 md:p-8 pb-24">
+                        <header className="mb-8">
+                            <div className="border-[12px] border-[#722F37] p-6 md:p-8 relative">
+                                <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-center leading-none text-black font-sans">
+                                    MOVIE<br />ROULETTE
+                                </h1>
+                                <p className="text-center text-xs uppercase tracking-[0.3em] mt-3 text-black/60">{t('SUBTITLE')}</p>
+                                {apiKey && <div className="absolute top-2 right-2 flex items-center gap-1 text-[10px] bg-black text-bone px-2 py-1 uppercase font-bold tracking-widest opacity-60">TMDB Connected <VerifiedBadge/></div>}
+                            </div>
+                        </header>
+                        <nav className="mb-6 flex border-b border-black">
+                            {['movies', 'tvShows', 'watched'].map(tab => (
+                                <button key={tab} className={`flex-1 p-3 text-xs font-bold uppercase tracking-wider transition-colors border-l border-black first:border-l-0 ${currentTab === tab ? 'bg-black text-bone' : 'bg-transparent hover:bg-black/10'}`} onClick={() => { setCurrentTab(tab); setShowResult(false); setShowFilters(false); }}>
+                                    {tab === 'watched' ? `✓ ${t('TAB_WATCHED')}` : `◼ ${tab === 'movies' ? t('TAB_MOVIES') : t('TAB_TV')}`}
+                                </button>
+                            ))}
+                        </nav>
+                        {(currentTab === 'movies' || currentTab === 'tvShows') && (
+                            <div>
+                                <section className="mb-6 flex gap-3">
+                                    <SearchInput type={currentTab} apiKey={apiKey} language={language} placeholder={currentTab === 'movies' ? t('PLACEHOLDER_MOVIES') : t('PLACEHOLDER_TV')} onAdd={handleAdd} />
+                                    <button onClick={() => { const input = document.querySelector('input[type="text"]'); if (input) input.form.requestSubmit(); }} className="bg-black text-bone px-6 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors">{t('BTN_ADD')}</button>
+                                </section>
+
+                                <div className="flex justify-between items-end mb-2">
+                                    <h2 className="text-xs font-bold uppercase tracking-wider">{currentTab === 'movies' ? t('HEADER_MOVIES') : t('HEADER_TV')}</h2>
+                                    <button onClick={() => setShowFilters(!showFilters)} className={`text-[10px] font-bold uppercase px-2 py-1 border border-black ${showFilters || filters.genres.length > 0 || filters.time ? 'bg-black text-bone' : 'text-gray-500'}`}>
+                                        {t('FILTERS')} {(filters.genres.length > 0 || filters.time) ? '(!)' : ''}
+                                    </button>
+                                </div>
+                                <FilterPanel isOpen={showFilters} onClose={() => setShowFilters(false)} filters={filters} setFilters={setFilters} t={t} />
+
+                                <section className="mb-6">
+                                    <div className="flex gap-2 text-xs mb-4 pb-2 border-b border-black justify-between">
+                                        <div>
+                                            <span>{spinCandidates.length} {t('SELECTED')}</span>
+                                            <span className="bg-black text-bone px-2 py-1 ml-2">{(currentTab === 'movies' ? movies : tvShows).length}</span>
+                                        </div>
+                                        {(filters.genres.length > 0 || filters.time) && (
+                                            <button onClick={() => setFilters({ genres: [], time: null })} className="text-[10px] underline text-red-600 hover:text-black">
+                                                {t('CLEAR_FILTERS')}
+                                            </button>
+                                        )}
+                                    </div>
+                                    <div className="min-h-[160px] max-h-[280px] overflow-y-auto scrollbar-receipt">
+                                        {(currentTab === 'movies' ? movies : tvShows).length === 0 ? (
+                                            <div className="p-8 text-center text-gray-500"><p className="text-2xl mb-2">◼</p><p className="uppercase text-xs tracking-wide">{t('EMPTY_LIST')}</p></div>
+                                        ) : visibleItems.length === 0 ? (
+                                            <div className="p-8 text-center text-gray-500">
+                                                <p className="uppercase text-xs tracking-wide">No matches for this filter.</p>
+                                                <button onClick={() => setFilters({ genres: [], time: null })} className="mt-2 text-xs underline">Clear Filters</button>
+                                            </div>
+                                        ) : (
+                                            <ul>
+                                                {visibleItems.map((item) => (
+                                                    <li key={item.id} className={`list-item flex items-center gap-3 py-3 border-b border-black/20 last:border-b-0 ${!item.included ? 'excluded' : ''}`}>
+                                                        <input type="checkbox" className="checkbox-receipt" checked={item.included} onChange={() => toggleIncluded(currentTab, item.id)} />
+                                                        {editingId === item.id ? (
+                                                            <div className="flex-1 flex gap-2">
+                                                                <input className="edit-input-receipt" value={editingValue} onChange={(e) => setEditingValue(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && saveEdit(currentTab, item.id)} autoFocus />
+                                                                <button onClick={() => saveEdit(currentTab, item.id)}>✓</button>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="flex-1 min-w-0 flex items-center gap-2">
+                                                                <span className={`truncate text-sm uppercase ${!item.included ? 'line-through' : ''}`}>{item.title}</span>
+                                                                {item.tmdbData && <VerifiedBadge />}
+                                                            </div>
+                                                        )}
+                                                        {editingId !== item.id && (
+                                                            <div className="flex gap-1">
+                                                                {item.tmdbData && (
+                                                                    <button onClick={() => setViewingItem(item)} className="px-1 text-gray-400 hover:text-verified" title="Info">
+                                                                        <InfoIcon />
+                                                                    </button>
+                                                                )}
+                                                                <button onClick={() => { setEditingId(item.id); setEditingValue(item.title); }} className="px-1 text-gray-400 hover:text-black">✎</button>
+                                                                <button onClick={() => deleteItem(currentTab, item.id)} className="px-1 text-gray-400 hover:text-black">✕</button>
+                                                            </div>
+                                                        )}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+                                </section>
+                                <button onClick={spinRoulette} disabled={spinCandidates.length === 0 || isSpinning} className="w-full p-5 text-lg md:text-xl font-black uppercase tracking-tight bg-black text-bone disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-900 transition-colors font-sans">
+                                    ▶ {t('SPIN_BTN')}
+                                </button>
+                            </div>
+                        )}
+                        {currentTab === 'watched' && (
+                            <div>
+                                {[
+                                    { title: t('HEADER_WATCHED_MOVIES'), list: watchedMovies },
+                                    { title: t('HEADER_WATCHED_TV'), list: watchedTvShows }
+                                ].map((section, idx) => (
+                                    <section key={idx} className="mb-8">
+                                        <div className="flex justify-between items-center mb-4 pb-2 border-b border-black">
+                                            <h2 className="text-xs font-bold uppercase tracking-wider">{section.title}</h2>
+                                            <span className="bg-black text-bone px-2 py-1 text-xs">{section.list.length}</span>
+                                        </div>
+                                        <ul className="min-h-[50px] max-h-[200px] overflow-y-auto scrollbar-receipt">
+                                            {section.list.length === 0 && <li className="text-xs text-gray-500 py-2 uppercase text-center">{t('EMPTY_WATCHED')}</li>}
+                                            {section.list.map(item => (
+                                                <li key={item.id} className="list-item flex items-center gap-3 py-3 border-b border-black/20 last:border-b-0">
+                                                    {item.tmdbData && item.tmdbData.poster_path && (
+                                                        <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} alt="poster" className="w-8 h-12 object-cover border border-black" />
+                                                    )}
+                                                    <div className="flex-1 min-w-0">
+                                                        <span className="block text-sm uppercase truncate flex items-center gap-1">
+                                                            {item.title}
+                                                            {item.tmdbData && <VerifiedBadge />}
+                                                        </span>
+                                                        <div className="flex items-center gap-2 mt-1">
+                                                            {editingDateId === item.id ? (
+                                                                <input type="date" className="date-input-receipt" onChange={(e) => saveDate(item.id, e.target.value)} />
+                                                            ) : (
+                                                                <>
+                                                                    <span className="text-xs text-gray-500">{formatDate(item.watchedDate, language)}</span>
+                                                                    <button onClick={() => setEditingDateId(item.id)} className="text-xs text-gray-400 hover:text-black">✎</button>
+                                                                </>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                    {/* WATCHED TAB ACTIONS: Info, Restore, Delete */}
+                                                    {item.tmdbData && (
+                                                        <button onClick={() => setViewingItem(item)} className="px-1 text-gray-400 hover:text-verified" title="Info">
+                                                            <InfoIcon />
+                                                        </button>
+                                                    )}
+                                                    <button onClick={() => restoreItem(item.id)} className="text-xs px-2 py-1 border border-black hover:bg-black hover:text-bone">↩</button>
+                                                    <button onClick={() => deleteWatched(item.id)} className="px-1 text-gray-400 hover:text-black">✕</button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </section>
+                                ))}
+                                <button onClick={clearWatched} className="w-full p-3 text-xs font-bold uppercase tracking-wider border border-black hover:bg-black hover:text-bone transition-colors">✕ {t('BTN_CLEAR_HISTORY')}</button>
+                            </div>
+                        )}
+                        {isSpinning && (
+                            <section className="mb-6">
+                                <div className="bg-black p-8 text-center">
+                                    <p className="text-xs uppercase text-gray-400 mb-2 tracking-widest">{t('SPINNING')}</p>
+                                    <p className="text-xl md:text-3xl font-bold text-bone spin-animation truncate uppercase font-sans">{spinningText}</p>
+                                </div>
+                            </section>
+                        )}
+                        {showResult && selectedItem && !isSpinning && (
+                            <section className="mb-6 animate-fade-in-up">
+                                {selectedItem.tmdbData ? (
+                                    <div className="bg-black text-bone overflow-hidden shadow-2xl relative celebrate">
+                                        {selectedItem.tmdbData.backdrop_path && (
+                                            <div className="absolute inset-0 z-0 opacity-40">
+                                                <img src={`https://image.tmdb.org/t/p/w780${selectedItem.tmdbData.backdrop_path}`} className="w-full h-full object-cover filter grayscale contrast-125" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+                                            </div>
+                                        )}
+                                        <div className="relative z-10 p-6 flex flex-col md:flex-row gap-6">
+                                            {selectedItem.tmdbData.poster_path ? (
+                                                <img src={`https://image.tmdb.org/t/p/w342${selectedItem.tmdbData.poster_path}`} className="w-32 h-48 md:w-40 md:h-60 object-cover border-2 border-bone shadow-lg flex-shrink-0 mx-auto md:mx-0" />
+                                            ) : (
+                                                <div className="w-32 h-48 bg-gray-800 border-2 border-bone flex items-center justify-center mx-auto md:mx-0"><span className="text-4xl">?</span></div>
+                                            )}
+                                            <div className="flex-1 text-center md:text-left">
+                                                <p className="text-xs font-bold text-[#722F37] bg-bone inline-block px-2 py-1 mb-2 tracking-widest uppercase">WINNER</p>
+                                                <h2 className="text-3xl md:text-4xl font-black uppercase leading-tight font-sans mb-2 flex items-center justify-center md:justify-start gap-2">
+                                                    {selectedItem.title} <VerifiedBadge />
+                                                </h2>
+                                                <div className="flex flex-wrap justify-center md:justify-start gap-3 text-xs font-mono text-gray-400 mb-4">
+                                                    <span>{selectedItem.tmdbData.release_date?.split('-')[0] || t('UNKNOWN_YEAR')}</span>
+                                                    <span>★ {selectedItem.tmdbData.vote_average?.toFixed(1) || 'N/A'}</span>
+                                                    {selectedItem.tmdbData.runtime > 0 && <span>{selectedItem.tmdbData.runtime}m</span>}
+                                                </div>
+                                                <p className="text-sm text-gray-300 line-clamp-4 leading-relaxed mb-6 font-sans">{selectedItem.tmdbData.overview || t('NO_PLOT')}</p>
+                                                <button onClick={markAsWatched} className="w-full md:w-auto px-6 py-3 bg-bone text-black text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors">✓ {t('BTN_WATCHED')}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="bg-black p-6 md:p-8 celebrate relative overflow-hidden">
+                                        <div className="relative z-10">
+                                            <p className="text-xs uppercase text-gray-400 mb-1 tracking-[0.2em]">{selectedItemType === 'movies' ? t('WINNER_MOVIE') : t('WINNER_TV')}</p>
+                                            <div className="w-8 h-px bg-gray-600 mb-4"></div>
+                                            <p className="text-2xl md:text-4xl font-black text-bone uppercase leading-tight font-sans">{selectedItem.title}</p>
+                                            <div className="mt-6 pt-4 border-t border-gray-700">
+                                                <button onClick={markAsWatched} className="px-4 py-2 bg-bone text-black text-xs font-bold uppercase tracking-wider hover:bg-white">✓ {t('BTN_WATCHED')}</button>
+                                            </div>
+                                        </div>
+                                        <div className="absolute left-0 right-0 bottom-0 h-3 flex justify-between px-2">{Array.from({ length: 20 }).map((_, i) => <div key={i} className="w-2 h-2 rounded-full bg-bone"></div>)}</div>
+                                    </div>
+                                )}
+                            </section>
+                        )}
+                        <footer className="border-t border-black pt-4 mt-8 flex flex-col gap-4">
+                            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                                <p className="text-xs text-gray-600 uppercase tracking-wider">{t('FOOTER_TIP')}</p>
+                                <div className="flex gap-2">
+                                    <button onClick={() => setShowSettings(true)} className={`px-3 py-2 border border-black hover:bg-black hover:text-bone transition-colors ${apiKey ? 'bg-black/10' : ''}`} title="Settings">⚙</button>
+                                    {currentTab !== 'watched' && <button onClick={clearAll} className="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-black hover:bg-black hover:text-bone transition-colors">✕ {t('BTN_CLEAR_LIST')}</button>}
+                                </div>
+                            </div>
+                            <div className="border-t border-black/30 pt-4">
+                                <div className="flex flex-col sm:flex-row gap-3">
+                                    <button onClick={exportData} className="flex-1 px-4 py-2 bg-black text-bone text-xs font-bold uppercase tracking-wider hover:bg-gray-800">⬇ {t('EXPORT')}</button>
+                                    <button onClick={() => fileInputRef.current?.click()} className="flex-1 px-4 py-2 border border-black text-xs font-bold uppercase tracking-wider hover:bg-black hover:text-bone">⬆ {t('IMPORT')}</button>
+                                    <input ref={fileInputRef} type="file" accept=".json" className="hidden" onChange={(e) => e.target.files?.[0] && importData(e.target.files[0])} />
+                                </div>
+                            </div>
+                        </footer>
+                        <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} apiKey={apiKey} setApiKey={setApiKey} language={language} setLanguage={setLanguage} soundEnabled={soundEnabled} setSoundEnabled={setSoundEnabled} t={t} />
+                        <InfoModal item={viewingItem} onClose={() => setViewingItem(null)} t={t} />
+                        <div className="fixed top-4 right-4 z-50 flex flex-col gap-2">{toasts.map(t => <Toast key={t.id} message={t.message} type={t.type} />)}</div>
+                        {showConfetti && <Confetti />}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
