@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Roulette</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="media/logo.png">
+    <style>
+        * {
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .brutal-shadow {
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+        
+        .brutal-shadow-yellow {
+            box-shadow: 4px 4px 0px 0px #FFE600;
+        }
+        
+        .brutal-shadow:hover {
+            box-shadow: 6px 6px 0px 0px #000000;
+            transform: translate(-2px, -2px);
+        }
+        
+        .brutal-shadow:active {
+            box-shadow: 2px 2px 0px 0px #000000;
+            transform: translate(2px, 2px);
+        }
+        
+        .spin-animation {
+            animation: spinText 0.1s linear infinite;
+        }
+        
+        @keyframes spinText {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(-2deg); }
+            75% { transform: scale(1.05) rotate(2deg); }
+        }
+        
+        .celebrate {
+            animation: celebrate 0.5s ease-in-out 3;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confetti-fall 3s ease-out forwards;
+        }
+        
+        .movie-item {
+            transition: all 0.15s ease;
+        }
+        
+        .movie-item:hover {
+            transform: translateX(4px);
+            background-color: #FFE600;
+        }
+        
+        .movie-item.excluded {
+            opacity: 0.5;
+        }
+        
+        .movie-item.excluded:hover {
+            background-color: #e5e5e5;
+        }
+        
+        .scrollbar-brutal::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        .scrollbar-brutal::-webkit-scrollbar-track {
+            background: #ffffff;
+            border: 3px solid #000000;
+        }
+        
+        .scrollbar-brutal::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
+        
+        .toast {
+            animation: slideIn 0.3s ease-out, slideOut 0.3s ease-in 2.7s forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        .tab-button {
+            transition: all 0.15s ease;
+        }
+        
+        .tab-button.active {
+            background-color: #FFE600;
+            color: #000000;
+        }
+        
+        .tab-button:not(.active):hover {
+            background-color: #333333;
+        }
+        
+        .checkbox-brutal {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #000000;
+            background: #ffffff;
+            cursor: pointer;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .checkbox-brutal:checked {
+            background: #FFE600;
+        }
+        
+        .checkbox-brutal:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+        }
+        
+        .checkbox-brutal:hover {
+            transform: scale(1.1);
+        }
+        
+        .watched-item {
+            transition: all 0.15s ease;
+        }
+        
+        .watched-item:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .edit-input {
+            background: #FFE600;
+            border: 3px solid #000000;
+            padding: 4px 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: inherit;
+            font-weight: 500;
+            width: 100%;
+            outline: none;
+        }
+        
+        .edit-input:focus {
+            background: #ffffff;
+        }
+        
+        .date-input {
+            background: #FFE600;
+            border: 3px solid #000000;
+            padding: 2px 6px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .date-input:focus {
+            background: #ffffff;
+        }
+        
+        .edit-btn {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: #ffffff;
+            color: #000000;
+            font-weight: bold;
+            border: 2px solid #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        
+        .edit-btn:hover {
+            background: #FFE600;
+        }
+        
+        .save-btn {
+            background: #00CC66;
+            color: white;
+            border-color: #000000;
+        }
+        
+        .save-btn:hover {
+            background: #00AA55;
+        }
+        
+        .cancel-btn {
+            background: #999999;
+            color: white;
+            border-color: #000000;
+        }
+        
+        .cancel-btn:hover {
+            background: #777777;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <div id="app" class="max-w-2xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="mb-6 border-4 border-black bg-[#FFE600] p-4 brutal-shadow">
+            <h1 class="text-3xl md:text-5xl font-bold text-black uppercase tracking-tight text-center">
+                MOVIE<br>ROULETTE
+            </h1>
+            <p class="text-center text-black mt-2 text-sm uppercase">What should I watch?</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <nav class="mb-6 flex border-4 border-black">
+            <button 
+                id="moviesTab" 
+                class="tab-button flex-1 p-3 text-lg font-bold uppercase bg-black text-white border-r-4 border-black active"
+                onclick="switchTab('movies')"
+            >
+                🎬 Movies
+            </button>
+            <button 
+                id="tvShowsTab" 
+                class="tab-button flex-1 p-3 text-lg font-bold uppercase bg-black text-white border-r-4 border-black"
+                onclick="switchTab('tvShows')"
+            >
+                📺 TV Shows
+            </button>
+            <button 
+                id="watchedTab" 
+                class="tab-button flex-1 p-3 text-lg font-bold uppercase bg-black text-white"
+                onclick="switchTab('watched')"
+            >
+                ✓ Watched
+            </button>
+        </nav>
+
+        <!-- Movies Tab Content -->
+        <div id="moviesContent" class="tab-content">
+            <!-- Add Movie Section -->
+            <section class="mb-6">
+                <form id="addMovieForm" class="flex flex-col md:flex-row gap-3">
+                    <input 
+                        type="text" 
+                        id="movieInput" 
+                        placeholder="Enter movie title..."
+                        class="flex-1 p-4 text-lg border-4 border-black bg-white placeholder-gray-500 focus:outline-none focus:bg-[#FFE600] transition-colors"
+                        autocomplete="off"
+                    >
+                    <button 
+                        type="submit" 
+                        class="bg-black text-white p-4 text-lg font-bold uppercase border-4 border-black brutal-shadow hover:bg-[#FFE600] hover:text-black transition-colors"
+                    >
+                        + ADD
+                    </button>
+                </form>
+            </section>
+
+            <!-- Movie List Section -->
+            <section class="mb-6">
+                <div class="flex justify-between items-center mb-4 border-b-4 border-black pb-2">
+                    <h2 class="text-xl font-bold uppercase">Your Movies</h2>
+                    <div class="flex gap-2 items-center">
+                        <span id="movieIncludedCount" class="bg-[#FFE600] text-black px-2 py-1 text-xs font-bold border-2 border-black">0 selected</span>
+                        <span id="movieCount" class="bg-black text-white px-3 py-1 text-sm font-bold">0</span>
+                    </div>
+                </div>
+                
+                <div id="movieList" class="border-4 border-black min-h-[200px] max-h-[300px] overflow-y-auto scrollbar-brutal bg-white">
+                    <div id="movieEmptyState" class="p-8 text-center text-gray-500">
+                        <p class="text-lg">🎬</p>
+                        <p class="uppercase text-sm mt-2">Add some movies to get started!</p>
+                    </div>
+                    <ul id="moviesContainer" class="hidden"></ul>
+                </div>
+            </section>
+
+            <!-- Roulette Section for Movies -->
+            <section class="mb-6">
+                <button 
+                    id="spinMovieButton" 
+                    disabled
+                    class="w-full p-6 text-2xl md:text-3xl font-bold uppercase border-4 border-black brutal-shadow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none disabled:hover:shadow-[4px_4px_0px_0px_#000000] bg-[#FFE600] text-black hover:bg-black hover:text-[#FFE600] transition-colors"
+                >
+                    🎰 SPIN THE ROULETTE
+                </button>
+            </section>
+        </div>
+
+        <!-- TV Shows Tab Content -->
+        <div id="tvShowsContent" class="tab-content hidden">
+            <!-- Add TV Show Section -->
+            <section class="mb-6">
+                <form id="addTvShowForm" class="flex flex-col md:flex-row gap-3">
+                    <input 
+                        type="text" 
+                        id="tvShowInput" 
+                        placeholder="Enter TV show title..."
+                        class="flex-1 p-4 text-lg border-4 border-black bg-white placeholder-gray-500 focus:outline-none focus:bg-[#FFE600] transition-colors"
+                        autocomplete="off"
+                    >
+                    <button 
+                        type="submit" 
+                        class="bg-black text-white p-4 text-lg font-bold uppercase border-4 border-black brutal-shadow hover:bg-[#FFE600] hover:text-black transition-colors"
+                    >
+                        + ADD
+                    </button>
+                </form>
+            </section>
+
+            <!-- TV Show List Section -->
+            <section class="mb-6">
+                <div class="flex justify-between items-center mb-4 border-b-4 border-black pb-2">
+                    <h2 class="text-xl font-bold uppercase">Your TV Shows</h2>
+                    <div class="flex gap-2 items-center">
+                        <span id="tvShowIncludedCount" class="bg-[#FFE600] text-black px-2 py-1 text-xs font-bold border-2 border-black">0 selected</span>
+                        <span id="tvShowCount" class="bg-black text-white px-3 py-1 text-sm font-bold">0</span>
+                    </div>
+                </div>
+                
+                <div id="tvShowList" class="border-4 border-black min-h-[200px] max-h-[300px] overflow-y-auto scrollbar-brutal bg-white">
+                    <div id="tvShowEmptyState" class="p-8 text-center text-gray-500">
+                        <p class="text-lg">📺</p>
+                        <p class="uppercase text-sm mt-2">Add some TV shows to get started!</p>
+                    </div>
+                    <ul id="tvShowsContainer" class="hidden"></ul>
+                </div>
+            </section>
+
+            <!-- Roulette Section for TV Shows -->
+            <section class="mb-6">
+                <button 
+                    id="spinTvShowButton" 
+                    disabled
+                    class="w-full p-6 text-2xl md:text-3xl font-bold uppercase border-4 border-black brutal-shadow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none disabled:hover:shadow-[4px_4px_0px_0px_#000000] bg-[#FFE600] text-black hover:bg-black hover:text-[#FFE600] transition-colors"
+                >
+                    🎰 SPIN THE ROULETTE
+                </button>
+            </section>
+        </div>
+
+        <!-- Watched Tab Content -->
+        <div id="watchedContent" class="tab-content hidden">
+            <!-- Watched Movies Section -->
+            <section class="mb-6">
+                <div class="flex justify-between items-center mb-4 border-b-4 border-black pb-2">
+                    <h2 class="text-xl font-bold uppercase">🎬 Watched Movies</h2>
+                    <span id="watchedMoviesCount" class="bg-black text-white px-3 py-1 text-sm font-bold">0</span>
+                </div>
+                
+                <div class="border-4 border-black min-h-[120px] max-h-[250px] overflow-y-auto scrollbar-brutal bg-white">
+                    <div id="watchedMoviesEmptyState" class="p-6 text-center text-gray-500">
+                        <p class="text-lg">🎬</p>
+                        <p class="uppercase text-sm mt-2">No movies watched yet!</p>
+                    </div>
+                    <ul id="watchedMoviesContainer" class="hidden"></ul>
+                </div>
+            </section>
+
+            <!-- Watched TV Shows Section -->
+            <section class="mb-6">
+                <div class="flex justify-between items-center mb-4 border-b-4 border-black pb-2">
+                    <h2 class="text-xl font-bold uppercase">📺 Watched TV Shows</h2>
+                    <span id="watchedTvShowsCount" class="bg-black text-white px-3 py-1 text-sm font-bold">0</span>
+                </div>
+                
+                <div class="border-4 border-black min-h-[120px] max-h-[250px] overflow-y-auto scrollbar-brutal bg-white">
+                    <div id="watchedTvShowsEmptyState" class="p-6 text-center text-gray-500">
+                        <p class="text-lg">📺</p>
+                        <p class="uppercase text-sm mt-2">No TV shows watched yet!</p>
+                    </div>
+                    <ul id="watchedTvShowsContainer" class="hidden"></ul>
+                </div>
+            </section>
+
+            <section>
+                <button 
+                    id="clearWatchedButton"
+                    class="w-full p-4 text-lg font-bold uppercase border-4 border-black brutal-shadow bg-white text-black hover:bg-red-500 hover:text-white transition-colors"
+                >
+                    🗑️ Clear Watch History
+                </button>
+            </section>
+        </div>
+
+        <!-- Spinning Display (shared) -->
+        <section id="spinningDisplay" class="hidden mb-6">
+            <div class="border-4 border-black bg-black p-8 text-center">
+                <p class="text-sm uppercase text-[#FFE600] mb-2">Selecting...</p>
+                <p id="spinningText" class="text-2xl md:text-4xl font-bold text-white spin-animation truncate"></p>
+            </div>
+        </section>
+
+        <!-- Result Display (shared) -->
+        <section id="resultDisplay" class="hidden mb-6">
+            <div class="border-4 border-black bg-[#FFE600] p-8 text-center brutal-shadow celebrate">
+                <p id="resultLabel" class="text-sm uppercase text-black mb-2">🎬 Tonight's Pick 🎬</p>
+                <p id="resultText" class="text-2xl md:text-4xl font-bold text-black break-words"></p>
+                <button 
+                    id="watchedButton"
+                    class="mt-4 px-4 py-2 bg-black text-white text-sm uppercase border-2 border-black hover:bg-white hover:text-black transition-colors"
+                >
+                    ✓ Mark as Watched
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t-4 border-black pt-4">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-center mb-4">
+                <p class="text-sm text-gray-600 uppercase">Press <kbd class="bg-black text-white px-2 py-1">Space</kbd> to spin</p>
+                <button 
+                    id="clearAllButton"
+                    class="px-4 py-2 bg-white text-black border-4 border-black text-sm font-bold uppercase brutal-shadow hover:bg-red-500 hover:text-white transition-colors"
+                >
+                    🗑️ Clear Current List
+                </button>
+            </div>
+            
+            <!-- Import/Export Section -->
+            <div class="border-4 border-black bg-gray-100 p-4">
+                <h3 class="text-sm font-bold uppercase mb-3 text-center">📦 Backup & Restore</h3>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button 
+                        id="exportButton"
+                        class="flex-1 px-4 py-3 bg-black text-white border-4 border-black text-sm font-bold uppercase brutal-shadow hover:bg-[#FFE600] hover:text-black transition-colors"
+                    >
+                        ⬇️ Export Data
+                    </button>
+                    <button 
+                        id="importButton"
+                        class="flex-1 px-4 py-3 bg-white text-black border-4 border-black text-sm font-bold uppercase brutal-shadow hover:bg-[#FFE600] transition-colors"
+                    >
+                        ⬆️ Import Data
+                    </button>
+                    <input 
+                        type="file" 
+                        id="importFileInput" 
+                        accept=".json"
+                        class="hidden"
+                    >
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center uppercase">Export your lists to a file or import from a backup</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2"></div>
+
+    <!-- Confetti Container -->
+    <div id="confettiContainer" class="pointer-events-none"></div>
+
+    <script>
+        // Storage keys
+        const STORAGE_KEYS = {
+            movies: 'movieRoulette_movies',
+            tvShows: 'movieRoulette_tvShows',
+            watched: 'movieRoulette_watched'
+        };
+        
+        // State
+        let movies = [];
+        let tvShows = [];
+        let watched = [];
+        let currentTab = 'movies';
+        let isSpinning = false;
+        let selectedItem = null;
+        let selectedItemType = null;
+        
+        // DOM Elements
+        const toastContainer = document.getElementById('toastContainer');
+        const confettiContainer = document.getElementById('confettiContainer');
+        const spinningDisplay = document.getElementById('spinningDisplay');
+        const spinningText = document.getElementById('spinningText');
+        const resultDisplay = document.getElementById('resultDisplay');
+        const resultText = document.getElementById('resultText');
+        const resultLabel = document.getElementById('resultLabel');
+        const watchedButton = document.getElementById('watchedButton');
+        const clearAllButton = document.getElementById('clearAllButton');
+        const clearWatchedButton = document.getElementById('clearWatchedButton');
+        
+        // Tab elements
+        const moviesTab = document.getElementById('moviesTab');
+        const tvShowsTab = document.getElementById('tvShowsTab');
+        const watchedTab = document.getElementById('watchedTab');
+        const moviesContent = document.getElementById('moviesContent');
+        const tvShowsContent = document.getElementById('tvShowsContent');
+        const watchedContent = document.getElementById('watchedContent');
+        
+        // Movies elements
+        const movieInput = document.getElementById('movieInput');
+        const addMovieForm = document.getElementById('addMovieForm');
+        const moviesContainer = document.getElementById('moviesContainer');
+        const movieEmptyState = document.getElementById('movieEmptyState');
+        const movieCount = document.getElementById('movieCount');
+        const movieIncludedCount = document.getElementById('movieIncludedCount');
+        const spinMovieButton = document.getElementById('spinMovieButton');
+        
+        // TV Shows elements
+        const tvShowInput = document.getElementById('tvShowInput');
+        const addTvShowForm = document.getElementById('addTvShowForm');
+        const tvShowsContainer = document.getElementById('tvShowsContainer');
+        const tvShowEmptyState = document.getElementById('tvShowEmptyState');
+        const tvShowCount = document.getElementById('tvShowCount');
+        const tvShowIncludedCount = document.getElementById('tvShowIncludedCount');
+        const spinTvShowButton = document.getElementById('spinTvShowButton');
+        
+        // Watched elements
+        const watchedMoviesContainer = document.getElementById('watchedMoviesContainer');
+        const watchedMoviesEmptyState = document.getElementById('watchedMoviesEmptyState');
+        const watchedMoviesCountEl = document.getElementById('watchedMoviesCount');
+        const watchedTvShowsContainer = document.getElementById('watchedTvShowsContainer');
+        const watchedTvShowsEmptyState = document.getElementById('watchedTvShowsEmptyState');
+        const watchedTvShowsCountEl = document.getElementById('watchedTvShowsCount');
+        
+        // Generate unique ID
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+        
+        // Load data from localStorage
+        function loadData() {
+            try {
+                const storedMovies = localStorage.getItem(STORAGE_KEYS.movies);
+                const storedTvShows = localStorage.getItem(STORAGE_KEYS.tvShows);
+                const storedWatched = localStorage.getItem(STORAGE_KEYS.watched);
+                
+                movies = storedMovies ? JSON.parse(storedMovies) : [];
+                tvShows = storedTvShows ? JSON.parse(storedTvShows) : [];
+                watched = storedWatched ? JSON.parse(storedWatched) : [];
+                
+                // Migration: convert old string format to object format
+                movies = movies.map(m => typeof m === 'string' ? { id: generateId(), title: m, included: true } : m);
+                tvShows = tvShows.map(t => typeof t === 'string' ? { id: generateId(), title: t, included: true } : t);
+            } catch (e) {
+                movies = [];
+                tvShows = [];
+                watched = [];
+            }
+            
+            renderAll();
+        }
+        
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem(STORAGE_KEYS.movies, JSON.stringify(movies));
+            localStorage.setItem(STORAGE_KEYS.tvShows, JSON.stringify(tvShows));
+            localStorage.setItem(STORAGE_KEYS.watched, JSON.stringify(watched));
+        }
+        
+        // Switch tabs
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Update tab buttons
+            moviesTab.classList.toggle('active', tab === 'movies');
+            tvShowsTab.classList.toggle('active', tab === 'tvShows');
+            watchedTab.classList.toggle('active', tab === 'watched');
+            
+            // Update content visibility
+            moviesContent.classList.toggle('hidden', tab !== 'movies');
+            tvShowsContent.classList.toggle('hidden', tab !== 'tvShows');
+            watchedContent.classList.toggle('hidden', tab !== 'watched');
+            
+            // Hide result when switching tabs
+            resultDisplay.classList.add('hidden');
+            spinningDisplay.classList.add('hidden');
+            selectedItem = null;
+            selectedItemType = null;
+        }
+        
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast px-4 py-3 border-4 border-black font-bold text-sm uppercase ${
+                type === 'success' ? 'bg-[#FFE600] text-black' : 'bg-red-500 text-white'
+            }`;
+            toast.textContent = message;
+            toastContainer.appendChild(toast);
+            
+            setTimeout(() => toast.remove(), 3000);
+        }
+        
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#FFE600', '#000000', '#FF0080', '#00FF00', '#FF0000'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confettiContainer.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+        
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Render movies list
+        function renderMovies() {
+            const includedMovies = movies.filter(m => m.included);
+            movieCount.textContent = movies.length;
+            movieIncludedCount.textContent = `${includedMovies.length} selected`;
+            spinMovieButton.disabled = includedMovies.length === 0;
+            
+            if (movies.length === 0) {
+                movieEmptyState.classList.remove('hidden');
+                moviesContainer.classList.add('hidden');
+                return;
+            }
+            
+            movieEmptyState.classList.add('hidden');
+            moviesContainer.classList.remove('hidden');
+            
+            moviesContainer.innerHTML = movies.map((movie) => `
+                <li class="movie-item flex items-center gap-3 p-4 border-b-2 border-black last:border-b-0 cursor-default ${!movie.included ? 'excluded' : ''}" id="movie-${movie.id}">
+                    <input 
+                        type="checkbox" 
+                        class="checkbox-brutal"
+                        ${movie.included ? 'checked' : ''}
+                        onchange="toggleIncluded('movies', '${movie.id}')"
+                        title="${movie.included ? 'Exclude from spin' : 'Include in spin'}"
+                    >
+                    <span class="truncate flex-1 font-medium ${!movie.included ? 'line-through' : ''}" id="title-movie-${movie.id}">${escapeHtml(movie.title)}</span>
+                    <button 
+                        onclick="startEditItem('movies', '${movie.id}')"
+                        class="edit-btn"
+                        title="Edit title"
+                    >
+                        ✎
+                    </button>
+                    <button 
+                        onclick="deleteItem('movies', '${movie.id}')"
+                        class="flex-shrink-0 w-8 h-8 bg-black text-white font-bold hover:bg-red-500 transition-colors flex items-center justify-center"
+                        title="Remove"
+                    >
+                        ✕
+                    </button>
+                </li>
+            `).join('');
+        }
+        
+        // Render TV shows list
+        function renderTvShows() {
+            const includedTvShows = tvShows.filter(t => t.included);
+            tvShowCount.textContent = tvShows.length;
+            tvShowIncludedCount.textContent = `${includedTvShows.length} selected`;
+            spinTvShowButton.disabled = includedTvShows.length === 0;
+            
+            if (tvShows.length === 0) {
+                tvShowEmptyState.classList.remove('hidden');
+                tvShowsContainer.classList.add('hidden');
+                return;
+            }
+            
+            tvShowEmptyState.classList.add('hidden');
+            tvShowsContainer.classList.remove('hidden');
+            
+            tvShowsContainer.innerHTML = tvShows.map((show) => `
+                <li class="movie-item flex items-center gap-3 p-4 border-b-2 border-black last:border-b-0 cursor-default ${!show.included ? 'excluded' : ''}" id="tvshow-${show.id}">
+                    <input 
+                        type="checkbox" 
+                        class="checkbox-brutal"
+                        ${show.included ? 'checked' : ''}
+                        onchange="toggleIncluded('tvShows', '${show.id}')"
+                        title="${show.included ? 'Exclude from spin' : 'Include in spin'}"
+                    >
+                    <span class="truncate flex-1 font-medium ${!show.included ? 'line-through' : ''}" id="title-tvshow-${show.id}">${escapeHtml(show.title)}</span>
+                    <button 
+                        onclick="startEditItem('tvShows', '${show.id}')"
+                        class="edit-btn"
+                        title="Edit title"
+                    >
+                        ✎
+                    </button>
+                    <button 
+                        onclick="deleteItem('tvShows', '${show.id}')"
+                        class="flex-shrink-0 w-8 h-8 bg-black text-white font-bold hover:bg-red-500 transition-colors flex items-center justify-center"
+                        title="Remove"
+                    >
+                        ✕
+                    </button>
+                </li>
+            `).join('');
+        }
+        
+        // Render watched list
+        function renderWatched() {
+            // Separate movies and TV shows
+            const watchedMovies = watched.filter(item => item.type === 'movie');
+            const watchedTvShows = watched.filter(item => item.type === 'tvShow');
+            
+            // Update counts
+            watchedMoviesCountEl.textContent = watchedMovies.length;
+            watchedTvShowsCountEl.textContent = watchedTvShows.length;
+            
+            // Render watched movies
+            if (watchedMovies.length === 0) {
+                watchedMoviesEmptyState.classList.remove('hidden');
+                watchedMoviesContainer.classList.add('hidden');
+            } else {
+                watchedMoviesEmptyState.classList.add('hidden');
+                watchedMoviesContainer.classList.remove('hidden');
+                
+                // Sort by date, most recent first
+                const sortedMovies = [...watchedMovies].sort((a, b) => new Date(b.watchedDate) - new Date(a.watchedDate));
+                
+                watchedMoviesContainer.innerHTML = sortedMovies.map((item) => `
+                    <li class="watched-item flex items-center gap-3 p-4 border-b-2 border-black last:border-b-0" id="watched-${item.id}">
+                        <div class="flex-1 min-w-0">
+                            <span class="truncate block font-medium" id="watched-title-${item.id}">${escapeHtml(item.title)}</span>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="text-xs text-gray-500 uppercase" id="watched-date-${item.id}">${formatDate(item.watchedDate)}</span>
+                                <button 
+                                    onclick="startEditWatchedDate('${item.id}')"
+                                    class="text-xs text-gray-400 hover:text-black transition-colors"
+                                    title="Edit date"
+                                >
+                                    ✎
+                                </button>
+                            </div>
+                        </div>
+                        <button 
+                            onclick="startEditWatchedTitle('${item.id}')"
+                            class="edit-btn"
+                            title="Edit title"
+                        >
+                            ✎
+                        </button>
+                        <button 
+                            onclick="restoreItem('${item.id}')"
+                            class="flex-shrink-0 px-2 py-1 bg-[#FFE600] text-black text-xs font-bold border-2 border-black hover:bg-black hover:text-white transition-colors"
+                            title="Restore to list"
+                        >
+                            ↩
+                        </button>
+                        <button 
+                            onclick="deleteWatched('${item.id}')"
+                            class="flex-shrink-0 w-8 h-8 bg-black text-white font-bold hover:bg-red-500 transition-colors flex items-center justify-center"
+                            title="Remove from history"
+                        >
+                            ✕
+                        </button>
+                    </li>
+                `).join('');
+            }
+            
+            // Render watched TV shows
+            if (watchedTvShows.length === 0) {
+                watchedTvShowsEmptyState.classList.remove('hidden');
+                watchedTvShowsContainer.classList.add('hidden');
+            } else {
+                watchedTvShowsEmptyState.classList.add('hidden');
+                watchedTvShowsContainer.classList.remove('hidden');
+                
+                // Sort by date, most recent first
+                const sortedTvShows = [...watchedTvShows].sort((a, b) => new Date(b.watchedDate) - new Date(a.watchedDate));
+                
+                watchedTvShowsContainer.innerHTML = sortedTvShows.map((item) => `
+                    <li class="watched-item flex items-center gap-3 p-4 border-b-2 border-black last:border-b-0" id="watched-${item.id}">
+                        <div class="flex-1 min-w-0">
+                            <span class="truncate block font-medium" id="watched-title-${item.id}">${escapeHtml(item.title)}</span>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="text-xs text-gray-500 uppercase" id="watched-date-${item.id}">${formatDate(item.watchedDate)}</span>
+                                <button 
+                                    onclick="startEditWatchedDate('${item.id}')"
+                                    class="text-xs text-gray-400 hover:text-black transition-colors"
+                                    title="Edit date"
+                                >
+                                    ✎
+                                </button>
+                            </div>
+                        </div>
+                        <button 
+                            onclick="startEditWatchedTitle('${item.id}')"
+                            class="edit-btn"
+                            title="Edit title"
+                        >
+                            ✎
+                        </button>
+                        <button 
+                            onclick="restoreItem('${item.id}')"
+                            class="flex-shrink-0 px-2 py-1 bg-[#FFE600] text-black text-xs font-bold border-2 border-black hover:bg-black hover:text-white transition-colors"
+                            title="Restore to list"
+                        >
+                            ↩
+                        </button>
+                        <button 
+                            onclick="deleteWatched('${item.id}')"
+                            class="flex-shrink-0 w-8 h-8 bg-black text-white font-bold hover:bg-red-500 transition-colors flex items-center justify-center"
+                            title="Remove from history"
+                        >
+                            ✕
+                        </button>
+                    </li>
+                `).join('');
+            }
+        }
+        
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+        
+        // Render all lists
+        function renderAll() {
+            renderMovies();
+            renderTvShows();
+            renderWatched();
+        }
+        
+        // Toggle included status
+        function toggleIncluded(type, id) {
+            const list = type === 'movies' ? movies : tvShows;
+            const item = list.find(i => i.id === id);
+            if (item) {
+                item.included = !item.included;
+                saveData();
+                renderAll();
+            }
+        }
+        
+        // Add item
+        function addItem(type, title) {
+            const trimmedTitle = title.trim();
+            
+            if (!trimmedTitle) {
+                showToast('Please enter a title', 'error');
+                return false;
+            }
+            
+            const list = type === 'movies' ? movies : tvShows;
+            
+            // Check for duplicates
+            if (list.some(i => i.title.toLowerCase() === trimmedTitle.toLowerCase())) {
+                showToast(`${type === 'movies' ? 'Movie' : 'TV Show'} already in list!`, 'error');
+                return false;
+            }
+            
+            list.push({
+                id: generateId(),
+                title: trimmedTitle,
+                included: true
+            });
+            
+            saveData();
+            renderAll();
+            showToast(`Added "${trimmedTitle}"`);
+            
+            // Hide result if showing
+            resultDisplay.classList.add('hidden');
+            selectedItem = null;
+            selectedItemType = null;
+            
+            return true;
+        }
+        
+        // Delete item
+        function deleteItem(type, id) {
+            const list = type === 'movies' ? movies : tvShows;
+            const index = list.findIndex(i => i.id === id);
+            
+            if (index > -1) {
+                const removed = list.splice(index, 1)[0];
+                saveData();
+                renderAll();
+                showToast(`Removed "${removed.title}"`);
+                
+                // Hide result if the selected item was deleted
+                if (selectedItem && selectedItem.id === id) {
+                    resultDisplay.classList.add('hidden');
+                    selectedItem = null;
+                    selectedItemType = null;
+                }
+            }
+        }
+        
+        // Delete watched item
+        function deleteWatched(id) {
+            const index = watched.findIndex(i => i.id === id);
+            if (index > -1) {
+                const removed = watched.splice(index, 1)[0];
+                saveData();
+                renderWatched();
+                showToast(`Removed "${removed.title}" from history`);
+            }
+        }
+        
+        // Restore item from watched
+        function restoreItem(id) {
+            const index = watched.findIndex(i => i.id === id);
+            if (index > -1) {
+                const item = watched.splice(index, 1)[0];
+                const newItem = {
+                    id: generateId(),
+                    title: item.title,
+                    included: true
+                };
+                
+                if (item.type === 'movie') {
+                    movies.push(newItem);
+                } else {
+                    tvShows.push(newItem);
+                }
+                
+                saveData();
+                renderAll();
+                showToast(`Restored "${item.title}"`);
+            }
+        }
+        
+        // Clear all items in current list
+        function clearAll() {
+            if (currentTab === 'watched') return;
+            
+            const list = currentTab === 'movies' ? movies : tvShows;
+            const typeName = currentTab === 'movies' ? 'movies' : 'TV shows';
+            
+            if (list.length === 0) return;
+            
+            if (confirm(`Are you sure you want to clear all ${typeName}?`)) {
+                if (currentTab === 'movies') {
+                    movies = [];
+                } else {
+                    tvShows = [];
+                }
+                saveData();
+                renderAll();
+                resultDisplay.classList.add('hidden');
+                selectedItem = null;
+                selectedItemType = null;
+                showToast(`All ${typeName} cleared`);
+            }
+        }
+        
+        // Clear watched history
+        function clearWatched() {
+            if (watched.length === 0) return;
+            
+            if (confirm('Are you sure you want to clear your watch history?')) {
+                watched = [];
+                saveData();
+                renderWatched();
+                showToast('Watch history cleared');
+            }
+        }
+        
+        // Spin the roulette
+        function spinRoulette(type) {
+            const list = type === 'movies' ? movies : tvShows;
+            const includedItems = list.filter(i => i.included);
+            
+            if (isSpinning || includedItems.length === 0) return;
+            
+            isSpinning = true;
+            spinMovieButton.disabled = true;
+            spinTvShowButton.disabled = true;
+            resultDisplay.classList.add('hidden');
+            spinningDisplay.classList.remove('hidden');
+            
+            const spinDuration = 2500;
+            const startTime = Date.now();
+            
+            function animate() {
+                const elapsed = Date.now() - startTime;
+                const progress = elapsed / spinDuration;
+                const interval = 50 + (progress * 300);
+                
+                if (elapsed < spinDuration) {
+                    const randomIndex = Math.floor(Math.random() * includedItems.length);
+                    spinningText.textContent = includedItems[randomIndex].title;
+                    setTimeout(animate, interval);
+                } else {
+                    // Final selection
+                    const finalIndex = Math.floor(Math.random() * includedItems.length);
+                    selectedItem = includedItems[finalIndex];
+                    selectedItemType = type;
+                    
+                    spinningDisplay.classList.add('hidden');
+                    resultLabel.textContent = type === 'movies' ? '🎬 Tonight\'s Movie 🎬' : '📺 Tonight\'s Show 📺';
+                    resultText.textContent = selectedItem.title;
+                    resultDisplay.classList.remove('hidden');
+                    
+                    createConfetti();
+                    
+                    const resultCard = resultDisplay.querySelector('div');
+                    resultCard.classList.remove('celebrate');
+                    void resultCard.offsetWidth;
+                    resultCard.classList.add('celebrate');
+                    
+                    isSpinning = false;
+                    renderAll(); // Re-enable spin buttons based on included items
+                }
+            }
+            
+            animate();
+        }
+        
+        // Mark as watched
+        function markAsWatched() {
+            if (!selectedItem || !selectedItemType) return;
+            
+            const list = selectedItemType === 'movies' ? movies : tvShows;
+            const index = list.findIndex(i => i.id === selectedItem.id);
+            
+            if (index > -1) {
+                const item = list.splice(index, 1)[0];
+                
+                watched.push({
+                    id: generateId(),
+                    title: item.title,
+                    type: selectedItemType === 'movies' ? 'movie' : 'tvShow',
+                    watchedDate: new Date().toISOString()
+                });
+                
+                saveData();
+                renderAll();
+                showToast(`Marked "${item.title}" as watched!`);
+                resultDisplay.classList.add('hidden');
+                selectedItem = null;
+                selectedItemType = null;
+            }
+        }
+        
+        // Start editing an item title (movies or TV shows)
+        function startEditItem(type, id) {
+            const list = type === 'movies' ? movies : tvShows;
+            const item = list.find(i => i.id === id);
+            if (!item) return;
+            
+            const prefix = type === 'movies' ? 'movie' : 'tvshow';
+            const titleSpan = document.getElementById(`title-${prefix}-${id}`);
+            const listItem = document.getElementById(`${prefix}-${id}`);
+            
+            if (!titleSpan || !listItem) return;
+            
+            // Replace span with input
+            const currentTitle = item.title;
+            titleSpan.outerHTML = `
+                <input 
+                    type="text" 
+                    class="edit-input flex-1" 
+                    id="edit-input-${id}"
+                    value="${escapeHtml(currentTitle)}"
+                    onkeydown="handleEditKeydown(event, '${type}', '${id}')"
+                >
+            `;
+            
+            // Replace edit button with save/cancel buttons
+            const editBtn = listItem.querySelector('.edit-btn');
+            if (editBtn) {
+                editBtn.outerHTML = `
+                    <button 
+                        onclick="saveEditItem('${type}', '${id}')"
+                        class="edit-btn save-btn"
+                        title="Save"
+                    >
+                        ✓
+                    </button>
+                    <button 
+                        onclick="cancelEditItem('${type}', '${id}')"
+                        class="edit-btn cancel-btn"
+                        title="Cancel"
+                    >
+                        ✕
+                    </button>
+                `;
+            }
+            
+            // Focus the input
+            const input = document.getElementById(`edit-input-${id}`);
+            if (input) {
+                input.focus();
+                input.select();
+            }
+        }
+        
+        // Handle keyboard events during editing
+        function handleEditKeydown(event, type, id) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                saveEditItem(type, id);
+            } else if (event.key === 'Escape') {
+                event.preventDefault();
+                cancelEditItem(type, id);
+            }
+        }
+        
+        // Save edited item title
+        function saveEditItem(type, id) {
+            const list = type === 'movies' ? movies : tvShows;
+            const item = list.find(i => i.id === id);
+            if (!item) return;
+            
+            const input = document.getElementById(`edit-input-${id}`);
+            if (!input) return;
+            
+            const newTitle = input.value.trim();
+            
+            if (!newTitle) {
+                showToast('Title cannot be empty', 'error');
+                return;
+            }
+            
+            // Check for duplicates (excluding current item)
+            const duplicate = list.find(i => i.id !== id && i.title.toLowerCase() === newTitle.toLowerCase());
+            if (duplicate) {
+                showToast(`"${newTitle}" already exists!`, 'error');
+                return;
+            }
+            
+            item.title = newTitle;
+            saveData();
+            renderAll();
+            showToast('Title updated!');
+        }
+        
+        // Cancel editing item title
+        function cancelEditItem(type, id) {
+            renderAll();
+        }
+        
+        // Start editing watched item title
+        function startEditWatchedTitle(id) {
+            const item = watched.find(i => i.id === id);
+            if (!item) return;
+            
+            const titleSpan = document.getElementById(`watched-title-${id}`);
+            const listItem = document.getElementById(`watched-${id}`);
+            
+            if (!titleSpan || !listItem) return;
+            
+            // Replace span with input
+            const currentTitle = item.title;
+            titleSpan.outerHTML = `
+                <input 
+                    type="text" 
+                    class="edit-input" 
+                    id="edit-watched-title-${id}"
+                    value="${escapeHtml(currentTitle)}"
+                    onkeydown="handleWatchedTitleKeydown(event, '${id}')"
+                >
+            `;
+            
+            // Replace edit button with save/cancel buttons
+            const editBtn = listItem.querySelector('.edit-btn');
+            if (editBtn) {
+                editBtn.outerHTML = `
+                    <button 
+                        onclick="saveWatchedTitle('${id}')"
+                        class="edit-btn save-btn"
+                        title="Save"
+                    >
+                        ✓
+                    </button>
+                    <button 
+                        onclick="cancelWatchedEdit()"
+                        class="edit-btn cancel-btn"
+                        title="Cancel"
+                    >
+                        ✕
+                    </button>
+                `;
+            }
+            
+            // Focus the input
+            const input = document.getElementById(`edit-watched-title-${id}`);
+            if (input) {
+                input.focus();
+                input.select();
+            }
+        }
+        
+        // Handle keyboard for watched title edit
+        function handleWatchedTitleKeydown(event, id) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                saveWatchedTitle(id);
+            } else if (event.key === 'Escape') {
+                event.preventDefault();
+                cancelWatchedEdit();
+            }
+        }
+        
+        // Save watched item title
+        function saveWatchedTitle(id) {
+            const item = watched.find(i => i.id === id);
+            if (!item) return;
+            
+            const input = document.getElementById(`edit-watched-title-${id}`);
+            if (!input) return;
+            
+            const newTitle = input.value.trim();
+            
+            if (!newTitle) {
+                showToast('Title cannot be empty', 'error');
+                return;
+            }
+            
+            item.title = newTitle;
+            saveData();
+            renderWatched();
+            showToast('Title updated!');
+        }
+        
+        // Cancel watched edit
+        function cancelWatchedEdit() {
+            renderWatched();
+        }
+        
+        // Start editing watched date
+        function startEditWatchedDate(id) {
+            const item = watched.find(i => i.id === id);
+            if (!item) return;
+            
+            const dateSpan = document.getElementById(`watched-date-${id}`);
+            if (!dateSpan) return;
+            
+            // Get current date in YYYY-MM-DD format
+            const currentDate = new Date(item.watchedDate);
+            const dateValue = currentDate.toISOString().split('T')[0];
+            
+            // Replace span with date input
+            dateSpan.parentElement.innerHTML = `
+                <input 
+                    type="date" 
+                    class="date-input" 
+                    id="edit-date-${id}"
+                    value="${dateValue}"
+                    onchange="saveWatchedDate('${id}')"
+                    onkeydown="handleDateKeydown(event, '${id}')"
+                >
+                <button 
+                    onclick="cancelWatchedEdit()"
+                    class="text-xs text-gray-400 hover:text-red-500 transition-colors ml-1"
+                    title="Cancel"
+                >
+                    ✕
+                </button>
+            `;
+            
+            // Focus the input
+            const input = document.getElementById(`edit-date-${id}`);
+            if (input) {
+                input.focus();
+            }
+        }
+        
+        // Handle keyboard for date edit
+        function handleDateKeydown(event, id) {
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                cancelWatchedEdit();
+            }
+        }
+        
+        // Save watched date
+        function saveWatchedDate(id) {
+            const item = watched.find(i => i.id === id);
+            if (!item) return;
+            
+            const input = document.getElementById(`edit-date-${id}`);
+            if (!input || !input.value) return;
+            
+            // Create date at noon to avoid timezone issues
+            const newDate = new Date(input.value + 'T12:00:00');
+            item.watchedDate = newDate.toISOString();
+            
+            saveData();
+            renderWatched();
+            showToast('Date updated!');
+        }
+        
+        // Event Listeners
+        addMovieForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (addItem('movies', movieInput.value)) {
+                movieInput.value = '';
+            }
+            movieInput.focus();
+        });
+        
+        addTvShowForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (addItem('tvShows', tvShowInput.value)) {
+                tvShowInput.value = '';
+            }
+            tvShowInput.focus();
+        });
+        
+        spinMovieButton.addEventListener('click', () => spinRoulette('movies'));
+        spinTvShowButton.addEventListener('click', () => spinRoulette('tvShows'));
+        clearAllButton.addEventListener('click', clearAll);
+        clearWatchedButton.addEventListener('click', clearWatched);
+        watchedButton.addEventListener('click', markAsWatched);
+        
+        // Keyboard shortcut: Spacebar to spin
+        document.addEventListener('keydown', (e) => {
+            const activeElement = document.activeElement;
+            const isTyping = activeElement === movieInput || activeElement === tvShowInput;
+            
+            if (e.code === 'Space' && !isTyping && currentTab !== 'watched') {
+                e.preventDefault();
+                spinRoulette(currentTab);
+            }
+        });
+        
+        // Export/Import elements
+        const exportButton = document.getElementById('exportButton');
+        const importButton = document.getElementById('importButton');
+        const importFileInput = document.getElementById('importFileInput');
+        
+        // Export data to JSON file
+        function exportData() {
+            const data = {
+                version: 1,
+                exportDate: new Date().toISOString(),
+                movies: movies,
+                tvShows: tvShows,
+                watched: watched
+            };
+            
+            const jsonString = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `movie-roulette-backup-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('Data exported successfully!');
+        }
+        
+        // Import data from JSON file
+        function importData(file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    // Validate the data structure
+                    if (!data.movies && !data.tvShows && !data.watched) {
+                        throw new Error('Invalid backup file format');
+                    }
+                    
+                    // Ask user how to handle import
+                    const mergeChoice = confirm(
+                        'How would you like to import?\n\n' +
+                        'OK = Merge with existing data\n' +
+                        'Cancel = Replace all existing data'
+                    );
+                    
+                    if (mergeChoice) {
+                        // Merge: add items that don't exist
+                        if (Array.isArray(data.movies)) {
+                            data.movies.forEach(item => {
+                                const exists = movies.some(m => m.title.toLowerCase() === item.title.toLowerCase());
+                                if (!exists) {
+                                    movies.push({
+                                        id: generateId(),
+                                        title: item.title,
+                                        included: item.included !== undefined ? item.included : true
+                                    });
+                                }
+                            });
+                        }
+                        
+                        if (Array.isArray(data.tvShows)) {
+                            data.tvShows.forEach(item => {
+                                const exists = tvShows.some(t => t.title.toLowerCase() === item.title.toLowerCase());
+                                if (!exists) {
+                                    tvShows.push({
+                                        id: generateId(),
+                                        title: item.title,
+                                        included: item.included !== undefined ? item.included : true
+                                    });
+                                }
+                            });
+                        }
+                        
+                        if (Array.isArray(data.watched)) {
+                            data.watched.forEach(item => {
+                                const exists = watched.some(w => 
+                                    w.title.toLowerCase() === item.title.toLowerCase() && 
+                                    w.type === item.type
+                                );
+                                if (!exists) {
+                                    watched.push({
+                                        id: generateId(),
+                                        title: item.title,
+                                        type: item.type,
+                                        watchedDate: item.watchedDate || new Date().toISOString()
+                                    });
+                                }
+                            });
+                        }
+                        
+                        showToast('Data merged successfully!');
+                    } else {
+                        // Replace: overwrite all data
+                        movies = (data.movies || []).map(item => ({
+                            id: generateId(),
+                            title: item.title || item,
+                            included: item.included !== undefined ? item.included : true
+                        }));
+                        
+                        tvShows = (data.tvShows || []).map(item => ({
+                            id: generateId(),
+                            title: item.title || item,
+                            included: item.included !== undefined ? item.included : true
+                        }));
+                        
+                        watched = (data.watched || []).map(item => ({
+                            id: generateId(),
+                            title: item.title,
+                            type: item.type,
+                            watchedDate: item.watchedDate || new Date().toISOString()
+                        }));
+                        
+                        showToast('Data replaced successfully!');
+                    }
+                    
+                    saveData();
+                    renderAll();
+                    
+                    // Reset file input
+                    importFileInput.value = '';
+                    
+                } catch (error) {
+                    console.error('Import error:', error);
+                    showToast('Failed to import: Invalid file format', 'error');
+                    importFileInput.value = '';
+                }
+            };
+            
+            reader.onerror = function() {
+                showToast('Failed to read file', 'error');
+                importFileInput.value = '';
+            };
+            
+            reader.readAsText(file);
+        }
+        
+        // Export button click
+        exportButton.addEventListener('click', exportData);
+        
+        // Import button click - trigger file input
+        importButton.addEventListener('click', () => {
+            importFileInput.click();
+        });
+        
+        // File input change - process the file
+        importFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                if (!file.name.endsWith('.json')) {
+                    showToast('Please select a JSON file', 'error');
+                    importFileInput.value = '';
+                    return;
+                }
+                importData(file);
+            }
+        });
+        
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
