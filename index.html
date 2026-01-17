@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V18 (Stability)</title>
+    <title>Movie Roulette V19 (Bulletproof)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -186,7 +186,7 @@
         }
 
         function StatsHeader({ watched, t }) {
-            const safeWatched = watched || [];
+            const safeWatched = Array.isArray(watched) ? watched : [];
             const total = safeWatched.length;
             const genres = safeWatched.flatMap(w => w.tmdbData ? w.tmdbData.genre_ids : []);
             const topGenreId = genres.length ? genres.sort((a,b) => genres.filter(v => v===a).length - genres.filter(v => v===b).length).pop() : null;
@@ -374,8 +374,11 @@
             const [selectedGenre, setSelectedGenre] = useState(null);
             const [page, setPage] = useState(1);
             
-            // CRASH FIX: Ensure safe array
-            const safeWatched = watched || [];
+            // BULLETPROOF: Ensure safe arrays
+            const safeWatched = Array.isArray(watched) ? watched : [];
+            const safeMovies = Array.isArray(movies) ? movies : [];
+            const safeTvShows = Array.isArray(tvShows) ? tvShows : [];
+            
             const ratedItems = safeWatched.filter(w => w && w.rating && w.tmdbData);
             
             useEffect(() => {
@@ -404,8 +407,8 @@
                             releaseDate: new Date(r.release_date || r.first_air_date || 0)
                         }))
                         .filter(r => !safeWatched.some(w => w.tmdbData && w.tmdbData.id === r.id))
-                        .filter(r => !movies.some(m => m.tmdbData && m.tmdbData.id === r.id))
-                        .filter(r => !tvShows.some(t => t.tmdbData && t.tmdbData.id === r.id))
+                        .filter(r => !safeMovies.some(m => m.tmdbData && m.tmdbData.id === r.id))
+                        .filter(r => !safeTvShows.some(t => t.tmdbData && t.tmdbData.id === r.id))
                         .filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i);
 
                         let finalRecs = processed;
@@ -511,14 +514,24 @@
             const spinCandidatesRef = useRef([]);
             const fileInputRef = useRef(null);
             
-            // CRASH FIX: Safe translation lookup
             const t = (key) => (TRANSLATIONS[language] || TRANSLATIONS['en-US'])[key] || key;
 
             useEffect(() => {
                 try {
-                    const sm = localStorage.getItem(STORAGE_KEYS.movies); if (sm) setMovies(JSON.parse(sm));
-                    const st = localStorage.getItem(STORAGE_KEYS.tvShows); if (st) setTvShows(JSON.parse(st));
-                    const sw = localStorage.getItem(STORAGE_KEYS.watched); if (sw) setWatched(JSON.parse(sw));
+                    // SAFE LOADING: Default to [] if parsing fails or returns null
+                    const parse = (k) => {
+                        const s = localStorage.getItem(k);
+                        if (!s) return [];
+                        try {
+                            const p = JSON.parse(s);
+                            return Array.isArray(p) ? p : [];
+                        } catch { return []; }
+                    };
+                    
+                    setMovies(parse(STORAGE_KEYS.movies));
+                    setTvShows(parse(STORAGE_KEYS.tvShows));
+                    setWatched(parse(STORAGE_KEYS.watched));
+
                     const sk = localStorage.getItem(STORAGE_KEYS.tmdbKey); 
                     const HARDCODED = 'YOUR_ACTUAL_LONG_API_KEY_HERE'; 
                     if (HARDCODED && HARDCODED !== 'YOUR_ACTUAL_LONG_API_KEY_HERE') setApiKey(HARDCODED);
@@ -625,10 +638,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 18, exportDate: new Date().toISOString(), movies, tvShows, watched, apiKey, language, soundEnabled };
+                const data = { version: 19, exportDate: new Date().toISOString(), movies, tvShows, watched, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v18-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v19-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
