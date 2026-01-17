@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V22 (Polished)</title>
+    <title>Movie Roulette V23 (Seen List)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -63,8 +63,8 @@
         const TV_GENRES = { 10759:'Action & Adventure', 16:'Animation', 35:'Comedy', 80:'Crime', 99:'Documentary', 18:'Drama', 10751:'Family', 10762:'Kids', 9648:'Mystery', 10763:'News', 10764:'Reality', 10765:'Sci-Fi & Fantasy', 10766:'Soap', 10767:'Talk', 10768:'War & Politics', 37:'Western' };
         
         const TRANSLATIONS = {
-            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_VAULT: 'VAULT', NAV_DISCOVER: 'DISCOVER', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', VERSUS_TITLE: 'TOURNAMENT', VERSUS_DESC: '8 Movies enter, 1 leaves.', VERSUS_START: 'START TOURNAMENT', VERSUS_WINNER: 'CHAMPION', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_VAULT: 'Added to Vault', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTERS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_VAULT: 'WATCH LATER', HEADER_VAULT: 'THE VAULT', EMPTY_VAULT: 'The vault is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', STATUS: 'STATUS', STATUS_RETURNING: 'RUNNING', STATUS_ENDED: 'ENDED', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS' },
-            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_VAULT: 'COFRE', NAV_DISCOVER: 'DESCOBRIR', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', VERSUS_TITLE: 'TORNEIO', VERSUS_DESC: '8 Filmes entram, 1 sai.', VERSUS_START: 'INICIAR', VERSUS_WINNER: 'CAMPEÃO', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_VAULT: 'Guardado no Cofre', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_VAULT: 'VER DEPOIS', HEADER_VAULT: 'O COFRE', EMPTY_VAULT: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', STATUS: 'ESTADO', STATUS_RETURNING: 'NO AR', STATUS_ENDED: 'COMPLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS' }
+            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_VAULT: 'VAULT', NAV_DISCOVER: 'DISCOVER', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', VERSUS_TITLE: 'TOURNAMENT', VERSUS_DESC: '8 Movies enter, 1 leaves.', VERSUS_START: 'START TOURNAMENT', VERSUS_WINNER: 'CHAMPION', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_VAULT: 'Added to Vault', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTERS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_VAULT: 'WATCH LATER', HEADER_VAULT: 'THE VAULT', EMPTY_VAULT: 'The vault is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', STATUS: 'STATUS', STATUS_RETURNING: 'RUNNING', STATUS_ENDED: 'ENDED', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', MANAGE_SEEN: 'MANAGE SEEN LIST', HEADER_SEEN: 'SEEN / BLACKLIST', EMPTY_SEEN: 'No items hidden.' },
+            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_VAULT: 'COFRE', NAV_DISCOVER: 'DESCOBRIR', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', VERSUS_TITLE: 'TORNEIO', VERSUS_DESC: '8 Filmes entram, 1 sai.', VERSUS_START: 'INICIAR', VERSUS_WINNER: 'CAMPEÃO', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_VAULT: 'Guardado no Cofre', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_VAULT: 'VER DEPOIS', HEADER_VAULT: 'O COFRE', EMPTY_VAULT: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', STATUS: 'ESTADO', STATUS_RETURNING: 'NO AR', STATUS_ENDED: 'COMPLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', MANAGE_SEEN: 'GERIR JÁ VISTOS', HEADER_SEEN: 'LISTA DE VISTOS', EMPTY_SEEN: 'Nenhum item escondido.' }
         };
 
         const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', seen: 'movieRoulette_seen', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound' };
@@ -82,7 +82,8 @@
             Check: () => <svg className="w-4 h-4 text-verified fill-current ml-1" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>,
             Info: () => <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>,
             Pencil: () => <svg className="w-3 h-3 text-gray-400 hover:text-black cursor-pointer ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>,
-            Trash: () => <svg className="w-3 h-3 text-gray-400 hover:text-red-600 cursor-pointer ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+            Trash: () => <svg className="w-3 h-3 text-gray-400 hover:text-red-600 cursor-pointer ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>,
+            Back: () => <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
         };
 
         const VerifiedBadge = () => <svg viewBox="0 0 24 24" className="w-3 h-3 text-verified fill-current ml-1 inline-block" title="Verified"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z" /></svg>;
@@ -126,7 +127,7 @@
                     const detailData = await detailRes.json();
                     runtime = detailData.runtime || (detailData.episode_run_time ? detailData.episode_run_time[0] : 0) || 0;
                     genres = detailData.genres ? detailData.genres.map(g => g.id) : genres;
-                    status = detailData.status; // Get status for TV shows
+                    status = detailData.status; 
                 } catch(e) {}
                 const metadata = { id: item.id, poster_path: item.poster_path, backdrop_path: item.backdrop_path, overview: item.overview, release_date: item.release_date || item.first_air_date, vote_average: item.vote_average, title: item.title || item.name, runtime: runtime, genre_ids: genres, status: status };
                 onAdd(metadata.title, metadata); setQuery(''); setSuggestions([]); setLoading(false);
@@ -169,7 +170,6 @@
                 <div className="mb-6 p-4 border-2 border-black bg-white/50">
                     <div className="flex justify-between items-center mb-4"><h3 className="font-bold uppercase text-xs tracking-wider">{t('FILTERS')}</h3><button onClick={onClose} className="text-xs underline">CLOSE</button></div>
                     
-                    {/* STATUS FILTER FOR TV */}
                     {type === 'tv' && (
                         <div className="mb-4">
                             <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('STATUS')}</p>
@@ -216,7 +216,6 @@
             const total = watched.length;
             const genres = watched.flatMap(w => w.tmdbData ? w.tmdbData.genre_ids : []);
             const topGenreId = genres.length ? genres.sort((a,b) => genres.filter(v => v===a).length - genres.filter(v => v===b).length).pop() : null;
-            // Try movie genres first, if not try TV genres
             const topGenre = topGenreId ? (MOVIE_GENRES[topGenreId] || TV_GENRES[topGenreId]) : '-';
             const ratedItems = watched.filter(w => w.rating && w.rating !== 'skip' && typeof w.rating === 'number');
             const avgScore = ratedItems.length ? (ratedItems.reduce((a,b)=>a+b.rating,0) / ratedItems.length).toFixed(1) : '-';
@@ -401,7 +400,6 @@
             const [selectedGenre, setSelectedGenre] = useState(null);
             const [page, setPage] = useState(1);
             
-            // Only use highly rated items (4 or 5) for seeds
             const highRatedItems = watched.filter(w => w.rating >= 4 && w.tmdbData);
             
             useEffect(() => {
@@ -451,7 +449,6 @@
 
             useEffect(() => { setPage(1); setRecommendations([]); }, [filterMode, selectedGenre]);
 
-            // DYNAMIC FILTERING: Re-calculate visible items instantly when seenIds changes
             const visibleRecommendations = useMemo(() => {
                 return recommendations.filter(r => !seenIds.includes(r.id));
             }, [recommendations, seenIds]);
@@ -538,6 +535,7 @@
             const [showResult, setShowResult] = useState(false);
             const [showConfetti, setShowConfetti] = useState(false);
             const [showFilters, setShowFilters] = useState(false);
+            const [showSeenList, setShowSeenList] = useState(false);
             const [filters, setFilters] = useState({ genres: [], time: null, status: null });
             const [toasts, setToasts] = useState([]);
             const [rateModalItem, setRateModalItem] = useState(null);
@@ -588,7 +586,6 @@
             useEffect(() => localStorage.setItem(STORAGE_KEYS.language, language), [language]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.sound, JSON.stringify(soundEnabled)), [soundEnabled]);
 
-            // Reset filters when changing mode
             useEffect(() => { setFilters({ genres: [], time: null, status: null }); }, [homeMode]);
 
             const showToast = useCallback((msg) => { const id = Date.now(); setToasts(p => [...p, { id, msg }]); setTimeout(() => setToasts(p => p.filter(t => t.id !== id)), 3000); }, []);
@@ -617,6 +614,10 @@
 
             const handleSeenRecommendation = (item) => {
                 setSeenIds(p => [...p, item.id]);
+            };
+
+            const restoreFromSeen = (id) => {
+                setSeenIds(p => p.filter(sid => sid !== id));
             };
 
             const promoteFromVault = (item) => {
@@ -651,38 +652,37 @@
 
             const currentList = homeMode === 'movie' ? movies : tvShows;
 
-            // --- FILTER LOGIC FIXED (Inc. TV Runtime & Status) ---
+            // --- FILTER LOGIC ---
             const filterItem = (item) => {
+                // Legacy check: If data missing, default to showing item to avoid bugs
                 if (!item.included) return false;
                 if (filters.genres.length > 0 || filters.time || filters.status) {
-                    if (!item.tmdbData) return false;
+                    if (!item.tmdbData) return true; // SAFE DEFAULT
                     
-                    // Genre Check
                     if (filters.genres.length > 0) { 
                         const g = item.tmdbData.genre_ids || []; 
                         if (!filters.genres.some(id => g.includes(id))) return false; 
                     }
-                    
-                    // Time Check
                     if (filters.time) { 
                         let r = item.tmdbData.runtime;
                         if (!r && item.tmdbData.episode_run_time && item.tmdbData.episode_run_time.length > 0) {
-                            // Average the runtimes if multiple are provided
                             r = item.tmdbData.episode_run_time.reduce((a,b)=>a+b,0) / item.tmdbData.episode_run_time.length;
                         }
-                        if (!r) return false; 
-                        if (filters.time === 'short' && r > 90) return false;
-                        if (filters.time === 'medium' && (r <= 90 || r > 120)) return false;
-                        if (filters.time === 'long' && r <= 120) return false;
+                        // SAFE DEFAULT: if no runtime, show it
+                        if (r) {
+                            if (filters.time === 'short' && r > 90) return false;
+                            if (filters.time === 'medium' && (r <= 90 || r > 120)) return false;
+                            if (filters.time === 'long' && r <= 120) return false;
+                        }
                     }
-
-                    // Status Check (TV Only)
                     if (filters.status) {
                         if (homeMode !== 'tv') return false; 
                         const s = item.tmdbData.status;
-                        if (!s) return false;
-                        if (filters.status === 'Returning Series' && s !== 'Returning Series') return false;
-                        if (filters.status === 'Ended' && (s !== 'Ended' && s !== 'Canceled')) return false;
+                        // SAFE DEFAULT
+                        if (s) {
+                            if (filters.status === 'Returning Series' && s !== 'Returning Series') return false;
+                            if (filters.status === 'Ended' && (s !== 'Ended' && s !== 'Canceled')) return false;
+                        }
                     }
                 }
                 return true;
@@ -756,10 +756,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 22, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, seenIds, apiKey, language, soundEnabled };
+                const data = { version: 23, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, seenIds, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v22-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v23-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -779,9 +779,28 @@
                 reader.readAsText(file);
             };
 
-            // HISTORY SPLIT
-            const watchedMovies = watched.filter(w => w.type === 'movie');
-            const watchedTV = watched.filter(w => w.type === 'tv' || w.type === 'tvShow');
+            if (showSeenList) {
+                return (
+                    <div className="min-h-screen bg-bone text-black relative font-mono select-none p-4">
+                        <div className="max-w-xl mx-auto">
+                            <div className="flex items-center mb-6 border-b-4 border-black pb-4">
+                                <button onClick={()=>setShowSeenList(false)} className="mr-4"><Icons.Back /></button>
+                                <h1 className="text-xl font-black uppercase">{t('HEADER_SEEN')}</h1>
+                            </div>
+                            {seenIds.length === 0 ? <div className="text-center text-gray-400 p-8">{t('EMPTY_SEEN')}</div> : (
+                                <div>
+                                    {seenIds.map(id => (
+                                        <div key={id} className="flex justify-between items-center py-3 border-b border-gray-300">
+                                            <span className="font-mono text-xs">ID: {id}</span>
+                                            <button onClick={()=>restoreFromSeen(id)} className="text-red-500 text-[10px] font-bold uppercase underline">RESTORE</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                );
+            }
 
             return (
                 <div className="min-h-screen bg-bone text-black relative font-mono select-none">
@@ -855,8 +874,8 @@
                                 <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('NAV_HISTORY')}</h1>
                                 <StatsHeader watched={watched} t={t} />
                                 
-                                <h3 className="font-bold text-xs uppercase bg-black text-bone p-2 mb-2 tracking-widest">{t('HEADER_HIST_MOVIES')} ({watchedMovies.length})</h3>
-                                {watchedMovies.map(item => (
+                                <h3 className="font-bold text-xs uppercase bg-black text-bone p-2 mb-2 tracking-widest">{t('HEADER_HIST_MOVIES')}</h3>
+                                {watched.filter(w=>w.type==='movie').map(item => (
                                     <div key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-300">
                                         {item.tmdbData?.poster_path && <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-10 h-14 object-cover border border-black" />}
                                         <div className="flex-1">
@@ -879,8 +898,8 @@
                                     </div>
                                 ))}
 
-                                <h3 className="font-bold text-xs uppercase bg-black text-bone p-2 mb-2 mt-8 tracking-widest">{t('HEADER_HIST_TV')} ({watchedTV.length})</h3>
-                                {watchedTV.map(item => (
+                                <h3 className="font-bold text-xs uppercase bg-black text-bone p-2 mb-2 mt-8 tracking-widest">{t('HEADER_HIST_TV')}</h3>
+                                {watched.filter(w=>w.type!=='movie').map(item => (
                                     <div key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-300">
                                         {item.tmdbData?.poster_path && <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-10 h-14 object-cover border border-black" />}
                                         <div className="flex-1">
@@ -913,6 +932,7 @@
                                     <div className="flex items-center gap-4 border-2 border-black p-4"><input type="checkbox" checked={soundEnabled} onChange={e=>setSoundEnabled(e.target.checked)} className="checkbox-receipt" /><span className="font-bold uppercase">{t('SOUND')}</span></div>
                                     <div><label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_API_LABEL')}</label><input type="text" value={apiKey} onChange={e=>setApiKey(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-mono text-xs" placeholder="API KEY" /></div>
                                     <div className="pt-6 border-t-2 border-black">
+                                        <button onClick={()=>setShowSeenList(true)} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone">{t('MANAGE_SEEN')}</button>
                                         <button onClick={()=>fileInputRef.current.click()} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone">{t('IMPORT')}</button>
                                         <input ref={fileInputRef} type="file" className="hidden" onChange={e => importData(e.target.files[0])} />
                                         <button onClick={exportData} className="w-full py-3 bg-black text-bone font-bold uppercase hover:bg-gray-800">{t('EXPORT')}</button>
