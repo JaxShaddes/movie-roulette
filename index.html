@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V14 (Feedback Loop)</title>
+    <title>Movie Roulette V15 (Discovery)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -100,8 +100,9 @@
                 TOAST_ADDED: 'Added', TOAST_EXIST: 'Already in list!', TOAST_EMPTY: 'Please enter a title', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot description available.',
                 FILTERS: 'FILTERS', FILTER_GENRE: 'GENRE', FILTER_TIME: 'RUNTIME', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)',
                 SOUND: 'SOUND', CLEAR_FILTERS: 'CLEAR FILTERS', RATE_TITLE: 'YOUR RATING', RATE_LOVE: 'LOVED IT', RATE_NEUTRAL: 'IT WAS OKAY', RATE_DISLIKE: 'NOT FOR ME', RATE_SKIP: 'SKIP RATING',
-                DISCOVER_LOCKED: 'Rate 3 items "Loved" to unlock!', DISCOVER_EMPTY: 'Finding matches...', MATCH: 'Match', BTN_ADD_TO_LIST: 'ADD TO LIST', BTN_SEEN_IT: 'SEEN IT',
-                RATE_LABEL_LOVE: 'LOVED', RATE_LABEL_NEUTRAL: 'OKAY', RATE_LABEL_DISLIKE: 'BAD', RATE_LABEL_ADD: 'RATE'
+                DISCOVER_LOCKED: 'Rate 3 items "Loved" to unlock!', DISCOVER_EMPTY: 'Finding matches...', MATCH: 'Match', BTN_ADD_TO_LIST: 'ADD', BTN_SEEN_IT: 'SEEN IT',
+                RATE_LABEL_LOVE: 'LOVED', RATE_LABEL_NEUTRAL: 'OKAY', RATE_LABEL_DISLIKE: 'BAD', RATE_LABEL_ADD: 'RATE',
+                DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_PICK: 'PICK OF THE DAY', DISC_GENRE: 'GENRE'
             },
             'pt-PT': {
                 TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', TAB_MOVIES: 'FILMES', TAB_TV: 'SÉRIES', TAB_WATCHED: 'VISTOS', TAB_DISCOVER: 'DESCOBRIR',
@@ -113,8 +114,9 @@
                 TOAST_ADDED: 'Adicionado', TOAST_EXIST: 'Já está na lista!', TOAST_EMPTY: 'Por favor insira um título', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição disponível.',
                 FILTERS: 'FILTROS', FILTER_GENRE: 'GÉNERO', FILTER_TIME: 'DURAÇÃO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)',
                 SOUND: 'SOM', CLEAR_FILTERS: 'LIMPAR FILTROS', RATE_TITLE: 'SUA AVALIAÇÃO', RATE_LOVE: 'ADOREI', RATE_NEUTRAL: 'FOI OK', RATE_DISLIKE: 'NÃO GOSTEI', RATE_SKIP: 'PULAR AVALIAÇÃO',
-                DISCOVER_LOCKED: 'Avalie 3 itens como "Adorei"!', DISCOVER_EMPTY: 'Procurando...', MATCH: 'Match', BTN_ADD_TO_LIST: 'ADICIONAR', BTN_SEEN_IT: 'JÁ VI',
-                RATE_LABEL_LOVE: 'ADOREI', RATE_LABEL_NEUTRAL: 'OK', RATE_LABEL_DISLIKE: 'RUIM', RATE_LABEL_ADD: 'AVALIAR'
+                DISCOVER_LOCKED: 'Avalie 3 itens como "Adorei"!', DISCOVER_EMPTY: 'Procurando...', MATCH: 'Match', BTN_ADD_TO_LIST: 'ADD', BTN_SEEN_IT: 'JÁ VI',
+                RATE_LABEL_LOVE: 'ADOREI', RATE_LABEL_NEUTRAL: 'OK', RATE_LABEL_DISLIKE: 'RUIM', RATE_LABEL_ADD: 'AVALIAR',
+                DISC_TOP: 'TOP MATCHES', DISC_NEW: 'RECENTES', DISC_PICK: 'DESTAQUE', DISC_GENRE: 'GÉNERO'
             }
         };
 
@@ -146,18 +148,10 @@
                     <div className="bg-[#EFEEE5] border-4 border-black p-6 w-full max-w-sm shadow-2xl relative text-center">
                         <h2 className="text-xl font-black uppercase mb-6 font-sans">{t('RATE_TITLE')}</h2>
                         <div className="flex flex-col gap-3">
-                            <button onClick={() => onRate('love')} className="p-4 bg-black text-bone hover:bg-gray-800 uppercase font-bold tracking-wider text-sm border-2 border-black">
-                                {t('RATE_LOVE')}
-                            </button>
-                            <button onClick={() => onRate('neutral')} className="p-4 bg-transparent border-2 border-black hover:bg-black/5 uppercase font-bold tracking-wider text-sm">
-                                {t('RATE_NEUTRAL')}
-                            </button>
-                            <button onClick={() => onRate('dislike')} className="p-4 bg-transparent border-2 border-black hover:bg-black/5 uppercase font-bold tracking-wider text-sm">
-                                {t('RATE_DISLIKE')}
-                            </button>
-                            <button onClick={() => onRate('skip')} className="p-4 bg-transparent border-2 border-black border-dashed hover:bg-black/5 uppercase font-bold tracking-wider text-sm text-gray-600 hover:text-black">
-                                {t('RATE_SKIP')}
-                            </button>
+                            <button onClick={() => onRate('love')} className="p-4 bg-black text-bone hover:bg-gray-800 uppercase font-bold tracking-wider text-sm border-2 border-black">{t('RATE_LOVE')}</button>
+                            <button onClick={() => onRate('neutral')} className="p-4 bg-transparent border-2 border-black hover:bg-black/5 uppercase font-bold tracking-wider text-sm">{t('RATE_NEUTRAL')}</button>
+                            <button onClick={() => onRate('dislike')} className="p-4 bg-transparent border-2 border-black hover:bg-black/5 uppercase font-bold tracking-wider text-sm">{t('RATE_DISLIKE')}</button>
+                            <button onClick={() => onRate('skip')} className="p-4 bg-transparent border-2 border-black border-dashed hover:bg-black/5 uppercase font-bold tracking-wider text-sm text-gray-600 hover:text-black">{t('RATE_SKIP')}</button>
                         </div>
                         <button onClick={onClose} className="mt-6 text-xs underline uppercase text-gray-500 hover:text-black tracking-wide">CANCEL</button>
                     </div>
@@ -171,17 +165,10 @@
             return (
                 <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={onClose}>
                     <div className="max-w-2xl w-full bg-black text-bone border-2 border-bone shadow-2xl relative overflow-hidden" onClick={e => e.stopPropagation()}>
-                        {data.backdrop_path && (
-                            <div className="absolute inset-0 z-0 opacity-40">
-                                <img src={`https://image.tmdb.org/t/p/w780${data.backdrop_path}`} className="w-full h-full object-cover filter grayscale contrast-125" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
-                            </div>
-                        )}
+                        {data.backdrop_path && (<div className="absolute inset-0 z-0 opacity-40"><img src={`https://image.tmdb.org/t/p/w780${data.backdrop_path}`} className="w-full h-full object-cover filter grayscale contrast-125" /><div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div></div>)}
                         <button onClick={onClose} className="absolute top-2 right-2 z-20 bg-black/50 text-white hover:bg-white hover:text-black rounded-full p-2 transition-colors">✕</button>
                         <div className="relative z-10 p-6 flex flex-col md:flex-row gap-6">
-                            {data.poster_path ? (
-                                <img src={`https://image.tmdb.org/t/p/w342${data.poster_path}`} className="w-32 h-48 md:w-40 md:h-60 object-cover border-2 border-bone shadow-lg flex-shrink-0 mx-auto md:mx-0" />
-                            ) : (<div className="w-32 h-48 bg-gray-800 border-2 border-bone flex items-center justify-center mx-auto md:mx-0"><span className="text-4xl">?</span></div>)}
+                            {data.poster_path ? (<img src={`https://image.tmdb.org/t/p/w342${data.poster_path}`} className="w-32 h-48 md:w-40 md:h-60 object-cover border-2 border-bone shadow-lg flex-shrink-0 mx-auto md:mx-0" />) : (<div className="w-32 h-48 bg-gray-800 border-2 border-bone flex items-center justify-center mx-auto md:mx-0"><span className="text-4xl">?</span></div>)}
                             <div className="flex-1 text-center md:text-left">
                                 <h2 className="text-3xl font-black uppercase leading-tight font-sans mb-2 flex items-center justify-center md:justify-start gap-2">{data.title || item.title} <VerifiedBadge /></h2>
                                 <div className="flex flex-wrap justify-center md:justify-start gap-3 text-xs font-mono text-gray-400 mb-4">
@@ -311,6 +298,9 @@
         function DiscoverTab({ watched, apiKey, language, onAdd, onSeen, t, movies, tvShows }) {
             const [recommendations, setRecommendations] = useState([]);
             const [loading, setLoading] = useState(false);
+            const [filterMode, setFilterMode] = useState('top'); // top, new, genre
+            const [selectedGenre, setSelectedGenre] = useState(null);
+            
             const lovedItems = watched.filter(w => w.rating === 'love' && w.tmdbData);
             
             useEffect(() => {
@@ -318,24 +308,24 @@
                 const fetchRecs = async () => {
                     setLoading(true);
                     try {
-                        const seeds = lovedItems.slice(0, 3);
+                        const seeds = lovedItems.slice(0, 5); // Take last 5 for broader range
                         let allRecs = [];
                         for (const seed of seeds) {
                             const endpoint = seed.type === 'tvShow' || seed.type === 'tv' ? 'tv' : 'movie';
                             const res = await fetch(`https://api.themoviedb.org/3/${endpoint}/${seed.tmdbData.id}/recommendations?api_key=${apiKey}&language=${language}&page=1`);
                             const data = await res.json();
                             if (data.results) {
-                                const scored = data.results.map(r => ({ ...r, matchScore: Math.round((r.vote_average * 10) + (Math.random() * 15)) }));
+                                const scored = data.results.map(r => ({ ...r, matchScore: Math.round((r.vote_average * 10) + (Math.random() * 15)), releaseDateObj: new Date(r.release_date || r.first_air_date || 0) }));
                                 allRecs = [...allRecs, ...scored];
                             }
                         }
+                        // Remove duplicates and already seen/added
                         const uniqueRecs = Array.from(new Set(allRecs.map(a => a.id)))
                             .map(id => allRecs.find(a => a.id === id))
-                            .filter(r => !watched.some(w => w.tmdbData && w.tmdbData.id === r.id)) // Not already watched
-                            .filter(r => !movies.some(m => m.tmdbData && m.tmdbData.id === r.id)) // Not in To-Watch Movies
-                            .filter(r => !tvShows.some(t => t.tmdbData && t.tmdbData.id === r.id)) // Not in To-Watch TV
-                            .sort((a, b) => b.matchScore - a.matchScore)
-                            .slice(0, 10);
+                            .filter(r => !watched.some(w => w.tmdbData && w.tmdbData.id === r.id))
+                            .filter(r => !movies.some(m => m.tmdbData && m.tmdbData.id === r.id))
+                            .filter(r => !tvShows.some(t => t.tmdbData && t.tmdbData.id === r.id));
+
                         setRecommendations(uniqueRecs);
                     } catch (e) { console.error(e); }
                     setLoading(false);
@@ -343,24 +333,82 @@
                 fetchRecs();
             }, [watched.length, apiKey, language, movies.length, tvShows.length]);
 
+            const getFilteredRecs = () => {
+                let recs = [...recommendations];
+                if (filterMode === 'top') {
+                    recs.sort((a, b) => b.matchScore - a.matchScore);
+                } else if (filterMode === 'new') {
+                    recs.sort((a, b) => b.releaseDateObj - a.releaseDateObj);
+                } else if (filterMode === 'genre' && selectedGenre) {
+                    recs = recs.filter(r => r.genre_ids && r.genre_ids.includes(selectedGenre));
+                    recs.sort((a, b) => b.matchScore - a.matchScore);
+                }
+                return recs.slice(0, 12);
+            };
+
+            const pickOfTheDay = useMemo(() => {
+                if(recommendations.length === 0) return null;
+                const seed = new Date().getDate(); // Simple daily seed
+                return recommendations[seed % recommendations.length];
+            }, [recommendations]);
+
+            const displayRecs = getFilteredRecs();
+
             if (lovedItems.length < 3) return (<div className="p-8 text-center border-2 border-dashed border-gray-400"><p className="text-4xl mb-4">🔒</p><p className="font-bold uppercase text-sm mb-2">{t('DISCOVER_LOCKED')}</p><p className="text-xs text-gray-500">({lovedItems.length} / 3 {t('RATE_LOVE')})</p></div>);
             if (loading) return <div className="p-8 text-center"><p className="animate-pulse font-bold uppercase">{t('DISCOVER_EMPTY')}</p></div>;
 
             return (
-                <div className="grid grid-cols-2 gap-4">
-                    {recommendations.map(rec => (
-                        <div key={rec.id} className="relative bg-black text-bone aspect-[2/3] group overflow-hidden border border-black">
-                            {rec.poster_path ? (<img src={`https://image.tmdb.org/t/p/w342${rec.poster_path}`} className="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity" />) : (<div className="w-full h-full bg-gray-800"></div>)}
-                            <div className="absolute inset-0 p-3 flex flex-col justify-between">
-                                <span className="self-end bg-[#1D9BF0] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm">{rec.matchScore}% {t('MATCH')}</span>
-                                <div className="translate-y-full group-hover:translate-y-0 transition-transform duration-200 flex flex-col gap-1">
-                                    <p className="font-bold text-xs uppercase leading-tight mb-1">{rec.title || rec.name}</p>
-                                    <button onClick={() => onAdd(rec)} className="w-full py-2 bg-black text-bone text-[10px] font-bold uppercase hover:bg-gray-800 border border-transparent">+ {t('BTN_ADD_TO_LIST')}</button>
-                                    <button onClick={() => onSeen(rec)} className="w-full py-2 bg-transparent text-black text-[10px] font-bold uppercase hover:bg-white border border-black">✓ {t('BTN_SEEN_IT')}</button>
+                <div className="space-y-6">
+                    {/* HERO CARD (Pick of Day) */}
+                    {pickOfTheDay && (
+                        <div className="border-[6px] border-black bg-black text-bone p-4 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 bg-[#1D9BF0] text-white text-[10px] font-bold px-2 py-1 uppercase">{t('DISC_PICK')}</div>
+                            <div className="flex gap-4">
+                                <img src={`https://image.tmdb.org/t/p/w154${pickOfTheDay.poster_path}`} className="w-24 h-36 object-cover border border-bone" />
+                                <div className="flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <h3 className="text-xl font-black uppercase leading-tight mb-1">{pickOfTheDay.title || pickOfTheDay.name}</h3>
+                                        <p className="text-xs text-gray-400 line-clamp-3">{pickOfTheDay.overview}</p>
+                                    </div>
+                                    <div className="flex gap-2 mt-2">
+                                        <button onClick={() => onAdd(pickOfTheDay)} className="flex-1 py-2 bg-bone text-black text-[10px] font-bold uppercase hover:bg-white">+ {t('BTN_ADD_TO_LIST')}</button>
+                                        <button onClick={() => onSeen(pickOfTheDay)} className="flex-1 py-2 border border-bone text-bone text-[10px] font-bold uppercase hover:bg-bone hover:text-black">✓ {t('BTN_SEEN_IT')}</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    )}
+
+                    {/* FILTERS */}
+                    <div className="overflow-x-auto pb-2 border-b border-black">
+                        <div className="flex gap-2 min-w-max">
+                            <button onClick={() => setFilterMode('top')} className={`px-3 py-1 text-[10px] font-bold uppercase border border-black ${filterMode === 'top' ? 'bg-black text-bone' : 'bg-transparent text-black'}`}>{t('DISC_TOP')}</button>
+                            <button onClick={() => setFilterMode('new')} className={`px-3 py-1 text-[10px] font-bold uppercase border border-black ${filterMode === 'new' ? 'bg-black text-bone' : 'bg-transparent text-black'}`}>{t('DISC_NEW')}</button>
+                            <select onChange={(e) => { setFilterMode('genre'); setSelectedGenre(parseInt(e.target.value)); }} className={`px-3 py-1 text-[10px] font-bold uppercase border border-black bg-transparent outline-none ${filterMode === 'genre' ? 'bg-black text-bone' : ''}`}>
+                                <option value="">{t('DISC_GENRE')}</option>
+                                {Object.entries(GENRES).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
+                            </select>
+                        </div>
+                    </div>
+
+                    {/* GRID */}
+                    <div className="grid grid-cols-2 gap-4">
+                        {displayRecs.map(rec => (
+                            <div key={rec.id} className="relative bg-black text-bone aspect-[2/3] flex flex-col border border-black">
+                                <div className="relative flex-1 overflow-hidden">
+                                    {rec.poster_path ? (<img src={`https://image.tmdb.org/t/p/w342${rec.poster_path}`} className="w-full h-full object-cover" />) : (<div className="w-full h-full bg-gray-800"></div>)}
+                                    <span className="absolute top-2 right-2 bg-[#1D9BF0] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm shadow-md">{rec.matchScore}%</span>
+                                </div>
+                                <div className="p-2 bg-black border-t border-gray-800 flex flex-col gap-1">
+                                    <p className="font-bold text-[10px] uppercase truncate text-bone/90 mb-1">{rec.title || rec.name}</p>
+                                    <div className="flex gap-1">
+                                        <button onClick={() => onAdd(rec)} className="flex-1 py-1.5 bg-bone text-black text-[9px] font-bold uppercase hover:bg-white text-center">+ ADD</button>
+                                        <button onClick={() => onSeen(rec)} className="flex-1 py-1.5 bg-[#EFEEE5] border-l border-black text-black text-[9px] font-bold uppercase hover:bg-white text-center">✓ SEEN</button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             );
         }
@@ -389,8 +437,12 @@
             const [editingDateId, setEditingDateId] = useState(null);
             const [viewingItem, setViewingItem] = useState(null);
             const [rateModalItem, setRateModalItem] = useState(null); 
-            const fileInputRef = useRef(null);
+            
+            // --- ROULETTE FIX (V15) ---
+            // We use a Ref to track candidates to avoid closure staleness during animation loop
+            const spinCandidatesRef = useRef([]);
 
+            const fileInputRef = useRef(null);
             const t = (key) => TRANSLATIONS[language][key] || key;
 
             useEffect(() => {
@@ -399,11 +451,9 @@
                     const st = localStorage.getItem(STORAGE_KEYS.tvShows); if (st) setTvShows(JSON.parse(st));
                     const sw = localStorage.getItem(STORAGE_KEYS.watched); if (sw) setWatched(JSON.parse(sw));
                     const sk = localStorage.getItem(STORAGE_KEYS.tmdbKey); 
-                    // HARDCODED KEY CHECK
-                    const HARDCODED = ''; 
-                    if (HARDCODED) setApiKey(HARDCODED);
+                    const HARDCODED = 'YOUR_ACTUAL_LONG_API_KEY_HERE'; 
+                    if (HARDCODED && HARDCODED !== 'YOUR_ACTUAL_LONG_API_KEY_HERE') setApiKey(HARDCODED);
                     else if (sk) setApiKey(sk);
-                    
                     const sl = localStorage.getItem(STORAGE_KEYS.language); if (sl) setLanguage(sl);
                     const ss = localStorage.getItem(STORAGE_KEYS.sound); if (ss) setSoundEnabled(JSON.parse(ss));
                 } catch (e) {}
@@ -431,36 +481,15 @@
 
             const handleAddRecommendation = (rec) => {
                 const type = rec.title ? 'movies' : 'tvShows';
-                const newItem = { 
-                    id: generateId(), title: rec.title || rec.name, included: true, 
-                    tmdbData: { id: rec.id, poster_path: rec.poster_path, backdrop_path: rec.backdrop_path, overview: rec.overview, release_date: rec.release_date || rec.first_air_date, vote_average: rec.vote_average, title: rec.title || rec.name, genre_ids: rec.genre_ids }
-                };
+                const newItem = { id: generateId(), title: rec.title || rec.name, included: true, tmdbData: { id: rec.id, poster_path: rec.poster_path, backdrop_path: rec.backdrop_path, overview: rec.overview, release_date: rec.release_date || rec.first_air_date, vote_average: rec.vote_average, title: rec.title || rec.name, genre_ids: rec.genre_ids } };
                 if (type === 'movies') setMovies(prev => [...prev, newItem]); else setTvShows(prev => [...prev, newItem]);
                 showToast(`${t('TOAST_ADDED')} "${newItem.title}"`);
             };
 
             const handleSeenRecommendation = (rec) => {
-                const type = rec.title ? 'movies' : 'tvShows'; // Determine type
-                // 1. Set Type so confirmWatched knows where to file it (though for new items, type is mainly for metadata)
-                setSelectedItemType(type);
-                
-                // 2. Create a "Dummy" item object compatible with RateModal
-                const dummyItem = {
-                    id: 'new_from_discover', // Temporary ID
-                    title: rec.title || rec.name,
-                    tmdbData: {
-                        id: rec.id, 
-                        poster_path: rec.poster_path, 
-                        backdrop_path: rec.backdrop_path, 
-                        overview: rec.overview, 
-                        release_date: rec.release_date || rec.first_air_date, 
-                        vote_average: rec.vote_average, 
-                        title: rec.title || rec.name,
-                        genre_ids: rec.genre_ids
-                    }
-                };
-                
-                // 3. Open Modal
+                const type = rec.title ? 'movies' : 'tvShows'; 
+                setSelectedItemType(type); // Ensure type is set for proper filing later
+                const dummyItem = { id: 'new_from_discover', title: rec.title || rec.name, tmdbData: { id: rec.id, poster_path: rec.poster_path, backdrop_path: rec.backdrop_path, overview: rec.overview, release_date: rec.release_date || rec.first_air_date, vote_average: rec.vote_average, title: rec.title || rec.name, genre_ids: rec.genre_ids } };
                 setRateModalItem(dummyItem);
             };
 
@@ -474,44 +503,44 @@
                 else setTvShows(prev => prev.map(t => t.id === id ? { ...t, included: !t.included } : t));
             }, []);
 
+            // --- VISIBILITY & SELECTION LOGIC ---
             const visibleItems = useMemo(() => {
                 const list = currentTab === 'movies' ? movies : tvShows;
                 if (filters.genres.length === 0 && !filters.time) return list;
                 return list.filter(item => {
                     if (!item.tmdbData) return false; 
-                    if (filters.genres.length > 0) {
-                        const itemGenres = item.tmdbData?.genre_ids || [];
-                        if (!filters.genres.some(id => itemGenres.includes(id))) return false;
-                    }
-                    if (filters.time) {
-                        const r = item.tmdbData?.runtime;
-                        if (!r) return false; 
-                        if (filters.time === 'short' && r > 90) return false;
-                        if (filters.time === 'medium' && (r <= 90 || r > 120)) return false;
-                        if (filters.time === 'long' && r <= 120) return false;
-                    }
+                    if (filters.genres.length > 0) { const itemGenres = item.tmdbData?.genre_ids || []; if (!filters.genres.some(id => itemGenres.includes(id))) return false; }
+                    if (filters.time) { const r = item.tmdbData?.runtime; if (!r) return false; if (filters.time === 'short' && r > 90) return false; if (filters.time === 'medium' && (r <= 90 || r > 120)) return false; if (filters.time === 'long' && r <= 120) return false; }
                     return true;
                 });
             }, [movies, tvShows, currentTab, filters]);
 
-            const spinCandidates = visibleItems.filter(i => i.included);
+            // Sync Ref for Animation Loop
+            useEffect(() => {
+                spinCandidatesRef.current = visibleItems.filter(i => i.included);
+            }, [visibleItems]);
 
             const spinRoulette = useCallback(() => {
-                if (isSpinning || spinCandidates.length === 0) return;
+                const candidates = spinCandidatesRef.current;
+                if (isSpinning || candidates.length === 0) return;
+                
                 setIsSpinning(true); setShowResult(false);
                 const spinDuration = 2500; const startTime = Date.now();
+                
                 const animate = () => {
                     const elapsed = Date.now() - startTime;
                     const progress = elapsed / spinDuration;
                     const interval = 50 + (progress * 300);
+                    
                     if (soundEnabled && Math.random() > 0.5) playTick(); 
+
                     if (elapsed < spinDuration) {
-                        const randomIndex = Math.floor(Math.random() * spinCandidates.length);
-                        setSpinningText(spinCandidates[randomIndex].title);
+                        const randomIndex = Math.floor(Math.random() * candidates.length);
+                        setSpinningText(candidates[randomIndex].title);
                         setTimeout(animate, interval);
                     } else {
-                        const finalIndex = Math.floor(Math.random() * spinCandidates.length);
-                        const selected = spinCandidates[finalIndex];
+                        const finalIndex = Math.floor(Math.random() * candidates.length);
+                        const selected = candidates[finalIndex];
                         setSelectedItem(selected); setSelectedItemType(currentTab); setShowResult(true); 
                         setShowConfetti(true); setTimeout(() => setShowConfetti(false), 5000); 
                         setIsSpinning(false);
@@ -520,42 +549,45 @@
                     }
                 };
                 animate();
-            }, [spinCandidates, isSpinning, currentTab, soundEnabled]);
+            }, [isSpinning, currentTab, soundEnabled]); // Removed candidates dependency to fix bug
 
-            // STEP 1: TRIGGER RATING
             const initiateMarkAsWatched = useCallback(() => {
                 if (!selectedItem || !selectedItemType) return;
                 setRateModalItem(selectedItem);
             }, [selectedItem, selectedItemType]);
 
-            // STEP 2: CONFIRM RATING (Handles New, Edit, and Skip)
             const confirmWatched = (rating) => {
                 const item = rateModalItem;
                 const finalRating = rating === 'skip' ? null : rating;
                 
-                // CHECK IF ITEM IS ALREADY IN WATCHED LIST (EDIT MODE)
-                // Use ID check if normal flow, or TMDB ID check if coming from Discover/Search
                 if (watched.some(w => w.id === item.id)) {
                     setWatched(prev => prev.map(w => w.id === item.id ? { ...w, rating: finalRating } : w));
                     setRateModalItem(null);
                     return;
                 }
 
-                // ELSE: NEW WATCHED ITEM MODE
-                const typeToUse = selectedItemType === 'movies' ? 'movie' : 'tvShow';
+                // If coming from Discover (dummy item), use type from state, else current tab
+                // Wait! If coming from Discover, item.id is 'new_from_discover'. We need a real ID.
+                const realId = item.id === 'new_from_discover' ? generateId() : item.id;
                 
                 const newWatched = { 
-                    id: generateId(), 
+                    id: realId, 
                     title: item.title, 
-                    type: typeToUse,
+                    type: selectedItemType === 'movies' ? 'movie' : 'tvShow', 
                     watchedDate: new Date().toISOString(), 
                     tmdbData: item.tmdbData,
                     rating: finalRating 
                 };
 
-                // Remove from To Watch lists if present (checking by ID OR TMDB ID for robustness)
-                setMovies(prev => prev.filter(m => m.id !== item.id));
-                setTvShows(prev => prev.filter(t => t.id !== item.id));
+                // Remove from To Watch lists based on TMDB ID match (more robust than ID match for cross-referencing)
+                if (item.tmdbData) {
+                    setMovies(prev => prev.filter(m => !m.tmdbData || m.tmdbData.id !== item.tmdbData.id));
+                    setTvShows(prev => prev.filter(t => !t.tmdbData || t.tmdbData.id !== item.tmdbData.id));
+                } else {
+                    // Fallback for custom items without TMDB Data
+                    setMovies(prev => prev.filter(m => m.id !== item.id));
+                    setTvShows(prev => prev.filter(t => t.id !== item.id));
+                }
                 
                 setWatched(prev => [...prev, newWatched]);
                 setShowResult(false); 
@@ -599,10 +631,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 14, exportDate: new Date().toISOString(), movies, tvShows, watched, apiKey, language, soundEnabled };
+                const data = { version: 15, exportDate: new Date().toISOString(), movies, tvShows, watched, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v14-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v15-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -688,7 +720,7 @@
                                 <section className="mb-6">
                                     <div className="flex gap-2 text-xs mb-4 pb-2 border-b border-black justify-between">
                                         <div>
-                                            <span>{spinCandidates.length} {t('SELECTED')}</span>
+                                            <span>{spinCandidatesRef.current.length} {t('SELECTED')}</span>
                                             <span className="bg-black text-bone px-2 py-1 ml-2">{(currentTab === 'movies' ? movies : tvShows).length}</span>
                                         </div>
                                         {(filters.genres.length > 0 || filters.time) && (
@@ -738,7 +770,7 @@
                                         )}
                                     </div>
                                 </section>
-                                <button onClick={spinRoulette} disabled={spinCandidates.length === 0 || isSpinning} className="w-full p-5 text-lg md:text-xl font-black uppercase tracking-tight bg-black text-bone disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-900 transition-colors font-sans">
+                                <button onClick={spinRoulette} disabled={spinCandidatesRef.current.length === 0 || isSpinning} className="w-full p-5 text-lg md:text-xl font-black uppercase tracking-tight bg-black text-bone disabled:opacity-30 disabled:cursor-not-allowed hover:bg-gray-900 transition-colors font-sans">
                                     ▶ {t('SPIN_BTN')}
                                 </button>
                             </div>
@@ -809,6 +841,60 @@
                                 ))}
                                 <button onClick={clearWatched} className="w-full p-3 text-xs font-bold uppercase tracking-wider border border-black hover:bg-black hover:text-bone transition-colors">✕ {t('BTN_CLEAR_HISTORY')}</button>
                             </div>
+                        )}
+                        {isSpinning && (
+                            <section className="mb-6">
+                                <div className="bg-black p-8 text-center">
+                                    <p className="text-xs uppercase text-gray-400 mb-2 tracking-widest">{t('SPINNING')}</p>
+                                    <p className="text-xl md:text-3xl font-bold text-bone spin-animation truncate uppercase font-sans">{spinningText}</p>
+                                </div>
+                            </section>
+                        )}
+                        {showResult && selectedItem && !isSpinning && (
+                            <section className="mb-6 animate-fade-in-up">
+                                {selectedItem.tmdbData ? (
+                                    <div className="bg-black text-bone overflow-hidden shadow-2xl relative celebrate">
+                                        {selectedItem.tmdbData.backdrop_path && (
+                                            <div className="absolute inset-0 z-0 opacity-40">
+                                                <img src={`https://image.tmdb.org/t/p/w780${selectedItem.tmdbData.backdrop_path}`} className="w-full h-full object-cover filter grayscale contrast-125" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+                                            </div>
+                                        )}
+                                        <div className="relative z-10 p-6 flex flex-col md:flex-row gap-6">
+                                            {selectedItem.tmdbData.poster_path ? (
+                                                <img src={`https://image.tmdb.org/t/p/w342${selectedItem.tmdbData.poster_path}`} className="w-32 h-48 md:w-40 md:h-60 object-cover border-2 border-bone shadow-lg flex-shrink-0 mx-auto md:mx-0" />
+                                            ) : (
+                                                <div className="w-32 h-48 bg-gray-800 border-2 border-bone flex items-center justify-center mx-auto md:mx-0"><span className="text-4xl">?</span></div>
+                                            )}
+                                            <div className="flex-1 text-center md:text-left">
+                                                <p className="text-xs font-bold text-[#722F37] bg-bone inline-block px-2 py-1 mb-2 tracking-widest uppercase">WINNER</p>
+                                                <h2 className="text-3xl md:text-4xl font-black uppercase leading-tight font-sans mb-2 flex items-center justify-center md:justify-start gap-2">
+                                                    {selectedItem.title} <VerifiedBadge />
+                                                </h2>
+                                                <div className="flex flex-wrap justify-center md:justify-start gap-3 text-xs font-mono text-gray-400 mb-4">
+                                                    <span>{selectedItem.tmdbData.release_date?.split('-')[0] || t('UNKNOWN_YEAR')}</span>
+                                                    <span>★ {selectedItem.tmdbData.vote_average?.toFixed(1) || 'N/A'}</span>
+                                                    {selectedItem.tmdbData.runtime > 0 && <span>{selectedItem.tmdbData.runtime}m</span>}
+                                                </div>
+                                                <p className="text-sm text-gray-300 line-clamp-4 leading-relaxed mb-6 font-sans">{selectedItem.tmdbData.overview || t('NO_PLOT')}</p>
+                                                <button onClick={initiateMarkAsWatched} className="w-full md:w-auto px-6 py-3 bg-bone text-black text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors">✓ {t('BTN_WATCHED')}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="bg-black p-6 md:p-8 celebrate relative overflow-hidden">
+                                        <div className="relative z-10">
+                                            <p className="text-xs uppercase text-gray-400 mb-1 tracking-[0.2em]">{selectedItemType === 'movies' ? t('WINNER_MOVIE') : t('WINNER_TV')}</p>
+                                            <div className="w-8 h-px bg-gray-600 mb-4"></div>
+                                            <p className="text-2xl md:text-4xl font-black text-bone uppercase leading-tight font-sans">{selectedItem.title}</p>
+                                            <div className="mt-6 pt-4 border-t border-gray-700">
+                                                <button onClick={initiateMarkAsWatched} className="px-4 py-2 bg-bone text-black text-xs font-bold uppercase tracking-wider hover:bg-white">✓ {t('BTN_WATCHED')}</button>
+                                            </div>
+                                        </div>
+                                        <div className="absolute left-0 right-0 bottom-0 h-3 flex justify-between px-2">{Array.from({ length: 20 }).map((_, i) => <div key={i} className="w-2 h-2 rounded-full bg-bone"></div>)}</div>
+                                    </div>
+                                )}
+                            </section>
                         )}
                         <footer className="border-t border-black pt-4 mt-8 flex flex-col gap-4">
                             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
