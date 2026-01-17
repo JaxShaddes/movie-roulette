@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V12 (Pro Ratings)</title>
+    <title>Movie Roulette V13 (Flexible Ratings)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -99,9 +99,9 @@
                 SETTINGS_TITLE: 'SETTINGS', SETTINGS_API_LABEL: 'TMDB API KEY (v3)', SETTINGS_LANG_LABEL: 'LANGUAGE', SETTINGS_SAVE: 'SAVE', SETTINGS_CANCEL: 'CANCEL',
                 TOAST_ADDED: 'Added', TOAST_EXIST: 'Already in list!', TOAST_EMPTY: 'Please enter a title', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot description available.',
                 FILTERS: 'FILTERS', FILTER_GENRE: 'GENRE', FILTER_TIME: 'RUNTIME', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)',
-                SOUND: 'SOUND', CLEAR_FILTERS: 'CLEAR FILTERS', RATE_TITLE: 'YOUR RATING', RATE_LOVE: 'LOVED IT', RATE_NEUTRAL: 'IT WAS OKAY', RATE_DISLIKE: 'NOT FOR ME',
+                SOUND: 'SOUND', CLEAR_FILTERS: 'CLEAR FILTERS', RATE_TITLE: 'YOUR RATING', RATE_LOVE: 'LOVED IT', RATE_NEUTRAL: 'IT WAS OKAY', RATE_DISLIKE: 'NOT FOR ME', RATE_SKIP: 'SKIP RATING',
                 DISCOVER_LOCKED: 'Rate 3 items "Loved" to unlock!', DISCOVER_EMPTY: 'Finding matches...', MATCH: 'Match', BTN_ADD_TO_LIST: 'ADD TO LIST',
-                RATE_LABEL_LOVE: 'LOVED', RATE_LABEL_NEUTRAL: 'OKAY', RATE_LABEL_DISLIKE: 'BAD'
+                RATE_LABEL_LOVE: 'LOVED', RATE_LABEL_NEUTRAL: 'OKAY', RATE_LABEL_DISLIKE: 'BAD', RATE_LABEL_ADD: 'RATE'
             },
             'pt-PT': {
                 TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', TAB_MOVIES: 'FILMES', TAB_TV: 'SÉRIES', TAB_WATCHED: 'VISTOS', TAB_DISCOVER: 'DESCOBRIR',
@@ -112,9 +112,9 @@
                 SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_API_LABEL: 'CHAVE API TMDB (v3)', SETTINGS_LANG_LABEL: 'IDIOMA', SETTINGS_SAVE: 'GUARDAR', SETTINGS_CANCEL: 'CANCELAR',
                 TOAST_ADDED: 'Adicionado', TOAST_EXIST: 'Já está na lista!', TOAST_EMPTY: 'Por favor insira um título', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição disponível.',
                 FILTERS: 'FILTROS', FILTER_GENRE: 'GÉNERO', FILTER_TIME: 'DURAÇÃO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)',
-                SOUND: 'SOM', CLEAR_FILTERS: 'LIMPAR FILTROS', RATE_TITLE: 'SUA AVALIAÇÃO', RATE_LOVE: 'ADOREI', RATE_NEUTRAL: 'FOI OK', RATE_DISLIKE: 'NÃO GOSTEI',
+                SOUND: 'SOM', CLEAR_FILTERS: 'LIMPAR FILTROS', RATE_TITLE: 'SUA AVALIAÇÃO', RATE_LOVE: 'ADOREI', RATE_NEUTRAL: 'FOI OK', RATE_DISLIKE: 'NÃO GOSTEI', RATE_SKIP: 'PULAR AVALIAÇÃO',
                 DISCOVER_LOCKED: 'Avalie 3 itens como "Adorei"!', DISCOVER_EMPTY: 'Procurando...', MATCH: 'Match', BTN_ADD_TO_LIST: 'ADICIONAR',
-                RATE_LABEL_LOVE: 'ADOREI', RATE_LABEL_NEUTRAL: 'OK', RATE_LABEL_DISLIKE: 'RUIM'
+                RATE_LABEL_LOVE: 'ADOREI', RATE_LABEL_NEUTRAL: 'OK', RATE_LABEL_DISLIKE: 'RUIM', RATE_LABEL_ADD: 'AVALIAR'
             }
         };
 
@@ -154,6 +154,9 @@
                             </button>
                             <button onClick={() => onRate('dislike')} className="p-4 bg-transparent border-2 border-black hover:bg-black/5 uppercase font-bold tracking-wider text-sm">
                                 {t('RATE_DISLIKE')}
+                            </button>
+                            <button onClick={() => onRate('skip')} className="p-4 bg-transparent border-2 border-black border-dashed hover:bg-black/5 uppercase font-bold tracking-wider text-sm text-gray-600 hover:text-black">
+                                {t('RATE_SKIP')}
                             </button>
                         </div>
                         <button onClick={onClose} className="mt-6 text-xs underline uppercase text-gray-500 hover:text-black tracking-wide">CANCEL</button>
@@ -497,13 +500,14 @@
                 setRateModalItem(selectedItem);
             }, [selectedItem, selectedItemType]);
 
-            // STEP 2: CONFIRM RATING (Handles BOTH new Watched AND Editing existing Watched)
+            // STEP 2: CONFIRM RATING (Handles New, Edit, and Skip)
             const confirmWatched = (rating) => {
                 const item = rateModalItem;
+                const finalRating = rating === 'skip' ? null : rating;
                 
                 // CHECK IF ITEM IS ALREADY IN WATCHED LIST (EDIT MODE)
                 if (watched.some(w => w.id === item.id)) {
-                    setWatched(prev => prev.map(w => w.id === item.id ? { ...w, rating: rating } : w));
+                    setWatched(prev => prev.map(w => w.id === item.id ? { ...w, rating: finalRating } : w));
                     setRateModalItem(null);
                     return;
                 }
@@ -515,7 +519,7 @@
                     type: selectedItemType === 'movies' ? 'movie' : 'tvShow', 
                     watchedDate: new Date().toISOString(), 
                     tmdbData: item.tmdbData,
-                    rating: rating 
+                    rating: finalRating 
                 };
 
                 if (selectedItemType === 'movies') setMovies(prev => prev.filter(m => m.id !== item.id));
@@ -563,10 +567,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 12, exportDate: new Date().toISOString(), movies, tvShows, watched, apiKey, language, soundEnabled };
+                const data = { version: 13, exportDate: new Date().toISOString(), movies, tvShows, watched, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v12-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v13-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -732,12 +736,20 @@
                                                         </span>
                                                         <div className="flex items-center gap-2 mt-1">
                                                             {/* RATING DISPLAY / EDIT BUTTON */}
-                                                            {item.rating && (
+                                                            {item.rating ? (
                                                                 <button 
                                                                     onClick={() => setRateModalItem(item)} 
                                                                     className={`text-[10px] font-bold border border-black px-1.5 py-0.5 hover:bg-black hover:text-bone uppercase transition-colors mr-2 ${item.rating === 'love' ? 'bg-love text-white border-love hover:bg-red-700' : ''}`}
                                                                 >
                                                                     [{item.rating === 'love' ? t('RATE_LABEL_LOVE') : item.rating === 'neutral' ? t('RATE_LABEL_NEUTRAL') : t('RATE_LABEL_DISLIKE')}]
+                                                                </button>
+                                                            ) : (
+                                                                // IF NO RATING, SHOW "RATE" BUTTON
+                                                                <button 
+                                                                    onClick={() => setRateModalItem(item)} 
+                                                                    className="text-[10px] font-bold border border-black border-dashed px-1.5 py-0.5 text-gray-500 hover:text-black hover:border-solid hover:bg-black hover:text-bone uppercase transition-colors mr-2"
+                                                                >
+                                                                    [{t('RATE_LABEL_ADD')}]
                                                                 </button>
                                                             )}
                                                             
