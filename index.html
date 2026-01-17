@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V23 (Seen List)</title>
+    <title>Movie Roulette V24 (Stable)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -58,13 +58,11 @@
         const playTick = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='square'; o.frequency.setValueAtTime(150,ctx.currentTime); o.frequency.exponentialRampToValueAtTime(40,ctx.currentTime+0.05); g.gain.setValueAtTime(0.1,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.05); o.start(); o.stop(ctx.currentTime+0.05); } catch(e){} };
         const playWin = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); [440,554.37,659.25].forEach((f,i)=>{ const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='triangle'; o.frequency.value=f; g.gain.setValueAtTime(0,ctx.currentTime); g.gain.linearRampToValueAtTime(0.1,ctx.currentTime+0.1+(i*0.05)); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+1.5); o.start(ctx.currentTime+(i*0.05)); o.stop(ctx.currentTime+2); }); } catch(e){} };
 
-        // --- GENRES DATA ---
-        const MOVIE_GENRES = { 28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV Movie',53:'Thriller',10752:'War',37:'Western' };
-        const TV_GENRES = { 10759:'Action & Adventure', 16:'Animation', 35:'Comedy', 80:'Crime', 99:'Documentary', 18:'Drama', 10751:'Family', 10762:'Kids', 9648:'Mystery', 10763:'News', 10764:'Reality', 10765:'Sci-Fi & Fantasy', 10766:'Soap', 10767:'Talk', 10768:'War & Politics', 37:'Western' };
+        const GENRES = { 28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV Movie',53:'Thriller',10752:'War',37:'Western' };
         
         const TRANSLATIONS = {
-            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_VAULT: 'VAULT', NAV_DISCOVER: 'DISCOVER', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', VERSUS_TITLE: 'TOURNAMENT', VERSUS_DESC: '8 Movies enter, 1 leaves.', VERSUS_START: 'START TOURNAMENT', VERSUS_WINNER: 'CHAMPION', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_VAULT: 'Added to Vault', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTERS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_VAULT: 'WATCH LATER', HEADER_VAULT: 'THE VAULT', EMPTY_VAULT: 'The vault is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', STATUS: 'STATUS', STATUS_RETURNING: 'RUNNING', STATUS_ENDED: 'ENDED', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', MANAGE_SEEN: 'MANAGE SEEN LIST', HEADER_SEEN: 'SEEN / BLACKLIST', EMPTY_SEEN: 'No items hidden.' },
-            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_VAULT: 'COFRE', NAV_DISCOVER: 'DESCOBRIR', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', VERSUS_TITLE: 'TORNEIO', VERSUS_DESC: '8 Filmes entram, 1 sai.', VERSUS_START: 'INICIAR', VERSUS_WINNER: 'CAMPEÃO', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_VAULT: 'Guardado no Cofre', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_VAULT: 'VER DEPOIS', HEADER_VAULT: 'O COFRE', EMPTY_VAULT: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', STATUS: 'ESTADO', STATUS_RETURNING: 'NO AR', STATUS_ENDED: 'COMPLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', MANAGE_SEEN: 'GERIR JÁ VISTOS', HEADER_SEEN: 'LISTA DE VISTOS', EMPTY_SEEN: 'Nenhum item escondido.' }
+            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_VAULT: 'VAULT', NAV_DISCOVER: 'DISCOVER', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', VERSUS_TITLE: 'TOURNAMENT', VERSUS_DESC: '8 Movies enter, 1 leaves.', VERSUS_START: 'START TOURNAMENT', VERSUS_WINNER: 'CHAMPION', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_VAULT: 'Added to Vault', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTERS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_VAULT: 'WATCH LATER', HEADER_VAULT: 'THE VAULT', EMPTY_VAULT: 'The vault is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', MANAGE_SEEN: 'OPEN SEEN LIST', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.' },
+            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_VAULT: 'COFRE', NAV_DISCOVER: 'DESCOBRIR', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', VERSUS_TITLE: 'TORNEIO', VERSUS_DESC: '8 Filmes entram, 1 sai.', VERSUS_START: 'INICIAR', VERSUS_WINNER: 'CAMPEÃO', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_VAULT: 'Guardado no Cofre', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_VAULT: 'VER DEPOIS', HEADER_VAULT: 'O COFRE', EMPTY_VAULT: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', MANAGE_SEEN: 'ABRIR LISTA VISTOS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.' }
         };
 
         const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', seen: 'movieRoulette_seen', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound' };
@@ -158,35 +156,20 @@
             );
         }
 
-        function FilterPanel({ isOpen, onClose, filters, setFilters, t, type }) {
+        function FilterPanel({ isOpen, onClose, filters, setFilters, t }) {
             if (!isOpen) return null;
-            const GENRE_LIST = type === 'movie' ? MOVIE_GENRES : TV_GENRES;
-            
             const toggleGenre = (id) => { const newGenres = filters.genres.includes(id) ? filters.genres.filter(g => g !== id) : [...filters.genres, id]; setFilters({ ...filters, genres: newGenres }); };
             const toggleTime = (val) => { setFilters({ ...filters, time: filters.time === val ? null : val }); };
-            const toggleStatus = (val) => { setFilters({ ...filters, status: filters.status === val ? null : val }); };
-
             return (
                 <div className="mb-6 p-4 border-2 border-black bg-white/50">
                     <div className="flex justify-between items-center mb-4"><h3 className="font-bold uppercase text-xs tracking-wider">{t('FILTERS')}</h3><button onClick={onClose} className="text-xs underline">CLOSE</button></div>
-                    
-                    {type === 'tv' && (
-                        <div className="mb-4">
-                            <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('STATUS')}</p>
-                            <div className="flex flex-wrap gap-2">
-                                <button onClick={() => toggleStatus('Returning Series')} className={`px-2 py-1 text-[10px] uppercase border ${filters.status === 'Returning Series' ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{t('STATUS_RETURNING')}</button>
-                                <button onClick={() => toggleStatus('Ended')} className={`px-2 py-1 text-[10px] uppercase border ${filters.status === 'Ended' ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{t('STATUS_ENDED')}</button>
-                            </div>
-                        </div>
-                    )}
-
                     <div className="mb-4">
                         <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_TIME')}</p>
                         <div className="flex flex-wrap gap-2">{['short', 'medium', 'long'].map(time => (<button key={time} onClick={() => toggleTime(time)} className={`px-2 py-1 text-[10px] uppercase border ${filters.time === time ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{time === 'short' ? t('TIME_SHORT') : time === 'medium' ? t('TIME_MED') : t('TIME_LONG')}</button>))}</div>
                     </div>
                     <div>
                         <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_GENRE')}</p>
-                        <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">{Object.entries(GENRE_LIST).map(([id, name]) => (<button key={id} onClick={() => toggleGenre(parseInt(id))} className={`px-2 py-1 text-[10px] uppercase border ${filters.genres.includes(parseInt(id)) ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{name}</button>))}</div>
+                        <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">{Object.entries(GENRES).map(([id, name]) => (<button key={id} onClick={() => toggleGenre(parseInt(id))} className={`px-2 py-1 text-[10px] uppercase border ${filters.genres.includes(parseInt(id)) ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{name}</button>))}</div>
                     </div>
                 </div>
             );
@@ -216,7 +199,7 @@
             const total = watched.length;
             const genres = watched.flatMap(w => w.tmdbData ? w.tmdbData.genre_ids : []);
             const topGenreId = genres.length ? genres.sort((a,b) => genres.filter(v => v===a).length - genres.filter(v => v===b).length).pop() : null;
-            const topGenre = topGenreId ? (MOVIE_GENRES[topGenreId] || TV_GENRES[topGenreId]) : '-';
+            const topGenre = topGenreId ? GENRES[topGenreId] : '-';
             const ratedItems = watched.filter(w => w.rating && w.rating !== 'skip' && typeof w.rating === 'number');
             const avgScore = ratedItems.length ? (ratedItems.reduce((a,b)=>a+b.rating,0) / ratedItems.length).toFixed(1) : '-';
 
@@ -430,6 +413,7 @@
                         .filter(r => !watched.some(w => w.tmdbData && w.tmdbData.id === r.id))
                         .filter(r => !movies.some(m => m.tmdbData && m.tmdbData.id === r.id))
                         .filter(r => !tvShows.some(t => t.tmdbData && t.tmdbData.id === r.id))
+                        .filter(r => !seenIds.includes(r.id))
                         .filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i);
 
                         let finalRecs = processed;
@@ -467,7 +451,7 @@
                         ))}
                         <select onChange={(e) => { setFilterMode('genre'); setSelectedGenre(parseInt(e.target.value)); }} className={`px-3 py-1 text-[10px] font-bold uppercase border border-black bg-transparent outline-none ${filterMode === 'genre' ? 'bg-black text-bone' : ''}`}>
                             <option value="">{t('DISC_GENRE')}</option>
-                            {Object.entries(MOVIE_GENRES).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
+                            {Object.entries(GENRES).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
                         </select>
                     </div>
 
@@ -535,8 +519,7 @@
             const [showResult, setShowResult] = useState(false);
             const [showConfetti, setShowConfetti] = useState(false);
             const [showFilters, setShowFilters] = useState(false);
-            const [showSeenList, setShowSeenList] = useState(false);
-            const [filters, setFilters] = useState({ genres: [], time: null, status: null });
+            const [filters, setFilters] = useState({ genres: [], time: null });
             const [toasts, setToasts] = useState([]);
             const [rateModalItem, setRateModalItem] = useState(null);
             const [infoItem, setInfoItem] = useState(null);
@@ -586,7 +569,8 @@
             useEffect(() => localStorage.setItem(STORAGE_KEYS.language, language), [language]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.sound, JSON.stringify(soundEnabled)), [soundEnabled]);
 
-            useEffect(() => { setFilters({ genres: [], time: null, status: null }); }, [homeMode]);
+            // Reset filters when changing mode
+            useEffect(() => { setFilters({ genres: [], time: null }); }, [homeMode]);
 
             const showToast = useCallback((msg) => { const id = Date.now(); setToasts(p => [...p, { id, msg }]); setTimeout(() => setToasts(p => p.filter(t => t.id !== id)), 3000); }, []);
 
@@ -652,36 +636,28 @@
 
             const currentList = homeMode === 'movie' ? movies : tvShows;
 
-            // --- FILTER LOGIC ---
+            // --- FILTER LOGIC FIXED ---
             const filterItem = (item) => {
-                // Legacy check: If data missing, default to showing item to avoid bugs
                 if (!item.included) return false;
-                if (filters.genres.length > 0 || filters.time || filters.status) {
-                    if (!item.tmdbData) return true; // SAFE DEFAULT
+                if (filters.genres.length > 0 || filters.time) {
+                    if (!item.tmdbData) return true; // KEEP SAFE for legacy
                     
+                    // Genre Check
                     if (filters.genres.length > 0) { 
                         const g = item.tmdbData.genre_ids || []; 
                         if (!filters.genres.some(id => g.includes(id))) return false; 
                     }
+                    
+                    // Time Check
                     if (filters.time) { 
                         let r = item.tmdbData.runtime;
                         if (!r && item.tmdbData.episode_run_time && item.tmdbData.episode_run_time.length > 0) {
                             r = item.tmdbData.episode_run_time.reduce((a,b)=>a+b,0) / item.tmdbData.episode_run_time.length;
                         }
-                        // SAFE DEFAULT: if no runtime, show it
                         if (r) {
                             if (filters.time === 'short' && r > 90) return false;
                             if (filters.time === 'medium' && (r <= 90 || r > 120)) return false;
                             if (filters.time === 'long' && r <= 120) return false;
-                        }
-                    }
-                    if (filters.status) {
-                        if (homeMode !== 'tv') return false; 
-                        const s = item.tmdbData.status;
-                        // SAFE DEFAULT
-                        if (s) {
-                            if (filters.status === 'Returning Series' && s !== 'Returning Series') return false;
-                            if (filters.status === 'Ended' && (s !== 'Ended' && s !== 'Canceled')) return false;
                         }
                     }
                 }
@@ -691,7 +667,7 @@
             const visibleCandidates = useMemo(() => currentList.filter(filterItem), [currentList, filters]);
             
             const displayList = useMemo(() => {
-                 if (filters.genres.length === 0 && !filters.time && !filters.status) return currentList;
+                 if (filters.genres.length === 0 && !filters.time) return currentList;
                  return currentList.filter(item => {
                      return filterItem({ ...item, included: true }); 
                  });
@@ -756,10 +732,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 23, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, seenIds, apiKey, language, soundEnabled };
+                const data = { version: 24, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, seenIds, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v23-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v24-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -779,28 +755,26 @@
                 reader.readAsText(file);
             };
 
-            if (showSeenList) {
-                return (
-                    <div className="min-h-screen bg-bone text-black relative font-mono select-none p-4">
-                        <div className="max-w-xl mx-auto">
-                            <div className="flex items-center mb-6 border-b-4 border-black pb-4">
-                                <button onClick={()=>setShowSeenList(false)} className="mr-4"><Icons.Back /></button>
-                                <h1 className="text-xl font-black uppercase">{t('HEADER_SEEN')}</h1>
-                            </div>
-                            {seenIds.length === 0 ? <div className="text-center text-gray-400 p-8">{t('EMPTY_SEEN')}</div> : (
-                                <div>
-                                    {seenIds.map(id => (
-                                        <div key={id} className="flex justify-between items-center py-3 border-b border-gray-300">
-                                            <span className="font-mono text-xs">ID: {id}</span>
-                                            <button onClick={()=>restoreFromSeen(id)} className="text-red-500 text-[10px] font-bold uppercase underline">RESTORE</button>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
+            // SEEN LIST TAB (Rendered as main content for Settings/Seen or separate)
+            // We use 'seen' as a tab or overlay
+            const renderSeenList = () => (
+                <div className="pb-24">
+                    <div className="flex items-center mb-6 border-b-4 border-black pb-4">
+                        <button onClick={()=>setCurrentTab('settings')} className="mr-4"><Icons.Back /></button>
+                        <h1 className="text-xl font-black uppercase">{t('HEADER_SEEN')}</h1>
                     </div>
-                );
-            }
+                    {seenIds.length === 0 ? <div className="text-center text-gray-400 p-8">{t('EMPTY_SEEN')}</div> : (
+                        <div>
+                            {seenIds.map(id => (
+                                <div key={id} className="flex justify-between items-center py-3 border-b border-gray-300">
+                                    <span className="font-mono text-xs">ID: {id}</span>
+                                    <button onClick={()=>restoreFromSeen(id)} className="text-red-500 text-[10px] font-bold uppercase underline">RESTORE</button>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
 
             return (
                 <div className="min-h-screen bg-bone text-black relative font-mono select-none">
@@ -823,8 +797,8 @@
                                         <button className="bg-black text-bone px-4 font-bold text-xs">ADD</button>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center mb-2"><h2 className="font-bold text-xs uppercase tracking-widest">{t('HEADER_MOVIES')} ({displayList.length})</h2><button onClick={()=>setShowFilters(!showFilters)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${showFilters || (filters.genres.length>0||filters.time||filters.status) ? 'bg-black text-bone' : ''}`}>{t('FILTERS')}</button></div>
-                                <FilterPanel isOpen={showFilters} onClose={()=>setShowFilters(false)} filters={filters} setFilters={setFilters} t={t} type={homeMode} />
+                                <div className="flex justify-between items-center mb-2"><h2 className="font-bold text-xs uppercase tracking-widest">{t('HEADER_MOVIES')} ({displayList.length})</h2><button onClick={()=>setShowFilters(!showFilters)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${showFilters || (filters.genres.length>0||filters.time) ? 'bg-black text-bone' : ''}`}>{t('FILTERS')}</button></div>
+                                <FilterPanel isOpen={showFilters} onClose={()=>setShowFilters(false)} filters={filters} setFilters={setFilters} t={t} />
                                 <div className="mb-6 max-h-64 overflow-y-auto border-t-2 border-b-2 border-black/10">
                                     {displayList.length === 0 ? <div className="p-8 text-center text-gray-400">{t('EMPTY_LIST')}</div> : displayList.map(item => (
                                         <div key={item.id} className={`flex items-center gap-3 py-3 border-b border-gray-200 ${!item.included?'opacity-50':''}`}>
@@ -924,6 +898,8 @@
                             </div>
                         )}
 
+                        {currentTab === 'seen' && renderSeenList()}
+
                         {currentTab === 'settings' && (
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-6">{t('SETTINGS_TITLE')}</h1>
@@ -932,7 +908,7 @@
                                     <div className="flex items-center gap-4 border-2 border-black p-4"><input type="checkbox" checked={soundEnabled} onChange={e=>setSoundEnabled(e.target.checked)} className="checkbox-receipt" /><span className="font-bold uppercase">{t('SOUND')}</span></div>
                                     <div><label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_API_LABEL')}</label><input type="text" value={apiKey} onChange={e=>setApiKey(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-mono text-xs" placeholder="API KEY" /></div>
                                     <div className="pt-6 border-t-2 border-black">
-                                        <button onClick={()=>setShowSeenList(true)} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone">{t('MANAGE_SEEN')}</button>
+                                        <button onClick={()=>setCurrentTab('seen')} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone">{t('MANAGE_SEEN')}</button>
                                         <button onClick={()=>fileInputRef.current.click()} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone">{t('IMPORT')}</button>
                                         <input ref={fileInputRef} type="file" className="hidden" onChange={e => importData(e.target.files[0])} />
                                         <button onClick={exportData} className="w-full py-3 bg-black text-bone font-bold uppercase hover:bg-gray-800">{t('EXPORT')}</button>
