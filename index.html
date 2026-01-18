@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V32 (Stable)</title>
+    <title>Movie Roulette V33 (Stable)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -68,8 +68,8 @@
         };
         
         const TRANSLATIONS = {
-            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCHLIST', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN', DISC_TAB_MOVIES: 'MOVIES', DISC_TAB_TV: 'TV SHOWS', MORE_LIKE_THIS: 'MORE LIKE THIS' },
-            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS', DISC_TAB_MOVIES: 'FILMES', DISC_TAB_TV: 'SÉRIES', MORE_LIKE_THIS: 'RELACIONADOS' }
+            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCHLIST', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN', DISC_TAB_MOVIES: 'MOVIES', DISC_TAB_TV: 'TV SHOWS', MORE_LIKE_THIS: 'MORE LIKE THIS', BTN_HIDE: 'HIDE' },
+            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS', DISC_TAB_MOVIES: 'FILMES', DISC_TAB_TV: 'SÉRIES', MORE_LIKE_THIS: 'RELACIONADOS', BTN_HIDE: 'ESCONDER' }
         };
 
         const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', blacklist: 'movieRoulette_blacklist', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound' };
@@ -333,8 +333,7 @@
         }
 
         // --- NEW FULL SCREEN DETAIL PAGE ---
-        function MovieDetailPage({ item, onClose, t, apiKey, language, onAdd }) {
-            const [details, setDetails] = useState(null);
+        function MovieDetailPage({ item, onClose, t, apiKey, language, onAdd, onAddToWatchlist, onSeen, onBlacklist }) {
             const [cast, setCast] = useState([]);
             const [similar, setSimilar] = useState([]);
             const [providers, setProviders] = useState(null);
@@ -347,24 +346,20 @@
                     const region = language === 'pt-PT' ? 'PT' : 'US';
                     
                     try {
-                        // 1. Credits
                         const creditsRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/credits?api_key=${apiKey}&language=${language}`);
                         const creditsData = await creditsRes.json();
                         if (creditsData.cast) setCast(creditsData.cast.slice(0, 6));
 
-                        // 2. Similar
                         const similarRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/similar?api_key=${apiKey}&language=${language}&page=1`);
                         const similarData = await similarRes.json();
                         if (similarData.results) setSimilar(similarData.results.slice(0, 6));
 
-                        // 3. Providers
                         const provRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/watch/providers?api_key=${apiKey}`);
                         const provData = await provRes.json();
                         if (provData.results && provData.results[region]) {
                             setProviders(provData.results[region].flatrate || provData.results[region].buy);
                         }
 
-                        // 4. Videos
                         const vidRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/videos?api_key=${apiKey}&language=${language}`);
                         const vidData = await vidRes.json();
                         let vid = vidData.results.find(v => v.site === 'YouTube' && v.type === 'Trailer');
@@ -374,9 +369,6 @@
                              vid = vidDataEn.results.find(v => v.site === 'YouTube' && v.type === 'Trailer');
                         }
                         setTrailer(vid);
-
-                        // 5. Details (for keywords/genres if missing)
-                        // Using existing item.tmdbData for basic, but could fetch full details for keywords
                     } catch(e) {}
                 };
                 fetchAll();
@@ -387,7 +379,6 @@
 
             return (
                 <div className="fixed inset-0 z-[80] bg-bone overflow-y-auto animate-slide-up">
-                    {/* HERO HEADER */}
                     <div className="relative aspect-video w-full bg-black">
                         {data.backdrop_path ? (
                             <img src={`https://image.tmdb.org/t/p/w780${data.backdrop_path}`} className="w-full h-full object-cover opacity-60" />
@@ -408,7 +399,13 @@
                     </div>
 
                     <div className="p-4 pb-24 space-y-8">
-                        {/* ACTIONS */}
+                        {/* 3 ACTION BUTTONS */}
+                        <div className="flex gap-2">
+                            <button onClick={()=>onAddToWatchlist(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone">{t('BTN_ADD_WATCHLIST')}</button>
+                            <button onClick={()=>onSeen(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone">{t('BTN_SEEN')}</button>
+                            <button onClick={()=>{ onBlacklist(data.id); onClose(); }} className="py-3 px-4 border-2 border-black font-bold uppercase text-xs hover:bg-red-600 hover:text-white hover:border-red-600"><Icons.ThumbDown /></button>
+                        </div>
+
                         <div className="flex gap-3">
                             {trailer && (
                                 <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" className="flex-1 bg-black text-bone py-3 font-bold uppercase text-center text-sm rounded flex items-center justify-center gap-2">
@@ -422,19 +419,16 @@
                             )}
                         </div>
 
-                        {/* PLOT */}
                         <div>
                             <p className="text-sm leading-relaxed font-sans text-gray-800">{data.overview || t('NO_PLOT')}</p>
                         </div>
 
-                        {/* TAGS */}
                         <div className="flex flex-wrap gap-2">
                             {data.genre_ids && data.genre_ids.map(id => GENRES[id] && (
                                 <span key={id} className="text-[10px] uppercase font-bold border border-black px-2 py-1 rounded-full">{GENRES[id]}</span>
                             ))}
                         </div>
 
-                        {/* CAST */}
                         {cast.length > 0 && (
                             <div>
                                 <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">CAST</h3>
@@ -452,7 +446,6 @@
                             </div>
                         )}
 
-                        {/* SIMILAR */}
                         {similar.length > 0 && (
                             <div>
                                 <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('MORE_LIKE_THIS')}</h3>
@@ -487,33 +480,27 @@
             
             const highRatedItems = watched.filter(w => w.rating >= 4 && w.tmdbData);
             
-            // Fetch Recommendations
             useEffect(() => {
                 if (highRatedItems.length < 3 || !apiKey) return;
                 const fetchRecs = async () => {
                     setLoading(true);
                     try {
                         let allRecs = [];
-                        // Logic for filters
                         if (filterMode === 'soon') {
                             const endpoint = discoverType === 'movie' ? 'movie/upcoming' : 'tv/on_the_air';
                             const res = await fetch(`https://api.themoviedb.org/3/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`);
                             const data = await res.json();
                             if(data.results) allRecs = data.results;
                         } else {
-                            // Seed based
                             const seeds = highRatedItems.slice(-5);
                             for (const seed of seeds) {
-                                // Match seed type to discover type to keep relevance
                                 const seedType = seed.type === 'tv' || seed.type === 'tvShow' ? 'tv' : 'movie';
-                                // Only use seeds that match current discover type preference for better results
                                 if (seedType === discoverType) {
                                     const res = await fetch(`https://api.themoviedb.org/3/${seedType}/${seed.tmdbData.id}/recommendations?api_key=${apiKey}&language=${language}&page=${page}`);
                                     const data = await res.json();
                                     if (data.results) allRecs = [...allRecs, ...data.results];
                                 }
                             }
-                            // Fallback if no seeds of this type
                             if (allRecs.length === 0) {
                                 const res = await fetch(`https://api.themoviedb.org/3/${discoverType}/top_rated?api_key=${apiKey}&language=${language}&page=${page}`);
                                 const data = await res.json();
@@ -531,7 +518,6 @@
                         .filter(r => !tvShows.some(t => t.tmdbData && t.tmdbData.id === r.id))
                         .filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i);
 
-                        // Sort Main Grid
                         let finalRecs = [...processed];
                         if (filterMode === 'top') finalRecs.sort((a,b) => b.matchScore - a.matchScore);
                         if (filterMode === 'new') finalRecs.sort((a,b) => b.releaseDate.getTime() - a.releaseDate.getTime());
@@ -539,7 +525,6 @@
                             finalRecs = finalRecs.filter(r => r.genre_ids && r.genre_ids.includes(selectedGenre));
                         }
 
-                        // Top Matches (Only High Score)
                         const top = processed.filter(r => r.matchScore >= 85).sort((a,b) => b.matchScore - a.matchScore).slice(0, 10);
                         
                         if (page === 1) {
@@ -563,25 +548,27 @@
             
             return (
                 <div className="space-y-6 pb-24">
-                    {/* TYPE TOGGLE */}
                     <div className="flex border-2 border-black">
                         <button onClick={()=>setDiscoverType('movie')} className={`flex-1 py-2 text-xs font-bold uppercase ${discoverType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
                         <button onClick={()=>setDiscoverType('tv')} className={`flex-1 py-2 text-xs font-bold uppercase ${discoverType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
                     </div>
 
-                    <div className="flex gap-2 overflow-x-auto pb-2">
+                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                         {['top', 'new', 'soon'].map(m => (
-                            <button key={m} onClick={()=>setFilterMode(m)} className={`px-3 py-1 text-[10px] font-bold uppercase border border-black ${filterMode===m?'bg-black text-bone':''}`}>
+                            <button key={m} onClick={()=>setFilterMode(m)} className={`flex-shrink-0 px-3 py-1 text-[10px] font-bold uppercase border border-black ${filterMode===m?'bg-black text-bone':''}`}>
                                 {m === 'top' ? t('DISC_TOP') : m === 'new' ? t('DISC_NEW') : t('DISC_SOON')}
                             </button>
                         ))}
-                        <select onChange={(e) => { setFilterMode('genre'); setSelectedGenre(parseInt(e.target.value)); }} className={`px-3 py-1 text-[10px] font-bold uppercase border border-black bg-transparent outline-none ${filterMode === 'genre' ? 'bg-black text-bone' : ''}`}>
+                        <select 
+                            value={filterMode === 'genre' ? selectedGenre : ""} 
+                            onChange={(e) => { setFilterMode('genre'); setSelectedGenre(parseInt(e.target.value)); }} 
+                            className={`flex-shrink-0 px-3 py-1 text-[10px] font-bold uppercase border border-black bg-transparent outline-none ${filterMode === 'genre' ? 'bg-black text-bone' : ''}`}
+                        >
                             <option value="">{t('DISC_GENRE')}</option>
                             {Object.entries(GENRES).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
                         </select>
                     </div>
 
-                    {/* TOP MATCHES ROW */}
                     {topMatches.length > 0 && (
                         <div>
                             <h3 className="font-bold uppercase text-xs mb-2 tracking-widest text-[#1D9BF0]">{t('DISC_TOP')}</h3>
@@ -699,6 +686,13 @@
             const handleAdd = (title, metadata) => {
                 if (!title.trim()) return;
                 const type = (metadata && metadata.type) ? metadata.type : (metadata && metadata.title ? 'movie' : 'tv');
+                const targetList = (type === 'tv' || type === 'tvShows' || type === 'tvShow') ? tvShows : movies;
+
+                if (targetList.some(i => (metadata && i.tmdbData && i.tmdbData.id === metadata.id) || i.title.toLowerCase() === title.toLowerCase())) {
+                    showToast(t('TOAST_EXIST'));
+                    return;
+                }
+
                 const newItem = { id: generateId(), title: metadata ? metadata.title : title, included: true, tmdbData: metadata, type: type };
                 if (type === 'tv' || type === 'tvShows' || type === 'tvShow') setTvShows(p => [...p, newItem]); 
                 else setMovies(p => [...p, newItem]);
@@ -714,6 +708,10 @@
 
             const handleAddToWatchlist = (item) => {
                 if (!item) return;
+                if (backlog.some(b => b.tmdbData && b.tmdbData.id === item.id)) {
+                    showToast(t('TOAST_EXIST'));
+                    return;
+                }
                 const newItem = { id: generateId(), title: item.title || item.name, included: true, tmdbData: item, type: (item.media_type === 'tv' || item.name ? 'tv' : 'movie') };
                 setBacklog(p => [...p, newItem]);
                 showToast(t('TOAST_ADDED_WATCHLIST'));
@@ -855,10 +853,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 32, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
+                const data = { version: 33, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v32-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v33-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -937,7 +935,7 @@
                             </div>
                         )}
 
-                        {currentTab === 'discover' && <DiscoverTab watched={watched} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToVault={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} movies={movies} tvShows={tvShows} t={t} />}
+                        {currentTab === 'discover' && <DiscoverTab watched={watched} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} movies={movies} tvShows={tvShows} t={t} />}
                         
                         {currentTab === 'swipe' && (
                             <div className="h-[80vh] flex flex-col">
@@ -1082,7 +1080,7 @@
                          </div>
                     )}
 
-                    <MovieDetailPage item={infoItem} onClose={()=>setInfoItem(null)} t={t} apiKey={apiKey} language={language} onAdd={(item)=>onAdd({...item, type: item.media_type === 'tv' || item.name ? 'tv' : 'movie'})} />
+                    <MovieDetailPage item={infoItem} onClose={()=>setInfoItem(null)} t={t} apiKey={apiKey} language={language} onAdd={(item)=>onAdd({...item, type: item.media_type === 'tv' || item.name ? 'tv' : 'movie'})} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} />
                     <RateModal isOpen={!!rateModalItem} onClose={()=>setRateModalItem(null)} onRate={confirmWatched} t={t} />
                     <div className="fixed top-4 right-4 z-[100] flex flex-col gap-2 pointer-events-none">{toasts.map(t => <Toast key={t.id} msg={t.msg} />)}</div>
                     {showConfetti && <Confetti />}
