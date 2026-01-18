@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V27 (Clean)</title>
+    <title>Movie Roulette V28 (Swipe)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -21,8 +21,11 @@
                     colors: { bone: '#EFEEE5', 'bone-dark': '#E5E4DB', verified: '#1D9BF0', love: '#E0245E' },
                     fontFamily: { mono: ['Space Mono', 'monospace'], sans: ['Inter', 'sans-serif'] },
                     borderWidth: { '12': '12px' },
-                    animation: { 'fade-in': 'fadeIn 0.2s ease-out forwards' },
-                    keyframes: { fadeIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } } }
+                    animation: { 'fade-in': 'fadeIn 0.2s ease-out forwards', 'slide-up': 'slideUp 0.3s ease-out forwards' },
+                    keyframes: { 
+                        fadeIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } }
+                    }
                 }
             }
         }
@@ -43,7 +46,6 @@
         .checkbox-receipt:checked { background: #000000; }
         .checkbox-receipt:checked::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: bold; color: #EFEEE5; }
         .date-input-mini { background: transparent; border: 1px solid #000; font-size: 10px; padding: 2px; font-family: inherit; }
-        /* FIX: iPhone Safe Area Padding */
         .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
     </style>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
@@ -60,35 +62,36 @@
         const playTick = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='square'; o.frequency.setValueAtTime(150,ctx.currentTime); o.frequency.exponentialRampToValueAtTime(40,ctx.currentTime+0.05); g.gain.setValueAtTime(0.1,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.05); o.start(); o.stop(ctx.currentTime+0.05); } catch(e){} };
         const playWin = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); [440,554.37,659.25].forEach((f,i)=>{ const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='triangle'; o.frequency.value=f; g.gain.setValueAtTime(0,ctx.currentTime); g.gain.linearRampToValueAtTime(0.1,ctx.currentTime+0.1+(i*0.05)); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+1.5); o.start(ctx.currentTime+(i*0.05)); o.stop(ctx.currentTime+2); }); } catch(e){} };
 
-        // UPDATED GENRES FOR MOVIES AND TV
         const GENRES = { 
             28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV Movie',53:'Thriller',10752:'War',37:'Western',
-            // TV Specifics
             10759: 'Action & Adv', 10762: 'Kids', 10763: 'News', 10764: 'Reality', 10765: 'Sci-Fi & Fantasy', 10766: 'Soap', 10767: 'Talk', 10768: 'War & Politics'
         };
         
         const TRANSLATIONS = {
-            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_VAULT: 'VAULT', NAV_DISCOVER: 'DISCOVER', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', VERSUS_TITLE: 'TOURNAMENT', VERSUS_DESC: '8 Movies enter, 1 leaves.', VERSUS_START: 'START TOURNAMENT', VERSUS_WINNER: 'CHAMPION', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_VAULT: 'Added to Vault', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_VAULT: 'WATCH LATER', HEADER_VAULT: 'THE VAULT', EMPTY_VAULT: 'The vault is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', MANAGE_SEEN: 'OPEN SEEN LIST', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN' },
-            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_VAULT: 'COFRE', NAV_DISCOVER: 'DESCOBRIR', NAV_VERSUS: 'VERSUS', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', VERSUS_TITLE: 'TORNEIO', VERSUS_DESC: '8 Filmes entram, 1 sai.', VERSUS_START: 'INICIAR', VERSUS_WINNER: 'CAMPEÃO', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_VAULT: 'Guardado no Cofre', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_VAULT: 'VER DEPOIS', HEADER_VAULT: 'O COFRE', EMPTY_VAULT: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', MANAGE_SEEN: 'ABRIR LISTA VISTOS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS' }
+            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCH LATER', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN' },
+            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'VER DEPOIS', EMPTY_WATCHLIST: 'A lista está vazia.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS' }
         };
 
-        const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound' };
+        const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', blacklist: 'movieRoulette_blacklist', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound' };
         function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2); }
         function formatDate(date) { if(!date) return ''; return new Date(date).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}).toUpperCase(); }
 
         // --- ICONS ---
         const Icons = {
             Home: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>,
-            Vault: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-9-2c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>,
+            Watchlist: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>,
             Discover: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>,
-            Versus: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h2v2h-2V5zm0 4h2v2h-2V9zm0 4h2v2h-2v-2zm-4-8h2v2H8V5zm0 4h2v2H8V9zm0 4h2v2H8v-2zM5 5h2v2H5V5zm0 4h2v2H5V9zm0 4h2v2H5v-2z"/></svg>,
+            Swipe: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h2v2h-2V5zm0 4h2v2h-2V9zm0 4h2v2h-2v-2zm-4-8h2v2H8V5zm0 4h2v2H8V9zm0 4h2v2H8v-2zM5 5h2v2H5V5zm0 4h2v2H5V9zm0 4h2v2H5v-2z"/></svg>,
             History: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>,
             Settings: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>,
             Check: () => <svg className="w-4 h-4 text-verified fill-current ml-1" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>,
             Info: () => <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>,
             Pencil: () => <svg className="w-3 h-3 text-gray-400 hover:text-black cursor-pointer ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>,
             Trash: () => <svg className="w-3 h-3 text-gray-400 hover:text-red-600 cursor-pointer ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>,
-            Back: () => <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Back: () => <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>,
+            Eye: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>,
+            ThumbDown: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>,
+            Heart: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
         };
 
         const VerifiedBadge = () => <svg viewBox="0 0 24 24" className="w-3 h-3 text-verified fill-current ml-1 inline-block" title="Verified"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z" /></svg>;
@@ -224,83 +227,104 @@
             );
         }
 
-        function Tournament({ items, onComplete, t }) {
-            const [round, setRound] = useState([]);
-            const [nextRound, setNextRound] = useState([]);
-            const [currentMatch, setCurrentMatch] = useState(0);
-            const [champion, setChampion] = useState(null);
+        function SwipeTab({ watched, backlog, movies, tvShows, blacklist, apiKey, language, homeMode, onAddToWatchlist, onSeen, onBlacklist, t }) {
+            const [queue, setQueue] = useState([]);
+            const [page, setPage] = useState(1);
+            const [loading, setLoading] = useState(false);
 
             useEffect(() => {
-                const candidates = [...items].sort(() => 0.5 - Math.random());
-                let bracketSize = 8;
-                if (candidates.length < 8) bracketSize = 4;
-                if (candidates.length < 4) bracketSize = 2;
-                if (candidates.length < 2) { setChampion('error'); return; }
-                
-                const players = candidates.slice(0, bracketSize);
-                const firstRound = [];
-                for (let i = 0; i < players.length; i += 2) {
-                    if (players[i+1]) firstRound.push([players[i], players[i+1]]);
-                }
-                setRound(firstRound);
-            }, [items]);
+                if (queue.length > 2 || !apiKey) return; 
+                const fetchBatch = async () => {
+                    setLoading(true);
+                    try {
+                        const type = homeMode === 'movie' ? 'movie' : 'tv';
+                        // Fetch popular or top rated based on page parity to get a mix
+                        const endpoint = page % 2 === 0 ? 'top_rated' : 'popular';
+                        const res = await fetch(`https://api.themoviedb.org/3/${type}/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`);
+                        const data = await res.json();
+                        
+                        if (data.results) {
+                            const newItems = data.results.filter(item => {
+                                // De-duplicate: Ensure item is not in any existing list
+                                const isOwned = movies.some(m => m.tmdbData?.id === item.id) || tvShows.some(t => t.tmdbData?.id === item.id);
+                                const isWatched = watched.some(w => w.tmdbData?.id === item.id);
+                                const isBacklog = backlog.some(b => b.tmdbData?.id === item.id);
+                                const isBlacklisted = blacklist.includes(item.id);
+                                const isInQueue = queue.some(q => q.id === item.id);
+                                return !isOwned && !isWatched && !isBacklog && !isBlacklisted && !isInQueue;
+                            });
+                            setQueue(prev => [...prev, ...newItems]);
+                        }
+                    } catch (e) {}
+                    setLoading(false);
+                };
+                fetchBatch();
+            }, [queue.length, apiKey, language, page, homeMode]);
 
-            const handleVote = (winner) => {
-                const updatedNext = [...nextRound, winner];
-                if (currentMatch + 1 < round.length) {
-                    setNextRound(updatedNext);
-                    setCurrentMatch(currentMatch + 1);
-                } else {
-                    if (updatedNext.length === 1) setChampion(updatedNext[0]);
-                    else {
-                        const newRound = [];
-                        for (let i = 0; i < updatedNext.length; i += 2) newRound.push([updatedNext[i], updatedNext[i+1]]);
-                        setRound(newRound);
-                        setNextRound([]);
-                        setCurrentMatch(0);
-                    }
+            const handleAction = (action) => {
+                if (queue.length === 0) return;
+                const item = queue[0];
+                const type = item.media_type === 'tv' || item.name ? 'tv' : 'movie';
+                const fullItem = { ...item, type };
+
+                if (action === 'nope') {
+                    onBlacklist(item.id);
+                } else if (action === 'like') {
+                    onAddToWatchlist(fullItem);
+                } else if (action === 'seen') {
+                    onSeen(fullItem); // This opens modal. Item removed from queue via useEffect dependency on Watched? No, manual removal.
                 }
+
+                setQueue(prev => prev.slice(1));
+                if (queue.length < 5) setPage(p => p + 1);
             };
 
-            if (champion === 'error') return <div className="p-10 text-center uppercase font-bold text-red-500">Need at least 2 items to play!</div>;
+            const currentCard = queue[0];
 
-            if (champion) {
-                return (
-                    <div className="text-center p-8 celebrate flex-1 flex flex-col justify-center items-center">
-                        <p className="text-sm font-bold uppercase text-[#1D9BF0] mb-2">{t('VERSUS_WINNER')}</p>
-                        <div className="border-[12px] border-black p-2 bg-white relative mb-4">
-                            {champion.tmdbData && champion.tmdbData.poster_path ? 
-                                <img src={`https://image.tmdb.org/t/p/w342${champion.tmdbData.poster_path}`} className="w-48" /> 
-                                : <div className="w-48 h-72 bg-gray-800 flex items-center justify-center text-4xl">?</div>}
-                        </div>
-                        <h2 className="text-2xl font-black uppercase mb-6 flex items-center gap-2 justify-center">{champion.title} {champion.tmdbData && <VerifiedBadge />}</h2>
-                        <button onClick={() => onComplete(champion)} className="bg-black text-bone px-8 py-4 font-bold uppercase tracking-wider">{t('BTN_WATCHED')}</button>
-                    </div>
-                );
-            }
-
-            if (round.length === 0) return <div className="p-10 text-center uppercase font-bold">Loading...</div>;
-
-            const match = round[currentMatch];
             return (
-                <div className="h-full flex flex-col pb-4">
-                    <div className="text-center mb-2 text-xs font-bold uppercase tracking-widest text-gray-500">
-                        Match {currentMatch + 1} / {round.length}
-                    </div>
-                    <div className="flex-1 grid grid-cols-2 gap-2">
-                        {match.map(m => (
-                            <button key={m.id} onClick={() => handleVote(m)} className="relative group border-4 border-black bg-black h-full flex flex-col">
-                                {m.tmdbData && m.tmdbData.poster_path ? (
-                                    <img src={`https://image.tmdb.org/t/p/w500${m.tmdbData.poster_path}`} className="flex-1 w-full object-cover" />
+                <div className="flex flex-col h-[75vh] items-center justify-center relative">
+                    <h1 className="text-2xl font-black uppercase mb-4 absolute top-0 left-0 border-b-4 border-black pb-2">{t('SWIPE_TITLE')}</h1>
+                    
+                    {currentCard ? (
+                        <div className="w-full max-w-sm flex-1 flex flex-col items-center justify-center relative animate-slide-up">
+                            <div className="relative w-full aspect-[2/3] border-[6px] border-black bg-black shadow-2xl">
+                                {currentCard.poster_path ? (
+                                    <img src={`https://image.tmdb.org/t/p/w780${currentCard.poster_path}`} className="w-full h-full object-cover" />
                                 ) : (
-                                    <div className="flex-1 bg-gray-800 flex items-center justify-center text-bone text-4xl font-bold">?</div>
+                                    <div className="w-full h-full bg-gray-800 flex items-center justify-center text-bone">NO IMG</div>
                                 )}
-                                <div className="p-2 bg-bone border-t-4 border-black min-h-[60px] flex items-center justify-center">
-                                    <p className="font-bold text-[10px] uppercase line-clamp-2 leading-tight text-center">{m.title} {m.tmdbData && <VerifiedBadge />}</p>
+                                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-24 text-bone">
+                                    <h2 className="text-2xl font-black uppercase leading-none mb-1">{currentCard.title || currentCard.name}</h2>
+                                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                                        {(currentCard.release_date || currentCard.first_air_date || '').split('-')[0]} • ★ {currentCard.vote_average?.toFixed(1)}
+                                    </p>
                                 </div>
-                            </button>
-                        ))}
-                    </div>
+                            </div>
+
+                            <div className="flex gap-6 mt-8">
+                                <button onClick={()=>handleAction('nope')} className="w-16 h-16 rounded-full border-4 border-black bg-white text-black flex items-center justify-center hover:bg-gray-200 transition-colors shadow-lg">
+                                    <Icons.ThumbDown />
+                                </button>
+                                <button onClick={()=>handleAction('like')} className="w-20 h-20 rounded-full border-4 border-black bg-black text-bone flex items-center justify-center hover:scale-105 transition-transform shadow-xl -mt-2">
+                                    <Icons.Heart />
+                                </button>
+                                <button onClick={()=>handleAction('seen')} className="w-16 h-16 rounded-full border-4 border-black bg-[#1D9BF0] text-white flex items-center justify-center hover:bg-[#1A8CD8] transition-colors shadow-lg">
+                                    <Icons.Eye />
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="text-center p-10 max-w-xs">
+                            {loading ? (
+                                <div className="animate-spin w-8 h-8 border-4 border-black border-t-transparent rounded-full mx-auto mb-4"></div>
+                            ) : (
+                                <div>
+                                    <p className="font-bold uppercase text-gray-500 mb-4">{t('SWIPE_EMPTY')}</p>
+                                    <button onClick={()=>setPage(p=>p+1)} className="bg-black text-bone px-4 py-2 text-xs font-bold uppercase">{t('BTN_LOAD_MORE')}</button>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             );
         }
@@ -513,6 +537,7 @@
             const [tvShows, setTvShows] = useState([]);
             const [backlog, setBacklog] = useState([]);
             const [watched, setWatched] = useState([]);
+            const [blacklist, setBlacklist] = useState([]);
             const [apiKey, setApiKey] = useState('');
             const [language, setLanguage] = useState('en-US');
             const [soundEnabled, setSoundEnabled] = useState(true);
@@ -542,11 +567,12 @@
                     const sm = localStorage.getItem(STORAGE_KEYS.movies); if (sm) setMovies(JSON.parse(sm));
                     const st = localStorage.getItem(STORAGE_KEYS.tvShows); if (st) setTvShows(JSON.parse(st));
                     const sb = localStorage.getItem(STORAGE_KEYS.backlog); if (sb) setBacklog(JSON.parse(sb));
+                    const bl = localStorage.getItem(STORAGE_KEYS.blacklist); if (bl) setBlacklist(JSON.parse(bl));
                     
                     const sw = localStorage.getItem(STORAGE_KEYS.watched); 
                     if (sw) {
                         let parsedWatched = JSON.parse(sw);
-                        // V20 Migration: Convert text ratings to numbers
+                        // V20 Migration
                         parsedWatched = parsedWatched.map(w => {
                             if (w.rating === 'love') return { ...w, rating: 5 };
                             if (w.rating === 'neutral') return { ...w, rating: 3 };
@@ -569,6 +595,7 @@
             useEffect(() => localStorage.setItem(STORAGE_KEYS.tvShows, JSON.stringify(tvShows)), [tvShows]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.backlog, JSON.stringify(backlog)), [backlog]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.watched, JSON.stringify(watched)), [watched]);
+            useEffect(() => localStorage.setItem(STORAGE_KEYS.blacklist, JSON.stringify(blacklist)), [blacklist]);
             useEffect(() => { if(apiKey) localStorage.setItem(STORAGE_KEYS.tmdbKey, apiKey); else localStorage.removeItem(STORAGE_KEYS.tmdbKey); }, [apiKey]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.language, language), [language]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.sound, JSON.stringify(soundEnabled)), [soundEnabled]);
@@ -594,11 +621,11 @@
                 handleAdd(title, { ...item, type });
             };
 
-            const handleAddToVault = (item) => {
+            const handleAddToWatchlist = (item) => {
                 if (!item) return;
                 const newItem = { id: generateId(), title: item.title || item.name, included: true, tmdbData: item, type: (item.media_type === 'tv' || item.name ? 'tv' : 'movie') };
                 setBacklog(p => [...p, newItem]);
-                showToast(t('TOAST_ADDED_VAULT'));
+                showToast(t('TOAST_ADDED_WATCHLIST'));
             };
 
             const handleSeenRecommendation = (item) => {
@@ -606,6 +633,10 @@
                 const type = item.media_type === 'tv' || item.name ? 'tv' : 'movie';
                 const mockItem = { id: generateId(), title: title, tmdbData: item, type: type, _isSeenAction: true };
                 setRateModalItem(mockItem);
+            };
+
+            const handleBlacklist = (id) => {
+                setBlacklist(p => [...p, id]);
             };
 
             const promoteFromVault = (item) => {
@@ -733,10 +764,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 27, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, apiKey, language, soundEnabled };
+                const data = { version: 28, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v27-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v28-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -749,6 +780,7 @@
                         if(data.tvShows) setTvShows(prev => [...prev, ...data.tvShows.filter(m=>!prev.some(p=>p.title===m.title))]);
                         if(data.backlog) setBacklog(prev => [...prev, ...data.backlog.filter(m=>!prev.some(p=>p.title===m.title))]);
                         if(data.watched) setWatched(data.watched);
+                        if(data.blacklist) setBlacklist(data.blacklist);
                         if(data.apiKey) setApiKey(data.apiKey);
                         showToast('Import successful');
                     } catch (err) { showToast('Import failed'); }
@@ -795,8 +827,8 @@
                         
                         {currentTab === 'vault' && (
                             <div className="pb-24">
-                                <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('HEADER_VAULT')}</h1>
-                                {backlog.length === 0 ? <div className="text-center text-gray-400 p-10">{t('EMPTY_VAULT')}</div> : (
+                                <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('HEADER_WATCHLIST')}</h1>
+                                {backlog.length === 0 ? <div className="text-center text-gray-400 p-10">{t('EMPTY_WATCHLIST')}</div> : (
                                     backlog.map(item => (
                                         <div key={item.id} className="flex gap-3 py-3 border-b border-gray-300">
                                             {item.tmdbData && item.tmdbData.poster_path ? <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-12 h-18 object-cover border border-black" /> : <div className="w-12 h-18 bg-gray-200"></div>}
@@ -814,12 +846,11 @@
                             </div>
                         )}
 
-                        {currentTab === 'discover' && <DiscoverTab watched={watched} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToVault={handleAddToVault} onSeen={handleSeenRecommendation} movies={movies} tvShows={tvShows} t={t} />}
+                        {currentTab === 'discover' && <DiscoverTab watched={watched} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToVault={handleAddToWatchlist} onSeen={handleSeenRecommendation} movies={movies} tvShows={tvShows} t={t} />}
                         
-                        {currentTab === 'versus' && (
+                        {currentTab === 'swipe' && (
                             <div className="h-[80vh] flex flex-col">
-                                <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('VERSUS_TITLE')} ({homeMode === 'movie' ? 'Movies' : 'TV'})</h1>
-                                <Tournament items={homeMode === 'movie' ? movies : tvShows} t={t} onComplete={(winner) => { initiateMarkAsWatched(winner); }} />
+                                <SwipeTab watched={watched} backlog={backlog} movies={movies} tvShows={tvShows} blacklist={blacklist} apiKey={apiKey} language={language} homeMode={homeMode} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} t={t} />
                             </div>
                         )}
 
@@ -906,12 +937,12 @@
                     </div>
 
                     <div className="fixed bottom-0 left-0 right-0 bg-[#EFEEE5] border-t-4 border-black z-50 h-16 flex justify-around items-center pb-safe">
-                        {['home','vault','discover','versus','history','settings'].map(tab => (
+                        {['home','watchlist','discover','swipe','history','settings'].map(tab => (
                             <button key={tab} onClick={()=>setCurrentTab(tab)} className={`flex-1 flex flex-col items-center justify-center h-full ${currentTab===tab?'text-black':'text-gray-400'}`}>
                                 {tab==='home' && <Icons.Home />} 
-                                {tab==='vault' && <Icons.Vault />}
+                                {tab==='watchlist' && <Icons.Watchlist />}
                                 {tab==='discover' && <Icons.Discover />} 
-                                {tab==='versus' && <Icons.Versus />} 
+                                {tab==='swipe' && <Icons.Swipe />} 
                                 {tab==='history' && <Icons.History />} 
                                 {tab==='settings' && <Icons.Settings />}
                                 <span className="text-[9px] font-bold uppercase mt-1">{t(`NAV_${tab.toUpperCase()}`)}</span>
