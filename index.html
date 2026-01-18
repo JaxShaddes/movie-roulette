@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V28 (Swipe)</title>
+    <title>Movie Roulette V29 (Stable)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -69,7 +69,7 @@
         
         const TRANSLATIONS = {
             'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCH LATER', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN' },
-            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'VER DEPOIS', EMPTY_WATCHLIST: 'A lista está vazia.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS' }
+            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS' }
         };
 
         const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', blacklist: 'movieRoulette_blacklist', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound' };
@@ -238,14 +238,12 @@
                     setLoading(true);
                     try {
                         const type = homeMode === 'movie' ? 'movie' : 'tv';
-                        // Fetch popular or top rated based on page parity to get a mix
                         const endpoint = page % 2 === 0 ? 'top_rated' : 'popular';
                         const res = await fetch(`https://api.themoviedb.org/3/${type}/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`);
                         const data = await res.json();
                         
                         if (data.results) {
                             const newItems = data.results.filter(item => {
-                                // De-duplicate: Ensure item is not in any existing list
                                 const isOwned = movies.some(m => m.tmdbData?.id === item.id) || tvShows.some(t => t.tmdbData?.id === item.id);
                                 const isWatched = watched.some(w => w.tmdbData?.id === item.id);
                                 const isBacklog = backlog.some(b => b.tmdbData?.id === item.id);
@@ -272,7 +270,7 @@
                 } else if (action === 'like') {
                     onAddToWatchlist(fullItem);
                 } else if (action === 'seen') {
-                    onSeen(fullItem); // This opens modal. Item removed from queue via useEffect dependency on Watched? No, manual removal.
+                    onSeen(fullItem); 
                 }
 
                 setQueue(prev => prev.slice(1));
@@ -764,10 +762,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 28, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
+                const data = { version: 29, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v28-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v29-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -825,7 +823,7 @@
                             </div>
                         )}
                         
-                        {currentTab === 'vault' && (
+                        {currentTab === 'watchlist' && (
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('HEADER_WATCHLIST')}</h1>
                                 {backlog.length === 0 ? <div className="text-center text-gray-400 p-10">{t('EMPTY_WATCHLIST')}</div> : (
