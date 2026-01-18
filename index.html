@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V29 (Stable)</title>
+    <title>Movie Roulette V30 (Swipe Info)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -227,7 +227,7 @@
             );
         }
 
-        function SwipeTab({ watched, backlog, movies, tvShows, blacklist, apiKey, language, homeMode, onAddToWatchlist, onSeen, onBlacklist, t }) {
+        function SwipeTab({ watched, backlog, movies, tvShows, blacklist, apiKey, language, homeMode, onAddToWatchlist, onSeen, onBlacklist, onInfo, t }) {
             const [queue, setQueue] = useState([]);
             const [page, setPage] = useState(1);
             const [loading, setLoading] = useState(false);
@@ -291,6 +291,11 @@
                                 ) : (
                                     <div className="w-full h-full bg-gray-800 flex items-center justify-center text-bone">NO IMG</div>
                                 )}
+                                
+                                <button onClick={() => onInfo({ tmdbData: currentCard, title: currentCard.title || currentCard.name })} className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border-2 border-white/50 text-white rounded-full p-2 hover:bg-white hover:text-black transition-colors z-10 shadow-lg">
+                                    <Icons.Info />
+                                </button>
+
                                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-24 text-bone">
                                     <h2 className="text-2xl font-black uppercase leading-none mb-1">{currentCard.title || currentCard.name}</h2>
                                     <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
@@ -762,10 +767,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 29, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
+                const data = { version: 30, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v29-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v30-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -848,7 +853,7 @@
                         
                         {currentTab === 'swipe' && (
                             <div className="h-[80vh] flex flex-col">
-                                <SwipeTab watched={watched} backlog={backlog} movies={movies} tvShows={tvShows} blacklist={blacklist} apiKey={apiKey} language={language} homeMode={homeMode} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} t={t} />
+                                <SwipeTab watched={watched} backlog={backlog} movies={movies} tvShows={tvShows} blacklist={blacklist} apiKey={apiKey} language={language} homeMode={homeMode} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onInfo={setInfoItem} t={t} />
                             </div>
                         )}
 
