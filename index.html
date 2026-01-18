@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V33 (Stable)</title>
+    <title>Movie Roulette V34 (Stable)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -231,13 +231,18 @@
             const [queue, setQueue] = useState([]);
             const [page, setPage] = useState(1);
             const [loading, setLoading] = useState(false);
+            const [swipeType, setSwipeType] = useState('movie');
+
+            useEffect(() => {
+                setQueue([]); setPage(1);
+            }, [swipeType]);
 
             useEffect(() => {
                 if (queue.length > 2 || !apiKey) return; 
                 const fetchBatch = async () => {
                     setLoading(true);
                     try {
-                        const type = homeMode === 'movie' ? 'movie' : 'tv';
+                        const type = swipeType === 'movie' ? 'movie' : 'tv';
                         const endpoint = page % 2 === 0 ? 'top_rated' : 'popular';
                         const res = await fetch(`https://api.themoviedb.org/3/${type}/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`);
                         const data = await res.json();
@@ -257,7 +262,7 @@
                     setLoading(false);
                 };
                 fetchBatch();
-            }, [queue.length, apiKey, language, page, homeMode]);
+            }, [queue.length, apiKey, language, page, swipeType]);
 
             const handleAction = (action) => {
                 if (queue.length === 0) return;
@@ -283,6 +288,11 @@
                 <div className="flex flex-col h-[75vh] items-center justify-center relative">
                     <h1 className="text-2xl font-black uppercase mb-4 absolute top-0 left-0 border-b-4 border-black pb-2">{t('SWIPE_TITLE')}</h1>
                     
+                    <div className="absolute top-0 right-0 flex border-2 border-black z-10 bg-bone">
+                        <button onClick={()=>setSwipeType('movie')} className={`py-1 px-3 text-[10px] font-bold uppercase ${swipeType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
+                        <button onClick={()=>setSwipeType('tv')} className={`py-1 px-3 text-[10px] font-bold uppercase ${swipeType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
+                    </div>
+
                     {currentCard ? (
                         <div className="w-full max-w-sm flex-1 flex flex-col items-center justify-center relative animate-slide-up">
                             <div className="relative w-full aspect-[2/3] border-[6px] border-black bg-black shadow-2xl">
@@ -292,7 +302,7 @@
                                     <div className="w-full h-full bg-gray-800 flex items-center justify-center text-bone">NO IMG</div>
                                 )}
                                 
-                                <button onClick={() => onInfo({ tmdbData: currentCard, title: currentCard.title || currentCard.name, type: homeMode })} className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border-2 border-white/50 text-white rounded-full p-2 hover:bg-white hover:text-black transition-colors z-10 shadow-lg">
+                                <button onClick={() => onInfo({ tmdbData: currentCard, title: currentCard.title || currentCard.name, type: swipeType })} className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border-2 border-white/50 text-white rounded-full p-2 hover:bg-white hover:text-black transition-colors z-10 shadow-lg">
                                     <Icons.Info />
                                 </button>
 
@@ -469,7 +479,7 @@
             );
         }
 
-        function DiscoverTab({ watched, apiKey, language, onAdd, onAddToWatchlist, onSeen, onInfo, t, movies, tvShows }) {
+        function DiscoverTab({ watched, backlog, apiKey, language, onAdd, onAddToWatchlist, onSeen, onInfo, t, movies, tvShows }) {
             const [recommendations, setRecommendations] = useState([]);
             const [topMatches, setTopMatches] = useState([]);
             const [loading, setLoading] = useState(false);
@@ -480,27 +490,33 @@
             
             const highRatedItems = watched.filter(w => w.rating >= 4 && w.tmdbData);
             
+            // Fetch Recommendations
             useEffect(() => {
                 if (highRatedItems.length < 3 || !apiKey) return;
                 const fetchRecs = async () => {
                     setLoading(true);
                     try {
                         let allRecs = [];
+                        // Logic for filters
                         if (filterMode === 'soon') {
                             const endpoint = discoverType === 'movie' ? 'movie/upcoming' : 'tv/on_the_air';
                             const res = await fetch(`https://api.themoviedb.org/3/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`);
                             const data = await res.json();
                             if(data.results) allRecs = data.results;
                         } else {
+                            // Seed based
                             const seeds = highRatedItems.slice(-5);
                             for (const seed of seeds) {
+                                // Match seed type to discover type to keep relevance
                                 const seedType = seed.type === 'tv' || seed.type === 'tvShow' ? 'tv' : 'movie';
+                                // Only use seeds that match current discover type preference for better results
                                 if (seedType === discoverType) {
                                     const res = await fetch(`https://api.themoviedb.org/3/${seedType}/${seed.tmdbData.id}/recommendations?api_key=${apiKey}&language=${language}&page=${page}`);
                                     const data = await res.json();
                                     if (data.results) allRecs = [...allRecs, ...data.results];
                                 }
                             }
+                            // Fallback if no seeds of this type
                             if (allRecs.length === 0) {
                                 const res = await fetch(`https://api.themoviedb.org/3/${discoverType}/top_rated?api_key=${apiKey}&language=${language}&page=${page}`);
                                 const data = await res.json();
@@ -508,16 +524,15 @@
                             }
                         }
 
+                        // Just map, unique and sort. Filtering happens dynamically in useMemo.
                         const processed = allRecs.map(r => ({
                             ...r,
                             matchScore: Math.round((r.vote_average || 0) * 10),
                             releaseDate: new Date(r.release_date || r.first_air_date || 0)
                         }))
-                        .filter(r => !watched.some(w => w.tmdbData && w.tmdbData.id === r.id))
-                        .filter(r => !movies.some(m => m.tmdbData && m.tmdbData.id === r.id))
-                        .filter(r => !tvShows.some(t => t.tmdbData && t.tmdbData.id === r.id))
                         .filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i);
 
+                        // Sort Main Grid
                         let finalRecs = [...processed];
                         if (filterMode === 'top') finalRecs.sort((a,b) => b.matchScore - a.matchScore);
                         if (filterMode === 'new') finalRecs.sort((a,b) => b.releaseDate.getTime() - a.releaseDate.getTime());
@@ -525,6 +540,7 @@
                             finalRecs = finalRecs.filter(r => r.genre_ids && r.genre_ids.includes(selectedGenre));
                         }
 
+                        // Top Matches (Only High Score)
                         const top = processed.filter(r => r.matchScore >= 85).sort((a,b) => b.matchScore - a.matchScore).slice(0, 10);
                         
                         if (page === 1) {
@@ -542,7 +558,16 @@
 
             useEffect(() => { setPage(1); setRecommendations([]); setTopMatches([]); }, [filterMode, selectedGenre, discoverType]);
 
-            const visibleRecommendations = useMemo(() => recommendations, [recommendations]);
+            // DYNAMIC FILTERING: This ensures items vanish immediately when added/watched/backlogged
+            const visibleRecommendations = useMemo(() => {
+                return recommendations.filter(r => {
+                    const inMovies = movies.some(m => m.tmdbData?.id === r.id);
+                    const inTv = tvShows.some(t => t.tmdbData?.id === r.id);
+                    const inWatched = watched.some(w => w.tmdbData?.id === r.id);
+                    const inBacklog = backlog.some(b => b.tmdbData?.id === r.id);
+                    return !inMovies && !inTv && !inWatched && !inBacklog;
+                });
+            }, [recommendations, movies, tvShows, watched, backlog]);
 
             if (highRatedItems.length < 3) return (<div className="p-10 border-2 border-dashed border-gray-400 text-center text-gray-500 font-bold uppercase">{t('DISCOVER_LOCKED')} ({highRatedItems.length}/3 rated 4+)</div>);
             
@@ -853,10 +878,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 33, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
+                const data = { version: 34, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v33-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v34-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -935,7 +960,7 @@
                             </div>
                         )}
 
-                        {currentTab === 'discover' && <DiscoverTab watched={watched} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} movies={movies} tvShows={tvShows} t={t} />}
+                        {currentTab === 'discover' && <DiscoverTab watched={watched} backlog={backlog} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} movies={movies} tvShows={tvShows} t={t} />}
                         
                         {currentTab === 'swipe' && (
                             <div className="h-[80vh] flex flex-col">
