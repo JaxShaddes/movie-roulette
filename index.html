@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V34 (Stable)</title>
+    <title>Movie Roulette V35 (Stable)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -93,8 +93,6 @@
             Heart: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>,
             Close: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         };
-
-        const VerifiedBadge = () => <svg viewBox="0 0 24 24" className="w-3 h-3 text-verified fill-current ml-1 inline-block" title="Verified"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z" /></svg>;
 
         function Toast({ msg }) { return <div className="toast fixed top-4 right-4 z-[99] bg-black text-bone px-4 py-3 border border-bone font-bold text-xs uppercase shadow-lg">{msg}</div>; }
         function Confetti() { return <div className="pointer-events-none fixed inset-0 z-50">{Array.from({ length: 30 }).map((_, i) => <div key={i} className="confetti" style={{ left: `${Math.random()*100}vw`, backgroundColor: ['#000','#333','#666'][Math.floor(Math.random()*3)], animationDelay: `${Math.random()*0.5}s`, animationDuration: `${Math.random()*2+2}s` }} />)}</div>; }
@@ -188,7 +186,7 @@
         function RateModal({ isOpen, onClose, onRate, t }) {
             if (!isOpen) return null;
             return (
-                <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={onClose}>
+                <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={onClose}>
                     <div className="bg-[#EFEEE5] border-4 border-black p-6 w-full max-w-sm shadow-2xl relative text-center" onClick={e=>e.stopPropagation()}>
                         <h2 className="text-xl font-black uppercase mb-6 font-sans">{t('RATE_TITLE')}</h2>
                         <div className="flex flex-col gap-2">
@@ -262,7 +260,7 @@
                     setLoading(false);
                 };
                 fetchBatch();
-            }, [queue.length, apiKey, language, page, swipeType]);
+            }, [queue.length, apiKey, language, page, swipeType, movies, tvShows, backlog, watched, blacklist]);
 
             const handleAction = (action) => {
                 if (queue.length === 0) return;
@@ -343,7 +341,7 @@
         }
 
         // --- NEW FULL SCREEN DETAIL PAGE ---
-        function MovieDetailPage({ item, onClose, t, apiKey, language, onAdd, onAddToWatchlist, onSeen, onBlacklist }) {
+        function MovieDetailPage({ item, onClose, t, apiKey, language, onAdd, onAddToWatchlist, onSeen, onBlacklist, onNavigate }) {
             const [cast, setCast] = useState([]);
             const [similar, setSimilar] = useState([]);
             const [providers, setProviders] = useState(null);
@@ -461,7 +459,7 @@
                                 <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('MORE_LIKE_THIS')}</h3>
                                 <div className="grid grid-cols-3 gap-2">
                                     {similar.map(s => (
-                                        <div key={s.id} onClick={() => onAdd(s)} className="relative aspect-[2/3] bg-gray-200">
+                                        <div key={s.id} onClick={() => onNavigate({ tmdbData: s, title: s.title||s.name, type: item.type === 'movie' || item.type === 'movies' ? 'movie' : 'tv' })} className="relative aspect-[2/3] bg-gray-200">
                                             {s.poster_path ? <img src={`https://image.tmdb.org/t/p/w185${s.poster_path}`} className="w-full h-full object-cover" /> : null}
                                             <div className="absolute top-0 right-0 bg-[#1D9BF0] text-white text-[8px] font-bold px-1 py-0.5">
                                                 {Math.round(s.vote_average * 10)}%
@@ -878,10 +876,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 34, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
+                const data = { version: 35, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v34-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v35-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -1105,7 +1103,7 @@
                          </div>
                     )}
 
-                    <MovieDetailPage item={infoItem} onClose={()=>setInfoItem(null)} t={t} apiKey={apiKey} language={language} onAdd={(item)=>onAdd({...item, type: item.media_type === 'tv' || item.name ? 'tv' : 'movie'})} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} />
+                    <MovieDetailPage item={infoItem} onClose={()=>setInfoItem(null)} t={t} apiKey={apiKey} language={language} onAdd={(item)=>onAdd({...item, type: item.media_type === 'tv' || item.name ? 'tv' : 'movie'})} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onNavigate={setInfoItem} />
                     <RateModal isOpen={!!rateModalItem} onClose={()=>setRateModalItem(null)} onRate={confirmWatched} t={t} />
                     <div className="fixed top-4 right-4 z-[100] flex flex-col gap-2 pointer-events-none">{toasts.map(t => <Toast key={t.id} msg={t.msg} />)}</div>
                     {showConfetti && <Confetti />}
