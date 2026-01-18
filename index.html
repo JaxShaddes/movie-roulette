@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V35 (Stable)</title>
+    <title>Movie Roulette V36 (Emergency Fix)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -657,6 +657,7 @@
             const [infoItem, setInfoItem] = useState(null);
             const [editingDateId, setEditingDateId] = useState(null);
             const [historyFilter, setHistoryFilter] = useState('spins');
+            const [isLoaded, setIsLoaded] = useState(false);
 
             const spinCandidatesRef = useRef([]);
             const fileInputRef = useRef(null);
@@ -689,17 +690,18 @@
                     else if (sk) setApiKey(sk);
                     const sl = localStorage.getItem(STORAGE_KEYS.language); if (sl) setLanguage(sl);
                     const snd = localStorage.getItem(STORAGE_KEYS.sound); if (snd) setSoundEnabled(JSON.parse(snd));
-                } catch (e) {}
+                } catch (e) { console.error("Load failed", e); } 
+                finally { setIsLoaded(true); }
             }, []);
 
-            useEffect(() => localStorage.setItem(STORAGE_KEYS.movies, JSON.stringify(movies)), [movies]);
-            useEffect(() => localStorage.setItem(STORAGE_KEYS.tvShows, JSON.stringify(tvShows)), [tvShows]);
-            useEffect(() => localStorage.setItem(STORAGE_KEYS.backlog, JSON.stringify(backlog)), [backlog]);
-            useEffect(() => localStorage.setItem(STORAGE_KEYS.watched, JSON.stringify(watched)), [watched]);
-            useEffect(() => localStorage.setItem(STORAGE_KEYS.blacklist, JSON.stringify(blacklist)), [blacklist]);
-            useEffect(() => { if(apiKey) localStorage.setItem(STORAGE_KEYS.tmdbKey, apiKey); else localStorage.removeItem(STORAGE_KEYS.tmdbKey); }, [apiKey]);
-            useEffect(() => localStorage.setItem(STORAGE_KEYS.language, language), [language]);
-            useEffect(() => localStorage.setItem(STORAGE_KEYS.sound, JSON.stringify(soundEnabled)), [soundEnabled]);
+            useEffect(() => { if (isLoaded) localStorage.setItem(STORAGE_KEYS.movies, JSON.stringify(movies)); }, [movies, isLoaded]);
+            useEffect(() => { if (isLoaded) localStorage.setItem(STORAGE_KEYS.tvShows, JSON.stringify(tvShows)); }, [tvShows, isLoaded]);
+            useEffect(() => { if (isLoaded) localStorage.setItem(STORAGE_KEYS.backlog, JSON.stringify(backlog)); }, [backlog, isLoaded]);
+            useEffect(() => { if (isLoaded) localStorage.setItem(STORAGE_KEYS.watched, JSON.stringify(watched)); }, [watched, isLoaded]);
+            useEffect(() => { if (isLoaded) localStorage.setItem(STORAGE_KEYS.blacklist, JSON.stringify(blacklist)); }, [blacklist, isLoaded]);
+            useEffect(() => { if (isLoaded) { if(apiKey) localStorage.setItem(STORAGE_KEYS.tmdbKey, apiKey); else localStorage.removeItem(STORAGE_KEYS.tmdbKey); } }, [apiKey, isLoaded]);
+            useEffect(() => { if (isLoaded) localStorage.setItem(STORAGE_KEYS.language, language); }, [language, isLoaded]);
+            useEffect(() => { if (isLoaded) localStorage.setItem(STORAGE_KEYS.sound, JSON.stringify(soundEnabled)); }, [soundEnabled, isLoaded]);
 
             // Reset filters when changing mode
             useEffect(() => { setFilters({ genres: [], time: null }); }, [homeMode]);
@@ -709,15 +711,18 @@
             const handleAdd = (title, metadata) => {
                 if (!title.trim()) return;
                 const type = (metadata && metadata.type) ? metadata.type : (metadata && metadata.title ? 'movie' : 'tv');
-                const targetList = (type === 'tv' || type === 'tvShows' || type === 'tvShow') ? tvShows : movies;
+                // FIX: Ensure Manual Entry respects global homeMode if metadata isn't full (e.g. typing in bar)
+                const finalType = metadata && metadata.id ? type : homeMode; 
+                
+                const targetList = (finalType === 'tv' || finalType === 'tvShows' || finalType === 'tvShow') ? tvShows : movies;
 
                 if (targetList.some(i => (metadata && i.tmdbData && i.tmdbData.id === metadata.id) || i.title.toLowerCase() === title.toLowerCase())) {
                     showToast(t('TOAST_EXIST'));
                     return;
                 }
 
-                const newItem = { id: generateId(), title: metadata ? metadata.title : title, included: true, tmdbData: metadata, type: type };
-                if (type === 'tv' || type === 'tvShows' || type === 'tvShow') setTvShows(p => [...p, newItem]); 
+                const newItem = { id: generateId(), title: metadata ? metadata.title : title, included: true, tmdbData: metadata, type: finalType };
+                if (finalType === 'tv' || finalType === 'tvShows' || finalType === 'tvShow') setTvShows(p => [...p, newItem]); 
                 else setMovies(p => [...p, newItem]);
                 showToast(t('TOAST_ADDED'));
             };
@@ -876,10 +881,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 35, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
+                const data = { version: 36, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v35-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v36-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -958,7 +963,7 @@
                             </div>
                         )}
 
-                        {currentTab === 'discover' && <DiscoverTab watched={watched} backlog={backlog} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} movies={movies} tvShows={tvShows} t={t} />}
+                        {currentTab === 'discover' && <DiscoverTab watched={watched} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} movies={movies} tvShows={tvShows} t={t} />}
                         
                         {currentTab === 'swipe' && (
                             <div className="h-[80vh] flex flex-col">
@@ -1103,7 +1108,7 @@
                          </div>
                     )}
 
-                    <MovieDetailPage item={infoItem} onClose={()=>setInfoItem(null)} t={t} apiKey={apiKey} language={language} onAdd={(item)=>onAdd({...item, type: item.media_type === 'tv' || item.name ? 'tv' : 'movie'})} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onNavigate={setInfoItem} />
+                    <MovieDetailPage item={infoItem} onClose={()=>setInfoItem(null)} t={t} apiKey={apiKey} language={language} onAdd={(item)=>handleAdd(item.title, item)} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onNavigate={setInfoItem} />
                     <RateModal isOpen={!!rateModalItem} onClose={()=>setRateModalItem(null)} onRate={confirmWatched} t={t} />
                     <div className="fixed top-4 right-4 z-[100] flex flex-col gap-2 pointer-events-none">{toasts.map(t => <Toast key={t.id} msg={t.msg} />)}</div>
                     {showConfetti && <Confetti />}
