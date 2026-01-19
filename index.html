@@ -382,6 +382,50 @@
         }
 
         // ========== END OF PART 2/3 ==========
+                function HistoryList({ items, setWatched, setRateModalItem, setInfoItem, deleteItem, formatDate, t }) {
+            const [editingDateId, setEditingDateId] = useState(null);
+            
+            return (
+                <>
+                    {items.map(item => (
+                        <div key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-300">
+                            {item.tmdbData?.poster_path && <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-10 h-14 object-cover border border-black" />}
+                            <div className="flex-1">
+                                <span className="font-bold uppercase text-xs block">{item.title} {item.tmdbData && <VerifiedBadge />} {item.origin === 'roulette' && <RouletteBadge />}</span>
+                                {editingDateId === item.id ? (
+                                    <input 
+                                        type="date" 
+                                        defaultValue={new Date(item.watchedDate).toISOString().split('T')[0]} 
+                                        onChange={(e) => { 
+                                            const newDate = new Date(e.target.value + 'T12:00:00').toISOString(); 
+                                            setWatched(p => p.map(w => w.id === item.id ? { ...w, watchedDate: newDate } : w)); 
+                                            setEditingDateId(null); 
+                                        }} 
+                                        onBlur={() => setEditingDateId(null)} 
+                                        className="date-input-mini" 
+                                        autoFocus 
+                                    />
+                                ) : (
+                                    <span className="text-[10px] text-gray-500 uppercase cursor-pointer hover:text-black flex items-center" onClick={() => setEditingDateId(item.id)}>
+                                        {formatDate(item.watchedDate)}
+                                        <svg className="w-3 h-3 text-gray-400 hover:text-black ml-1" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                        </svg>
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex gap-2 items-center">
+                                <button onClick={() => setRateModalItem(item)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${typeof item.rating === 'number' && item.rating >= 4 ? 'bg-love text-white' : ''}`}>
+                                    {item.rating ? (typeof item.rating === 'number' ? `${item.rating}/5` : item.rating) : t('RATE_LABEL_ADD')}
+                                </button>
+                                {item.tmdbData && <button onClick={() => setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })}><Icons.Info /></button>}
+                                <button onClick={() => deleteItem(item.id, 'history')}><Icons.Trash /></button>
+                            </div>
+                        </div>
+                    ))}
+                </>
+            );
+        }
 
                 function App() {
             const [movies, setMovies] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.movies)) || []);
@@ -684,36 +728,24 @@
                         )}
 
                         {currentTab === 'history' && (
-                            <div className="pb-24">
-                                <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('NAV_HISTORY')}</h1>
-                                <ProfileStats watched={watched} t={t} />
-                                <div className="flex border-2 border-black mb-4 mt-6">
-                                    <button onClick={() => setHistoryTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab === 'movie' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_MOVIES')} ({watched.filter(i => i.type === 'movie').length})</button>
-                                    <button onClick={() => setHistoryTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab === 'tv' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_TV')} ({watched.filter(i => i.type !== 'movie').length})</button>
-                                </div>
-                                {watched.filter(item => historyTab === 'movie' ? item.type === 'movie' : item.type !== 'movie').map(item => {
-                                    const [editingDateId, setEditingDateId] = useState(null);
-                                    return (
-                                        <div key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-300">
-                                            {item.tmdbData?.poster_path && <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-10 h-14 object-cover border border-black" />}
-                                            <div className="flex-1">
-                                                <span className="font-bold uppercase text-xs block">{item.title} {item.tmdbData && <VerifiedBadge />} {item.origin === 'roulette' && <RouletteBadge />}</span>
-                                                {editingDateId === item.id ? (
-                                                    <input type="date" defaultValue={new Date(item.watchedDate).toISOString().split('T')[0]} onChange={(e) => { const newDate = new Date(e.target.value + 'T12:00:00').toISOString(); setWatched(p => p.map(w => w.id === item.id ? { ...w, watchedDate: newDate } : w)); setEditingDateId(null); }} onBlur={() => setEditingDateId(null)} className="date-input-mini" autoFocus />
-                                                ) : (
-                                                    <span className="text-[10px] text-gray-500 uppercase cursor-pointer hover:text-black flex items-center" onClick={() => setEditingDateId(item.id)}>{formatDate(item.watchedDate)}<svg className="w-3 h-3 text-gray-400 hover:text-black ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></span>
-                                                )}
-                                            </div>
-                                            <div className="flex gap-2 items-center">
-                                                <button onClick={() => setRateModalItem(item)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${typeof item.rating === 'number' && item.rating >= 4 ? 'bg-love text-white' : ''}`}>{item.rating ? (typeof item.rating === 'number' ? `${item.rating}/5` : item.rating) : t('RATE_LABEL_ADD')}</button>
-                                                {item.tmdbData && <button onClick={() => setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })}><Icons.Info /></button>}
-                                                <button onClick={() => deleteItem(item.id, 'history')}><Icons.Trash /></button>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        )}
+    <div className="pb-24">
+        <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('NAV_HISTORY')}</h1>
+        <ProfileStats watched={watched} t={t} />
+        <div className="flex border-2 border-black mb-4 mt-6">
+            <button onClick={() => setHistoryTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab === 'movie' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_MOVIES')} ({watched.filter(i => i.type === 'movie').length})</button>
+            <button onClick={() => setHistoryTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab === 'tv' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_TV')} ({watched.filter(i => i.type !== 'movie').length})</button>
+        </div>
+        <HistoryList 
+            items={watched.filter(item => historyTab === 'movie' ? item.type === 'movie' : item.type !== 'movie')} 
+            setWatched={setWatched}
+            setRateModalItem={setRateModalItem}
+            setInfoItem={setInfoItem}
+            deleteItem={deleteItem}
+            formatDate={formatDate}
+            t={t}
+        />
+    </div>
+)}
 
                         {currentTab === 'settings' && (
                             <div className="pb-24">
