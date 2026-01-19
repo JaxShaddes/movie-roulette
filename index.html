@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V37 (Bulletproof)</title>
+    <title>Movie Roulette V38 (Profile & Sort)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -68,8 +68,8 @@
         };
         
         const TRANSLATIONS = {
-            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCHLIST', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN', DISC_TAB_MOVIES: 'MOVIES', DISC_TAB_TV: 'TV SHOWS', MORE_LIKE_THIS: 'MORE LIKE THIS', BTN_HIDE: 'HIDE' },
-            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS', DISC_TAB_MOVIES: 'FILMES', DISC_TAB_TV: 'SÉRIES', MORE_LIKE_THIS: 'RELACIONADOS', BTN_HIDE: 'ESCONDER' }
+            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCHLIST', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN', DISC_TAB_MOVIES: 'MOVIES', DISC_TAB_TV: 'TV SHOWS', MORE_LIKE_THIS: 'MORE LIKE THIS', BTN_HIDE: 'HIDE', SORT_ADDED: 'DATE ADDED', SORT_RELEASE_NEW: 'RELEASE (NEW)', SORT_RELEASE_OLD: 'RELEASE (OLD)', SORT_RATING: 'HIGH RATING', SORT_RUNTIME: 'SHORTEST', SYNC_DATA: 'SYNC METADATA', SYNC_DESC: 'Fetch Cast/Director for old items', TOP_ACTORS: 'TOP ACTORS', TOP_DIRECTORS: 'TOP DIRECTORS' },
+            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS', DISC_TAB_MOVIES: 'FILMES', DISC_TAB_TV: 'SÉRIES', MORE_LIKE_THIS: 'RELACIONADOS', BTN_HIDE: 'ESCONDER', SORT_ADDED: 'DATA (RECENTE)', SORT_RELEASE_NEW: 'ANO (NOVO)', SORT_RELEASE_OLD: 'ANO (VELHO)', SORT_RATING: 'MELHOR NOTA', SORT_RUNTIME: 'CURTOS', SYNC_DATA: 'SINCRONIZAR', SYNC_DESC: 'Buscar Atores/Diretores para antigos', TOP_ACTORS: 'ATORES FAV', TOP_DIRECTORS: 'REALIZADORES' }
         };
 
         const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', blacklist: 'movieRoulette_blacklist', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound' };
@@ -82,7 +82,7 @@
             Discover: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>,
             Swipe: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h2v2h-2V5zm0 4h2v2h-2V9zm0 4h2v2h-2v-2zm-4-8h2v2H8V5zm0 4h2v2H8V9zm0 4h2v2H8v-2zM5 5h2v2H5V5zm0 4h2v2H5V9zm0 4h2v2H5v-2z"/></svg>,
             History: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>,
-            Settings: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>,
+            Settings: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>,
             Check: () => <svg className="w-4 h-4 text-verified fill-current ml-1" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>,
             Info: () => <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>,
             Pencil: () => <svg className="w-3 h-3 text-gray-400 hover:text-black cursor-pointer ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>,
@@ -94,9 +94,7 @@
             Close: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         };
 
-        function VerifiedBadge() {
-            return <Icons.Check />;
-        }
+        function VerifiedBadge() { return <Icons.Check />; }
 
         function Toast({ msg }) { return <div className="toast fixed top-4 right-4 z-[99] bg-black text-bone px-4 py-3 border border-bone font-bold text-xs uppercase shadow-lg">{msg}</div>; }
         function Confetti() { return <div className="pointer-events-none fixed inset-0 z-50">{Array.from({ length: 30 }).map((_, i) => <div key={i} className="confetti" style={{ left: `${Math.random()*100}vw`, backgroundColor: ['#000','#333','#666'][Math.floor(Math.random()*3)], animationDelay: `${Math.random()*0.5}s`, animationDuration: `${Math.random()*2+2}s` }} />)}</div>; }
@@ -207,24 +205,104 @@
             );
         }
 
-        function StatsHeader({ watched, t }) {
-            const total = watched.length;
-            const genres = watched.flatMap(w => w.tmdbData ? w.tmdbData.genre_ids : []);
-            const topGenreId = genres.length ? genres.sort((a,b) => genres.filter(v => v===a).length - genres.filter(v => v===b).length).pop() : null;
-            const topGenre = topGenreId ? GENRES[topGenreId] : '-';
-            const ratedItems = watched.filter(w => w.rating && w.rating !== 'skip' && typeof w.rating === 'number');
-            const avgScore = ratedItems.length ? (ratedItems.reduce((a,b)=>a+b.rating,0) / ratedItems.length).toFixed(1) : '-';
+        function ProfileStats({ watched, t }) {
+            const stats = useMemo(() => {
+                const genreCounts = {};
+                const actorCounts = {};
+                const directorCounts = {};
+                
+                watched.forEach(item => {
+                    // Genres
+                    if (item.tmdbData && item.tmdbData.genre_ids) {
+                        item.tmdbData.genre_ids.forEach(id => {
+                            if(GENRES[id]) genreCounts[GENRES[id]] = (genreCounts[GENRES[id]] || 0) + 1;
+                        });
+                    }
+                    // Actors & Directors (if fetched)
+                    if (item.credits) {
+                        if (item.credits.cast) {
+                            item.credits.cast.forEach(c => {
+                                actorCounts[c.name] = { count: (actorCounts[c.name]?.count || 0) + 1, img: c.profile_path };
+                            });
+                        }
+                        if (item.credits.director) {
+                             const dir = item.credits.director;
+                             directorCounts[dir.name] = (directorCounts[dir.name] || 0) + 1;
+                        }
+                    }
+                });
+
+                const topGenres = Object.entries(genreCounts).sort((a,b) => b[1]-a[1]).slice(0, 3);
+                const topActors = Object.entries(actorCounts).sort((a,b) => b[1].count-a[1].count).slice(0, 4);
+                const topDirectors = Object.entries(directorCounts).sort((a,b) => b[1]-a[1]).slice(0, 3);
+                
+                const total = watched.length;
+                const ratedItems = watched.filter(w => w.rating && typeof w.rating === 'number');
+                const avgScore = ratedItems.length ? (ratedItems.reduce((a,b)=>a+b.rating,0) / ratedItems.length).toFixed(1) : '-';
+
+                return { topGenres, topActors, topDirectors, total, avgScore };
+            }, [watched]);
 
             return (
-                <div className="grid grid-cols-3 gap-2 mb-6 border-b border-black pb-6">
-                    {[
-                        { l: t('STATS_TOTAL'), v: total }, { l: t('STATS_GENRE'), v: topGenre }, { l: t('STATS_RATING'), v: avgScore }
-                    ].map((s,i) => (
-                        <div key={i} className="text-center">
-                            <div className="text-2xl font-black">{s.v}</div>
-                            <div className="text-[10px] font-bold text-gray-500 uppercase">{s.l}</div>
+                <div className="mb-8">
+                     <div className="grid grid-cols-2 gap-4 mb-6">
+                        <div className="bg-black text-bone p-4 text-center">
+                            <div className="text-3xl font-black">{stats.total}</div>
+                            <div className="text-[10px] font-bold uppercase tracking-widest">{t('STATS_TOTAL')}</div>
                         </div>
-                    ))}
+                        <div className="bg-white border-2 border-black p-4 text-center">
+                            <div className="text-3xl font-black">{stats.avgScore}</div>
+                            <div className="text-[10px] font-bold uppercase tracking-widest">{t('STATS_RATING')}</div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-6">
+                        <div>
+                            <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('STATS_GENRE')}</h3>
+                            <div className="space-y-2">
+                                {stats.topGenres.map(([g, c], i) => (
+                                    <div key={g} className="flex items-center gap-2">
+                                        <div className="w-6 text-xs font-bold text-gray-400">#{i+1}</div>
+                                        <div className="flex-1">
+                                            <div className="flex justify-between text-xs font-bold uppercase mb-1">
+                                                <span>{g}</span>
+                                                <span>{c}</span>
+                                            </div>
+                                            <div className="h-2 bg-gray-200 w-full"><div className="h-full bg-black" style={{width: `${(c / (stats.topGenres[0][1] || 1)) * 100}%`}}></div></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {stats.topActors.length > 0 && (
+                            <div>
+                                <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('TOP_ACTORS')}</h3>
+                                <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                                    {stats.topActors.map(([name, data]) => (
+                                        <div key={name} className="flex-shrink-0 text-center w-16">
+                                            {data.img ? <img src={`https://image.tmdb.org/t/p/w185${data.img}`} className="w-16 h-16 rounded-full object-cover border-2 border-black mb-1" /> : <div className="w-16 h-16 rounded-full bg-gray-300 mb-1 border-2 border-black"></div>}
+                                            <p className="text-[9px] font-bold uppercase leading-tight">{name}</p>
+                                            <p className="text-[8px] text-gray-500">{data.count} movies</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {stats.topDirectors.length > 0 && (
+                             <div>
+                                <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('TOP_DIRECTORS')}</h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {stats.topDirectors.map(([name, count]) => (
+                                        <div key={name} className="px-3 py-1 bg-gray-100 border border-gray-300 rounded-full text-[10px] font-bold uppercase">
+                                            {name} <span className="text-gray-500 ml-1">({count})</span>
+                                        </div>
+                                    ))}
+                                </div>
+                             </div>
+                        )}
+                    </div>
                 </div>
             );
         }
@@ -638,7 +716,6 @@
 
         function App() {
             // SAFE INITIALIZATION: Load from localStorage synchronously at startup
-            // This prevents "race conditions" where empty state is saved over existing data
             const [movies, setMovies] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.movies)) || []);
             const [tvShows, setTvShows] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.tvShows)) || []);
             const [backlog, setBacklog] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.backlog)) || []);
@@ -667,12 +744,16 @@
             const [infoItem, setInfoItem] = useState(null);
             const [editingDateId, setEditingDateId] = useState(null);
             const [historyFilter, setHistoryFilter] = useState('spins');
+            
+            // Watchlist Sort State
+            const [watchlistSort, setWatchlistSort] = useState('added');
+            const [isSyncing, setIsSyncing] = useState(false);
 
             const spinCandidatesRef = useRef([]);
             const fileInputRef = useRef(null);
             const t = (key) => TRANSLATIONS[language][key] || key;
 
-            // Persistence Effects (Now safe because initial state was loaded correctly)
+            // Persistence Effects
             useEffect(() => localStorage.setItem(STORAGE_KEYS.movies, JSON.stringify(movies)), [movies]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.tvShows, JSON.stringify(tvShows)), [tvShows]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.backlog, JSON.stringify(backlog)), [backlog]);
@@ -682,25 +763,18 @@
             useEffect(() => localStorage.setItem(STORAGE_KEYS.language, language), [language]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.sound, JSON.stringify(soundEnabled)), [soundEnabled]);
 
-            // Reset filters when changing mode
             useEffect(() => { setFilters({ genres: [], time: null }); }, [homeMode]);
 
             const showToast = useCallback((msg) => { const id = Date.now(); setToasts(p => [...p, { id, msg }]); setTimeout(() => setToasts(p => p.filter(t => t.id !== id)), 3000); }, []);
 
             const handleAdd = (title, metadata) => {
-                // GUARD: Prevent crash if title is undefined/null
                 if (!title || typeof title !== 'string' || !title.trim()) return;
-                
                 const type = (metadata && metadata.type) ? metadata.type : (metadata && metadata.title ? 'movie' : 'tv');
                 const finalType = metadata && metadata.id ? type : homeMode; 
                 const targetList = (finalType === 'tv' || finalType === 'tvShows' || finalType === 'tvShow') ? tvShows : movies;
-
-                // Check for duplicates
                 if (targetList.some(i => (metadata && i.tmdbData && i.tmdbData.id === metadata.id) || i.title.toLowerCase() === title.toLowerCase())) {
-                    showToast(t('TOAST_EXIST'));
-                    return;
+                    showToast(t('TOAST_EXIST')); return;
                 }
-
                 const newItem = { id: generateId(), title: metadata ? metadata.title : title, included: true, tmdbData: metadata, type: finalType };
                 if (finalType === 'tv' || finalType === 'tvShows' || finalType === 'tvShow') setTvShows(p => [...p, newItem]); 
                 else setMovies(p => [...p, newItem]);
@@ -716,10 +790,7 @@
 
             const handleAddToWatchlist = (item) => {
                 if (!item) return;
-                if (backlog.some(b => b.tmdbData && b.tmdbData.id === item.id)) {
-                    showToast(t('TOAST_EXIST'));
-                    return;
-                }
+                if (backlog.some(b => b.tmdbData && b.tmdbData.id === item.id)) { showToast(t('TOAST_EXIST')); return; }
                 const newItem = { id: generateId(), title: item.title || item.name, included: true, tmdbData: item, type: (item.media_type === 'tv' || item.name ? 'tv' : 'movie') };
                 setBacklog(p => [...p, newItem]);
                 showToast(t('TOAST_ADDED_WATCHLIST'));
@@ -732,9 +803,7 @@
                 setRateModalItem(mockItem);
             };
 
-            const handleBlacklist = (id) => {
-                setBlacklist(p => [...p, id]);
-            };
+            const handleBlacklist = (id) => setBlacklist(p => [...p, id]);
 
             const promoteFromVault = (item) => {
                 setBacklog(p => p.filter(i => i.id !== item.id));
@@ -772,15 +841,10 @@
                 if (!item.included) return false;
                 if (filters.genres.length > 0 || filters.time) {
                     if (!item.tmdbData) return true; 
-                    if (filters.genres.length > 0) { 
-                        const g = item.tmdbData.genre_ids || []; 
-                        if (!filters.genres.some(id => g.includes(id))) return false; 
-                    }
+                    if (filters.genres.length > 0) { const g = item.tmdbData.genre_ids || []; if (!filters.genres.some(id => g.includes(id))) return false; }
                     if (filters.time) { 
                         let r = item.tmdbData.runtime;
-                        if (!r && item.tmdbData.episode_run_time && item.tmdbData.episode_run_time.length > 0) {
-                            r = item.tmdbData.episode_run_time.reduce((a,b)=>a+b,0) / item.tmdbData.episode_run_time.length;
-                        }
+                        if (!r && item.tmdbData.episode_run_time && item.tmdbData.episode_run_time.length > 0) r = item.tmdbData.episode_run_time.reduce((a,b)=>a+b,0) / item.tmdbData.episode_run_time.length;
                         if (r) {
                             if (filters.time === 'short' && r > 90) return false;
                             if (filters.time === 'medium' && (r <= 90 || r > 120)) return false;
@@ -792,21 +856,23 @@
             };
 
             const visibleCandidates = useMemo(() => currentList.filter(filterItem), [currentList, filters]);
-            
-            const displayList = useMemo(() => {
-                 if (filters.genres.length === 0 && !filters.time) return currentList;
-                 return currentList.filter(item => {
-                     return filterItem({ ...item, included: true }); 
-                 });
-            }, [currentList, filters]);
+            const displayList = useMemo(() => { if (filters.genres.length === 0 && !filters.time) return currentList; return currentList.filter(item => filterItem({ ...item, included: true })); }, [currentList, filters]);
+
+            // SORTED WATCHLIST LOGIC
+            const sortedBacklog = useMemo(() => {
+                let sorted = [...backlog];
+                if (watchlistSort === 'release_new') sorted.sort((a,b) => new Date(b.tmdbData?.release_date || 0) - new Date(a.tmdbData?.release_date || 0));
+                else if (watchlistSort === 'release_old') sorted.sort((a,b) => new Date(a.tmdbData?.release_date || 0) - new Date(b.tmdbData?.release_date || 0));
+                else if (watchlistSort === 'rating') sorted.sort((a,b) => (b.tmdbData?.vote_average || 0) - (a.tmdbData?.vote_average || 0));
+                else if (watchlistSort === 'runtime') sorted.sort((a,b) => (a.tmdbData?.runtime || 0) - (b.tmdbData?.runtime || 0));
+                return sorted; 
+            }, [backlog, watchlistSort]);
 
             const spinRoulette = useCallback(() => {
                 const candidates = visibleCandidates.filter(i => i.included);
                 if (isSpinning || candidates.length === 0) return;
-                
                 spinCandidatesRef.current = candidates;
                 setIsSpinning(true); setShowResult(false);
-                
                 const duration = 2500; const start = Date.now();
                 const animate = () => {
                     const elapsed = Date.now() - start;
@@ -829,7 +895,7 @@
                 setRateModalItem(item); 
             };
 
-            const confirmWatched = (rating) => {
+            const confirmWatched = async (rating) => {
                 const item = rateModalItem;
                 const finalRating = rating === 'skip' ? null : rating;
                 
@@ -841,8 +907,21 @@
                 const type = item.type || (item.tmdbData?.title ? 'movie' : 'tvShow');
                 const origin = item._isSeenAction ? 'seen' : 'roulette';
 
-                const newWatched = { id: generateId(), title: item.title, type, watchedDate: new Date().toISOString(), tmdbData: item.tmdbData, rating: finalRating, origin: origin };
-                
+                // Fetch Credits for Profile Stats
+                let credits = null;
+                if (apiKey && item.tmdbData) {
+                    try {
+                        const endpoint = type === 'tv' || type === 'tvShows' ? 'tv' : 'movie';
+                        const res = await fetch(`https://api.themoviedb.org/3/${endpoint}/${item.tmdbData.id}/credits?api_key=${apiKey}`);
+                        const data = await res.json();
+                        credits = {
+                            cast: data.cast ? data.cast.slice(0,4).map(c => ({ name: c.name, profile_path: c.profile_path })) : [],
+                            director: data.crew ? data.crew.find(c => c.job === 'Director') : null
+                        };
+                    } catch(e) {}
+                }
+
+                const newWatched = { id: generateId(), title: item.title, type, watchedDate: new Date().toISOString(), tmdbData: item.tmdbData, rating: finalRating, origin: origin, credits: credits };
                 setWatched(p => [...p, newWatched]);
                 
                 if (!item._isSeenAction) {
@@ -860,11 +939,38 @@
                 setShowResult(false); setSelectedItem(null); setRateModalItem(null); showToast(t('TOAST_ADDED'));
             };
 
+            // SYNC OLD DATA
+            const syncMetadata = async () => {
+                if (!apiKey) { showToast('API KEY REQUIRED'); return; }
+                setIsSyncing(true);
+                let updatedCount = 0;
+                const newWatched = [...watched];
+                
+                for (let i = 0; i < newWatched.length; i++) {
+                    const item = newWatched[i];
+                    if (item.tmdbData && !item.credits) {
+                        try {
+                            const type = item.type === 'tv' || item.type === 'tvShows' ? 'tv' : 'movie';
+                            const res = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/credits?api_key=${apiKey}`);
+                            const data = await res.json();
+                            item.credits = {
+                                cast: data.cast ? data.cast.slice(0,4).map(c => ({ name: c.name, profile_path: c.profile_path })) : [],
+                                director: data.crew ? data.crew.find(c => c.job === 'Director') : null
+                            };
+                            updatedCount++;
+                        } catch(e) { console.log('Fail fetch', item.title); }
+                    }
+                }
+                setWatched(newWatched);
+                setIsSyncing(false);
+                showToast(`Updated ${updatedCount} items`);
+            };
+
             const exportData = () => {
-                const data = { version: 37, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
+                const data = { version: 38, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v37-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v38-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -894,12 +1000,10 @@
                                     <h1 className="text-4xl font-black uppercase text-center leading-none tracking-tighter">MOVIE<br/>ROULETTE</h1>
                                     <p className="text-center text-xs uppercase tracking-[0.3em] mt-3 text-black/60">{t('SUBTITLE')}</p>
                                 </header>
-                                {/* MODE TOGGLE */}
                                 <div className="flex border-2 border-black mb-6">
                                     <button onClick={()=>setHomeMode('movie')} className={`flex-1 py-3 font-bold uppercase text-xs ${homeMode==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
                                     <button onClick={()=>setHomeMode('tv')} className={`flex-1 py-3 font-bold uppercase text-xs ${homeMode==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
                                 </div>
-
                                 <div className="flex flex-col gap-2 mb-6">
                                     <div className="flex gap-2">
                                         <SearchInput type={homeMode === 'movie' ? 'movie' : 'tv'} apiKey={apiKey} language={language} placeholder={homeMode === 'movie' ? t('PLACEHOLDER_MOVIES') : t('PLACEHOLDER_TV')} onAdd={(t,m)=>handleAdd(t,{...m,type:homeMode})} />
@@ -924,14 +1028,23 @@
                         
                         {currentTab === 'watchlist' && (
                             <div className="pb-24">
-                                <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('HEADER_WATCHLIST')}</h1>
-                                {backlog.length === 0 ? <div className="text-center text-gray-400 p-10">{t('EMPTY_WATCHLIST')}</div> : (
-                                    backlog.map(item => (
+                                <div className="flex justify-between items-end mb-4 border-b-4 border-black pb-2">
+                                    <h1 className="text-2xl font-black uppercase">{t('HEADER_WATCHLIST')}</h1>
+                                    <select value={watchlistSort} onChange={(e)=>setWatchlistSort(e.target.value)} className="bg-transparent text-[10px] font-bold uppercase border-none outline-none text-right">
+                                        <option value="added">{t('SORT_ADDED')}</option>
+                                        <option value="release_new">{t('SORT_RELEASE_NEW')}</option>
+                                        <option value="release_old">{t('SORT_RELEASE_OLD')}</option>
+                                        <option value="rating">{t('SORT_RATING')}</option>
+                                        <option value="runtime">{t('SORT_RUNTIME')}</option>
+                                    </select>
+                                </div>
+                                {sortedBacklog.length === 0 ? <div className="text-center text-gray-400 p-10">{t('EMPTY_WATCHLIST')}</div> : (
+                                    sortedBacklog.map(item => (
                                         <div key={item.id} className="flex gap-3 py-3 border-b border-gray-300">
                                             {item.tmdbData && item.tmdbData.poster_path ? <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-12 h-18 object-cover border border-black" /> : <div className="w-12 h-18 bg-gray-200"></div>}
                                             <div className="flex-1">
                                                 <span className="font-bold uppercase text-sm">{item.title}</span>
-                                                <div className="text-[10px] text-gray-500 uppercase mt-1 mb-2">{item.type} • {item.tmdbData?.release_date?.split('-')[0]}</div>
+                                                <div className="text-[10px] text-gray-500 uppercase mt-1 mb-2">{item.type} • {item.tmdbData?.release_date?.split('-')[0]} • {item.tmdbData?.vote_average?.toFixed(1)}★</div>
                                                 <div className="flex gap-2">
                                                     <button onClick={()=>promoteFromVault(item)} className="bg-black text-bone px-3 py-1 text-[10px] font-bold uppercase">{t('BTN_MOVE_TO_ROULETTE')}</button>
                                                     <button onClick={()=>deleteItem(item.id, 'backlog')} className="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
@@ -954,7 +1067,7 @@
                         {currentTab === 'history' && (
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('NAV_HISTORY')}</h1>
-                                <StatsHeader watched={watched} t={t} />
+                                <ProfileStats watched={watched} t={t} />
                                 
                                 <div className="flex border-2 border-black mb-6">
                                     <button onClick={()=>setHistoryFilter('spins')} className={`flex-1 py-2 font-bold uppercase text-[10px] ${historyFilter==='spins'?'bg-black text-bone':'bg-transparent'}`}>{t('HIST_TAB_SPINS')}</button>
@@ -1018,7 +1131,15 @@
                                     <div><label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_LANG_LABEL')}</label><select value={language} onChange={e=>setLanguage(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-bold uppercase"><option value="en-US">ENGLISH</option><option value="pt-PT">PORTUGUÊS</option></select></div>
                                     <div className="flex items-center gap-4 border-2 border-black p-4"><input type="checkbox" checked={soundEnabled} onChange={e=>setSoundEnabled(e.target.checked)} className="checkbox-receipt" /><span className="font-bold uppercase">{t('SOUND')}</span></div>
                                     <div><label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_API_LABEL')}</label><input type="text" value={apiKey} onChange={e=>setApiKey(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-mono text-xs" placeholder="API KEY" /></div>
+                                    
                                     <div className="pt-6 border-t-2 border-black">
+                                        <h3 className="font-bold uppercase text-xs mb-2">Sync</h3>
+                                        <button onClick={syncMetadata} disabled={isSyncing} className="w-full py-3 bg-[#1D9BF0] text-white font-bold uppercase hover:bg-blue-600 disabled:opacity-50 mb-1">{isSyncing ? 'SYNCING...' : t('SYNC_DATA')}</button>
+                                        <p className="text-[10px] text-gray-500">{t('SYNC_DESC')}</p>
+                                    </div>
+
+                                    <div className="pt-6 border-t-2 border-black">
+                                        <h3 className="font-bold uppercase text-xs mb-2">Data</h3>
                                         <button onClick={()=>fileInputRef.current.click()} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone">{t('IMPORT')}</button>
                                         <input ref={fileInputRef} type="file" className="hidden" onChange={e => importData(e.target.files[0])} />
                                         <button onClick={exportData} className="w-full py-3 bg-black text-bone font-bold uppercase hover:bg-gray-800">{t('EXPORT')}</button>
