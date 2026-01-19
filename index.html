@@ -138,7 +138,6 @@
         }
 
         // ========== END OF PART 1/3 ==========
-        // DO NOT CLOSE ANY TAGS - WAIT FOR PART 2
 
                 function ProfileStats({ watched, t }) {
             const stats = useMemo(() => {
@@ -383,7 +382,6 @@
         }
 
         // ========== END OF PART 2/3 ==========
-        // DO NOT CLOSE ANY TAGS - WAIT FOR PART 3
 
                 function App() {
             const [movies, setMovies] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.movies)) || []);
@@ -397,6 +395,8 @@
             const [winCount, setWinCount] = useState(() => parseInt(localStorage.getItem(STORAGE_KEYS.winCount)) || 0);
             const [currentTab, setCurrentTab] = useState('home');
             const [homeMode, setHomeMode] = useState('movie');
+            const [watchlistTab, setWatchlistTab] = useState('movie');
+            const [historyTab, setHistoryTab] = useState('movie');
             const [isSpinning, setIsSpinning] = useState(false);
             const [spinningText, setSpinningText] = useState('');
             const [selectedItem, setSelectedItem] = useState(null);
@@ -570,7 +570,7 @@
                 const data = { version: 42, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled, winCount };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v42-pro-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v42-final-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -651,19 +651,27 @@
                         {currentTab === 'watchlist' && (
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('HEADER_WATCHLIST')}</h1>
-                                {backlog.length === 0 ? <div className="text-center text-gray-400 p-10">{t('EMPTY_WATCHLIST')}</div> : backlog.map(item => (
-                                    <div key={item.id} className="flex gap-3 py-3 border-b border-gray-300">
-                                        {item.tmdbData && item.tmdbData.poster_path ? <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-12 h-18 object-cover border border-black" /> : <div className="w-12 h-18 bg-gray-200"></div>}
-                                        <div className="flex-1">
-                                            <span className="font-bold uppercase text-sm">{item.title}</span>
-                                            <div className="text-[10px] text-gray-500 uppercase mt-1 mb-2">{item.type} • {item.tmdbData?.release_date?.split('-')[0]} • {item.tmdbData?.vote_average?.toFixed(1)}★</div>
-                                            <div className="flex gap-2">
-                                                <button onClick={() => { handleAdd(item.title, item.tmdbData); deleteItem(item.id, 'backlog'); }} className="bg-black text-bone px-3 py-1 text-[10px] font-bold uppercase btn-primary">{t('BTN_MOVE_TO_ROULETTE')}</button>
-                                                <button onClick={() => deleteItem(item.id, 'backlog')} className="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
+                                <div className="flex border-2 border-black mb-4">
+                                    <button onClick={() => setWatchlistTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${watchlistTab === 'movie' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_MOVIES')} ({backlog.filter(i => i.type === 'movie').length})</button>
+                                    <button onClick={() => setWatchlistTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${watchlistTab === 'tv' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_TV')} ({backlog.filter(i => i.type !== 'movie').length})</button>
+                                </div>
+                                {backlog.filter(item => watchlistTab === 'movie' ? item.type === 'movie' : item.type !== 'movie').length === 0 ? (
+                                    <div className="text-center text-gray-400 p-10">{t('EMPTY_WATCHLIST')}</div>
+                                ) : (
+                                    backlog.filter(item => watchlistTab === 'movie' ? item.type === 'movie' : item.type !== 'movie').map(item => (
+                                        <div key={item.id} className="flex gap-3 py-3 border-b border-gray-300">
+                                            {item.tmdbData && item.tmdbData.poster_path ? <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-12 h-18 object-cover border border-black" /> : <div className="w-12 h-18 bg-gray-200"></div>}
+                                            <div className="flex-1">
+                                                <span className="font-bold uppercase text-sm">{item.title}</span>
+                                                <div className="text-[10px] text-gray-500 uppercase mt-1 mb-2">{item.type} • {item.tmdbData?.release_date?.split('-')[0]} • {item.tmdbData?.vote_average?.toFixed(1)}★</div>
+                                                <div className="flex gap-2">
+                                                    <button onClick={() => { handleAdd(item.title, item.tmdbData); deleteItem(item.id, 'backlog'); }} className="bg-black text-bone px-3 py-1 text-[10px] font-bold uppercase btn-primary">{t('BTN_MOVE_TO_ROULETTE')}</button>
+                                                    <button onClick={() => deleteItem(item.id, 'backlog')} className="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))
+                                )}
                             </div>
                         )}
 
@@ -679,22 +687,31 @@
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('NAV_HISTORY')}</h1>
                                 <ProfileStats watched={watched} t={t} />
-                                {watched.map(item => (
-                                    <div key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-300">
-                                        {item.tmdbData?.poster_path && <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-10 h-14 object-cover border border-black" />}
-                                        <div className="flex-1">
-                                            <span className="font-bold uppercase text-xs block">{item.title} {item.tmdbData && <VerifiedBadge />} {item.origin === 'roulette' && <RouletteBadge />}</span>
-                                            <span className="text-[10px] text-gray-500 uppercase">{formatDate(item.watchedDate)}</span>
+                                <div className="flex border-2 border-black mb-4 mt-6">
+                                    <button onClick={() => setHistoryTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab === 'movie' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_MOVIES')} ({watched.filter(i => i.type === 'movie').length})</button>
+                                    <button onClick={() => setHistoryTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab === 'tv' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_TV')} ({watched.filter(i => i.type !== 'movie').length})</button>
+                                </div>
+                                {watched.filter(item => historyTab === 'movie' ? item.type === 'movie' : item.type !== 'movie').map(item => {
+                                    const [editingDateId, setEditingDateId] = useState(null);
+                                    return (
+                                        <div key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-300">
+                                            {item.tmdbData?.poster_path && <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-10 h-14 object-cover border border-black" />}
+                                            <div className="flex-1">
+                                                <span className="font-bold uppercase text-xs block">{item.title} {item.tmdbData && <VerifiedBadge />} {item.origin === 'roulette' && <RouletteBadge />}</span>
+                                                {editingDateId === item.id ? (
+                                                    <input type="date" defaultValue={new Date(item.watchedDate).toISOString().split('T')[0]} onChange={(e) => { const newDate = new Date(e.target.value + 'T12:00:00').toISOString(); setWatched(p => p.map(w => w.id === item.id ? { ...w, watchedDate: newDate } : w)); setEditingDateId(null); }} onBlur={() => setEditingDateId(null)} className="date-input-mini" autoFocus />
+                                                ) : (
+                                                    <span className="text-[10px] text-gray-500 uppercase cursor-pointer hover:text-black flex items-center" onClick={() => setEditingDateId(item.id)}>{formatDate(item.watchedDate)}<svg className="w-3 h-3 text-gray-400 hover:text-black ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></span>
+                                                )}
+                                            </div>
+                                            <div className="flex gap-2 items-center">
+                                                <button onClick={() => setRateModalItem(item)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${typeof item.rating === 'number' && item.rating >= 4 ? 'bg-love text-white' : ''}`}>{item.rating ? (typeof item.rating === 'number' ? `${item.rating}/5` : item.rating) : t('RATE_LABEL_ADD')}</button>
+                                                {item.tmdbData && <button onClick={() => setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })}><Icons.Info /></button>}
+                                                <button onClick={() => deleteItem(item.id, 'history')}><Icons.Trash /></button>
+                                            </div>
                                         </div>
-                                        <div className="flex gap-2 items-center">
-                                            <button onClick={() => setRateModalItem(item)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${typeof item.rating === 'number' && item.rating >= 4 ? 'bg-love text-white' : ''}`}>
-                                                {item.rating ? (typeof item.rating === 'number' ? `${item.rating}/5` : item.rating) : t('RATE_LABEL_ADD')}
-                                            </button>
-                                            {item.tmdbData && <button onClick={() => setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })}><Icons.Info /></button>}
-                                            <button onClick={() => deleteItem(item.id, 'history')}><Icons.Trash /></button>
-                                        </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         )}
 
@@ -702,36 +719,12 @@
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-6">{t('SETTINGS_TITLE')}</h1>
                                 <div className="space-y-6">
-                                    <div>
-                                        <label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_LANG_LABEL')}</label>
-                                        <select value={language} onChange={e => setLanguage(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-bold uppercase">
-                                            <option value="en-US">ENGLISH</option>
-                                            <option value="pt-PT">PORTUGUÊS</option>
-                                        </select>
-                                    </div>
-                                    <div className="flex items-center gap-4 border-2 border-black p-4">
-                                        <input type="checkbox" checked={soundEnabled} onChange={e => setSoundEnabled(e.target.checked)} className="checkbox-receipt" />
-                                        <span className="font-bold uppercase">{t('SOUND')}</span>
-                                    </div>
-                                    <div>
-                                        <label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_API_LABEL')}</label>
-                                        <input type="text" value={apiKey} onChange={e => setApiKey(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-mono text-xs" placeholder="API KEY" />
-                                    </div>
-                                    <div className="pt-6 border-t-2 border-black">
-                                        <h3 className="font-bold uppercase text-xs mb-2">Data</h3>
-                                        <button onClick={() => fileInputRef.current.click()} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone btn-primary">{t('IMPORT')}</button>
-                                        <input ref={fileInputRef} type="file" className="hidden" onChange={e => importData(e.target.files[0])} />
-                                        <button onClick={exportData} className="w-full py-3 bg-black text-bone font-bold uppercase hover:bg-gray-800 btn-primary">{t('EXPORT')}</button>
-                                    </div>
-                                    <div className="pt-6 border-t-4 border-red-600">
-                                        <h3 className="text-red-600 font-bold uppercase text-xs mb-4">{t('DANGER_ZONE')}</h3>
-                                        <button onClick={() => clearList('movies')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white mb-2 btn-primary">{t('BTN_CLEAR_MOVIES')}</button>
-                                        <button onClick={() => clearList('tv')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white btn-primary">{t('BTN_CLEAR_TV')}</button>
-                                    </div>
-                                    <div className="text-center pt-4 text-[10px] text-gray-400">
-                                        <p>V42 ACTUAL PRO</p>
-                                        <p className="mt-1">Made with ❤️ & 🎰</p>
-                                    </div>
+                                    <div><label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_LANG_LABEL')}</label><select value={language} onChange={e => setLanguage(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-bold uppercase"><option value="en-US">ENGLISH</option><option value="pt-PT">PORTUGUÊS</option></select></div>
+                                    <div className="flex items-center gap-4 border-2 border-black p-4"><input type="checkbox" checked={soundEnabled} onChange={e => setSoundEnabled(e.target.checked)} className="checkbox-receipt" /><span className="font-bold uppercase">{t('SOUND')}</span></div>
+                                    <div><label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_API_LABEL')}</label><input type="text" value={apiKey} onChange={e => setApiKey(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-mono text-xs" placeholder="API KEY" /></div>
+                                    <div className="pt-6 border-t-2 border-black"><h3 className="font-bold uppercase text-xs mb-2">Data</h3><button onClick={() => fileInputRef.current.click()} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone btn-primary">{t('IMPORT')}</button><input ref={fileInputRef} type="file" className="hidden" onChange={e => importData(e.target.files[0])} /><button onClick={exportData} className="w-full py-3 bg-black text-bone font-bold uppercase hover:bg-gray-800 btn-primary">{t('EXPORT')}</button></div>
+                                    <div className="pt-6 border-t-4 border-red-600"><h3 className="text-red-600 font-bold uppercase text-xs mb-4">{t('DANGER_ZONE')}</h3><button onClick={() => clearList('movies')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white mb-2 btn-primary">{t('BTN_CLEAR_MOVIES')}</button><button onClick={() => clearList('tv')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white btn-primary">{t('BTN_CLEAR_TV')}</button></div>
+                                    <div className="text-center pt-4 text-[10px] text-gray-400"><p>V42 ACTUAL PRO FINAL</p><p className="mt-1">Made with ❤️ & 🎰</p></div>
                                 </div>
                             </div>
                         )}
