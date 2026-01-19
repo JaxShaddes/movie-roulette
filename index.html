@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V38 (Profile & Sort)</title>
+    <title>Movie Roulette V39 (Clean & Sort)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
@@ -68,8 +68,8 @@
         };
         
         const TRANSLATIONS = {
-            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCHLIST', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN', DISC_TAB_MOVIES: 'MOVIES', DISC_TAB_TV: 'TV SHOWS', MORE_LIKE_THIS: 'MORE LIKE THIS', BTN_HIDE: 'HIDE', SORT_ADDED: 'DATE ADDED', SORT_RELEASE_NEW: 'RELEASE (NEW)', SORT_RELEASE_OLD: 'RELEASE (OLD)', SORT_RATING: 'HIGH RATING', SORT_RUNTIME: 'SHORTEST', SYNC_DATA: 'SYNC METADATA', SYNC_DESC: 'Fetch Cast/Director for old items', TOP_ACTORS: 'TOP ACTORS', TOP_DIRECTORS: 'TOP DIRECTORS' },
-            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS', DISC_TAB_MOVIES: 'FILMES', DISC_TAB_TV: 'SÉRIES', MORE_LIKE_THIS: 'RELACIONADOS', BTN_HIDE: 'ESCONDER', SORT_ADDED: 'DATA (RECENTE)', SORT_RELEASE_NEW: 'ANO (NOVO)', SORT_RELEASE_OLD: 'ANO (VELHO)', SORT_RATING: 'MELHOR NOTA', SORT_RUNTIME: 'CURTOS', SYNC_DATA: 'SINCRONIZAR', SYNC_DESC: 'Buscar Atores/Diretores para antigos', TOP_ACTORS: 'ATORES FAV', TOP_DIRECTORS: 'REALIZADORES' }
+            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCHLIST', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN', DISC_TAB_MOVIES: 'MOVIES', DISC_TAB_TV: 'TV SHOWS', MORE_LIKE_THIS: 'MORE LIKE THIS', BTN_HIDE: 'HIDE', SORT_ADDED: 'DATE ADDED', SORT_RELEASE_NEW: 'RELEASE (NEW)', SORT_RELEASE_OLD: 'RELEASE (OLD)', SORT_RATING: 'HIGH RATING', SORT_RUNTIME: 'SHORTEST', SORT_ALPHA: 'A-Z', SYNC_DATA: 'SYNC METADATA', SYNC_DESC: 'Fetch Cast/Director for old items', TOP_ACTORS: 'TOP ACTORS', TOP_DIRECTORS: 'TOP DIRECTORS' },
+            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS', DISC_TAB_MOVIES: 'FILMES', DISC_TAB_TV: 'SÉRIES', MORE_LIKE_THIS: 'RELACIONADOS', BTN_HIDE: 'ESCONDER', SORT_ADDED: 'DATA (RECENTE)', SORT_RELEASE_NEW: 'ANO (NOVO)', SORT_RELEASE_OLD: 'ANO (VELHO)', SORT_RATING: 'MELHOR NOTA', SORT_RUNTIME: 'CURTOS', SORT_ALPHA: 'A-Z', SYNC_DATA: 'SINCRONIZAR', SYNC_DESC: 'Buscar Atores/Diretores para antigos', TOP_ACTORS: 'ATORES FAV', TOP_DIRECTORS: 'REALIZADORES' }
         };
 
         const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', blacklist: 'movieRoulette_blacklist', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound' };
@@ -82,7 +82,7 @@
             Discover: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>,
             Swipe: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h2v2h-2V5zm0 4h2v2h-2V9zm0 4h2v2h-2v-2zm-4-8h2v2H8V5zm0 4h2v2H8V9zm0 4h2v2H8v-2zM5 5h2v2H5V5zm0 4h2v2H5V9zm0 4h2v2H5v-2z"/></svg>,
             History: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>,
-            Settings: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>,
+            Settings: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>,
             Check: () => <svg className="w-4 h-4 text-verified fill-current ml-1" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>,
             Info: () => <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>,
             Pencil: () => <svg className="w-3 h-3 text-gray-400 hover:text-black cursor-pointer ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>,
@@ -366,15 +366,16 @@
 
             return (
                 <div className="flex flex-col h-[75vh] items-center justify-center relative">
-                    <h1 className="text-2xl font-black uppercase mb-4 absolute top-0 left-0 border-b-4 border-black pb-2">{t('SWIPE_TITLE')}</h1>
-                    
-                    <div className="absolute top-0 right-0 flex border-2 border-black z-10 bg-bone">
-                        <button onClick={()=>setSwipeType('movie')} className={`py-1 px-3 text-[10px] font-bold uppercase ${swipeType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
-                        <button onClick={()=>setSwipeType('tv')} className={`py-1 px-3 text-[10px] font-bold uppercase ${swipeType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
+                    <div className="absolute top-0 inset-x-0 z-20 flex justify-center items-center p-4 bg-bone/80 backdrop-blur-sm border-b-2 border-black/10">
+                        <div className="flex border-2 border-black bg-bone mr-4">
+                            <button onClick={()=>setSwipeType('movie')} className={`py-1 px-3 text-[10px] font-bold uppercase ${swipeType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
+                            <button onClick={()=>setSwipeType('tv')} className={`py-1 px-3 text-[10px] font-bold uppercase ${swipeType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
+                        </div>
+                        <h1 className="text-xl font-black uppercase">{t('SWIPE_TITLE')}</h1>
                     </div>
 
                     {currentCard ? (
-                        <div className="w-full max-w-sm flex-1 flex flex-col items-center justify-center relative animate-slide-up">
+                        <div className="w-full max-w-sm flex-1 flex flex-col items-center justify-center relative animate-slide-up mt-12">
                             <div className="relative w-full aspect-[2/3] border-[6px] border-black bg-black shadow-2xl">
                                 {currentCard.poster_path ? (
                                     <img src={`https://image.tmdb.org/t/p/w780${currentCard.poster_path}`} className="w-full h-full object-cover" />
@@ -743,11 +744,13 @@
             const [rateModalItem, setRateModalItem] = useState(null);
             const [infoItem, setInfoItem] = useState(null);
             const [editingDateId, setEditingDateId] = useState(null);
-            const [historyFilter, setHistoryFilter] = useState('spins');
-            
-            // Watchlist Sort State
-            const [watchlistSort, setWatchlistSort] = useState('added');
             const [isSyncing, setIsSyncing] = useState(false);
+
+            // TABS & SORTS
+            const [watchlistTab, setWatchlistTab] = useState('movie');
+            const [watchlistSort, setWatchlistSort] = useState('added');
+            const [historyTab, setHistoryTab] = useState('movie');
+            const [historySort, setHistorySort] = useState('added');
 
             const spinCandidatesRef = useRef([]);
             const fileInputRef = useRef(null);
@@ -858,15 +861,28 @@
             const visibleCandidates = useMemo(() => currentList.filter(filterItem), [currentList, filters]);
             const displayList = useMemo(() => { if (filters.genres.length === 0 && !filters.time) return currentList; return currentList.filter(item => filterItem({ ...item, included: true })); }, [currentList, filters]);
 
-            // SORTED WATCHLIST LOGIC
+            // --- SORTING HELPERS ---
+            const sortItems = (items, sortMode) => {
+                const sorted = [...items];
+                if (sortMode === 'alphabetical') sorted.sort((a,b) => a.title.localeCompare(b.title));
+                else if (sortMode === 'release_new') sorted.sort((a,b) => new Date(b.tmdbData?.release_date || b.tmdbData?.first_air_date || 0) - new Date(a.tmdbData?.release_date || a.tmdbData?.first_air_date || 0));
+                else if (sortMode === 'release_old') sorted.sort((a,b) => new Date(a.tmdbData?.release_date || a.tmdbData?.first_air_date || 0) - new Date(b.tmdbData?.release_date || b.tmdbData?.first_air_date || 0));
+                else if (sortMode === 'rating') sorted.sort((a,b) => (b.tmdbData?.vote_average || 0) - (a.tmdbData?.vote_average || 0));
+                else if (sortMode === 'runtime') sorted.sort((a,b) => (a.tmdbData?.runtime || 0) - (b.tmdbData?.runtime || 0));
+                // default is 'added' (date desc for history, insertion for backlog)
+                else if (sortMode === 'added' && items[0] && items[0].watchedDate) sorted.sort((a,b) => new Date(b.watchedDate) - new Date(a.watchedDate)); 
+                return sorted;
+            };
+
             const sortedBacklog = useMemo(() => {
-                let sorted = [...backlog];
-                if (watchlistSort === 'release_new') sorted.sort((a,b) => new Date(b.tmdbData?.release_date || 0) - new Date(a.tmdbData?.release_date || 0));
-                else if (watchlistSort === 'release_old') sorted.sort((a,b) => new Date(a.tmdbData?.release_date || 0) - new Date(b.tmdbData?.release_date || 0));
-                else if (watchlistSort === 'rating') sorted.sort((a,b) => (b.tmdbData?.vote_average || 0) - (a.tmdbData?.vote_average || 0));
-                else if (watchlistSort === 'runtime') sorted.sort((a,b) => (a.tmdbData?.runtime || 0) - (b.tmdbData?.runtime || 0));
-                return sorted; 
-            }, [backlog, watchlistSort]);
+                const filtered = backlog.filter(i => watchlistTab === 'movie' ? (i.type === 'movie') : (i.type !== 'movie'));
+                return sortItems(filtered, watchlistSort);
+            }, [backlog, watchlistTab, watchlistSort]);
+
+            const sortedHistory = useMemo(() => {
+                const filtered = watched.filter(i => historyTab === 'movie' ? (i.type === 'movie') : (i.type !== 'movie'));
+                return sortItems(filtered, historySort);
+            }, [watched, historyTab, historySort]);
 
             const spinRoulette = useCallback(() => {
                 const candidates = visibleCandidates.filter(i => i.included);
@@ -967,10 +983,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 38, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
+                const data = { version: 39, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v38-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v39-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -1028,16 +1044,22 @@
                         
                         {currentTab === 'watchlist' && (
                             <div className="pb-24">
-                                <div className="flex justify-between items-end mb-4 border-b-4 border-black pb-2">
-                                    <h1 className="text-2xl font-black uppercase">{t('HEADER_WATCHLIST')}</h1>
+                                <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('HEADER_WATCHLIST')}</h1>
+                                <div className="flex border-2 border-black mb-4">
+                                    <button onClick={()=>setWatchlistTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs ${watchlistTab==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
+                                    <button onClick={()=>setWatchlistTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs ${watchlistTab==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
+                                </div>
+                                <div className="flex justify-end mb-4">
                                     <select value={watchlistSort} onChange={(e)=>setWatchlistSort(e.target.value)} className="bg-transparent text-[10px] font-bold uppercase border-none outline-none text-right">
                                         <option value="added">{t('SORT_ADDED')}</option>
+                                        <option value="alphabetical">{t('SORT_ALPHA')}</option>
                                         <option value="release_new">{t('SORT_RELEASE_NEW')}</option>
                                         <option value="release_old">{t('SORT_RELEASE_OLD')}</option>
                                         <option value="rating">{t('SORT_RATING')}</option>
                                         <option value="runtime">{t('SORT_RUNTIME')}</option>
                                     </select>
                                 </div>
+
                                 {sortedBacklog.length === 0 ? <div className="text-center text-gray-400 p-10">{t('EMPTY_WATCHLIST')}</div> : (
                                     sortedBacklog.map(item => (
                                         <div key={item.id} className="flex gap-3 py-3 border-b border-gray-300">
@@ -1069,37 +1091,22 @@
                                 <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('NAV_HISTORY')}</h1>
                                 <ProfileStats watched={watched} t={t} />
                                 
-                                <div className="flex border-2 border-black mb-6">
-                                    <button onClick={()=>setHistoryFilter('spins')} className={`flex-1 py-2 font-bold uppercase text-[10px] ${historyFilter==='spins'?'bg-black text-bone':'bg-transparent'}`}>{t('HIST_TAB_SPINS')}</button>
-                                    <button onClick={()=>setHistoryFilter('seen')} className={`flex-1 py-2 font-bold uppercase text-[10px] ${historyFilter==='seen'?'bg-black text-bone':'bg-transparent'}`}>{t('HIST_TAB_SEEN')}</button>
+                                <div className="flex border-2 border-black mb-4">
+                                    <button onClick={()=>setHistoryTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs ${historyTab==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
+                                    <button onClick={()=>setHistoryTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs ${historyTab==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
+                                </div>
+                                <div className="flex justify-end mb-4">
+                                    <select value={historySort} onChange={(e)=>setHistorySort(e.target.value)} className="bg-transparent text-[10px] font-bold uppercase border-none outline-none text-right">
+                                        <option value="added">{t('SORT_ADDED')}</option>
+                                        <option value="alphabetical">{t('SORT_ALPHA')}</option>
+                                        <option value="release_new">{t('SORT_RELEASE_NEW')}</option>
+                                        <option value="release_old">{t('SORT_RELEASE_OLD')}</option>
+                                        <option value="rating">{t('SORT_RATING')}</option>
+                                        <option value="runtime">{t('SORT_RUNTIME')}</option>
+                                    </select>
                                 </div>
                                 
-                                <h3 className="font-bold text-xs uppercase bg-black text-bone p-2 mb-2 tracking-widest">{t('HEADER_HIST_MOVIES')}</h3>
-                                {watched.filter(w=>w.type==='movie' && (historyFilter==='seen' ? w.origin==='seen' : w.origin!=='seen')).map(item => (
-                                    <div key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-300">
-                                        {item.tmdbData?.poster_path && <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-10 h-14 object-cover border border-black" />}
-                                        <div className="flex-1">
-                                            <span className="font-bold uppercase text-xs block">{item.title} {item.tmdbData && <VerifiedBadge />}</span>
-                                            {editingDateId === item.id ? (
-                                                <input type="date" className="date-input-mini" onChange={(e)=>updateWatchedDate(item.id, e.target.value)} onBlur={()=>setEditingDateId(null)} autoFocus />
-                                            ) : (
-                                                <span className="text-[10px] text-gray-500 uppercase flex items-center">
-                                                    {formatDate(item.watchedDate)} <button onClick={()=>setEditingDateId(item.id)}><Icons.Pencil /></button>
-                                                </span>
-                                            )}
-                                        </div>
-                                        <div className="flex gap-2 items-center">
-                                            <button onClick={()=>setRateModalItem(item)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${typeof item.rating === 'number' && item.rating >= 4 ? 'bg-love text-white' : ''}`}>
-                                                {item.rating ? (typeof item.rating === 'number' ? `${item.rating}/5` : item.rating) : t('RATE_LABEL_ADD')}
-                                            </button>
-                                            <button onClick={()=>setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })}><Icons.Info /></button>
-                                            <button onClick={()=>deleteItem(item.id, 'history')}><Icons.Trash /></button>
-                                        </div>
-                                    </div>
-                                ))}
-
-                                <h3 className="font-bold text-xs uppercase bg-black text-bone p-2 mb-2 mt-8 tracking-widest">{t('HEADER_HIST_TV')}</h3>
-                                {watched.filter(w=>w.type!=='movie' && (historyFilter==='seen' ? w.origin==='seen' : w.origin!=='seen')).map(item => (
+                                {sortedHistory.map(item => (
                                     <div key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-300">
                                         {item.tmdbData?.poster_path && <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-10 h-14 object-cover border border-black" />}
                                         <div className="flex-1">
