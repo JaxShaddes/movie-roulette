@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V42 (Pro Edition)</title>
+    <title>Movie Roulette V42 ACTUAL PRO</title>
     
-    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29sb3IiOiAiIzAwMDAwMCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNiM1YwZEQxaU1qQXdJaUJvWldsbmFIUTlJakl3TUNJZ2RtbGxkMEp2ZUQwaU1DQXdJREV3TUNBME1EQWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQSFJsZUhRZ2VUMGlMamxsYlNJZ1ptOXVkQzF6YVhwbFBTSTVNQ0krOEorUnFUd3ZkR1Y0ZEQ0OEwzTjJaejQ9IiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==" />
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWxldHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29sb3IiOiAiIzAwMDAwMCIsCiAgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNiM1YwZEQxaU1qQXdJaUIyYVdWM1FtOTRQU0l3SURBZ01UQXdJREV3TUNJZ2VHMXNibk05SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpJd01EQXZjM1puSWo0OGRHVjRkQ0I1UFNJdU9XVnRJaUJtYjI1MExYTnBlbVU5SWprd0lqN3duNEdwUEM5MFpYaDBQand2YzNablBnPT0iLCJzaXplcyI6ICIxOTJ4MTkyIiwidHlwZSI6ICJpbWFnZS9zdmcreG1sIn1dfQ==" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48c3R5bGU+YmFja2dyb3VuZC1jb2xvcjojMDAwMDAwPC9zdHlsZT48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5Gp8J+OsDwvdGV4dD48L3N2Zz4=" />
     <meta name="theme-color" content="#EFEEE5">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -25,13 +25,15 @@
                         'fade-in': 'fadeIn 0.2s ease-out forwards', 
                         'slide-up': 'slideUp 0.3s ease-out forwards',
                         'bounce-in': 'bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                        'stamp': 'stamp 0.4s ease-out forwards'
+                        'stamp': 'stamp 0.4s ease-out forwards',
+                        'pulse': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite'
                     },
                     keyframes: { 
                         fadeIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
                         slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
                         bounceIn: { '0%': { transform: 'scale(0)', opacity: '0' }, '50%': { transform: 'scale(1.1)' }, '100%': { transform: 'scale(1)', opacity: '1' } },
-                        stamp: { '0%': { transform: 'scale(0) rotate(-20deg)', opacity: '0' }, '100%': { transform: 'scale(1) rotate(0deg)', opacity: '1' } }
+                        stamp: { '0%': { transform: 'scale(0) rotate(-20deg)', opacity: '0' }, '100%': { transform: 'scale(1) rotate(0deg)', opacity: '1' } },
+                        pulse: { '0%, 100%': { opacity: '1' }, '50%': { opacity: '.5' } }
                     }
                 }
             }
@@ -54,34 +56,13 @@
         .checkbox-receipt:checked::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: bold; color: #EFEEE5; }
         .date-input-mini { background: transparent; border: 1px solid #000; font-size: 10px; padding: 2px; font-family: inherit; }
         .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
-        
-        /* NEW V42 STYLES */
         button:active { transform: translateY(1px); }
         .btn-primary { transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         .btn-primary:active { transform: translateY(0); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, rgba(224,36,94,0.1) 0%, transparent 50%, rgba(29,155,240,0.1) 100%);
-        }
-        
-        .stamp-love, .stamp-nope {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0) rotate(-20deg);
-            font-size: 120px;
-            font-weight: 900;
-            opacity: 0;
-            pointer-events: none;
-            text-shadow: 0 0 20px currentColor;
-            z-index: 50;
-        }
-        
-        .stamp-love.show, .stamp-nope.show {
-            animation: stamp 0.4s ease-out forwards;
-        }
-        
+        .gradient-bg { background: linear-gradient(135deg, rgba(224,36,94,0.1) 0%, transparent 50%, rgba(29,155,240,0.1) 100%); }
+        .stamp-love, .stamp-nope { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0) rotate(-20deg); font-size: 120px; font-weight: 900; opacity: 0; pointer-events: none; text-shadow: 0 0 20px currentColor; z-index: 50; }
+        .stamp-love.show, .stamp-nope.show { animation: stamp 0.4s ease-out forwards; }
         .stamp-love { color: #E0245E; }
         .stamp-nope { color: #666; }
     </style>
@@ -95,160 +76,75 @@
     <script type="text/babel">
         const { useState, useEffect, useCallback, useRef, useMemo } = React;
 
-        // --- AUDIO ---
         const playTick = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='square'; o.frequency.setValueAtTime(150,ctx.currentTime); o.frequency.exponentialRampToValueAtTime(40,ctx.currentTime+0.05); g.gain.setValueAtTime(0.1,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.05); o.start(); o.stop(ctx.currentTime+0.05); } catch(e){} };
         const playWin = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); [440,554.37,659.25].forEach((f,i)=>{ const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='triangle'; o.frequency.value=f; g.gain.setValueAtTime(0,ctx.currentTime); g.gain.linearRampToValueAtTime(0.1,ctx.currentTime+0.1+(i*0.05)); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+1.5); o.start(ctx.currentTime+(i*0.05)); o.stop(ctx.currentTime+2); }); } catch(e){} };
         const playSwipe = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='sine'; o.frequency.setValueAtTime(200,ctx.currentTime); o.frequency.exponentialRampToValueAtTime(100,ctx.currentTime+0.1); g.gain.setValueAtTime(0.05,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.1); o.start(); o.stop(ctx.currentTime+0.1); } catch(e){} };
 
-        const GENRES = { 
-            28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV Movie',53:'Thriller',10752:'War',37:'Western',
-            10759: 'Action & Adv', 10762: 'Kids', 10763: 'News', 10764: 'Reality', 10765: 'Sci-Fi & Fantasy', 10766: 'Soap', 10767: 'Talk', 10768: 'War & Politics'
-        };
+        const GENRES = { 28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV Movie',53:'Thriller',10752:'War',37:'Western',10759:'Action & Adv',10762:'Kids',10763:'News',10764:'Reality',10765:'Sci-Fi & Fantasy',10766:'Soap',10767:'Talk',10768:'War & Politics' };
         
-        const TRANSLATIONS = {
-            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What the hell should I watch tonight?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTERS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCHLIST', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN', DISC_TAB_MOVIES: 'MOVIES', DISC_TAB_TV: 'TV SHOWS', MORE_LIKE_THIS: 'MORE LIKE THIS', BTN_HIDE: 'HIDE', SORT_ADDED: 'DATE ADDED', SORT_RELEASE_NEW: 'RELEASE (NEW)', SORT_RELEASE_OLD: 'RELEASE (OLD)', SORT_RATING: 'HIGH RATING', SORT_RUNTIME: 'SHORTEST', SORT_ALPHA: 'A-Z', SYNC_DATA: 'SYNC METADATA', SYNC_DESC: 'Fetch Cast/Director for old items', TOP_ACTORS: 'TOP ACTORS', TOP_DIRECTORS: 'TOP DIRECTORS', FILTER_SOURCE_ALL: 'ALL SOURCES', FILTER_SOURCE_ROULETTE: 'ROULETTE WINS', FILTER_SOURCE_SEEN: 'MANUAL ENTRY', CURATOR_PICK: "CURATOR'S CHOICE", BECAUSE: 'Because you loved' },
-            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'Que raio devo ver esta noite?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS', DISC_TAB_MOVIES: 'FILMES', DISC_TAB_TV: 'SÉRIES', MORE_LIKE_THIS: 'RELACIONADOS', BTN_HIDE: 'ESCONDER', SORT_ADDED: 'DATA (RECENTE)', SORT_RELEASE_NEW: 'ANO (NOVO)', SORT_RELEASE_OLD: 'ANO (VELHO)', SORT_RATING: 'MELHOR NOTA', SORT_RUNTIME: 'CURTOS', SORT_ALPHA: 'A-Z', SYNC_DATA: 'SINCRONIZAR', SYNC_DESC: 'Buscar Atores/Diretores para antigos', TOP_ACTORS: 'ATORES FAV', TOP_DIRECTORS: 'REALIZADORES', FILTER_SOURCE_ALL: 'TODAS FONTES', FILTER_SOURCE_ROULETTE: 'ROLETA', FILTER_SOURCE_SEEN: 'MANUAL', CURATOR_PICK: 'ESCOLHA DO CURADOR', BECAUSE: 'Porque adorou' }
-        };
+        const TRANSLATIONS = { 'en-US': { TITLE:'MOVIE ROULETTE',SUBTITLE:'What the hell should I watch tonight?',NAV_HOME:'HOME',NAV_WATCHLIST:'WATCHLIST',NAV_DISCOVER:'DISCOVER',NAV_SWIPE:'SWIPE',NAV_HISTORY:'HISTORY',NAV_SETTINGS:'SETTINGS',PLACEHOLDER_MOVIES:'ADD MOVIE...',PLACEHOLDER_TV:'ADD TV SHOW...',SPIN_BTN:'SPIN',SPINNING:'SPINNING...',BTN_WATCHED:'WATCHED',BTN_TRAILER:'TRAILER',RATE_TITLE:'RATING',RATE_5:'EXCELLENT',RATE_4:'GOOD',RATE_3:'OKAY',RATE_2:'BAD',RATE_1:'TERRIBLE',RATE_SKIP:'SKIP',DISCOVER_LOCKED:'Rate 3+ items to unlock!',BTN_LOAD_MORE:'LOAD MORE',DISC_TOP:'TOP MATCHES',DISC_NEW:'NEWEST',DISC_SOON:'SOON',DISC_GENRE:'GENRE',SWIPE_TITLE:'THE DECK',SWIPE_EMPTY:'No more cards!',STATS_TOTAL:'WATCHED',STATS_GENRE:'FAV GENRE',STATS_RATING:'AVG SCORE',TOAST_ADDED:'Added',TOAST_ADDED_WATCHLIST:'Saved',TOAST_EXIST:'Already added',BTN_SEEN:'SEEN IT',UNKNOWN_YEAR:'Unknown',NO_PLOT:'No plot.',HEADER_MOVIES:'YOUR LIST',FILTERS:'FILTERS',FILTER_TIME:'RUNTIME',FILTER_GENRE:'GENRE',TIME_SHORT:'Short',TIME_MED:'Medium',TIME_LONG:'Long',EMPTY_LIST:'Add items',SETTINGS_TITLE:'SETTINGS',SETTINGS_LANG_LABEL:'LANGUAGE',SOUND:'SOUND',SETTINGS_API_LABEL:'TMDB API KEY',IMPORT:'IMPORT',EXPORT:'EXPORT',TOGGLE_MOVIES:'MOVIES',TOGGLE_TV:'TV SHOWS',RATE_LABEL_ADD:'RATE',BTN_CLEAR_MOVIES:'CLEAR MOVIES',BTN_CLEAR_TV:'CLEAR TV',DANGER_ZONE:'DANGER ZONE',CONFIRM_CLEAR:'Sure?',BTN_ADD_WATCHLIST:'SAVE',HEADER_WATCHLIST:'WATCHLIST',EMPTY_WATCHLIST:'Empty',BTN_MOVE_TO_ROULETTE:'TO ROULETTE',SORT_ADDED:'DATE',SORT_RELEASE_NEW:'NEW',SORT_RELEASE_OLD:'OLD',SORT_RATING:'RATING',SORT_RUNTIME:'SHORT',SORT_ALPHA:'A-Z',SYNC_DATA:'SYNC',SYNC_DESC:'Fetch metadata',TOP_ACTORS:'TOP ACTORS',TOP_DIRECTORS:'DIRECTORS',CURATOR_PICK:"CURATOR'S PICK",BECAUSE:'Like',DISC_TAB_MOVIES:'MOVIES',DISC_TAB_TV:'TV',MORE_LIKE_THIS:'SIMILAR',FIRST_SPIN:'FIRST SPIN!',HOLD_SIMILAR:'Hold=similar' }, 'pt-PT': { TITLE:'MOVIE ROULETTE',SUBTITLE:'Que ver?',NAV_HOME:'INÍCIO',NAV_WATCHLIST:'LISTA',NAV_DISCOVER:'DESCOBRIR',NAV_SWIPE:'SWIPE',NAV_HISTORY:'HISTÓRICO',NAV_SETTINGS:'OPÇÕES',TOGGLE_MOVIES:'FILMES',TOGGLE_TV:'SÉRIES',FIRST_SPIN:'PRIMEIRA!' } };
 
-        const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', blacklist: 'movieRoulette_blacklist', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound', winCount: 'movieRoulette_winCount' };
-        function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2); }
-        function formatDate(date) { if(!date) return ''; return new Date(date).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}).toUpperCase(); }
+        const STORAGE_KEYS = { movies:'mr_movies',tvShows:'mr_tv',backlog:'mr_backlog',watched:'mr_watched',blacklist:'mr_blacklist',tmdbKey:'mr_key',language:'mr_lang',sound:'mr_sound',winCount:'mr_wins' };
+        const generateId = () => Date.now().toString(36) + Math.random().toString(36).substr(2);
+        const formatDate = (d) => { if(!d) return ''; return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase() };
 
         const Icons = {
             Home: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>,
             Watchlist: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>,
             Discover: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>,
-            Swipe: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h2v2h-2V5zm0 4h2v2h-2V9zm0 4h2v2h-2v-2zm-4-8h2v2H8V5zm0 4h2v2H8V9zm0 4h2v2H8v-2zM5 5h2v2H5V5zm0 4h2v2H5V9zm0 4h2v2H5v-2z"/></svg>,
-            History: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>,
-            Settings: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 0 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>,
+            Swipe: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>,
+            History: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>,
+            Settings: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>,
             Check: () => <svg className="w-4 h-4 text-verified fill-current ml-1" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>,
             Info: () => <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>,
-            Pencil: () => <svg className="w-3 h-3 text-gray-400 hover:text-black cursor-pointer ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>,
-            Trash: () => <svg className="w-3 h-3 text-gray-400 hover:text-red-600 cursor-pointer ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>,
-            Back: () => <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>,
-            Eye: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>,
+            Trash: () => <svg className="w-3 h-3 text-gray-400 hover:text-red-600 cursor-pointer" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>,
+            Eye: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z"/></svg>,
             ThumbDown: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>,
             Heart: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>,
-            Close: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>,
-            Roulette: () => <svg className="w-4 h-4 fill-current text-love" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 2c4.42 0 8 3.58 8 8c0 4.42-3.58 8-8 8s-8-3.58-8-8c0-4.42 3.58-8 8-8z M12 4v8l5.66 5.66 M12 12l-5.66 5.66" /><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+            Close: () => <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         };
 
-        function VerifiedBadge() { return <Icons.Check />; }
-        function RouletteBadge() { return <span className="inline-flex items-center gap-1 ml-2 border border-love text-love px-1 rounded text-[8px] font-bold uppercase"><Icons.Roulette /> WIN</span>; }
-
-        function Toast({ msg }) { return <div className="toast fixed top-4 right-4 z-[99] bg-black text-bone px-4 py-3 border border-bone font-bold text-xs uppercase shadow-lg">{msg}</div>; }
-        function Confetti() { return <div className="pointer-events-none fixed inset-0 z-50">{Array.from({ length: 40 }).map((_, i) => <div key={i} className="confetti" style={{ left: `${Math.random()*100}vw`, backgroundColor: ['#E0245E','#1D9BF0','#000','#666'][Math.floor(Math.random()*4)], animationDelay: `${Math.random()*0.5}s`, animationDuration: `${Math.random()*2+2}s` }} />)}</div>; }
+        const VerifiedBadge = () => <Icons.Check />;
+        const RouletteBadge = () => <span className="inline-flex items-center gap-1 ml-2 border border-love text-love px-1 rounded text-[8px] font-bold uppercase">🎰 WIN</span>;
+        const Toast = ({ msg }) => <div className="toast fixed top-4 right-4 z-[99] bg-black text-bone px-4 py-3 border border-bone font-bold text-xs uppercase shadow-lg">{msg}</div>;
+        const Confetti = ({ isFirstSpin = false }) => { 
+            const count = isFirstSpin ? 60 : 40;
+            const colors = isFirstSpin ? ['#E0245E','#1D9BF0','#000','#FFD700','#FF69B4','#00FF00'] : ['#E0245E','#1D9BF0','#000','#666'];
+            return <div className="pointer-events-none fixed inset-0 z-50">{Array.from({ length: count }).map((_, i) => <div key={i} className="confetti" style={{ left: `${Math.random()*100}vw`, backgroundColor: colors[Math.floor(Math.random()*colors.length)], width: isFirstSpin ? '12px' : '8px', height: isFirstSpin ? '12px' : '8px', animationDelay: `${Math.random()*0.5}s`, animationDuration: `${Math.random()*2+2}s` }} />)}</div>
+        };
 
         function SearchInput({ type, placeholder, onAdd, apiKey, language }) {
             const [query, setQuery] = useState('');
             const [suggestions, setSuggestions] = useState([]);
             const [loading, setLoading] = useState(false);
             const wrapperRef = useRef(null);
-
-            useEffect(() => {
-                if (!apiKey || query.length < 2) { setSuggestions([]); return; }
-                const timer = setTimeout(async () => {
-                    setLoading(true);
-                    try {
-                        const endpoint = type === 'movie' ? 'movie' : 'tv';
-                        const res = await fetch(`https://api.themoviedb.org/3/search/${endpoint}?api_key=${apiKey}&query=${encodeURIComponent(query)}&language=${language}&include_adult=false`);
-                        const data = await res.json();
-                        if (data.results) setSuggestions(data.results.slice(0, 5));
-                    } catch (e) { console.error(e); }
-                    setLoading(false);
-                }, 400);
-                return () => clearTimeout(timer);
-            }, [query, apiKey, type, language]);
-
-            useEffect(() => {
-                const handleClickOutside = (event) => { if (wrapperRef.current && !wrapperRef.current.contains(event.target)) setSuggestions([]); };
-                document.addEventListener("mousedown", handleClickOutside);
-                return () => document.removeEventListener("mousedown", handleClickOutside);
-            }, []);
-
-            const handleSelect = async (item) => {
-                setLoading(true);
-                let runtime = 0; let genres = item.genre_ids || []; let status = '';
-                try {
-                    const endpoint = type === 'movie' ? 'movie' : 'tv';
-                    const detailRes = await fetch(`https://api.themoviedb.org/3/${endpoint}/${item.id}?api_key=${apiKey}&language=${language}`);
-                    const detailData = await detailRes.json();
-                    runtime = detailData.runtime || (detailData.episode_run_time && detailData.episode_run_time.length > 0 ? detailData.episode_run_time[0] : 0) || 0;
-                    genres = detailData.genres ? detailData.genres.map(g => g.id) : genres;
-                    status = detailData.status; 
-                } catch(e) {}
-                const metadata = { id: item.id, poster_path: item.poster_path, backdrop_path: item.backdrop_path, overview: item.overview, release_date: item.release_date || item.first_air_date, vote_average: item.vote_average, title: item.title || item.name, runtime: runtime, genre_ids: genres, status: status };
-                onAdd(metadata.title, metadata); setQuery(''); setSuggestions([]); setLoading(false);
-            };
-
+            useEffect(() => { if (!apiKey || query.length < 2) { setSuggestions([]); return; } const timer = setTimeout(async () => { setLoading(true); try { const endpoint = type === 'movie' ? 'movie' : 'tv'; const res = await fetch(`https://api.themoviedb.org/3/search/${endpoint}?api_key=${apiKey}&query=${encodeURIComponent(query)}&language=${language}&include_adult=false`); const data = await res.json(); if (data.results) setSuggestions(data.results.slice(0, 5)); } catch (e) {} setLoading(false); }, 400); return () => clearTimeout(timer); }, [query, apiKey, type, language]);
+            useEffect(() => { const handleClickOutside = (event) => { if (wrapperRef.current && !wrapperRef.current.contains(event.target)) setSuggestions([]); }; document.addEventListener("mousedown", handleClickOutside); return () => document.removeEventListener("mousedown", handleClickOutside); }, []);
+            const handleSelect = async (item) => { setLoading(true); let runtime = 0; let genres = item.genre_ids || []; try { const endpoint = type === 'movie' ? 'movie' : 'tv'; const detailRes = await fetch(`https://api.themoviedb.org/3/${endpoint}/${item.id}?api_key=${apiKey}&language=${language}`); const detailData = await detailRes.json(); runtime = detailData.runtime || (detailData.episode_run_time && detailData.episode_run_time.length > 0 ? detailData.episode_run_time[0] : 0) || 0; genres = detailData.genres ? detailData.genres.map(g => g.id) : genres; } catch(e) {} const metadata = { id: item.id, poster_path: item.poster_path, backdrop_path: item.backdrop_path, overview: item.overview, release_date: item.release_date || item.first_air_date, vote_average: item.vote_average, title: item.title || item.name, runtime: runtime, genre_ids: genres }; onAdd(metadata.title, metadata); setQuery(''); setSuggestions([]); setLoading(false); };
             const handleSubmit = (e) => { e.preventDefault(); if (query.trim()) { onAdd(query, null); setQuery(''); setSuggestions([]); } };
+            return <div className="relative flex-1" ref={wrapperRef}><form onSubmit={handleSubmit} className="relative"><input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={placeholder} className="w-full p-3 text-sm bg-transparent border-b border-black placeholder-gray-500 focus:outline-none focus:border-b-2 uppercase pr-8" autoComplete="off" />{loading && <div className="absolute right-2 top-3 w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>}</form>{suggestions.length > 0 && <div className="absolute top-full left-0 right-0 bg-white border-2 border-black border-t-0 z-50 shadow-xl max-h-60 overflow-y-auto">{suggestions.map(s => <div key={s.id} onClick={() => handleSelect(s)} className="p-2 hover:bg-gray-100 cursor-pointer flex gap-3 items-center border-b border-gray-100 last:border-0">{s.poster_path ? <img src={`https://image.tmdb.org/t/p/w92${s.poster_path}`} className="w-8 h-12 object-cover bg-gray-200" /> : <div className="w-8 h-12 bg-gray-200 flex items-center justify-center text-[8px]">NO IMG</div>}<div className="flex-1 min-w-0"><p className="text-sm font-bold truncate text-black uppercase">{s.title || s.name}</p><p className="text-xs text-gray-500">{(s.release_date || s.first_air_date || '').split('-')[0]} {s.vote_average ? ` • ★ ${s.vote_average.toFixed(1)}` : ''}</p></div></div>)}</div>}</div>;
+        }
 
-            return (
-                <div className="relative flex-1" ref={wrapperRef}>
-                    <form onSubmit={handleSubmit} className="relative">
-                        <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={placeholder} className="w-full p-3 text-sm bg-transparent border-b border-black placeholder-gray-500 focus:outline-none focus:border-b-2 uppercase pr-8" autoComplete="off" />
-                        {loading && <div className="absolute right-2 top-3 w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>}
-                    </form>
-                    {suggestions.length > 0 && (
-                        <div className="absolute top-full left-0 right-0 bg-white border-2 border-black border-t-0 z-50 shadow-xl max-h-60 overflow-y-auto">
-                            {suggestions.map(s => (
-                                <div key={s.id} onClick={() => handleSelect(s)} className="p-2 hover:bg-gray-100 cursor-pointer flex gap-3 items-center border-b border-gray-100 last:border-0">
-                                    {s.poster_path ? <img src={`https://image.tmdb.org/t/p/w92${s.poster_path}`} className="w-8 h-12 object-cover bg-gray-200" /> : <div className="w-8 h-12 bg-gray-200 flex items-center justify-center text-[8px]">NO IMG</div>}
-                                    <div className="flex-1 min-w-0">
-                                        <p className="text-sm font-bold truncate text-black uppercase">{s.title || s.name}</p>
-                                        <p className="text-xs text-gray-500">{(s.release_date || s.first_air_date || '').split('-')[0]} {s.vote_average ? ` • ★ ${s.vote_average.toFixed(1)}` : ''}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-            );
-        }        function FilterPanel({ isOpen, onClose, filters, setFilters, t }) {
+        function FilterPanel({ isOpen, onClose, filters, setFilters, t }) {
             if (!isOpen) return null;
             const toggleGenre = (id) => { const newGenres = filters.genres.includes(id) ? filters.genres.filter(g => g !== id) : [...filters.genres, id]; setFilters({ ...filters, genres: newGenres }); };
             const toggleTime = (val) => { setFilters({ ...filters, time: filters.time === val ? null : val }); };
-            return (
-                <div className="mb-6 p-4 border-2 border-black bg-white/50 animate-slide-up">
-                    <div className="flex justify-between items-center mb-4"><h3 className="font-bold uppercase text-xs tracking-wider">{t('FILTERS')}</h3><button onClick={onClose} className="text-xs underline">CLOSE</button></div>
-                    <div className="mb-4">
-                        <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_TIME')}</p>
-                        <div className="flex flex-wrap gap-2">{['short', 'medium', 'long'].map(time => (<button key={time} onClick={() => toggleTime(time)} className={`px-2 py-1 text-[10px] uppercase border transition-all ${filters.time === time ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{time === 'short' ? t('TIME_SHORT') : time === 'medium' ? t('TIME_MED') : t('TIME_LONG')}</button>))}</div>
-                    </div>
-                    <div>
-                        <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_GENRE')}</p>
-                        <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">{Object.entries(GENRES).map(([id, name]) => (<button key={id} onClick={() => toggleGenre(parseInt(id))} className={`px-2 py-1 text-[10px] uppercase border transition-all ${filters.genres.includes(parseInt(id)) ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{name}</button>))}</div>
-                    </div>
-                </div>
-            );
+            return <div className="mb-6 p-4 border-2 border-black bg-white/50 animate-slide-up"><div className="flex justify-between items-center mb-4"><h3 className="font-bold uppercase text-xs tracking-wider">{t('FILTERS')}</h3><button onClick={onClose} className="text-xs underline">CLOSE</button></div><div className="mb-4"><p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_TIME')}</p><div className="flex flex-wrap gap-2">{['short', 'medium', 'long'].map(time => <button key={time} onClick={() => toggleTime(time)} className={`px-2 py-1 text-[10px] uppercase border transition-all ${filters.time === time ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{time === 'short' ? t('TIME_SHORT') : time === 'medium' ? t('TIME_MED') : t('TIME_LONG')}</button>)}</div></div><div><p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_GENRE')}</p><div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">{Object.entries(GENRES).map(([id, name]) => <button key={id} onClick={() => toggleGenre(parseInt(id))} className={`px-2 py-1 text-[10px] uppercase border transition-all ${filters.genres.includes(parseInt(id)) ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{name}</button>)}</div></div></div>;
         }
 
         function RateModal({ isOpen, onClose, onRate, t }) {
             if (!isOpen) return null;
-            return (
-                <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={onClose}>
-                    <div className="bg-[#EFEEE5] border-4 border-black p-6 w-full max-w-sm shadow-2xl relative text-center animate-bounce-in" onClick={e=>e.stopPropagation()}>
-                        <h2 className="text-xl font-black uppercase mb-6 font-sans">{t('RATE_TITLE')}</h2>
-                        <div className="flex flex-col gap-2">
-                            <button onClick={() => onRate(5)} className="p-3 bg-black text-bone hover:bg-gray-800 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">5 - {t('RATE_5')}</button>
-                            <button onClick={() => onRate(4)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">4 - {t('RATE_4')}</button>
-                            <button onClick={() => onRate(3)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">3 - {t('RATE_3')}</button>
-                            <button onClick={() => onRate(2)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">2 - {t('RATE_2')}</button>
-                            <button onClick={() => onRate(1)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">1 - {t('RATE_1')}</button>
-                            <button onClick={() => onRate('skip')} className="p-3 bg-transparent border-2 border-black border-dashed hover:bg-black/5 uppercase font-bold tracking-wider text-xs text-gray-600 hover:text-black mt-2">{t('RATE_SKIP')}</button>
-                        </div>
-                        <button onClick={onClose} className="mt-6 text-xs underline uppercase text-gray-500 hover:text-black tracking-wide">CANCEL</button>
-                    </div>
-                </div>
-            );
+            return <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={onClose}><div className="bg-[#EFEEE5] border-4 border-black p-6 w-full max-w-sm shadow-2xl relative text-center animate-bounce-in" onClick={e => e.stopPropagation()}><h2 className="text-xl font-black uppercase mb-6 font-sans">{t('RATE_TITLE')}</h2><div className="flex flex-col gap-2"><button onClick={() => onRate(5)} className="p-3 bg-black text-bone hover:bg-gray-800 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">5 - {t('RATE_5')}</button><button onClick={() => onRate(4)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">4 - {t('RATE_4')}</button><button onClick={() => onRate(3)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">3 - {t('RATE_3')}</button><button onClick={() => onRate(2)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">2 - {t('RATE_2')}</button><button onClick={() => onRate(1)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">1 - {t('RATE_1')}</button><button onClick={() => onRate('skip')} className="p-3 bg-transparent border-2 border-black border-dashed hover:bg-black/5 uppercase font-bold tracking-wider text-xs text-gray-600 hover:text-black mt-2">{t('RATE_SKIP')}</button></div><button onClick={onClose} className="mt-6 text-xs underline uppercase text-gray-500 hover:text-black tracking-wide">CANCEL</button></div></div>;
         }
 
-        function ProfileStats({ watched, t }) {
+        // ========== END OF PART 1/3 ==========
+        // DO NOT CLOSE ANY TAGS - WAIT FOR PART 2
+
+                function ProfileStats({ watched, t }) {
             const stats = useMemo(() => {
                 const genreCounts = {};
                 const actorCounts = {};
                 const directorCounts = {};
-                
                 watched.forEach(item => {
                     if (item.tmdbData && item.tmdbData.genre_ids) {
                         item.tmdbData.genre_ids.forEach(id => {
@@ -267,208 +163,29 @@
                         }
                     }
                 });
-
                 const topGenres = Object.entries(genreCounts).sort((a,b) => b[1]-a[1]).slice(0, 3);
                 const topActors = Object.entries(actorCounts).sort((a,b) => b[1].count-a[1].count).slice(0, 4);
                 const topDirectors = Object.entries(directorCounts).sort((a,b) => b[1]-a[1]).slice(0, 3);
-                
                 const total = watched.length;
                 const ratedItems = watched.filter(w => w.rating && typeof w.rating === 'number');
                 const avgScore = ratedItems.length ? (ratedItems.reduce((a,b)=>a+b.rating,0) / ratedItems.length).toFixed(1) : '-';
-
                 return { topGenres, topActors, topDirectors, total, avgScore };
             }, [watched]);
 
-            return (
-                <div className="mb-8">
-                     <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-black text-bone p-4 text-center">
-                            <div className="text-3xl font-black">{stats.total}</div>
-                            <div className="text-[10px] font-bold uppercase tracking-widest">{t('STATS_TOTAL')}</div>
-                        </div>
-                        <div className="bg-white border-2 border-black p-4 text-center">
-                            <div className="text-3xl font-black">{stats.avgScore}</div>
-                            <div className="text-[10px] font-bold uppercase tracking-widest">{t('STATS_RATING')}</div>
-                        </div>
-                    </div>
-
-                    <div className="space-y-6">
-                        <div>
-                            <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('STATS_GENRE')}</h3>
-                            <div className="space-y-2">
-                                {stats.topGenres.map(([g, c], i) => (
-                                    <div key={g} className="flex items-center gap-2">
-                                        <div className="w-6 text-xs font-bold text-gray-400">#{i+1}</div>
-                                        <div className="flex-1">
-                                            <div className="flex justify-between text-xs font-bold uppercase mb-1">
-                                                <span>{g}</span>
-                                                <span>{c}</span>
-                                            </div>
-                                            <div className="h-2 bg-gray-200 w-full"><div className="h-full bg-black transition-all" style={{width: `${(c / (stats.topGenres[0][1] || 1)) * 100}%`}}></div></div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {stats.topActors.length > 0 && (
-                            <div>
-                                <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('TOP_ACTORS')}</h3>
-                                <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-                                    {stats.topActors.map(([name, data]) => (
-                                        <div key={name} className="flex-shrink-0 text-center w-16">
-                                            {data.img ? <img src={`https://image.tmdb.org/t/p/w185${data.img}`} className="w-16 h-16 rounded-full object-cover border-2 border-black mb-1" /> : <div className="w-16 h-16 rounded-full bg-gray-300 mb-1 border-2 border-black"></div>}
-                                            <p className="text-[9px] font-bold uppercase leading-tight">{name}</p>
-                                            <p className="text-[8px] text-gray-500">{data.count} movies</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {stats.topDirectors.length > 0 && (
-                             <div>
-                                <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('TOP_DIRECTORS')}</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {stats.topDirectors.map(([name, count]) => (
-                                        <div key={name} className="px-3 py-1 bg-gray-100 border border-gray-300 rounded-full text-[10px] font-bold uppercase">
-                                            {name} <span className="text-gray-500 ml-1">({count})</span>
-                                        </div>
-                                    ))}
-                                </div>
-                             </div>
-                        )}
-                    </div>
-                </div>
-            );
+            return <div className="mb-8"><div className="grid grid-cols-2 gap-4 mb-6"><div className="bg-black text-bone p-4 text-center"><div className="text-3xl font-black">{stats.total}</div><div className="text-[10px] font-bold uppercase tracking-widest">{t('STATS_TOTAL')}</div></div><div className="bg-white border-2 border-black p-4 text-center"><div className="text-3xl font-black">{stats.avgScore}</div><div className="text-[10px] font-bold uppercase tracking-widest">{t('STATS_RATING')}</div></div></div><div className="space-y-6"><div><h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('STATS_GENRE')}</h3><div className="space-y-2">{stats.topGenres.map(([g, c], i) => <div key={g} className="flex items-center gap-2"><div className="w-6 text-xs font-bold text-gray-400">#{i+1}</div><div className="flex-1"><div className="flex justify-between text-xs font-bold uppercase mb-1"><span>{g}</span><span>{c}</span></div><div className="h-2 bg-gray-200 w-full"><div className="h-full bg-black transition-all" style={{width: `${(c / (stats.topGenres[0][1] || 1)) * 100}%`}}></div></div></div></div>)}</div></div>{stats.topActors.length > 0 && <div><h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('TOP_ACTORS')}</h3><div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">{stats.topActors.map(([name, data]) => <div key={name} className="flex-shrink-0 text-center w-16">{data.img ? <img src={`https://image.tmdb.org/t/p/w185${data.img}`} className="w-16 h-16 rounded-full object-cover border-2 border-black mb-1" /> : <div className="w-16 h-16 rounded-full bg-gray-300 mb-1 border-2 border-black"></div>}<p className="text-[9px] font-bold uppercase leading-tight">{name}</p><p className="text-[8px] text-gray-500">{data.count}</p></div>)}</div></div>}{stats.topDirectors.length > 0 && <div><h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('TOP_DIRECTORS')}</h3><div className="flex flex-wrap gap-2">{stats.topDirectors.map(([name, count]) => <div key={name} className="px-3 py-1 bg-gray-100 border border-gray-300 rounded-full text-[10px] font-bold uppercase">{name} <span className="text-gray-500 ml-1">({count})</span></div>)}</div></div>}</div></div>;
         }
 
-        function SwipeTab({ watched, backlog, movies, tvShows, blacklist, apiKey, language, homeMode, onAddToWatchlist, onSeen, onBlacklist, onInfo, t, soundEnabled }) {
+        function SwipeTab({ watched, backlog, movies, tvShows, blacklist, apiKey, language, onAddToWatchlist, onSeen, onBlacklist, onInfo, t, soundEnabled }) {
             const [queue, setQueue] = useState([]);
             const [page, setPage] = useState(1);
             const [loading, setLoading] = useState(false);
             const [swipeType, setSwipeType] = useState('movie');
             const [showStamp, setShowStamp] = useState(null);
-
-            useEffect(() => {
-                setQueue([]); setPage(1);
-            }, [swipeType]);
-
-            useEffect(() => {
-                if (queue.length > 2 || !apiKey) return; 
-                const fetchBatch = async () => {
-                    setLoading(true);
-                    try {
-                        const type = swipeType === 'movie' ? 'movie' : 'tv';
-                        const endpoint = page % 2 === 0 ? 'top_rated' : 'popular';
-                        const res = await fetch(`https://api.themoviedb.org/3/${type}/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`);
-                        const data = await res.json();
-                        
-                        if (data.results) {
-                            const newItems = data.results.filter(item => {
-                                const isOwned = movies.some(m => m.tmdbData?.id === item.id) || tvShows.some(t => t.tmdbData?.id === item.id);
-                                const isWatched = watched.some(w => w.tmdbData?.id === item.id);
-                                const isBacklog = backlog.some(b => b.tmdbData?.id === item.id);
-                                const isBlacklisted = blacklist.includes(item.id);
-                                const isInQueue = queue.some(q => q.id === item.id);
-                                return !isOwned && !isWatched && !isBacklog && !isBlacklisted && !isInQueue;
-                            });
-                            setQueue(prev => [...prev, ...newItems]);
-                        }
-                    } catch (e) {}
-                    setLoading(false);
-                };
-                fetchBatch();
-            }, [queue.length, apiKey, language, page, swipeType, movies, tvShows, backlog, watched, blacklist]);
-
-            const handleAction = (action) => {
-                if (queue.length === 0) return;
-                const item = queue[0];
-                const type = item.media_type === 'tv' || item.name ? 'tv' : 'movie';
-                const fullItem = { ...item, type };
-
-                // Show stamp animation
-                setShowStamp(action === 'nope' ? 'nope' : action === 'like' ? 'love' : 'seen');
-                if (soundEnabled) playSwipe();
-                
-                setTimeout(() => {
-                    if (action === 'nope') {
-                        onBlacklist(item.id);
-                    } else if (action === 'like') {
-                        onAddToWatchlist(fullItem);
-                    } else if (action === 'seen') {
-                        onSeen(fullItem); 
-                    }
-
-                    setQueue(prev => prev.slice(1));
-                    setShowStamp(null);
-                    if (queue.length < 5) setPage(p => p + 1);
-                }, 300);
-            };
-
+            useEffect(() => { setQueue([]); setPage(1); }, [swipeType]);
+            useEffect(() => { if (queue.length > 2 || !apiKey) return; const fetchBatch = async () => { setLoading(true); try { const type = swipeType === 'movie' ? 'movie' : 'tv'; const endpoint = page % 2 === 0 ? 'top_rated' : 'popular'; const res = await fetch(`https://api.themoviedb.org/3/${type}/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`); const data = await res.json(); if (data.results) { const newItems = data.results.filter(item => { const isOwned = movies.some(m => m.tmdbData?.id === item.id) || tvShows.some(t => t.tmdbData?.id === item.id); const isWatched = watched.some(w => w.tmdbData?.id === item.id); const isBacklog = backlog.some(b => b.tmdbData?.id === item.id); const isBlacklisted = blacklist.includes(item.id); const isInQueue = queue.some(q => q.id === item.id); return !isOwned && !isWatched && !isBacklog && !isBlacklisted && !isInQueue; }); setQueue(prev => [...prev, ...newItems]); } } catch (e) {} setLoading(false); }; fetchBatch(); }, [queue.length, apiKey, language, page, swipeType, movies, tvShows, backlog, watched, blacklist]);
+            const handleAction = (action) => { if (queue.length === 0) return; const item = queue[0]; const type = item.media_type === 'tv' || item.name ? 'tv' : 'movie'; const fullItem = { ...item, type }; setShowStamp(action === 'nope' ? 'nope' : action === 'like' ? 'love' : 'seen'); if (soundEnabled) playSwipe(); setTimeout(() => { if (action === 'nope') { onBlacklist(item.id); } else if (action === 'like') { onAddToWatchlist(fullItem); } else if (action === 'seen') { onSeen(fullItem); } setQueue(prev => prev.slice(1)); setShowStamp(null); if (queue.length < 5) setPage(p => p + 1); }, 300); };
             const currentCard = queue[0];
-
-            return (
-                <div className="flex flex-col h-[75vh] items-center justify-center relative">
-                    <div className="absolute top-0 inset-x-0 z-20 flex justify-center items-center p-4 bg-bone/80 backdrop-blur-sm border-b-2 border-black/10">
-                        <div className="flex border-2 border-black bg-bone mr-4">
-                            <button onClick={()=>setSwipeType('movie')} className={`py-1 px-3 text-[10px] font-bold uppercase transition-all ${swipeType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
-                            <button onClick={()=>setSwipeType('tv')} className={`py-1 px-3 text-[10px] font-bold uppercase transition-all ${swipeType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
-                        </div>
-                        <h1 className="text-xl font-black uppercase">{t('SWIPE_TITLE')}</h1>
-                    </div>
-
-                    {currentCard ? (
-                        <div className="w-full max-w-sm flex-1 flex flex-col items-center justify-center relative animate-slide-up mt-12">
-                            <div className="relative w-full aspect-[2/3] border-[6px] border-black bg-black shadow-2xl">
-                                {currentCard.poster_path ? (
-                                    <img src={`https://image.tmdb.org/t/p/w780${currentCard.poster_path}`} className="w-full h-full object-cover" />
-                                ) : (
-                                    <div className="w-full h-full bg-gray-800 flex items-center justify-center text-bone">NO IMG</div>
-                                )}
-                                
-                                {/* STAMP OVERLAY */}
-                                <div className={`stamp-love ${showStamp === 'love' ? 'show' : ''}`}>LOVE</div>
-                                <div className={`stamp-nope ${showStamp === 'nope' ? 'show' : ''}`}>NOPE</div>
-                                
-                                <button onClick={() => onInfo({ tmdbData: currentCard, title: currentCard.title || currentCard.name, type: swipeType })} className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border-2 border-white/50 text-white rounded-full p-2 hover:bg-white hover:text-black transition-colors z-10 shadow-lg">
-                                    <Icons.Info />
-                                </button>
-
-                                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-24 text-bone">
-                                    <h2 className="text-2xl font-black uppercase leading-none mb-1">{currentCard.title || currentCard.name}</h2>
-                                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
-                                        {(currentCard.release_date || currentCard.first_air_date || '').split('-')[0]} • ★ {currentCard.vote_average?.toFixed(1)}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="flex gap-6 mt-8">
-                                <button onClick={()=>handleAction('nope')} className="w-16 h-16 rounded-full border-4 border-black bg-white text-black flex items-center justify-center hover:bg-gray-200 transition-all shadow-lg btn-primary">
-                                    <Icons.ThumbDown />
-                                </button>
-                                <button onClick={()=>handleAction('like')} className="w-20 h-20 rounded-full border-4 border-black bg-black text-bone flex items-center justify-center hover:scale-105 transition-transform shadow-xl -mt-2">
-                                    <Icons.Heart />
-                                </button>
-                                <button onClick={()=>handleAction('seen')} className="w-16 h-16 rounded-full border-4 border-black bg-[#1D9BF0] text-white flex items-center justify-center hover:bg-[#1A8CD8] transition-all shadow-lg btn-primary">
-                                    <Icons.Eye />
-                                </button>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="text-center p-10 max-w-xs">
-                            {loading ? (
-                                <div className="animate-spin w-8 h-8 border-4 border-black border-t-transparent rounded-full mx-auto mb-4"></div>
-                            ) : (
-                                <div>
-                                    <p className="font-bold uppercase text-gray-500 mb-4">{t('SWIPE_EMPTY')}</p>
-                                    <button onClick={()=>setPage(p=>p+1)} className="bg-black text-bone px-4 py-2 text-xs font-bold uppercase btn-primary">{t('BTN_LOAD_MORE')}</button>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
-            );
+            return <div className="flex flex-col h-[75vh] items-center justify-center relative"><div className="absolute top-0 inset-x-0 z-20 flex justify-center items-center p-4 bg-bone/80 backdrop-blur-sm border-b-2 border-black/10"><div className="flex border-2 border-black bg-bone mr-4"><button onClick={()=>setSwipeType('movie')} className={`py-1 px-3 text-[10px] font-bold uppercase transition-all ${swipeType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button><button onClick={()=>setSwipeType('tv')} className={`py-1 px-3 text-[10px] font-bold uppercase transition-all ${swipeType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button></div><h1 className="text-xl font-black uppercase">{t('SWIPE_TITLE')}</h1></div>{currentCard ? <div className="w-full max-w-sm flex-1 flex flex-col items-center justify-center relative animate-slide-up mt-12"><div className="relative w-full aspect-[2/3] border-[6px] border-black bg-black shadow-2xl">{currentCard.poster_path ? <img src={`https://image.tmdb.org/t/p/w780${currentCard.poster_path}`} className="w-full h-full object-cover" /> : <div className="w-full h-full bg-gray-800 flex items-center justify-center text-bone">NO IMG</div>}<div className={`stamp-love ${showStamp === 'love' ? 'show' : ''}`}>LOVE</div><div className={`stamp-nope ${showStamp === 'nope' ? 'show' : ''}`}>NOPE</div><button onClick={() => onInfo({ tmdbData: currentCard, title: currentCard.title || currentCard.name, type: swipeType })} className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border-2 border-white/50 text-white rounded-full p-2 hover:bg-white hover:text-black transition-colors z-10 shadow-lg"><Icons.Info /></button><div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-24 text-bone"><h2 className="text-2xl font-black uppercase leading-none mb-1">{currentCard.title || currentCard.name}</h2><p className="text-xs font-bold uppercase tracking-widest text-gray-400">{(currentCard.release_date || currentCard.first_air_date || '').split('-')[0]} • ★ {currentCard.vote_average?.toFixed(1)}</p></div></div><div className="flex gap-6 mt-8"><button onClick={()=>handleAction('nope')} className="w-16 h-16 rounded-full border-4 border-black bg-white text-black flex items-center justify-center hover:bg-gray-200 transition-all shadow-lg btn-primary"><Icons.ThumbDown /></button><button onClick={()=>handleAction('like')} className="w-20 h-20 rounded-full border-4 border-black bg-black text-bone flex items-center justify-center hover:scale-105 transition-transform shadow-xl -mt-2"><Icons.Heart /></button><button onClick={()=>handleAction('seen')} className="w-16 h-16 rounded-full border-4 border-black bg-[#1D9BF0] text-white flex items-center justify-center hover:bg-[#1A8CD8] transition-all shadow-lg btn-primary"><Icons.Eye /></button></div></div> : <div className="text-center p-10 max-w-xs">{loading ? <div className="animate-spin w-8 h-8 border-4 border-black border-t-transparent rounded-full mx-auto mb-4"></div> : <div><p className="font-bold uppercase text-gray-500 mb-4">{t('SWIPE_EMPTY')}</p><button onClick={()=>setPage(p=>p+1)} className="bg-black text-bone px-4 py-2 text-xs font-bold uppercase btn-primary">{t('BTN_LOAD_MORE')}</button></div>}</div>}</div>;
         }
 
         function MovieDetailPage({ item, onClose, t, apiKey, language, onAdd, onAddToWatchlist, onSeen, onBlacklist, onNavigate }) {
@@ -476,157 +193,33 @@
             const [similar, setSimilar] = useState([]);
             const [providers, setProviders] = useState(null);
             const [trailer, setTrailer] = useState(null);
-            
-            useEffect(() => {
-                if (!item || !item.tmdbData || !apiKey) return;
-                const fetchAll = async () => {
-                    const type = item.type === 'movie' || !item.type ? 'movie' : 'tv';
-                    const region = language === 'pt-PT' ? 'PT' : 'US';
-                    
-                    try {
-                        const creditsRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/credits?api_key=${apiKey}&language=${language}`);
-                        const creditsData = await creditsRes.json();
-                        if (creditsData.cast) setCast(creditsData.cast.slice(0, 6));
-
-                        const similarRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/similar?api_key=${apiKey}&language=${language}&page=1`);
-                        const similarData = await similarRes.json();
-                        if (similarData.results) setSimilar(similarData.results.slice(0, 6));
-
-                        const provRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/watch/providers?api_key=${apiKey}`);
-                        const provData = await provRes.json();
-                        if (provData.results && provData.results[region]) {
-                            setProviders(provData.results[region].flatrate || provData.results[region].buy);
-                        }
-
-                        const vidRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/videos?api_key=${apiKey}&language=${language}`);
-                        const vidData = await vidRes.json();
-                        let vid = vidData.results.find(v => v.site === 'YouTube' && v.type === 'Trailer');
-                        if (!vid && language !== 'en-US') {
-                             const vidResEn = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/videos?api_key=${apiKey}&language=en-US`);
-                             const vidDataEn = await vidResEn.json();
-                             vid = vidDataEn.results.find(v => v.site === 'YouTube' && v.type === 'Trailer');
-                        }
-                        setTrailer(vid);
-                    } catch(e) {}
-                };
-                fetchAll();
-            }, [item]);
-
+            useEffect(() => { if (!item || !item.tmdbData || !apiKey) return; const fetchAll = async () => { const type = item.type === 'movie' || !item.type ? 'movie' : 'tv'; const region = language === 'pt-PT' ? 'PT' : 'US'; try { const creditsRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/credits?api_key=${apiKey}&language=${language}`); const creditsData = await creditsRes.json(); if (creditsData.cast) setCast(creditsData.cast.slice(0, 6)); const similarRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/similar?api_key=${apiKey}&language=${language}&page=1`); const similarData = await similarRes.json(); if (similarData.results) setSimilar(similarData.results.slice(0, 6)); const provRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/watch/providers?api_key=${apiKey}`); const provData = await provRes.json(); if (provData.results && provData.results[region]) { setProviders(provData.results[region].flatrate || provData.results[region].buy); } const vidRes = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/videos?api_key=${apiKey}&language=${language}`); const vidData = await vidRes.json(); let vid = vidData.results.find(v => v.site === 'YouTube' && v.type === 'Trailer'); if (!vid && language !== 'en-US') { const vidResEn = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/videos?api_key=${apiKey}&language=en-US`); const vidDataEn = await vidResEn.json(); vid = vidDataEn.results.find(v => v.site === 'YouTube' && v.type === 'Trailer'); } setTrailer(vid); } catch(e) {} }; fetchAll(); }, [item]);
             if (!item || !item.tmdbData) return null;
             const data = item.tmdbData;
-
-            return (
-                <div className="fixed inset-0 z-[80] bg-bone overflow-y-auto animate-slide-up">
-                    <div className="relative aspect-video w-full bg-black">
-                        {data.backdrop_path ? (
-                            <img src={`https://image.tmdb.org/t/p/w780${data.backdrop_path}`} className="w-full h-full object-cover opacity-60" />
-                        ) : <div className="w-full h-full bg-gray-800" />}
-                        
-                        <div className="absolute inset-0 bg-gradient-to-t from-bone via-transparent to-transparent"></div>
-                        
-                        <button onClick={onClose} className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full backdrop-blur-md z-10 hover:bg-black transition-all"><Icons.Close /></button>
-                        
-                        <div className="absolute bottom-4 left-4 right-4">
-                            <h1 className="text-3xl font-black uppercase leading-none mb-2 drop-shadow-md">{data.title || data.name}</h1>
-                            <div className="flex gap-2 text-xs font-bold uppercase text-gray-700 items-center">
-                                <span className="bg-white/80 backdrop-blur px-2 py-1">{(data.release_date || data.first_air_date || '').split('-')[0] || t('UNKNOWN_YEAR')}</span>
-                                <span className="bg-white/80 backdrop-blur px-2 py-1">★ {data.vote_average?.toFixed(1)}</span>
-                                <span className="bg-[#1D9BF0] text-white px-2 py-1">{Math.round(data.vote_average * 10)}% Match</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="p-4 pb-24 space-y-8">
-                        <div className="flex gap-2">
-                            <button onClick={()=>onAddToWatchlist(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone transition-all btn-primary">{t('BTN_ADD_WATCHLIST')}</button>
-                            <button onClick={()=>onSeen(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone transition-all btn-primary">{t('BTN_SEEN')}</button>
-                            <button onClick={()=>{ onBlacklist(data.id); onClose(); }} className="py-3 px-4 border-2 border-black font-bold uppercase text-xs hover:bg-red-600 hover:text-white hover:border-red-600 transition-all btn-primary"><Icons.ThumbDown /></button>
-                        </div>
-
-                        <div className="flex gap-3">
-                            {trailer && (
-                                <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" className="flex-1 bg-black text-bone py-3 font-bold uppercase text-center text-sm rounded flex items-center justify-center gap-2 hover:bg-gray-800 transition-all">
-                                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> {t('BTN_TRAILER')}
-                                </a>
-                            )}
-                            {providers && providers.length > 0 && (
-                                <div className="flex -space-x-2 items-center">
-                                    {providers.slice(0,3).map(p => <img key={p.provider_id} src={`https://image.tmdb.org/t/p/w45${p.logo_path}`} className="w-10 h-10 rounded-full border-2 border-bone" />)}
-                                </div>
-                            )}
-                        </div>
-
-                        <div>
-                            <p className="text-sm leading-relaxed font-sans text-gray-800">{data.overview || t('NO_PLOT')}</p>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2">
-                            {data.genre_ids && data.genre_ids.map(id => GENRES[id] && (
-                                <span key={id} className="text-[10px] uppercase font-bold border border-black px-2 py-1 rounded-full">{GENRES[id]}</span>
-                            ))}
-                        </div>
-
-                        {cast.length > 0 && (
-                            <div>
-                                <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">CAST</h3>
-                                <div className="flex overflow-x-auto gap-4 pb-2 scrollbar-hide">
-                                    {cast.map(c => (
-                                        <div key={c.id} className="w-20 flex-shrink-0 text-center">
-                                            {c.profile_path ? (
-                                                <img src={`https://image.tmdb.org/t/p/w185${c.profile_path}`} className="w-20 h-20 object-cover rounded-full mb-2 bg-gray-200" />
-                                            ) : <div className="w-20 h-20 rounded-full bg-gray-300 mb-2" />}
-                                            <p className="text-[9px] font-bold uppercase leading-tight truncate">{c.name}</p>
-                                            <p className="text-[8px] text-gray-500 truncate">{c.character}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {similar.length > 0 && (
-                            <div>
-                                <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('MORE_LIKE_THIS')}</h3>
-                                <div className="grid grid-cols-3 gap-2">
-                                    {similar.map(s => (
-                                        <div key={s.id} onClick={() => onNavigate({ tmdbData: s, title: s.title||s.name, type: item.type === 'movie' || item.type === 'movies' ? 'movie' : 'tv' })} className="relative aspect-[2/3] bg-gray-200 cursor-pointer overflow-hidden group">
-                                            {s.poster_path ? <img src={`https://image.tmdb.org/t/p/w185${s.poster_path}`} className="w-full h-full object-cover transition-transform group-hover:scale-105" /> : null}
-                                            <div className="absolute top-0 right-0 bg-[#1D9BF0] text-white text-[8px] font-bold px-1 py-0.5">
-                                                {Math.round(s.vote_average * 10)}%
-                                            </div>
-                                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                                                <span className="text-white font-bold text-xs">+</span>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            );
+            return <div className="fixed inset-0 z-[80] bg-bone overflow-y-auto animate-slide-up"><div className="relative aspect-video w-full bg-black">{data.backdrop_path ? <img src={`https://image.tmdb.org/t/p/w780${data.backdrop_path}`} className="w-full h-full object-cover opacity-60" /> : <div className="w-full h-full bg-gray-800" />}<div className="absolute inset-0 bg-gradient-to-t from-bone via-transparent to-transparent"></div><button onClick={onClose} className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full backdrop-blur-md z-10 hover:bg-black transition-all"><Icons.Close /></button><div className="absolute bottom-4 left-4 right-4"><h1 className="text-3xl font-black uppercase leading-none mb-2 drop-shadow-md">{data.title || data.name}</h1><div className="flex gap-2 text-xs font-bold uppercase text-gray-700 items-center"><span className="bg-white/80 backdrop-blur px-2 py-1">{(data.release_date || data.first_air_date || '').split('-')[0] || t('UNKNOWN_YEAR')}</span><span className="bg-white/80 backdrop-blur px-2 py-1">★ {data.vote_average?.toFixed(1)}</span><span className="bg-[#1D9BF0] text-white px-2 py-1">{Math.round(data.vote_average * 10)}%</span></div></div></div><div className="p-4 pb-24 space-y-8"><div className="flex gap-2"><button onClick={()=>onAddToWatchlist(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone transition-all btn-primary">{t('BTN_ADD_WATCHLIST')}</button><button onClick={()=>onSeen(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone transition-all btn-primary">{t('BTN_SEEN')}</button><button onClick={()=>{ onBlacklist(data.id); onClose(); }} className="py-3 px-4 border-2 border-black font-bold uppercase text-xs hover:bg-red-600 hover:text-white hover:border-red-600 transition-all btn-primary"><Icons.ThumbDown /></button></div><div className="flex gap-3">{trailer && <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" className="flex-1 bg-black text-bone py-3 font-bold uppercase text-center text-sm rounded flex items-center justify-center gap-2 hover:bg-gray-800 transition-all"><svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> {t('BTN_TRAILER')}</a>}{providers && providers.length > 0 && <div className="flex -space-x-2 items-center">{providers.slice(0,3).map(p => <img key={p.provider_id} src={`https://image.tmdb.org/t/p/w45${p.logo_path}`} className="w-10 h-10 rounded-full border-2 border-bone" />)}</div>}</div><div><p className="text-sm leading-relaxed font-sans text-gray-800">{data.overview || t('NO_PLOT')}</p></div><div className="flex flex-wrap gap-2">{data.genre_ids && data.genre_ids.map(id => GENRES[id] && <span key={id} className="text-[10px] uppercase font-bold border border-black px-2 py-1 rounded-full">{GENRES[id]}</span>)}</div>{cast.length > 0 && <div><h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">CAST</h3><div className="flex overflow-x-auto gap-4 pb-2 scrollbar-hide">{cast.map(c => <div key={c.id} className="w-20 flex-shrink-0 text-center">{c.profile_path ? <img src={`https://image.tmdb.org/t/p/w185${c.profile_path}`} className="w-20 h-20 object-cover rounded-full mb-2 bg-gray-200" /> : <div className="w-20 h-20 rounded-full bg-gray-300 mb-2" />}<p className="text-[9px] font-bold uppercase leading-tight truncate">{c.name}</p><p className="text-[8px] text-gray-500 truncate">{c.character}</p></div>)}</div></div>}{similar.length > 0 && <div><h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('MORE_LIKE_THIS')}</h3><div className="grid grid-cols-3 gap-2">{similar.map(s => <div key={s.id} onClick={() => onNavigate({ tmdbData: s, title: s.title||s.name, type: item.type === 'movie' || item.type === 'movies' ? 'movie' : 'tv' })} className="relative aspect-[2/3] bg-gray-200 cursor-pointer overflow-hidden group">{s.poster_path ? <img src={`https://image.tmdb.org/t/p/w185${s.poster_path}`} className="w-full h-full object-cover transition-transform group-hover:scale-105" /> : null}<div className="absolute top-0 right-0 bg-[#1D9BF0] text-white text-[8px] font-bold px-1 py-0.5">{Math.round(s.vote_average * 10)}%</div><div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"><span className="text-white font-bold text-xs">+</span></div></div>)}</div></div>}</div></div>;
         }
 
-        function DiscoverTab({ watched, backlog, apiKey, language, onAdd, onAddToWatchlist, onSeen, onInfo, t, movies, tvShows }) {
+        function DiscoverTab({ watched, backlog, apiKey, language, onAdd, onAddToWatchlist, onSeen, onInfo, t, movies, tvShows, showToast }) {
             const [recommendations, setRecommendations] = useState([]);
             const [topMatches, setTopMatches] = useState([]);
             const [loading, setLoading] = useState(false);
             const [filterMode, setFilterMode] = useState('top');
             const [selectedGenre, setSelectedGenre] = useState(null);
-            const [discoverType, setDiscoverType] = useState('movie'); 
+            const [discoverType, setDiscoverType] = useState('movie');
             const [page, setPage] = useState(1);
             const [curatorPick, setCuratorPick] = useState(null);
-            
+            const [loadingProgress, setLoadingProgress] = useState('');
             const highRatedItems = watched.filter(w => w.rating >= 4 && w.tmdbData);
             
-            // IMPROVED RECOMMENDATION ENGINE V42
             useEffect(() => {
                 if (!apiKey || highRatedItems.length < 3) return;
                 const fetchSmartRecs = async () => {
                     setLoading(true);
+                    setLoadingProgress('Analyzing...');
                     try {
                         let allRecs = [];
-                        
                         if (filterMode === 'genre' && selectedGenre) {
+                            setLoadingProgress('By genre...');
                             const res = await fetch(`https://api.themoviedb.org/3/discover/${discoverType}?api_key=${apiKey}&with_genres=${selectedGenre}&sort_by=popularity.desc&language=${language}&page=${page}`);
                             const data = await res.json();
                             allRecs = data.results || [];
@@ -640,149 +233,159 @@
                             const res = await fetch(`https://api.themoviedb.org/3/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`);
                             const data = await res.json();
                             allRecs = data.results || [];
+                        } else if (filterMode === 'antiRut') {
+                            setLoadingProgress('Breaking echo...');
+                            const topGenres = watched.filter(w => w.tmdbData?.genre_ids).flatMap(w => w.tmdbData.genre_ids).reduce((acc, g) => { acc[g] = (acc[g] || 0) + 1; return acc; }, {});
+                            const top2Genres = Object.entries(topGenres).sort((a,b) => b[1] - a[1]).slice(0, 2).map(([id]) => id).join(',');
+                            const res = await fetch(`https://api.themoviedb.org/3/discover/${discoverType}?api_key=${apiKey}&without_genres=${top2Genres}&sort_by=vote_average.desc&vote_count.gte=500&language=${language}&page=${page}`);
+                            const data = await res.json();
+                            allRecs = data.results || [];
                         } else {
-                            // SMART ALGO: Mix of recommendations + cast-based discovery
-                            const seeds = highRatedItems
-                                .filter(i => (i.type === 'tv' && discoverType === 'tv') || (i.type !== 'tv' && discoverType === 'movie'))
-                                .sort(() => 0.5 - Math.random())
-                                .slice(0, 3);
-                            
-                            for (const seed of seeds) {
-                                const type = seed.type === 'tv' ? 'tv' : 'movie';
-                                
-                                // Main recommendations
-                                const recRes = await fetch(`https://api.themoviedb.org/3/${type}/${seed.tmdbData.id}/recommendations?api_key=${apiKey}&language=${language}`);
-                                const recData = await recRes.json();
-                                allRecs.push(...(recData.results || []));
-                                
-                                // Similar
-                                const simRes = await fetch(`https://api.themoviedb.org/3/${type}/${seed.tmdbData.id}/similar?api_key=${apiKey}&language=${language}`);
-                                const simData = await simRes.json();
-                                allRecs.push(...(simData.results || []));
+                            const relevantSeeds = highRatedItems.filter(i => (i.type === 'tv' && discoverType === 'tv') || (i.type !== 'tv' && discoverType === 'movie')).sort(() => 0.5 - Math.random()).slice(0, 5);
+                            if (relevantSeeds.length === 0) {
+                                const res = await fetch(`https://api.themoviedb.org/3/${discoverType}/top_rated?api_key=${apiKey}&language=${language}&page=${page}`);
+                                const data = await res.json();
+                                allRecs = data.results || [];
+                            } else {
+                                setLoadingProgress('Building feed...');
+                                for (const seed of relevantSeeds) {
+                                    const type = seed.type === 'tv' ? 'tv' : 'movie';
+                                    const seedId = seed.tmdbData.id;
+                                    try {
+                                        const recRes = await fetch(`https://api.themoviedb.org/3/${type}/${seedId}/recommendations?api_key=${apiKey}&language=${language}`);
+                                        const recData = await recRes.json();
+                                        if (recData.results) allRecs.push(...recData.results.map(r => ({ ...r, source: 'recommendation', seedTitle: seed.title })));
+                                    } catch(e) {}
+                                    try {
+                                        const simRes = await fetch(`https://api.themoviedb.org/3/${type}/${seedId}/similar?api_key=${apiKey}&language=${language}`);
+                                        const simData = await simRes.json();
+                                        if (simData.results) allRecs.push(...simData.results.map(r => ({ ...r, source: 'similar', seedTitle: seed.title })));
+                                    } catch(e) {}
+                                    if (seed.credits && seed.credits.cast && seed.credits.cast.length > 0) {
+                                        setLoadingProgress(`Actors from ${seed.title.slice(0,15)}...`);
+                                        for (const actor of seed.credits.cast.slice(0, 2)) {
+                                            try {
+                                                const actorRes = await fetch(`https://api.themoviedb.org/3/person/${actor.id}/${discoverType}_credits?api_key=${apiKey}&language=${language}`);
+                                                const actorData = await actorRes.json();
+                                                if (actorData.cast) {
+                                                    const topActorMovies = actorData.cast.filter(m => m.vote_average > 7.0 && m.vote_count > 100).sort((a,b) => b.vote_average - a.vote_average).slice(0, 3);
+                                                    allRecs.push(...topActorMovies.map(r => ({ ...r, source: 'cast', seedTitle: seed.title, actorName: actor.name })));
+                                                }
+                                            } catch(e) {}
+                                        }
+                                    }
+                                    if (seed.credits && seed.credits.director && discoverType === 'movie') {
+                                        setLoadingProgress(`Director: ${seed.credits.director.name.slice(0,15)}...`);
+                                        try {
+                                            const getDirectorId = async (name, key) => { try { const r = await fetch(`https://api.themoviedb.org/3/search/person?api_key=${key}&query=${encodeURIComponent(name)}`); const d = await r.json(); return d.results?.[0]?.id; } catch(e) { return null; } };
+                                            const directorId = seed.credits.director.id || await getDirectorId(seed.credits.director.name, apiKey);
+                                            if (directorId) {
+                                                const dirRes = await fetch(`https://api.themoviedb.org/3/person/${directorId}/movie_credits?api_key=${apiKey}&language=${language}`);
+                                                const dirData = await dirRes.json();
+                                                if (dirData.crew) {
+                                                    const dirMovies = dirData.crew.filter(m => m.job === 'Director' && m.vote_average > 6.5).sort((a,b) => b.vote_average - a.vote_average).slice(0, 3);
+                                                    allRecs.push(...dirMovies.map(r => ({ ...r, source: 'director', seedTitle: seed.title, directorName: seed.credits.director.name })));
+                                                }
+                                            }
+                                        } catch(e) {}
+                                    }
+                                    if (seed.tmdbData && seed.tmdbData.genre_ids && seed.tmdbData.genre_ids.length > 0) {
+                                        const randomGenre = seed.tmdbData.genre_ids[Math.floor(Math.random() * seed.tmdbData.genre_ids.length)];
+                                        try {
+                                            const genreRes = await fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=${apiKey}&with_genres=${randomGenre}&sort_by=vote_average.desc&vote_count.gte=500&language=${language}&page=1`);
+                                            const genreData = await genreRes.json();
+                                            if (genreData.results) {
+                                                allRecs.push(...genreData.results.slice(0, 2).map(r => ({ ...r, source: 'genre', seedTitle: seed.title, genreName: GENRES[randomGenre] })));
+                                            }
+                                        } catch(e) {}
+                                    }
+                                }
                             }
                         }
 
-                        // Process & Filter
-                        const processed = allRecs.map(r => ({
-                            ...r,
-                            matchScore: Math.min(99, Math.round((r.vote_average || 0) * 10))
-                        }));
+                        setLoadingProgress('Processing...');
+                        const processed = allRecs.map(r => {
+                            let baseScore = (r.vote_average || 0) * 10;
+                            let bonusScore = 0;
+                            if (r.source === 'cast') bonusScore += 15;
+                            if (r.source === 'director') bonusScore += 20;
+                            if (r.source === 'recommendation') bonusScore += 10;
+                            const popularityBonus = Math.min(10, (r.popularity || 0) / 10);
+                            const releaseYear = new Date(r.release_date || r.first_air_date || 0).getFullYear();
+                            const recencyBonus = releaseYear >= 2020 ? 5 : releaseYear >= 2015 ? 3 : 0;
+                            const finalScore = Math.min(99, Math.round(baseScore + bonusScore + popularityBonus + recencyBonus));
+                            return { ...r, matchScore: finalScore };
+                        });
 
                         const cleanMatches = processed.filter(r => {
                             const isOwned = movies.some(m => m.tmdbData?.id === r.id) || tvShows.some(t => t.tmdbData?.id === r.id);
                             const isWatched = watched.some(w => w.tmdbData?.id === r.id);
                             const isBacklog = backlog.some(b => b.tmdbData?.id === r.id);
-                            return !isOwned && !isWatched && !isBacklog;
+                            return !isOwned && !isWatched && !isBacklog && r.vote_count > 50;
                         });
 
-                        // Dedupe
-                        const unique = [...new Map(cleanMatches.map(item => [item.id, item])).values()];
+                        const uniqueMap = new Map();
+                        cleanMatches.forEach(r => {
+                            if (!uniqueMap.has(r.id)) {
+                                uniqueMap.set(r.id, r);
+                            } else {
+                                const existing = uniqueMap.get(r.id);
+                                const sourcePriority = { director: 5, cast: 4, recommendation: 3, similar: 2, genre: 1 };
+                                if ((sourcePriority[r.source] || 0) > (sourcePriority[existing.source] || 0)) {
+                                    uniqueMap.set(r.id, r);
+                                }
+                            }
+                        });
+                        const unique = Array.from(uniqueMap.values());
+
+                        const diversified = [];
+                        const genreCount = {};
+                        const sortedByScore = unique.sort((a,b) => b.matchScore - a.matchScore);
+                        for (const item of sortedByScore) {
+                            const itemGenres = item.genre_ids || [];
+                            const primaryGenre = itemGenres[0];
+                            if (!primaryGenre || (genreCount[primaryGenre] || 0) < Math.ceil(sortedByScore.length * 0.3)) {
+                                diversified.push(item);
+                                if (primaryGenre) genreCount[primaryGenre] = (genreCount[primaryGenre] || 0) + 1;
+                            }
+                        }
                         
                         setRecommendations(prev => {
                             const existingIds = new Set(prev.map(p => p.id));
-                            const uniqueNew = unique.filter(r => !existingIds.has(r.id));
+                            const uniqueNew = diversified.filter(r => !existingIds.has(r.id));
                             return page === 1 ? uniqueNew : [...prev, ...uniqueNew];
                         });
 
                         if (page === 1) {
-                            const top = unique.filter(r => r.matchScore >= 80).sort((a,b) => b.matchScore - a.matchScore).slice(0, 10);
+                            const top = diversified.filter(r => r.matchScore >= 75).slice(0, 12);
                             setTopMatches(top);
-                            
-                            // Curator's Pick (random from top matches)
-                            if (top.length > 0 && highRatedItems.length >= 5) {
-                                const pick = top[Math.floor(Math.random() * Math.min(3, top.length))];
-                                const basedOn = highRatedItems[Math.floor(Math.random() * highRatedItems.length)];
-                                setCuratorPick({ item: pick, because: basedOn.title });
+                            if (top.length > 0 && highRatedItems.length >= 3) {
+                                const pick = top[Math.floor(Math.random() * Math.min(5, top.length))];
+                                const basedOn = pick.seedTitle || highRatedItems[Math.floor(Math.random() * highRatedItems.length)].title;
+                                const reason = pick.source === 'cast' ? `Starring ${pick.actorName}` : pick.source === 'director' ? `By ${pick.directorName}` : pick.source === 'genre' ? `${pick.genreName}` : 'Like';
+                                setCuratorPick({ item: pick, because: basedOn, reason });
                             }
                         }
                     } catch (e) { console.error(e); }
                     setLoading(false);
+                    setLoadingProgress('');
                 };
                 fetchSmartRecs();
             }, [apiKey, language, page, filterMode, selectedGenre, discoverType]);
 
             useEffect(() => { setPage(1); setRecommendations([]); setTopMatches([]); setCuratorPick(null); }, [filterMode, selectedGenre, discoverType]);
 
-            if (highRatedItems.length < 3 && filterMode === 'top') return (<div className="p-10 border-2 border-dashed border-gray-400 text-center text-gray-500 font-bold uppercase">{t('DISCOVER_LOCKED')} ({highRatedItems.length}/3 rated 4+)</div>);
+            if (highRatedItems.length < 3 && filterMode === 'top') {
+                return <div className="p-10 border-2 border-dashed border-gray-400 text-center text-gray-500 font-bold uppercase">{t('DISCOVER_LOCKED')} ({highRatedItems.length}/3)</div>;
+            }
             
-            return (
-                <div className="space-y-6 pb-24">
-                    <div className="flex border-2 border-black">
-                        <button onClick={()=>setDiscoverType('movie')} className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${discoverType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
-                        <button onClick={()=>setDiscoverType('tv')} className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${discoverType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
-                    </div>
-
-                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                        {['top', 'new', 'soon'].map(m => (
-                            <button key={m} onClick={()=>setFilterMode(m)} className={`flex-shrink-0 px-3 py-1 text-[10px] font-bold uppercase border border-black transition-all ${filterMode===m?'bg-black text-bone':''}`}>
-                                {m === 'top' ? t('DISC_TOP') : m === 'new' ? t('DISC_NEW') : t('DISC_SOON')}
-                            </button>
-                        ))}
-                        <select 
-                            value={filterMode === 'genre' ? selectedGenre : ""} 
-                            onChange={(e) => { setFilterMode('genre'); setSelectedGenre(parseInt(e.target.value)); }} 
-                            className={`flex-shrink-0 px-3 py-1 text-[10px] font-bold uppercase border border-black bg-transparent outline-none ${filterMode === 'genre' ? 'bg-black text-bone' : ''}`}
-                        >
-                            <option value="">{t('DISC_GENRE')}</option>
-                            {Object.entries(GENRES).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
-                        </select>
-                    </div>
-
-                    {/* CURATOR'S PICK */}
-                    {curatorPick && (
-                        <div className="relative overflow-hidden border-4 border-love bg-black text-bone p-6 gradient-bg animate-bounce-in">
-                            <p className="text-xs uppercase text-love mb-2 font-bold tracking-widest">{t('CURATOR_PICK')}</p>
-                            <p className="text-2xl font-black uppercase leading-tight mb-2">{curatorPick.item.title || curatorPick.item.name}</p>
-                            <p className="text-xs opacity-70 mb-4">{t('BECAUSE')} <span className="font-bold">{curatorPick.because}</span></p>
-                            <div className="flex gap-2">
-                                <button onClick={()=>onAdd({ title: curatorPick.item.title||curatorPick.item.name, ...curatorPick.item, type: discoverType })} className="bg-bone text-black px-4 py-2 text-xs font-bold uppercase btn-primary">+ ADD</button>
-                                <button onClick={()=>onInfo({ tmdbData: curatorPick.item, title: curatorPick.item.title||curatorPick.item.name, type: discoverType })} className="border-2 border-bone text-bone px-4 py-2 text-xs font-bold uppercase btn-primary">INFO</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {topMatches.length > 0 && (
-                        <div>
-                            <h3 className="font-bold uppercase text-xs mb-2 tracking-widest text-[#1D9BF0]">{t('DISC_TOP')}</h3>
-                            <div className="flex overflow-x-auto gap-3 pb-4 scrollbar-hide">
-                                {topMatches.map(m => (
-                                    <div key={m.id} onClick={()=>onInfo({ tmdbData: m, title: m.title || m.name, type: discoverType })} className="w-28 flex-shrink-0 relative cursor-pointer group">
-                                        <img src={`https://image.tmdb.org/t/p/w342${m.poster_path}`} className="w-full h-40 object-cover border border-black transition-transform group-hover:scale-105" />
-                                        <div className="absolute top-0 right-0 bg-[#1D9BF0] text-white text-[9px] font-bold px-1">{m.matchScore}%</div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    <div className="grid grid-cols-2 gap-4">
-                        {recommendations.map(rec => (
-                            <div key={rec.id} className="border border-black bg-black text-bone flex flex-col h-full group overflow-hidden">
-                                <div className="relative aspect-[2/3]" onClick={()=>onInfo({ tmdbData: rec, title: rec.title || rec.name, type: discoverType })}>
-                                    {rec.poster_path ? <img src={`https://image.tmdb.org/t/p/w342${rec.poster_path}`} className="w-full h-full object-cover transition-transform group-hover:scale-105" /> : <div className="w-full h-full bg-gray-800"></div>}
-                                    <div className="absolute top-2 right-2 bg-verified text-white text-[10px] font-bold px-1.5 py-0.5">{rec.matchScore}%</div>
-                                </div>
-                                <div className="p-2 flex flex-col gap-2 flex-1">
-                                    <p className="font-bold text-[10px] uppercase leading-tight line-clamp-2 flex-1">{rec.title || rec.name}</p>
-                                    <div className="grid grid-cols-2 gap-1 mt-auto">
-                                        <button onClick={()=>onAdd({ title: rec.title||rec.name, ...rec, type: discoverType })} className="py-2 bg-bone text-black text-[9px] font-bold uppercase hover:bg-white text-center btn-primary">+ ADD</button>
-                                        <button onClick={()=>onAddToWatchlist({ title: rec.title||rec.name, ...rec, type: discoverType })} className="py-2 border border-bone text-bone text-[9px] font-bold uppercase hover:bg-bone hover:text-black text-center btn-primary">{t('BTN_ADD_WATCHLIST')}</button>
-                                    </div>
-                                    <button onClick={()=>onSeen(rec)} className="py-1 bg-gray-800 text-gray-400 text-[8px] font-bold uppercase hover:text-white text-center w-full">✓ {t('BTN_SEEN')}</button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    
-                    {recommendations.length > 0 && !loading && (
-                        <button onClick={()=>setPage(p=>p+1)} className="w-full py-4 border-2 border-black font-bold uppercase hover:bg-black hover:text-bone text-xs btn-primary">{t('BTN_LOAD_MORE')}</button>
-                    )}
-                    {loading && <div className="p-4 text-center text-xs animate-pulse font-bold">{t('DISCOVER_EMPTY')}</div>}
-                </div>
-            );
+            return <div className="space-y-6 pb-24"><div className="flex border-2 border-black"><button onClick={()=>setDiscoverType('movie')} className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${discoverType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button><button onClick={()=>setDiscoverType('tv')} className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${discoverType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button></div><div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">{['top', 'new', 'soon'].map(m => <button key={m} onClick={()=>setFilterMode(m)} className={`flex-shrink-0 px-3 py-1 text-[10px] font-bold uppercase border border-black transition-all ${filterMode===m?'bg-black text-bone':'hover:bg-gray-100'}`}>{m === 'top' ? t('DISC_TOP') : m === 'new' ? t('DISC_NEW') : t('DISC_SOON')}</button>)}<select value={filterMode === 'genre' ? selectedGenre : ""} onChange={(e) => { setFilterMode('genre'); setSelectedGenre(parseInt(e.target.value)); }} className={`flex-shrink-0 px-3 py-1 text-[10px] font-bold uppercase border border-black bg-transparent outline-none ${filterMode === 'genre' ? 'bg-black text-bone' : ''}`}><option value="">{t('DISC_GENRE')}</option>{Object.entries(GENRES).map(([id, name]) => <option key={id} value={id}>{name}</option>)}</select>{filterMode === 'top' && highRatedItems.length >= 5 && <button onClick={() => { setFilterMode('antiRut'); setPage(1); showToast('🎲 Breaking your rut!'); }} className="flex-shrink-0 px-3 py-1 text-[10px] font-bold uppercase border-2 border-verified text-verified hover:bg-verified hover:text-white transition-all">🎲 ANTI-RUT</button>}</div>{loading && loadingProgress && <div className="text-center py-8 border-2 border-dashed border-gray-300 bg-gray-50"><div className="animate-spin w-8 h-8 border-4 border-black border-t-transparent rounded-full mx-auto mb-3"></div><p className="text-xs font-bold uppercase text-gray-500">{loadingProgress}</p></div>}{curatorPick && <div className="relative overflow-hidden border-4 border-love bg-black p-6 shadow-xl"><div className="absolute inset-0 opacity-20" style={{ background: 'linear-gradient(135deg, rgba(224,36,94,0.3) 0%, transparent 50%, rgba(29,155,240,0.3) 100%)' }}></div><div className="relative z-10"><p className="text-xs uppercase text-love mb-2 font-black tracking-widest">★ {t('CURATOR_PICK')}</p><p className="text-2xl font-black uppercase leading-tight mb-2 text-bone">{curatorPick.item.title || curatorPick.item.name}</p><p className="text-sm text-gray-300 mb-4"><span className="font-bold text-bone">{curatorPick.reason}</span> {curatorPick.because}</p><div className="flex gap-2"><button onClick={()=>onAdd({ title: curatorPick.item.title||curatorPick.item.name, ...curatorPick.item, type: discoverType })} className="bg-bone text-black px-4 py-2 text-xs font-bold uppercase btn-primary hover:bg-white">+ ADD</button><button onClick={()=>onInfo({ tmdbData: curatorPick.item, title: curatorPick.item.title||curatorPick.item.name, type: discoverType })} className="border-2 border-bone text-bone px-4 py-2 text-xs font-bold uppercase btn-primary hover:bg-bone hover:text-black">INFO</button></div></div></div>}{topMatches.length > 0 && <div><h3 className="font-bold uppercase text-xs mb-2 tracking-widest text-[#1D9BF0]">{t('DISC_TOP')} • {topMatches.length}</h3><div className="flex overflow-x-auto gap-3 pb-4 scrollbar-hide">{topMatches.map(m => <div key={m.id} onClick={()=>onInfo({ tmdbData: m, title: m.title || m.name, type: discoverType })} className="w-28 flex-shrink-0 relative cursor-pointer group">{m.poster_path && <img src={`https://image.tmdb.org/t/p/w342${m.poster_path}`} className="w-full h-40 object-cover border border-black transition-transform group-hover:scale-105" />}<div className="absolute top-0 right-0 bg-[#1D9BF0] text-white text-[9px] font-bold px-1 py-0.5">{m.matchScore}%</div>{m.source && <div className="absolute bottom-0 inset-x-0 bg-black/80 text-white text-[7px] font-bold px-1 py-0.5 uppercase truncate">{m.source === 'cast' ? `★ ${m.actorName?.split(' ')[0]}` : m.source === 'director' ? `🎬 ${m.directorName?.split(' ')[1] || 'Dir'}` : m.source}</div>}</div>)}</div></div>}<div className="grid grid-cols-2 gap-4">{recommendations.map(rec => <div key={rec.id} className="border border-black bg-black text-bone flex flex-col h-full group overflow-hidden"><div className="relative aspect-[2/3]" onClick={()=>onInfo({ tmdbData: rec, title: rec.title || rec.name, type: discoverType })}>{rec.poster_path ? <img src={`https://image.tmdb.org/t/p/w342${rec.poster_path}`} className="w-full h-full object-cover transition-transform group-hover:scale-105" /> : <div className="w-full h-full bg-gray-800 flex items-center justify-center text-xs">NO IMG</div>}<div className="absolute top-2 right-2 bg-verified text-white text-[10px] font-bold px-1.5 py-0.5">{rec.matchScore}%</div>{rec.source && <div className="absolute top-2 left-2 bg-black/70 text-white text-[7px] font-bold px-1 py-0.5 uppercase backdrop-blur-sm">{rec.source === 'cast' ? '★' : rec.source === 'director' ? '🎬' : rec.source === 'recommendation' ? '👍' : rec.source}</div>}</div><div className="p-2 flex flex-col gap-2 flex-1"><p className="font-bold text-[10px] uppercase leading-tight line-clamp-2 flex-1">{rec.title || rec.name}</p>{rec.seedTitle && <p className="text-[8px] text-gray-400 truncate">{rec.source === 'cast' && rec.actorName ? `★ ${rec.actorName}` : rec.source === 'director' && rec.directorName ? `🎬 ${rec.directorName}` : `${t('BECAUSE')} ${rec.seedTitle}`}</p>}<div className="grid grid-cols-2 gap-1 mt-auto"><button onClick={()=>onAdd({ title: rec.title||rec.name, ...rec, type: discoverType })} className="py-2 bg-bone text-black text-[9px] font-bold uppercase hover:bg-white text-center btn-primary">+ ADD</button><button onClick={()=>onAddToWatchlist({ title: rec.title||rec.name, ...rec, type: discoverType })} className="py-2 border border-bone text-bone text-[9px] font-bold uppercase hover:bg-bone hover:text-black text-center btn-primary">{t('BTN_ADD_WATCHLIST')}</button></div><button onClick={()=>onSeen(rec)} className="py-1 bg-gray-800 text-gray-400 text-[8px] font-bold uppercase hover:text-white text-center w-full transition-colors">✓ {t('BTN_SEEN')}</button></div></div>)}</div>{recommendations.length > 0 && !loading && <button onClick={()=>setPage(p=>p+1)} className="w-full py-4 border-2 border-black font-bold uppercase hover:bg-black hover:text-bone text-xs btn-primary transition-all">{t('BTN_LOAD_MORE')} • Page {page + 1}</button>}{!loading && recommendations.length === 0 && page === 1 && <div className="text-center p-10 text-gray-400"><p className="font-bold uppercase mb-2">No recommendations</p><p className="text-xs">Rate more items</p></div>}</div>;
         }
 
-        function App() {
+        // ========== END OF PART 2/3 ==========
+        // DO NOT CLOSE ANY TAGS - WAIT FOR PART 3
+
+                function App() {
             const [movies, setMovies] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.movies)) || []);
             const [tvShows, setTvShows] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.tvShows)) || []);
             const [backlog, setBacklog] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.backlog)) || []);
@@ -790,18 +393,13 @@
             const [blacklist, setBlacklist] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.blacklist)) || []);
             const [apiKey, setApiKey] = useState(() => localStorage.getItem(STORAGE_KEYS.tmdbKey) || '');
             const [language, setLanguage] = useState(() => localStorage.getItem(STORAGE_KEYS.language) || 'en-US');
-            const [soundEnabled, setSoundEnabled] = useState(() => {
-                const saved = localStorage.getItem(STORAGE_KEYS.sound);
-                return saved !== null ? JSON.parse(saved) : true;
-            });
+            const [soundEnabled, setSoundEnabled] = useState(() => { const s = localStorage.getItem(STORAGE_KEYS.sound); return s !== null ? JSON.parse(s) : true });
             const [winCount, setWinCount] = useState(() => parseInt(localStorage.getItem(STORAGE_KEYS.winCount)) || 0);
-
             const [currentTab, setCurrentTab] = useState('home');
-            const [homeMode, setHomeMode] = useState('movie'); 
+            const [homeMode, setHomeMode] = useState('movie');
             const [isSpinning, setIsSpinning] = useState(false);
             const [spinningText, setSpinningText] = useState('');
             const [selectedItem, setSelectedItem] = useState(null);
-            const [selectedItemType, setSelectedItemType] = useState(null);
             const [showResult, setShowResult] = useState(false);
             const [showConfetti, setShowConfetti] = useState(false);
             const [showFilters, setShowFilters] = useState(false);
@@ -809,54 +407,36 @@
             const [toasts, setToasts] = useState([]);
             const [rateModalItem, setRateModalItem] = useState(null);
             const [infoItem, setInfoItem] = useState(null);
-            const [editingDateId, setEditingDateId] = useState(null);
-            const [isSyncing, setIsSyncing] = useState(false);
-
-            const [watchlistTab, setWatchlistTab] = useState('movie');
-            const [watchlistSort, setWatchlistSort] = useState('added');
-            const [historyTab, setHistoryTab] = useState('movie');
-            const [historySort, setHistorySort] = useState('added');
-            const [historyFilterOrigin, setHistoryFilterOrigin] = useState('all');
-
             const spinCandidatesRef = useRef([]);
             const fileInputRef = useRef(null);
-            const t = (key) => TRANSLATIONS[language][key] || key;
-
+            const t = (k) => TRANSLATIONS[language][k] || k;
+            
             useEffect(() => localStorage.setItem(STORAGE_KEYS.movies, JSON.stringify(movies)), [movies]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.tvShows, JSON.stringify(tvShows)), [tvShows]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.backlog, JSON.stringify(backlog)), [backlog]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.watched, JSON.stringify(watched)), [watched]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.blacklist, JSON.stringify(blacklist)), [blacklist]);
-            useEffect(() => { if(apiKey) localStorage.setItem(STORAGE_KEYS.tmdbKey, apiKey); else localStorage.removeItem(STORAGE_KEYS.tmdbKey); }, [apiKey]);
+            useEffect(() => { if(apiKey) localStorage.setItem(STORAGE_KEYS.tmdbKey, apiKey); else localStorage.removeItem(STORAGE_KEYS.tmdbKey) }, [apiKey]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.language, language), [language]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.sound, JSON.stringify(soundEnabled)), [soundEnabled]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.winCount, winCount.toString()), [winCount]);
-
-            useEffect(() => { setFilters({ genres: [], time: null }); }, [homeMode]);
-
-            const showToast = useCallback((msg) => { const id = Date.now(); setToasts(p => [...p, { id, msg }]); setTimeout(() => setToasts(p => p.filter(t => t.id !== id)), 3000); }, []);
-
+            
+            const showToast = useCallback((msg) => { const id = Date.now(); setToasts(p => [...p, { id, msg }]); setTimeout(() => setToasts(p => p.filter(t => t.id !== id)), 3000) }, []);
+            
             const handleAdd = (title, metadata) => {
                 if (!title || typeof title !== 'string' || !title.trim()) return;
                 const type = (metadata && metadata.type) ? metadata.type : (metadata && metadata.title ? 'movie' : 'tv');
-                const finalType = metadata && metadata.id ? type : homeMode; 
+                const finalType = metadata && metadata.id ? type : homeMode;
                 const targetList = (finalType === 'tv' || finalType === 'tvShows' || finalType === 'tvShow') ? tvShows : movies;
                 if (targetList.some(i => (metadata && i.tmdbData && i.tmdbData.id === metadata.id) || i.title.toLowerCase() === title.toLowerCase())) {
                     showToast(t('TOAST_EXIST')); return;
                 }
                 const newItem = { id: generateId(), title: metadata ? metadata.title : title, included: true, tmdbData: metadata, type: finalType };
-                if (finalType === 'tv' || finalType === 'tvShows' || finalType === 'tvShow') setTvShows(p => [...p, newItem]); 
+                if (finalType === 'tv' || finalType === 'tvShows' || finalType === 'tvShow') setTvShows(p => [...p, newItem]);
                 else setMovies(p => [...p, newItem]);
                 showToast(t('TOAST_ADDED'));
             };
-
-            const handleAddRecommendation = (item) => {
-                if (!item) return;
-                const title = item.title || item.name;
-                const type = item.media_type === 'tv' || item.name ? 'tv' : 'movie';
-                handleAdd(title, { ...item, type });
-            };
-
+            
             const handleAddToWatchlist = (item) => {
                 if (!item) return;
                 if (backlog.some(b => b.tmdbData && b.tmdbData.id === item.id)) { showToast(t('TOAST_EXIST')); return; }
@@ -864,54 +444,43 @@
                 setBacklog(p => [...p, newItem]);
                 showToast(t('TOAST_ADDED_WATCHLIST'));
             };
-
+            
             const handleSeenRecommendation = (item) => {
                 const title = item.title || item.name;
                 const type = item.media_type === 'tv' || item.name ? 'tv' : 'movie';
                 const mockItem = { id: generateId(), title: title, tmdbData: item, type: type, _isSeenAction: true };
                 setRateModalItem(mockItem);
             };
-
+            
             const handleBlacklist = (id) => setBlacklist(p => [...p, id]);
-
-            const promoteFromVault = (item) => {
-                setBacklog(p => p.filter(i => i.id !== item.id));
-                handleAdd(item.title, item.tmdbData);
-            };
-
+            
             const toggleIncluded = (id, type) => {
                 const updater = p => p.map(i => i.id === id ? { ...i, included: !i.included } : i);
                 if (type === 'movie' || type === 'movies') setMovies(updater); else setTvShows(updater);
             };
-
+            
             const deleteItem = (id, type) => {
                 if (type === 'backlog') setBacklog(p => p.filter(i => i.id !== id));
                 else if (type === 'history') setWatched(p => p.filter(i => i.id !== id));
-                else if (type === 'movie' || type === 'movies') setMovies(p => p.filter(i => i.id !== id)); 
+                else if (type === 'movie' || type === 'movies') setMovies(p => p.filter(i => i.id !== id));
                 else setTvShows(p => p.filter(i => i.id !== id));
             };
-
-            const updateWatchedDate = (id, newDateStr) => {
-                const newDate = new Date(newDateStr + 'T12:00:00').toISOString();
-                setWatched(p => p.map(w => w.id === id ? { ...w, watchedDate: newDate } : w));
-                setEditingDateId(null);
-            };
-
+            
             const clearList = (type) => {
                 if(confirm(t('CONFIRM_CLEAR'))) {
                     if (type === 'movies') setMovies([]);
                     else setTvShows([]);
                 }
             };
-
+            
             const currentList = homeMode === 'movie' ? movies : tvShows;
-
+            
             const filterItem = (item) => {
                 if (!item.included) return false;
                 if (filters.genres.length > 0 || filters.time) {
-                    if (!item.tmdbData) return true; 
+                    if (!item.tmdbData) return true;
                     if (filters.genres.length > 0) { const g = item.tmdbData.genre_ids || []; if (!filters.genres.some(id => g.includes(id))) return false; }
-                    if (filters.time) { 
+                    if (filters.time) {
                         let r = item.tmdbData.runtime;
                         if (!r && item.tmdbData.episode_run_time && item.tmdbData.episode_run_time.length > 0) r = item.tmdbData.episode_run_time.reduce((a,b)=>a+b,0) / item.tmdbData.episode_run_time.length;
                         if (r) {
@@ -923,37 +492,10 @@
                 }
                 return true;
             };
-
+            
             const visibleCandidates = useMemo(() => currentList.filter(filterItem), [currentList, filters]);
-            const displayList = useMemo(() => { if (filters.genres.length === 0 && !filters.time) return currentList; return currentList.filter(item => filterItem({ ...item, included: true })); }, [currentList, filters]);
-
-            const sortItems = (items, sortMode) => {
-                const sorted = [...items];
-                if (sortMode === 'alphabetical') sorted.sort((a,b) => a.title.localeCompare(b.title));
-                else if (sortMode === 'release_new') sorted.sort((a,b) => new Date(b.tmdbData?.release_date || b.tmdbData?.first_air_date || 0) - new Date(a.tmdbData?.release_date || a.tmdbData?.first_air_date || 0));
-                else if (sortMode === 'release_old') sorted.sort((a,b) => new Date(a.tmdbData?.release_date || a.tmdbData?.first_air_date || 0) - new Date(b.tmdbData?.release_date || b.tmdbData?.first_air_date || 0));
-                else if (sortMode === 'rating') sorted.sort((a,b) => (b.tmdbData?.vote_average || 0) - (a.tmdbData?.vote_average || 0));
-                else if (sortMode === 'runtime') sorted.sort((a,b) => (a.tmdbData?.runtime || 0) - (b.tmdbData?.runtime || 0));
-                else if (sortMode === 'added' && items[0] && items[0].watchedDate) sorted.sort((a,b) => new Date(b.watchedDate) - new Date(a.watchedDate)); 
-                return sorted;
-            };
-
-            const sortedBacklog = useMemo(() => {
-                const filtered = backlog.filter(i => watchlistTab === 'movie' ? (i.type === 'movie') : (i.type !== 'movie'));
-                return sortItems(filtered, watchlistSort);
-            }, [backlog, watchlistTab, watchlistSort]);
-
-            const sortedHistory = useMemo(() => {
-                const filtered = watched.filter(i => historyTab === 'movie' ? (i.type === 'movie') : (i.type !== 'movie'));
-                const sourceFiltered = filtered.filter(i => {
-                    if (historyFilterOrigin === 'all') return true;
-                    if (historyFilterOrigin === 'roulette') return i.origin === 'roulette';
-                    if (historyFilterOrigin === 'seen') return i.origin !== 'roulette';
-                    return true;
-                });
-                return sortItems(sourceFiltered, historySort);
-            }, [watched, historyTab, historySort, historyFilterOrigin]);
-
+            const displayList = useMemo(() => { if (filters.genres.length === 0 && !filters.time) return currentList; return currentList.filter(item => filterItem({ ...item, included: true })) }, [currentList, filters]);
+            
             const spinRoulette = useCallback(() => {
                 const candidates = visibleCandidates.filter(i => i.included);
                 if (isSpinning || candidates.length === 0) return;
@@ -968,48 +510,44 @@
                         requestAnimationFrame(animate);
                     } else {
                         const winner = spinCandidatesRef.current[Math.floor(Math.random() * spinCandidatesRef.current.length)];
-                        setSelectedItem(winner); setShowResult(true); setShowConfetti(true);
-                        setIsSpinning(false); if(soundEnabled) playWin();
+                        setSelectedItem(winner); setShowResult(true);
+                        const isFirstSpin = winCount === 0;
+                        if (isFirstSpin) {
+                            setShowConfetti(true);
+                            setTimeout(() => setShowConfetti(false), 6000);
+                            if (soundEnabled) { playWin(); setTimeout(() => playWin(), 500); }
+                        } else {
+                            setShowConfetti(true);
+                            setTimeout(() => setShowConfetti(false), 4000);
+                            if (soundEnabled) playWin();
+                        }
+                        setIsSpinning(false);
                         setWinCount(c => c + 1);
-                        setTimeout(() => setShowConfetti(false), 4000);
                     }
                 };
                 animate();
-            }, [visibleCandidates, isSpinning, soundEnabled]);
-
-            const initiateMarkAsWatched = (item) => { 
-                if (!selectedItemType) setSelectedItemType(item.type || (item.tmdbData && item.tmdbData.title ? 'movies' : 'tvShows'));
-                setRateModalItem(item); 
-            };
-
+            }, [visibleCandidates, isSpinning, soundEnabled, winCount]);
+            
             const confirmWatched = async (rating) => {
                 const item = rateModalItem;
                 const finalRating = rating === 'skip' ? null : rating;
-                
                 if (watched.some(w => w.id === item.id)) {
                     setWatched(p => p.map(w => w.id === item.id ? { ...w, rating: finalRating } : w));
                     setRateModalItem(null); return;
                 }
-
                 const type = item.type || (item.tmdbData?.title ? 'movie' : 'tvShow');
                 const origin = item._isSeenAction ? 'seen' : 'roulette';
-
                 let credits = null;
                 if (apiKey && item.tmdbData) {
                     try {
                         const endpoint = type === 'tv' || type === 'tvShows' ? 'tv' : 'movie';
                         const res = await fetch(`https://api.themoviedb.org/3/${endpoint}/${item.tmdbData.id}/credits?api_key=${apiKey}`);
                         const data = await res.json();
-                        credits = {
-                            cast: data.cast ? data.cast.slice(0,4).map(c => ({ name: c.name, profile_path: c.profile_path, id: c.id })) : [],
-                            director: data.crew ? data.crew.find(c => c.job === 'Director') : null
-                        };
+                        credits = { cast: data.cast ? data.cast.slice(0,4).map(c => ({ name: c.name, profile_path: c.profile_path, id: c.id })) : [], director: data.crew ? data.crew.find(c => c.job === 'Director') : null };
                     } catch(e) {}
                 }
-
                 const newWatched = { id: generateId(), title: item.title, type, watchedDate: new Date().toISOString(), tmdbData: item.tmdbData, rating: finalRating, origin: origin, credits: credits };
                 setWatched(p => [...p, newWatched]);
-                
                 if (!item._isSeenAction) {
                     if (item.tmdbData) {
                         setMovies(p => p.filter(m => !m.tmdbData || m.tmdbData.id !== item.tmdbData.id));
@@ -1021,63 +559,35 @@
                         setBacklog(p => p.filter(b => b.id !== item.id));
                     }
                 }
-                
-                // Extra confetti for 5-star rating!
                 if (finalRating === 5 && soundEnabled) {
                     setShowConfetti(true);
                     setTimeout(() => setShowConfetti(false), 3000);
                 }
-                
                 setShowResult(false); setSelectedItem(null); setRateModalItem(null); showToast(t('TOAST_ADDED'));
             };
-
-            const syncMetadata = async () => {
-                if (!apiKey) { showToast('API KEY REQUIRED'); return; }
-                setIsSyncing(true);
-                let updatedCount = 0;
-                const newWatched = [...watched];
-                
-                for (let i = 0; i < newWatched.length; i++) {
-                    const item = newWatched[i];
-                    if (item.tmdbData && !item.credits) {
-                        try {
-                            const type = item.type === 'tv' || item.type === 'tvShows' ? 'tv' : 'movie';
-                            const res = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/credits?api_key=${apiKey}`);
-                            const data = await res.json();
-                            item.credits = {
-                                cast: data.cast ? data.cast.slice(0,4).map(c => ({ name: c.name, profile_path: c.profile_path, id: c.id })) : [],
-                                director: data.crew ? data.crew.find(c => c.job === 'Director') : null
-                            };
-                            updatedCount++;
-                        } catch(e) { console.log('Fail fetch', item.title); }
-                    }
-                }
-                setWatched(newWatched);
-                setIsSyncing(false);
-                showToast(`Updated ${updatedCount} items`);
-            };
-
+            
             const exportData = () => {
                 const data = { version: 42, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled, winCount };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v42-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v42-pro-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
+            
             const importData = (file) => {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     try {
                         const data = JSON.parse(e.target.result);
-                        if(data.movies) setMovies(prev => [...prev, ...data.movies.filter(m=>!prev.some(p=>p.title===m.title))]);
-                        if(data.tvShows) setTvShows(prev => [...prev, ...data.tvShows.filter(m=>!prev.some(p=>p.title===m.title))]);
-                        if(data.backlog) setBacklog(prev => [...prev, ...data.backlog.filter(m=>!prev.some(p=>p.title===m.title))]);
+                        if(data.movies) setMovies(prev => [...prev, ...data.movies.filter(m => !prev.some(p => p.title === m.title))]);
+                        if(data.tvShows) setTvShows(prev => [...prev, ...data.tvShows.filter(m => !prev.some(p => p.title === m.title))]);
+                        if(data.backlog) setBacklog(prev => [...prev, ...data.backlog.filter(m => !prev.some(p => p.title === m.title))]);
                         if(data.watched) setWatched(data.watched);
                         if(data.blacklist) setBlacklist(data.blacklist);
                         if(data.apiKey) setApiKey(data.apiKey);
                         if(data.winCount) setWinCount(data.winCount);
-                        showToast('Import successful');
+                        showToast('Import OK');
                     } catch (err) { showToast('Import failed'); }
                 };
                 reader.readAsText(file);
@@ -1089,7 +599,7 @@
                         {currentTab === 'home' && (
                             <div className="pb-32">
                                 <header className="relative overflow-hidden border-8 border-black bg-bone shadow-2xl mb-6">
-                                    <div className="absolute inset-0 opacity-30 gradient-bg"></div>
+                                    <div className="absolute inset-0 opacity-30" style={{background:'linear-gradient(135deg,rgba(224,36,94,0.1) 0%,transparent 50%,rgba(29,155,240,0.1) 100%)'}}></div>
                                     <div className="relative p-8 text-center">
                                         <h1 className="text-5xl font-black tracking-tighter leading-none">
                                             <span className="block text-love">MOVIE</span>
@@ -1101,72 +611,67 @@
                                     <div className="absolute bottom-0 left-0 right-0 h-4 bg-black"></div>
                                 </header>
                                 <div className="flex border-2 border-black mb-6">
-                                    <button onClick={()=>setHomeMode('movie')} className={`flex-1 py-3 font-bold uppercase text-xs transition-all ${homeMode==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
-                                    <button onClick={()=>setHomeMode('tv')} className={`flex-1 py-3 font-bold uppercase text-xs transition-all ${homeMode==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
+                                    <button onClick={() => setHomeMode('movie')} className={`flex-1 py-3 font-bold uppercase text-xs transition-all ${homeMode === 'movie' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
+                                    <button onClick={() => setHomeMode('tv')} className={`flex-1 py-3 font-bold uppercase text-xs transition-all ${homeMode === 'tv' ? 'bg-black text-bone' : 'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
+                                </div>
+                                <div className="flex gap-2 mb-4 overflow-x-auto pb-2 scrollbar-hide">
+                                    <button onClick={() => setFilters({ genres: [10749, 35, 27], time: 'medium' })} className="flex-shrink-0 px-3 py-2 text-[10px] font-bold uppercase border-2 border-love text-love hover:bg-love hover:text-white transition-all whitespace-nowrap">💕 DATE NIGHT</button>
+                                    <button onClick={() => { const topGenres = watched.filter(w => w.tmdbData?.genre_ids).flatMap(w => w.tmdbData.genre_ids).reduce((acc, g) => { acc[g] = (acc[g] || 0) + 1; return acc }, {}); const top3 = Object.entries(topGenres).sort((a,b) => b[1] - a[1]).slice(0, 3).map(([id]) => parseInt(id)); const allGenres = Object.keys(GENRES).map(id => parseInt(id)); const antiRutGenres = allGenres.filter(g => !top3.includes(g)).slice(0, 5); setFilters({ genres: antiRutGenres, time: null }); showToast('🎲 Anti-Rut!'); }} className="flex-shrink-0 px-3 py-2 text-[10px] font-bold uppercase border-2 border-verified text-verified hover:bg-verified hover:text-white transition-all whitespace-nowrap">🎲 ANTI-RUT</button>
+                                    {(filters.genres.length > 0 || filters.time) && <button onClick={() => setFilters({ genres: [], time: null })} className="flex-shrink-0 px-3 py-2 text-[10px] font-bold uppercase border border-gray-400 text-gray-500 hover:border-black hover:text-black transition-all">✕ CLEAR</button>}
                                 </div>
                                 <div className="flex flex-col gap-2 mb-6">
                                     <div className="flex gap-2">
-                                        <SearchInput type={homeMode === 'movie' ? 'movie' : 'tv'} apiKey={apiKey} language={language} placeholder={homeMode === 'movie' ? t('PLACEHOLDER_MOVIES') : t('PLACEHOLDER_TV')} onAdd={(t,m)=>handleAdd(t,{...m,type:homeMode})} />
-                                        <button className="bg-black text-bone px-4 font-bold text-xs btn-primary">ADD</button>
+                                        <SearchInput type={homeMode === 'movie' ? 'movie' : 'tv'} apiKey={apiKey} language={language} placeholder={homeMode === 'movie' ? t('PLACEHOLDER_MOVIES') : t('PLACEHOLDER_TV')} onAdd={(t,m) => handleAdd(t, {...m, type: homeMode})} />
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center mb-2"><h2 className="font-bold text-xs uppercase tracking-widest">{t('HEADER_MOVIES')} ({displayList.length})</h2><button onClick={()=>setShowFilters(!showFilters)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase transition-all ${showFilters || (filters.genres.length>0||filters.time) ? 'bg-black text-bone' : ''}`}>{t('FILTERS')}</button></div>
-                                <FilterPanel isOpen={showFilters} onClose={()=>setShowFilters(false)} filters={filters} setFilters={setFilters} t={t} />
+                                <div className="flex justify-between items-center mb-2">
+                                    <h2 className="font-bold text-xs uppercase tracking-widest">{t('HEADER_MOVIES')} ({displayList.length})</h2>
+                                    <button onClick={() => setShowFilters(!showFilters)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${showFilters || (filters.genres.length > 0 || filters.time) ? 'bg-black text-bone' : ''}`}>{t('FILTERS')}</button>
+                                </div>
+                                <FilterPanel isOpen={showFilters} onClose={() => setShowFilters(false)} filters={filters} setFilters={setFilters} t={t} />
                                 <div className="mb-6 max-h-64 overflow-y-auto border-t-2 border-b-2 border-black/10">
                                     {displayList.length === 0 ? <div className="p-8 text-center text-gray-400">{t('EMPTY_LIST')}</div> : displayList.map(item => (
-                                        <div key={item.id} className={`flex items-center gap-3 py-3 border-b border-gray-200 transition-opacity ${!item.included?'opacity-50':''}`}>
-                                            <input type="checkbox" checked={item.included} onChange={()=>toggleIncluded(item.id, item.type || (homeMode==='movie'?'movie':'tv'))} className="checkbox-receipt" />
-                                            <div className="flex-1 min-w-0"><span className="font-bold uppercase text-sm truncate block">{item.title} {item.tmdbData && <VerifiedBadge />}</span>{item.tmdbData && <span className="text-[10px] text-gray-500 uppercase">{item.tmdbData.release_date?.split('-')[0]} • {item.tmdbData.vote_average} ★</span>}</div>
-                                            {item.tmdbData && <button onClick={()=>setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })} className="text-gray-400 hover:text-black transition-colors"><Icons.Info/></button>}
-                                            <button onClick={()=>deleteItem(item.id, item.type||(homeMode==='movie'?'movie':'tv'))} className="text-gray-400 hover:text-red-500 px-2 transition-colors">✕</button>
+                                        <div key={item.id} className={`flex items-center gap-3 py-3 border-b border-gray-200 transition-opacity ${!item.included ? 'opacity-50' : ''}`}>
+                                            <input type="checkbox" checked={item.included} onChange={() => toggleIncluded(item.id, item.type || (homeMode === 'movie' ? 'movie' : 'tv'))} className="checkbox-receipt" />
+                                            <div className="flex-1 min-w-0">
+                                                <span className="font-bold uppercase text-sm truncate block">{item.title} {item.tmdbData && <VerifiedBadge />}</span>
+                                                {item.tmdbData && <span className="text-[10px] text-gray-500 uppercase">{item.tmdbData.release_date?.split('-')[0]} • {item.tmdbData.vote_average} ★</span>}
+                                            </div>
+                                            {item.tmdbData && <button onClick={() => setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })} className="text-gray-400 hover:text-black transition-colors"><Icons.Info /></button>}
+                                            <button onClick={() => deleteItem(item.id, item.type || (homeMode === 'movie' ? 'movie' : 'tv'))} className="text-gray-400 hover:text-red-500 px-2 transition-colors">✕</button>
                                         </div>
                                     ))}
                                 </div>
-                                <button onClick={spinRoulette} disabled={isSpinning || visibleCandidates.filter(i=>i.included).length === 0} className="w-full bg-black text-bone py-6 text-2xl font-black uppercase tracking-widest hover:bg-gray-900 active:scale-95 transition-all disabled:opacity-50 btn-primary">{isSpinning ? t('SPINNING') : t('SPIN_BTN')}</button>
+                                <button onClick={spinRoulette} disabled={isSpinning || visibleCandidates.filter(i => i.included).length === 0} className="w-full bg-black text-bone py-6 text-2xl font-black uppercase tracking-widest hover:bg-gray-900 active:scale-95 transition-all disabled:opacity-50 btn-primary">
+                                    {isSpinning ? t('SPINNING') : t('SPIN_BTN')}
+                                </button>
                             </div>
                         )}
-                        
+
                         {currentTab === 'watchlist' && (
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('HEADER_WATCHLIST')}</h1>
-                                <div className="flex border-2 border-black mb-4">
-                                    <button onClick={()=>setWatchlistTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${watchlistTab==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
-                                    <button onClick={()=>setWatchlistTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${watchlistTab==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
-                                </div>
-                                <div className="flex justify-end mb-4">
-                                    <select value={watchlistSort} onChange={(e)=>setWatchlistSort(e.target.value)} className="bg-transparent text-[10px] font-bold uppercase border-none outline-none text-right">
-                                        <option value="added">{t('SORT_ADDED')}</option>
-                                        <option value="alphabetical">{t('SORT_ALPHA')}</option>
-                                        <option value="release_new">{t('SORT_RELEASE_NEW')}</option>
-                                        <option value="release_old">{t('SORT_RELEASE_OLD')}</option>
-                                        <option value="rating">{t('SORT_RATING')}</option>
-                                        <option value="runtime">{t('SORT_RUNTIME')}</option>
-                                    </select>
-                                </div>
-
-                                {sortedBacklog.length === 0 ? <div className="text-center text-gray-400 p-10">{t('EMPTY_WATCHLIST')}</div> : (
-                                    sortedBacklog.map(item => (
-                                        <div key={item.id} className="flex gap-3 py-3 border-b border-gray-300">
-                                            {item.tmdbData && item.tmdbData.poster_path ? <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-12 h-18 object-cover border border-black" /> : <div className="w-12 h-18 bg-gray-200"></div>}
-                                            <div className="flex-1">
-                                                <span className="font-bold uppercase text-sm">{item.title}</span>
-                                                <div className="text-[10px] text-gray-500 uppercase mt-1 mb-2">{item.type} • {item.tmdbData?.release_date?.split('-')[0]} • {item.tmdbData?.vote_average?.toFixed(1)}★</div>
-                                                <div className="flex gap-2">
-                                                    <button onClick={()=>promoteFromVault(item)} className="bg-black text-bone px-3 py-1 text-[10px] font-bold uppercase btn-primary">{t('BTN_MOVE_TO_ROULETTE')}</button>
-                                                    <button onClick={()=>deleteItem(item.id, 'backlog')} className="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
-                                                </div>
+                                {backlog.length === 0 ? <div className="text-center text-gray-400 p-10">{t('EMPTY_WATCHLIST')}</div> : backlog.map(item => (
+                                    <div key={item.id} className="flex gap-3 py-3 border-b border-gray-300">
+                                        {item.tmdbData && item.tmdbData.poster_path ? <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-12 h-18 object-cover border border-black" /> : <div className="w-12 h-18 bg-gray-200"></div>}
+                                        <div className="flex-1">
+                                            <span className="font-bold uppercase text-sm">{item.title}</span>
+                                            <div className="text-[10px] text-gray-500 uppercase mt-1 mb-2">{item.type} • {item.tmdbData?.release_date?.split('-')[0]} • {item.tmdbData?.vote_average?.toFixed(1)}★</div>
+                                            <div className="flex gap-2">
+                                                <button onClick={() => { handleAdd(item.title, item.tmdbData); deleteItem(item.id, 'backlog'); }} className="bg-black text-bone px-3 py-1 text-[10px] font-bold uppercase btn-primary">{t('BTN_MOVE_TO_ROULETTE')}</button>
+                                                <button onClick={() => deleteItem(item.id, 'backlog')} className="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
                                             </div>
                                         </div>
-                                    ))
-                                )}
+                                    </div>
+                                ))}
                             </div>
                         )}
 
-                        {currentTab === 'discover' && <DiscoverTab watched={watched} backlog={backlog} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} movies={movies} tvShows={tvShows} t={t} />}
-                        
+                        {currentTab === 'discover' && <DiscoverTab watched={watched} backlog={backlog} apiKey={apiKey} language={language} onAdd={(item) => handleAdd(item.title, item)} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} t={t} movies={movies} tvShows={tvShows} showToast={showToast} />}
+
                         {currentTab === 'swipe' && (
                             <div className="h-[80vh] flex flex-col">
-                                <SwipeTab watched={watched} backlog={backlog} movies={movies} tvShows={tvShows} blacklist={blacklist} apiKey={apiKey} language={language} homeMode={homeMode} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onInfo={setInfoItem} t={t} soundEnabled={soundEnabled} />
+                                <SwipeTab watched={watched} backlog={backlog} movies={movies} tvShows={tvShows} blacklist={blacklist} apiKey={apiKey} language={language} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onInfo={setInfoItem} t={t} soundEnabled={soundEnabled} />
                             </div>
                         )}
 
@@ -1174,46 +679,19 @@
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('NAV_HISTORY')}</h1>
                                 <ProfileStats watched={watched} t={t} />
-                                
-                                <div className="flex border-2 border-black mb-4">
-                                    <button onClick={()=>setHistoryTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
-                                    <button onClick={()=>setHistoryTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
-                                </div>
-                                <div className="flex justify-between mb-4">
-                                    <select value={historyFilterOrigin} onChange={(e)=>setHistoryFilterOrigin(e.target.value)} className="bg-transparent text-[10px] font-bold uppercase border-none outline-none">
-                                        <option value="all">{t('FILTER_SOURCE_ALL')}</option>
-                                        <option value="roulette">{t('FILTER_SOURCE_ROULETTE')}</option>
-                                        <option value="seen">{t('FILTER_SOURCE_SEEN')}</option>
-                                    </select>
-                                    <select value={historySort} onChange={(e)=>setHistorySort(e.target.value)} className="bg-transparent text-[10px] font-bold uppercase border-none outline-none text-right">
-                                        <option value="added">{t('SORT_ADDED')}</option>
-                                        <option value="alphabetical">{t('SORT_ALPHA')}</option>
-                                        <option value="release_new">{t('SORT_RELEASE_NEW')}</option>
-                                        <option value="release_old">{t('SORT_RELEASE_OLD')}</option>
-                                        <option value="rating">{t('SORT_RATING')}</option>
-                                        <option value="runtime">{t('SORT_RUNTIME')}</option>
-                                    </select>
-                                </div>
-                                
-                                {sortedHistory.map(item => (
+                                {watched.map(item => (
                                     <div key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-300">
                                         {item.tmdbData?.poster_path && <img src={`https://image.tmdb.org/t/p/w92${item.tmdbData.poster_path}`} className="w-10 h-14 object-cover border border-black" />}
                                         <div className="flex-1">
                                             <span className="font-bold uppercase text-xs block">{item.title} {item.tmdbData && <VerifiedBadge />} {item.origin === 'roulette' && <RouletteBadge />}</span>
-                                            {editingDateId === item.id ? (
-                                                <input type="date" className="date-input-mini" onChange={(e)=>updateWatchedDate(item.id, e.target.value)} onBlur={()=>setEditingDateId(null)} autoFocus />
-                                            ) : (
-                                                <span className="text-[10px] text-gray-500 uppercase flex items-center">
-                                                    {formatDate(item.watchedDate)} <button onClick={()=>setEditingDateId(item.id)}><Icons.Pencil /></button>
-                                                </span>
-                                            )}
+                                            <span className="text-[10px] text-gray-500 uppercase">{formatDate(item.watchedDate)}</span>
                                         </div>
                                         <div className="flex gap-2 items-center">
-                                            <button onClick={()=>setRateModalItem(item)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase transition-all ${typeof item.rating === 'number' && item.rating >= 4 ? 'bg-love text-white' : ''}`}>
+                                            <button onClick={() => setRateModalItem(item)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${typeof item.rating === 'number' && item.rating >= 4 ? 'bg-love text-white' : ''}`}>
                                                 {item.rating ? (typeof item.rating === 'number' ? `${item.rating}/5` : item.rating) : t('RATE_LABEL_ADD')}
                                             </button>
-                                            <button onClick={()=>setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })}><Icons.Info /></button>
-                                            <button onClick={()=>deleteItem(item.id, 'history')}><Icons.Trash /></button>
+                                            {item.tmdbData && <button onClick={() => setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })}><Icons.Info /></button>}
+                                            <button onClick={() => deleteItem(item.id, 'history')}><Icons.Trash /></button>
                                         </div>
                                     </div>
                                 ))}
@@ -1224,29 +702,34 @@
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-6">{t('SETTINGS_TITLE')}</h1>
                                 <div className="space-y-6">
-                                    <div><label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_LANG_LABEL')}</label><select value={language} onChange={e=>setLanguage(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-bold uppercase"><option value="en-US">ENGLISH</option><option value="pt-PT">PORTUGUÊS</option></select></div>
-                                    <div className="flex items-center gap-4 border-2 border-black p-4"><input type="checkbox" checked={soundEnabled} onChange={e=>setSoundEnabled(e.target.checked)} className="checkbox-receipt" /><span className="font-bold uppercase">{t('SOUND')}</span></div>
-                                    <div><label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_API_LABEL')}</label><input type="text" value={apiKey} onChange={e=>setApiKey(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-mono text-xs" placeholder="API KEY" /></div>
-                                    
-                                    <div className="pt-6 border-t-2 border-black">
-                                        <h3 className="font-bold uppercase text-xs mb-2">Sync</h3>
-                                        <button onClick={syncMetadata} disabled={isSyncing} className="w-full py-3 bg-[#1D9BF0] text-white font-bold uppercase hover:bg-blue-600 disabled:opacity-50 mb-1 btn-primary">{isSyncing ? 'SYNCING...' : t('SYNC_DATA')}</button>
-                                        <p className="text-[10px] text-gray-500">{t('SYNC_DESC')}</p>
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_LANG_LABEL')}</label>
+                                        <select value={language} onChange={e => setLanguage(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-bold uppercase">
+                                            <option value="en-US">ENGLISH</option>
+                                            <option value="pt-PT">PORTUGUÊS</option>
+                                        </select>
                                     </div>
-
+                                    <div className="flex items-center gap-4 border-2 border-black p-4">
+                                        <input type="checkbox" checked={soundEnabled} onChange={e => setSoundEnabled(e.target.checked)} className="checkbox-receipt" />
+                                        <span className="font-bold uppercase">{t('SOUND')}</span>
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase mb-2">{t('SETTINGS_API_LABEL')}</label>
+                                        <input type="text" value={apiKey} onChange={e => setApiKey(e.target.value)} className="w-full p-4 border-2 border-black bg-transparent font-mono text-xs" placeholder="API KEY" />
+                                    </div>
                                     <div className="pt-6 border-t-2 border-black">
                                         <h3 className="font-bold uppercase text-xs mb-2">Data</h3>
-                                        <button onClick={()=>fileInputRef.current.click()} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone btn-primary">{t('IMPORT')}</button>
+                                        <button onClick={() => fileInputRef.current.click()} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone btn-primary">{t('IMPORT')}</button>
                                         <input ref={fileInputRef} type="file" className="hidden" onChange={e => importData(e.target.files[0])} />
                                         <button onClick={exportData} className="w-full py-3 bg-black text-bone font-bold uppercase hover:bg-gray-800 btn-primary">{t('EXPORT')}</button>
                                     </div>
                                     <div className="pt-6 border-t-4 border-red-600">
                                         <h3 className="text-red-600 font-bold uppercase text-xs mb-4">{t('DANGER_ZONE')}</h3>
-                                        <button onClick={()=>clearList('movies')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white mb-2 btn-primary">{t('BTN_CLEAR_MOVIES')}</button>
-                                        <button onClick={()=>clearList('tv')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white btn-primary">{t('BTN_CLEAR_TV')}</button>
+                                        <button onClick={() => clearList('movies')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white mb-2 btn-primary">{t('BTN_CLEAR_MOVIES')}</button>
+                                        <button onClick={() => clearList('tv')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white btn-primary">{t('BTN_CLEAR_TV')}</button>
                                     </div>
                                     <div className="text-center pt-4 text-[10px] text-gray-400">
-                                        <p>VERSION 42 PRO</p>
+                                        <p>V42 ACTUAL PRO</p>
                                         <p className="mt-1">Made with ❤️ & 🎰</p>
                                     </div>
                                 </div>
@@ -1255,22 +738,22 @@
                     </div>
 
                     <div className="fixed bottom-0 left-0 right-0 bg-[#EFEEE5] border-t-4 border-black z-50 h-16 flex justify-around items-center pb-safe">
-                        {['home','watchlist','discover','swipe','history','settings'].map(tab => (
-                            <button key={tab} onClick={()=>setCurrentTab(tab)} className={`flex-1 flex flex-col items-center justify-center h-full transition-colors ${currentTab===tab?'text-black':'text-gray-400'}`}>
-                                {tab==='home' && <Icons.Home />} 
-                                {tab==='watchlist' && <Icons.Watchlist />}
-                                {tab==='discover' && <Icons.Discover />} 
-                                {tab==='swipe' && <Icons.Swipe />} 
-                                {tab==='history' && <Icons.History />} 
-                                {tab==='settings' && <Icons.Settings />}
+                        {['home', 'watchlist', 'discover', 'swipe', 'history', 'settings'].map(tab => (
+                            <button key={tab} onClick={() => setCurrentTab(tab)} className={`flex-1 flex flex-col items-center justify-center h-full transition-colors ${currentTab === tab ? 'text-black' : 'text-gray-400'}`}>
+                                {tab === 'home' && <Icons.Home />}
+                                {tab === 'watchlist' && <Icons.Watchlist />}
+                                {tab === 'discover' && <Icons.Discover />}
+                                {tab === 'swipe' && <Icons.Swipe />}
+                                {tab === 'history' && <Icons.History />}
+                                {tab === 'settings' && <Icons.Settings />}
                                 <span className="text-[9px] font-bold uppercase mt-1">{t(`NAV_${tab.toUpperCase()}`)}</span>
                             </button>
                         ))}
                     </div>
 
                     {showResult && selectedItem && !isSpinning && (
-                        <div className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-6 animate-fade-in" onClick={()=>setShowResult(false)}>
-                            <div className="bg-black text-bone overflow-hidden shadow-2xl relative celebrate w-full max-w-lg border-[12px] border-bone" onClick={e=>e.stopPropagation()}>
+                        <div className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-6 animate-fade-in" onClick={() => setShowResult(false)}>
+                            <div className="bg-black text-bone overflow-hidden shadow-2xl relative celebrate w-full max-w-lg border-[12px] border-bone" onClick={e => e.stopPropagation()}>
                                 {selectedItem.tmdbData && selectedItem.tmdbData.backdrop_path && (
                                     <div className="absolute inset-0 z-0 opacity-40">
                                         <img src={`https://image.tmdb.org/t/p/w780${selectedItem.tmdbData.backdrop_path}`} className="w-full h-full object-cover filter grayscale contrast-125" />
@@ -1285,7 +768,9 @@
                                             <div className="w-32 h-48 bg-gray-800 border-2 border-bone flex items-center justify-center"><span className="text-4xl">?</span></div>
                                         )}
                                         <div className="flex-1 text-left">
-                                            <p className="text-xs font-bold text-love bg-bone inline-block px-2 py-1 mb-2 tracking-widest uppercase">🎰 WIN #{winCount}</p>
+                                            <p className={`text-xs font-bold ${winCount === 1 ? 'text-white bg-love animate-pulse' : 'text-love bg-bone'} inline-block px-2 py-1 mb-2 tracking-widest uppercase`}>
+                                                {winCount === 1 ? '🎉 ' + t('FIRST_SPIN') + ' 🎉' : `🎰 WIN #${winCount}`}
+                                            </p>
                                             <h2 className="text-2xl font-black uppercase leading-tight font-sans mb-2">{selectedItem.title} <VerifiedBadge /></h2>
                                             <div className="flex flex-wrap gap-3 text-xs font-mono text-gray-400 mb-4">
                                                 <span>{selectedItem.tmdbData ? selectedItem.tmdbData.release_date?.split('-')[0] : ''}</span>
@@ -1293,26 +778,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p className="text-sm text-gray-300 line-clamp-4 leading-relaxed font-sans">{selectedItem.tmdbData ? selectedItem.tmdbData.overview : 'No description available.'}</p>
-                                    <button onClick={()=>initiateMarkAsWatched(selectedItem)} className="w-full px-6 py-4 bg-bone text-black text-sm font-bold uppercase tracking-wider hover:bg-white transition-all btn-primary">✓ {t('BTN_WATCHED')}</button>
+                                    <p className="text-sm text-gray-300 line-clamp-4 leading-relaxed font-sans">{selectedItem.tmdbData ? selectedItem.tmdbData.overview : 'No description.'}</p>
+                                    <button onClick={() => setRateModalItem(selectedItem)} className="w-full px-6 py-4 bg-bone text-black text-sm font-bold uppercase tracking-wider hover:bg-white transition-all btn-primary">✓ {t('BTN_WATCHED')}</button>
                                 </div>
                             </div>
                         </div>
                     )}
 
                     {isSpinning && (
-                         <div className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center">
+                        <div className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center">
                             <div className="text-center">
                                 <p className="text-xs uppercase text-gray-400 mb-2 tracking-widest">{t('SPINNING')}</p>
                                 <p className="text-3xl font-bold text-bone spin-animation truncate uppercase font-sans max-w-sm">{spinningText}</p>
                             </div>
-                         </div>
+                        </div>
                     )}
 
-                    <MovieDetailPage item={infoItem} onClose={()=>setInfoItem(null)} t={t} apiKey={apiKey} language={language} onAdd={(item)=>handleAdd(item.title, item)} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onNavigate={setInfoItem} />
-                    <RateModal isOpen={!!rateModalItem} onClose={()=>setRateModalItem(null)} onRate={confirmWatched} t={t} />
+                    <MovieDetailPage item={infoItem} onClose={() => setInfoItem(null)} t={t} apiKey={apiKey} language={language} onAdd={(item) => handleAdd(item.title, item)} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onNavigate={setInfoItem} />
+                    <RateModal isOpen={!!rateModalItem} onClose={() => setRateModalItem(null)} onRate={confirmWatched} t={t} />
                     <div className="fixed top-4 right-4 z-[100] flex flex-col gap-2 pointer-events-none">{toasts.map(t => <Toast key={t.id} msg={t.msg} />)}</div>
-                    {showConfetti && <Confetti />}
+                    {showConfetti && <Confetti isFirstSpin={winCount === 1} />}
                 </div>
             );
         }
