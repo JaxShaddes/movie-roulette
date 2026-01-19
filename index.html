@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V41 (Discover Fixed)</title>
+    <title>Movie Roulette V42 (Pro Edition)</title>
     
-    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29xvciI6ICIjMDAwMDAwIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2IzVjBkQzxzYjJOamIyNWZabWxzWlQwc0ltNXZiVzkwWlM1a1pYUnpJRDBnTWpBd2lHaDBiVzVvWlQwaU1qQXdJaUIzYnlCMlpVZGxRMnhoYm1Ob1pYTXRhV1RnSWt4cGMzUnZkR2x2YmlJZ1kyOXVaR2xrSWlCM1pYa3RhV1RnSWxKdmRXeGxkR1JsSUhsd1pYSWdZbTl1WlcwaUlIMHNJbTVpWnlJNklrycGJuVjBaWEl2UGc9PSIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=" />
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBfiA9InN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiMwMDAwMDAiPjx0ZXh0IHk9Ii45ZW0iIGZvbnQtc2l6ZT0iOTAiPvCfjak8L3RleHQ+PC9zdmc+" />
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWRPdHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29sb3IiOiAiIzAwMDAwMCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNiM1YwZEQxaU1qQXdJaUJvWldsbmFIUTlJakl3TUNJZ2RtbGxkMEp2ZUQwaU1DQXdJREV3TUNBME1EQWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQSFJsZUhRZ2VUMGlMamxsYlNJZ1ptOXVkQzF6YVhwbFBTSTVNQ0krOEorUnFUd3ZkR1Y0ZEQ0OEwzTjJaejQ9IiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48c3R5bGU+YmFja2dyb3VuZC1jb2xvcjojMDAwMDAwPC9zdHlsZT48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5Gp8J+OsDwvdGV4dD48L3N2Zz4=" />
     <meta name="theme-color" content="#EFEEE5">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,10 +21,17 @@
                     colors: { bone: '#EFEEE5', 'bone-dark': '#E5E4DB', verified: '#1D9BF0', love: '#E0245E' },
                     fontFamily: { mono: ['Space Mono', 'monospace'], sans: ['Inter', 'sans-serif'] },
                     borderWidth: { '12': '12px' },
-                    animation: { 'fade-in': 'fadeIn 0.2s ease-out forwards', 'slide-up': 'slideUp 0.3s ease-out forwards' },
+                    animation: { 
+                        'fade-in': 'fadeIn 0.2s ease-out forwards', 
+                        'slide-up': 'slideUp 0.3s ease-out forwards',
+                        'bounce-in': 'bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                        'stamp': 'stamp 0.4s ease-out forwards'
+                    },
                     keyframes: { 
                         fadeIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
-                        slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } }
+                        slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        bounceIn: { '0%': { transform: 'scale(0)', opacity: '0' }, '50%': { transform: 'scale(1.1)' }, '100%': { transform: 'scale(1)', opacity: '1' } },
+                        stamp: { '0%': { transform: 'scale(0) rotate(-20deg)', opacity: '0' }, '100%': { transform: 'scale(1) rotate(0deg)', opacity: '1' } }
                     }
                 }
             }
@@ -47,6 +54,36 @@
         .checkbox-receipt:checked::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: bold; color: #EFEEE5; }
         .date-input-mini { background: transparent; border: 1px solid #000; font-size: 10px; padding: 2px; font-family: inherit; }
         .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+        
+        /* NEW V42 STYLES */
+        button:active { transform: translateY(1px); }
+        .btn-primary { transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .btn-primary:active { transform: translateY(0); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(224,36,94,0.1) 0%, transparent 50%, rgba(29,155,240,0.1) 100%);
+        }
+        
+        .stamp-love, .stamp-nope {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0) rotate(-20deg);
+            font-size: 120px;
+            font-weight: 900;
+            opacity: 0;
+            pointer-events: none;
+            text-shadow: 0 0 20px currentColor;
+            z-index: 50;
+        }
+        
+        .stamp-love.show, .stamp-nope.show {
+            animation: stamp 0.4s ease-out forwards;
+        }
+        
+        .stamp-love { color: #E0245E; }
+        .stamp-nope { color: #666; }
     </style>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
@@ -61,6 +98,7 @@
         // --- AUDIO ---
         const playTick = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='square'; o.frequency.setValueAtTime(150,ctx.currentTime); o.frequency.exponentialRampToValueAtTime(40,ctx.currentTime+0.05); g.gain.setValueAtTime(0.1,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.05); o.start(); o.stop(ctx.currentTime+0.05); } catch(e){} };
         const playWin = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); [440,554.37,659.25].forEach((f,i)=>{ const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='triangle'; o.frequency.value=f; g.gain.setValueAtTime(0,ctx.currentTime); g.gain.linearRampToValueAtTime(0.1,ctx.currentTime+0.1+(i*0.05)); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+1.5); o.start(ctx.currentTime+(i*0.05)); o.stop(ctx.currentTime+2); }); } catch(e){} };
+        const playSwipe = () => { try { const ctx = new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(),g=ctx.createGain(); o.connect(g); g.connect(ctx.destination); o.type='sine'; o.frequency.setValueAtTime(200,ctx.currentTime); o.frequency.exponentialRampToValueAtTime(100,ctx.currentTime+0.1); g.gain.setValueAtTime(0.05,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.1); o.start(); o.stop(ctx.currentTime+0.1); } catch(e){} };
 
         const GENRES = { 
             28:'Action',12:'Adventure',16:'Animation',35:'Comedy',80:'Crime',99:'Documentary',18:'Drama',10751:'Family',14:'Fantasy',36:'History',27:'Horror',10402:'Music',9648:'Mystery',10749:'Romance',878:'Sci-Fi',10770:'TV Movie',53:'Thriller',10752:'War',37:'Western',
@@ -68,11 +106,11 @@
         };
         
         const TRANSLATIONS = {
-            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What should I watch?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTROS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCHLIST', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN', DISC_TAB_MOVIES: 'MOVIES', DISC_TAB_TV: 'TV SHOWS', MORE_LIKE_THIS: 'MORE LIKE THIS', BTN_HIDE: 'HIDE', SORT_ADDED: 'DATE ADDED', SORT_RELEASE_NEW: 'RELEASE (NEW)', SORT_RELEASE_OLD: 'RELEASE (OLD)', SORT_RATING: 'HIGH RATING', SORT_RUNTIME: 'SHORTEST', SORT_ALPHA: 'A-Z', SYNC_DATA: 'SYNC METADATA', SYNC_DESC: 'Fetch Cast/Director for old items', TOP_ACTORS: 'TOP ACTORS', TOP_DIRECTORS: 'TOP DIRECTORS', FILTER_SOURCE_ALL: 'ALL SOURCES', FILTER_SOURCE_ROULETTE: 'ROULETTE WINS', FILTER_SOURCE_SEEN: 'MANUAL ENTRY' },
-            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'O que devo assistir?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS', DISC_TAB_MOVIES: 'FILMES', DISC_TAB_TV: 'SÉRIES', MORE_LIKE_THIS: 'RELACIONADOS', BTN_HIDE: 'ESCONDER', SORT_ADDED: 'DATA (RECENTE)', SORT_RELEASE_NEW: 'ANO (NOVO)', SORT_RELEASE_OLD: 'ANO (VELHO)', SORT_RATING: 'MELHOR NOTA', SORT_RUNTIME: 'CURTOS', SORT_ALPHA: 'A-Z', SYNC_DATA: 'SINCRONIZAR', SYNC_DESC: 'Buscar Atores/Diretores para antigos', TOP_ACTORS: 'ATORES FAV', TOP_DIRECTORS: 'REALIZADORES', FILTER_SOURCE_ALL: 'TODAS FONTES', FILTER_SOURCE_ROULETTE: 'ROLETA', FILTER_SOURCE_SEEN: 'MANUAL' }
+            'en-US': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'What the hell should I watch tonight?', NAV_HOME: 'HOME', NAV_WATCHLIST: 'WATCHLIST', NAV_DISCOVER: 'DISCOVER', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTORY', NAV_SETTINGS: 'SETTINGS', PLACEHOLDER_MOVIES: 'ADD MOVIE...', PLACEHOLDER_TV: 'ADD TV SHOW...', SPIN_BTN: 'SPIN', SPINNING: 'SPINNING...', WINNER_MOVIE: "MOVIE NIGHT", WINNER_TV: "TV NIGHT", BTN_WATCHED: 'WATCHED', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'STREAMING', RATE_TITLE: 'RATING', RATE_5: 'EXCELLENT', RATE_4: 'GOOD', RATE_3: 'OKAY', RATE_2: 'BAD', RATE_1: 'TERRIBLE', RATE_SKIP: 'SKIP RATING', DISCOVER_LOCKED: 'Rate 3 items to unlock!', DISCOVER_EMPTY: 'Finding matches...', BTN_LOAD_MORE: 'LOAD MORE', DISC_TOP: 'TOP MATCHES', DISC_NEW: 'NEWEST', DISC_SOON: 'SOON', DISC_GENRE: 'GENRE', SWIPE_TITLE: 'THE DECK', SWIPE_EMPTY: 'No more cards! Try changing filters or check back later.', STATS_TOTAL: 'WATCHED', STATS_GENRE: 'FAV GENRE', STATS_RATING: 'AVG SCORE', TOAST_ADDED: 'Added', TOAST_ADDED_WATCHLIST: 'Added to Watchlist', TOAST_EXIST: 'Already in list', BTN_SEEN: 'SEEN IT', UNKNOWN_YEAR: 'Unknown Year', NO_PLOT: 'No plot.', HEADER_MOVIES: 'YOUR LIST', FILTERS: 'FILTERS', FILTER_TIME: 'RUNTIME', FILTER_GENRE: 'GENRE', TIME_SHORT: 'Short (< 90m)', TIME_MED: 'Medium (90-120m)', TIME_LONG: 'Long (> 2h)', EMPTY_LIST: 'Add items to start', SETTINGS_TITLE: 'SETTINGS', SETTINGS_LANG_LABEL: 'LANGUAGE', SOUND: 'SOUND', SETTINGS_API_LABEL: 'TMDB API KEY', IMPORT: 'IMPORT DATA', EXPORT: 'EXPORT DATA', TOGGLE_MOVIES: 'MOVIES', TOGGLE_TV: 'TV SHOWS', RATE_LABEL_ADD: 'RATE', DISC_PICK: 'PICK OF THE DAY', BTN_CLEAR_MOVIES: 'CLEAR MOVIES', BTN_CLEAR_TV: 'CLEAR TV SHOWS', DANGER_ZONE: 'DANGER ZONE', CONFIRM_CLEAR: 'Are you sure?', BTN_ADD_WATCHLIST: 'WATCHLIST', HEADER_WATCHLIST: 'WATCHLIST', EMPTY_WATCHLIST: 'Your watchlist is empty.', BTN_MOVE_TO_ROULETTE: 'MOVE TO ROULETTE', HEADER_HIST_MOVIES: 'WATCHED MOVIES', HEADER_HIST_TV: 'WATCHED TV SHOWS', HEADER_SEEN: 'ALREADY SEEN', EMPTY_SEEN: 'No items marked as seen.', HIST_TAB_SPINS: 'ROULETTE WINS', HIST_TAB_SEEN: 'IMPORTED / SEEN', DISC_TAB_MOVIES: 'MOVIES', DISC_TAB_TV: 'TV SHOWS', MORE_LIKE_THIS: 'MORE LIKE THIS', BTN_HIDE: 'HIDE', SORT_ADDED: 'DATE ADDED', SORT_RELEASE_NEW: 'RELEASE (NEW)', SORT_RELEASE_OLD: 'RELEASE (OLD)', SORT_RATING: 'HIGH RATING', SORT_RUNTIME: 'SHORTEST', SORT_ALPHA: 'A-Z', SYNC_DATA: 'SYNC METADATA', SYNC_DESC: 'Fetch Cast/Director for old items', TOP_ACTORS: 'TOP ACTORS', TOP_DIRECTORS: 'TOP DIRECTORS', FILTER_SOURCE_ALL: 'ALL SOURCES', FILTER_SOURCE_ROULETTE: 'ROULETTE WINS', FILTER_SOURCE_SEEN: 'MANUAL ENTRY', CURATOR_PICK: "CURATOR'S CHOICE", BECAUSE: 'Because you loved' },
+            'pt-PT': { TITLE: 'MOVIE ROULETTE', SUBTITLE: 'Que raio devo ver esta noite?', NAV_HOME: 'INÍCIO', NAV_WATCHLIST: 'VER DEPOIS', NAV_DISCOVER: 'DESCOBRIR', NAV_SWIPE: 'SWIPE', NAV_HISTORY: 'HISTÓRICO', NAV_SETTINGS: 'OPÇÕES', PLACEHOLDER_MOVIES: 'ADD FILME...', PLACEHOLDER_TV: 'ADD SÉRIE...', SPIN_BTN: 'GIRAR', SPINNING: 'GIRANDO...', WINNER_MOVIE: "FILME", WINNER_TV: "SÉRIE", BTN_WATCHED: 'JÁ VI', BTN_TRAILER: 'TRAILER', BTN_PROVIDERS: 'ASSISTIR', RATE_TITLE: 'AVALIAÇÃO', RATE_5: 'EXCELENTE', RATE_4: 'BOM', RATE_3: 'OK', RATE_2: 'MAU', RATE_1: 'TERRÍVEL', RATE_SKIP: 'PULAR', DISCOVER_LOCKED: 'Avalie 3 itens para liberar!', DISCOVER_EMPTY: 'Procurando...', BTN_LOAD_MORE: 'CARREGAR MAIS', DISC_TOP: 'TOPS', DISC_NEW: 'RECENTES', DISC_SOON: 'BREVE', DISC_GENRE: 'GÉNERO', SWIPE_TITLE: 'O BARALHO', SWIPE_EMPTY: 'Sem mais cartas. Tente mais tarde.', STATS_TOTAL: 'VISTOS', STATS_GENRE: 'GÉNERO FAV', STATS_RATING: 'MÉDIA', TOAST_ADDED: 'Adicionado', TOAST_ADDED_WATCHLIST: 'Guardado para depois', TOAST_EXIST: 'Já na lista', BTN_SEEN: 'JÁ VI', UNKNOWN_YEAR: 'Ano Desconhecido', NO_PLOT: 'Sem descrição.', HEADER_MOVIES: 'SUA LISTA', FILTERS: 'FILTROS', FILTER_TIME: 'DURAÇÃO', FILTER_GENRE: 'GÉNERO', TIME_SHORT: 'Curto (< 90m)', TIME_MED: 'Médio (90-120m)', TIME_LONG: 'Longo (> 2h)', EMPTY_LIST: 'Adicione itens para começar', SETTINGS_TITLE: 'DEFINIÇÕES', SETTINGS_LANG_LABEL: 'IDIOMA', SOUND: 'SOM', SETTINGS_API_LABEL: 'CHAVE API TMDB', IMPORT: 'IMPORTAR DADOS', EXPORT: 'EXPORTAR DADOS', TOGGLE_MOVIES: 'FILMES', TOGGLE_TV: 'SÉRIES', RATE_LABEL_ADD: 'AVALIAR', DISC_PICK: 'DESTAQUE', BTN_CLEAR_MOVIES: 'LIMPAR FILMES', BTN_CLEAR_TV: 'LIMPAR SÉRIES', DANGER_ZONE: 'ZONA DE PERIGO', CONFIRM_CLEAR: 'Tem a certeza?', BTN_ADD_WATCHLIST: 'VER DEPOIS', HEADER_WATCHLIST: 'O COFRE', EMPTY_WATCHLIST: 'O cofre está vazio.', BTN_MOVE_TO_ROULETTE: 'MOVER PARA ROLETA', HEADER_HIST_MOVIES: 'FILMES VISTOS', HEADER_HIST_TV: 'SÉRIES VISTAS', HEADER_SEEN: 'JÁ VISTOS', EMPTY_SEEN: 'Nenhum item marcado.', HIST_TAB_SPINS: 'ROLETA', HIST_TAB_SEEN: 'JÁ VISTOS', DISC_TAB_MOVIES: 'FILMES', DISC_TAB_TV: 'SÉRIES', MORE_LIKE_THIS: 'RELACIONADOS', BTN_HIDE: 'ESCONDER', SORT_ADDED: 'DATA (RECENTE)', SORT_RELEASE_NEW: 'ANO (NOVO)', SORT_RELEASE_OLD: 'ANO (VELHO)', SORT_RATING: 'MELHOR NOTA', SORT_RUNTIME: 'CURTOS', SORT_ALPHA: 'A-Z', SYNC_DATA: 'SINCRONIZAR', SYNC_DESC: 'Buscar Atores/Diretores para antigos', TOP_ACTORS: 'ATORES FAV', TOP_DIRECTORS: 'REALIZADORES', FILTER_SOURCE_ALL: 'TODAS FONTES', FILTER_SOURCE_ROULETTE: 'ROLETA', FILTER_SOURCE_SEEN: 'MANUAL', CURATOR_PICK: 'ESCOLHA DO CURADOR', BECAUSE: 'Porque adorou' }
         };
 
-        const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', blacklist: 'movieRoulette_blacklist', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound' };
+        const STORAGE_KEYS = { movies: 'movieRoulette_movies', tvShows: 'movieRoulette_tvShows', backlog: 'movieRoulette_backlog', watched: 'movieRoulette_watched', blacklist: 'movieRoulette_blacklist', tmdbKey: 'movieRoulette_tmdb_key', language: 'movieRoulette_language', sound: 'movieRoulette_sound', winCount: 'movieRoulette_winCount' };
         function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2); }
         function formatDate(date) { if(!date) return ''; return new Date(date).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'}).toUpperCase(); }
 
@@ -99,7 +137,7 @@
         function RouletteBadge() { return <span className="inline-flex items-center gap-1 ml-2 border border-love text-love px-1 rounded text-[8px] font-bold uppercase"><Icons.Roulette /> WIN</span>; }
 
         function Toast({ msg }) { return <div className="toast fixed top-4 right-4 z-[99] bg-black text-bone px-4 py-3 border border-bone font-bold text-xs uppercase shadow-lg">{msg}</div>; }
-        function Confetti() { return <div className="pointer-events-none fixed inset-0 z-50">{Array.from({ length: 30 }).map((_, i) => <div key={i} className="confetti" style={{ left: `${Math.random()*100}vw`, backgroundColor: ['#000','#333','#666'][Math.floor(Math.random()*3)], animationDelay: `${Math.random()*0.5}s`, animationDuration: `${Math.random()*2+2}s` }} />)}</div>; }
+        function Confetti() { return <div className="pointer-events-none fixed inset-0 z-50">{Array.from({ length: 40 }).map((_, i) => <div key={i} className="confetti" style={{ left: `${Math.random()*100}vw`, backgroundColor: ['#E0245E','#1D9BF0','#000','#666'][Math.floor(Math.random()*4)], animationDelay: `${Math.random()*0.5}s`, animationDuration: `${Math.random()*2+2}s` }} />)}</div>; }
 
         function SearchInput({ type, placeholder, onAdd, apiKey, language }) {
             const [query, setQuery] = useState('');
@@ -166,22 +204,20 @@
                     )}
                 </div>
             );
-        }
-
-        function FilterPanel({ isOpen, onClose, filters, setFilters, t }) {
+        }        function FilterPanel({ isOpen, onClose, filters, setFilters, t }) {
             if (!isOpen) return null;
             const toggleGenre = (id) => { const newGenres = filters.genres.includes(id) ? filters.genres.filter(g => g !== id) : [...filters.genres, id]; setFilters({ ...filters, genres: newGenres }); };
             const toggleTime = (val) => { setFilters({ ...filters, time: filters.time === val ? null : val }); };
             return (
-                <div className="mb-6 p-4 border-2 border-black bg-white/50">
+                <div className="mb-6 p-4 border-2 border-black bg-white/50 animate-slide-up">
                     <div className="flex justify-between items-center mb-4"><h3 className="font-bold uppercase text-xs tracking-wider">{t('FILTERS')}</h3><button onClick={onClose} className="text-xs underline">CLOSE</button></div>
                     <div className="mb-4">
                         <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_TIME')}</p>
-                        <div className="flex flex-wrap gap-2">{['short', 'medium', 'long'].map(time => (<button key={time} onClick={() => toggleTime(time)} className={`px-2 py-1 text-[10px] uppercase border ${filters.time === time ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{time === 'short' ? t('TIME_SHORT') : time === 'medium' ? t('TIME_MED') : t('TIME_LONG')}</button>))}</div>
+                        <div className="flex flex-wrap gap-2">{['short', 'medium', 'long'].map(time => (<button key={time} onClick={() => toggleTime(time)} className={`px-2 py-1 text-[10px] uppercase border transition-all ${filters.time === time ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{time === 'short' ? t('TIME_SHORT') : time === 'medium' ? t('TIME_MED') : t('TIME_LONG')}</button>))}</div>
                     </div>
                     <div>
                         <p className="text-[10px] font-bold uppercase mb-2 text-gray-500">{t('FILTER_GENRE')}</p>
-                        <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">{Object.entries(GENRES).map(([id, name]) => (<button key={id} onClick={() => toggleGenre(parseInt(id))} className={`px-2 py-1 text-[10px] uppercase border ${filters.genres.includes(parseInt(id)) ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{name}</button>))}</div>
+                        <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">{Object.entries(GENRES).map(([id, name]) => (<button key={id} onClick={() => toggleGenre(parseInt(id))} className={`px-2 py-1 text-[10px] uppercase border transition-all ${filters.genres.includes(parseInt(id)) ? 'bg-black text-bone border-black' : 'border-gray-400 text-gray-500 hover:border-black hover:text-black'}`}>{name}</button>))}</div>
                     </div>
                 </div>
             );
@@ -191,14 +227,14 @@
             if (!isOpen) return null;
             return (
                 <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={onClose}>
-                    <div className="bg-[#EFEEE5] border-4 border-black p-6 w-full max-w-sm shadow-2xl relative text-center" onClick={e=>e.stopPropagation()}>
+                    <div className="bg-[#EFEEE5] border-4 border-black p-6 w-full max-w-sm shadow-2xl relative text-center animate-bounce-in" onClick={e=>e.stopPropagation()}>
                         <h2 className="text-xl font-black uppercase mb-6 font-sans">{t('RATE_TITLE')}</h2>
                         <div className="flex flex-col gap-2">
-                            <button onClick={() => onRate(5)} className="p-3 bg-black text-bone hover:bg-gray-800 uppercase font-bold tracking-wider text-xs border-2 border-black">5 - {t('RATE_5')}</button>
-                            <button onClick={() => onRate(4)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black">4 - {t('RATE_4')}</button>
-                            <button onClick={() => onRate(3)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black">3 - {t('RATE_3')}</button>
-                            <button onClick={() => onRate(2)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black">2 - {t('RATE_2')}</button>
-                            <button onClick={() => onRate(1)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black">1 - {t('RATE_1')}</button>
+                            <button onClick={() => onRate(5)} className="p-3 bg-black text-bone hover:bg-gray-800 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">5 - {t('RATE_5')}</button>
+                            <button onClick={() => onRate(4)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">4 - {t('RATE_4')}</button>
+                            <button onClick={() => onRate(3)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">3 - {t('RATE_3')}</button>
+                            <button onClick={() => onRate(2)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">2 - {t('RATE_2')}</button>
+                            <button onClick={() => onRate(1)} className="p-3 bg-white text-black hover:bg-gray-100 uppercase font-bold tracking-wider text-xs border-2 border-black btn-primary">1 - {t('RATE_1')}</button>
                             <button onClick={() => onRate('skip')} className="p-3 bg-transparent border-2 border-black border-dashed hover:bg-black/5 uppercase font-bold tracking-wider text-xs text-gray-600 hover:text-black mt-2">{t('RATE_SKIP')}</button>
                         </div>
                         <button onClick={onClose} className="mt-6 text-xs underline uppercase text-gray-500 hover:text-black tracking-wide">CANCEL</button>
@@ -214,13 +250,11 @@
                 const directorCounts = {};
                 
                 watched.forEach(item => {
-                    // Genres
                     if (item.tmdbData && item.tmdbData.genre_ids) {
                         item.tmdbData.genre_ids.forEach(id => {
                             if(GENRES[id]) genreCounts[GENRES[id]] = (genreCounts[GENRES[id]] || 0) + 1;
                         });
                     }
-                    // Actors & Directors (if fetched)
                     if (item.credits) {
                         if (item.credits.cast) {
                             item.credits.cast.forEach(c => {
@@ -270,7 +304,7 @@
                                                 <span>{g}</span>
                                                 <span>{c}</span>
                                             </div>
-                                            <div className="h-2 bg-gray-200 w-full"><div className="h-full bg-black" style={{width: `${(c / (stats.topGenres[0][1] || 1)) * 100}%`}}></div></div>
+                                            <div className="h-2 bg-gray-200 w-full"><div className="h-full bg-black transition-all" style={{width: `${(c / (stats.topGenres[0][1] || 1)) * 100}%`}}></div></div>
                                         </div>
                                     </div>
                                 ))}
@@ -309,11 +343,12 @@
             );
         }
 
-        function SwipeTab({ watched, backlog, movies, tvShows, blacklist, apiKey, language, homeMode, onAddToWatchlist, onSeen, onBlacklist, onInfo, t }) {
+        function SwipeTab({ watched, backlog, movies, tvShows, blacklist, apiKey, language, homeMode, onAddToWatchlist, onSeen, onBlacklist, onInfo, t, soundEnabled }) {
             const [queue, setQueue] = useState([]);
             const [page, setPage] = useState(1);
             const [loading, setLoading] = useState(false);
             const [swipeType, setSwipeType] = useState('movie');
+            const [showStamp, setShowStamp] = useState(null);
 
             useEffect(() => {
                 setQueue([]); setPage(1);
@@ -352,16 +387,23 @@
                 const type = item.media_type === 'tv' || item.name ? 'tv' : 'movie';
                 const fullItem = { ...item, type };
 
-                if (action === 'nope') {
-                    onBlacklist(item.id);
-                } else if (action === 'like') {
-                    onAddToWatchlist(fullItem);
-                } else if (action === 'seen') {
-                    onSeen(fullItem); 
-                }
+                // Show stamp animation
+                setShowStamp(action === 'nope' ? 'nope' : action === 'like' ? 'love' : 'seen');
+                if (soundEnabled) playSwipe();
+                
+                setTimeout(() => {
+                    if (action === 'nope') {
+                        onBlacklist(item.id);
+                    } else if (action === 'like') {
+                        onAddToWatchlist(fullItem);
+                    } else if (action === 'seen') {
+                        onSeen(fullItem); 
+                    }
 
-                setQueue(prev => prev.slice(1));
-                if (queue.length < 5) setPage(p => p + 1);
+                    setQueue(prev => prev.slice(1));
+                    setShowStamp(null);
+                    if (queue.length < 5) setPage(p => p + 1);
+                }, 300);
             };
 
             const currentCard = queue[0];
@@ -370,8 +412,8 @@
                 <div className="flex flex-col h-[75vh] items-center justify-center relative">
                     <div className="absolute top-0 inset-x-0 z-20 flex justify-center items-center p-4 bg-bone/80 backdrop-blur-sm border-b-2 border-black/10">
                         <div className="flex border-2 border-black bg-bone mr-4">
-                            <button onClick={()=>setSwipeType('movie')} className={`py-1 px-3 text-[10px] font-bold uppercase ${swipeType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
-                            <button onClick={()=>setSwipeType('tv')} className={`py-1 px-3 text-[10px] font-bold uppercase ${swipeType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
+                            <button onClick={()=>setSwipeType('movie')} className={`py-1 px-3 text-[10px] font-bold uppercase transition-all ${swipeType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
+                            <button onClick={()=>setSwipeType('tv')} className={`py-1 px-3 text-[10px] font-bold uppercase transition-all ${swipeType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
                         </div>
                         <h1 className="text-xl font-black uppercase">{t('SWIPE_TITLE')}</h1>
                     </div>
@@ -384,6 +426,10 @@
                                 ) : (
                                     <div className="w-full h-full bg-gray-800 flex items-center justify-center text-bone">NO IMG</div>
                                 )}
+                                
+                                {/* STAMP OVERLAY */}
+                                <div className={`stamp-love ${showStamp === 'love' ? 'show' : ''}`}>LOVE</div>
+                                <div className={`stamp-nope ${showStamp === 'nope' ? 'show' : ''}`}>NOPE</div>
                                 
                                 <button onClick={() => onInfo({ tmdbData: currentCard, title: currentCard.title || currentCard.name, type: swipeType })} className="absolute top-4 right-4 bg-white/20 backdrop-blur-md border-2 border-white/50 text-white rounded-full p-2 hover:bg-white hover:text-black transition-colors z-10 shadow-lg">
                                     <Icons.Info />
@@ -398,13 +444,13 @@
                             </div>
 
                             <div className="flex gap-6 mt-8">
-                                <button onClick={()=>handleAction('nope')} className="w-16 h-16 rounded-full border-4 border-black bg-white text-black flex items-center justify-center hover:bg-gray-200 transition-colors shadow-lg">
+                                <button onClick={()=>handleAction('nope')} className="w-16 h-16 rounded-full border-4 border-black bg-white text-black flex items-center justify-center hover:bg-gray-200 transition-all shadow-lg btn-primary">
                                     <Icons.ThumbDown />
                                 </button>
                                 <button onClick={()=>handleAction('like')} className="w-20 h-20 rounded-full border-4 border-black bg-black text-bone flex items-center justify-center hover:scale-105 transition-transform shadow-xl -mt-2">
                                     <Icons.Heart />
                                 </button>
-                                <button onClick={()=>handleAction('seen')} className="w-16 h-16 rounded-full border-4 border-black bg-[#1D9BF0] text-white flex items-center justify-center hover:bg-[#1A8CD8] transition-colors shadow-lg">
+                                <button onClick={()=>handleAction('seen')} className="w-16 h-16 rounded-full border-4 border-black bg-[#1D9BF0] text-white flex items-center justify-center hover:bg-[#1A8CD8] transition-all shadow-lg btn-primary">
                                     <Icons.Eye />
                                 </button>
                             </div>
@@ -416,7 +462,7 @@
                             ) : (
                                 <div>
                                     <p className="font-bold uppercase text-gray-500 mb-4">{t('SWIPE_EMPTY')}</p>
-                                    <button onClick={()=>setPage(p=>p+1)} className="bg-black text-bone px-4 py-2 text-xs font-bold uppercase">{t('BTN_LOAD_MORE')}</button>
+                                    <button onClick={()=>setPage(p=>p+1)} className="bg-black text-bone px-4 py-2 text-xs font-bold uppercase btn-primary">{t('BTN_LOAD_MORE')}</button>
                                 </div>
                             )}
                         </div>
@@ -478,7 +524,7 @@
                         
                         <div className="absolute inset-0 bg-gradient-to-t from-bone via-transparent to-transparent"></div>
                         
-                        <button onClick={onClose} className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full backdrop-blur-md z-10"><Icons.Close /></button>
+                        <button onClick={onClose} className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full backdrop-blur-md z-10 hover:bg-black transition-all"><Icons.Close /></button>
                         
                         <div className="absolute bottom-4 left-4 right-4">
                             <h1 className="text-3xl font-black uppercase leading-none mb-2 drop-shadow-md">{data.title || data.name}</h1>
@@ -491,16 +537,15 @@
                     </div>
 
                     <div className="p-4 pb-24 space-y-8">
-                        {/* 3 ACTION BUTTONS */}
                         <div className="flex gap-2">
-                            <button onClick={()=>onAddToWatchlist(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone">{t('BTN_ADD_WATCHLIST')}</button>
-                            <button onClick={()=>onSeen(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone">{t('BTN_SEEN')}</button>
-                            <button onClick={()=>{ onBlacklist(data.id); onClose(); }} className="py-3 px-4 border-2 border-black font-bold uppercase text-xs hover:bg-red-600 hover:text-white hover:border-red-600"><Icons.ThumbDown /></button>
+                            <button onClick={()=>onAddToWatchlist(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone transition-all btn-primary">{t('BTN_ADD_WATCHLIST')}</button>
+                            <button onClick={()=>onSeen(item)} className="flex-1 py-3 border-2 border-black font-bold uppercase text-xs hover:bg-black hover:text-bone transition-all btn-primary">{t('BTN_SEEN')}</button>
+                            <button onClick={()=>{ onBlacklist(data.id); onClose(); }} className="py-3 px-4 border-2 border-black font-bold uppercase text-xs hover:bg-red-600 hover:text-white hover:border-red-600 transition-all btn-primary"><Icons.ThumbDown /></button>
                         </div>
 
                         <div className="flex gap-3">
                             {trailer && (
-                                <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" className="flex-1 bg-black text-bone py-3 font-bold uppercase text-center text-sm rounded flex items-center justify-center gap-2">
+                                <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" className="flex-1 bg-black text-bone py-3 font-bold uppercase text-center text-sm rounded flex items-center justify-center gap-2 hover:bg-gray-800 transition-all">
                                     <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> {t('BTN_TRAILER')}
                                 </a>
                             )}
@@ -543,12 +588,12 @@
                                 <h3 className="font-bold uppercase text-xs mb-3 tracking-widest text-gray-500">{t('MORE_LIKE_THIS')}</h3>
                                 <div className="grid grid-cols-3 gap-2">
                                     {similar.map(s => (
-                                        <div key={s.id} onClick={() => onNavigate({ tmdbData: s, title: s.title||s.name, type: item.type === 'movie' || item.type === 'movies' ? 'movie' : 'tv' })} className="relative aspect-[2/3] bg-gray-200">
-                                            {s.poster_path ? <img src={`https://image.tmdb.org/t/p/w185${s.poster_path}`} className="w-full h-full object-cover" /> : null}
+                                        <div key={s.id} onClick={() => onNavigate({ tmdbData: s, title: s.title||s.name, type: item.type === 'movie' || item.type === 'movies' ? 'movie' : 'tv' })} className="relative aspect-[2/3] bg-gray-200 cursor-pointer overflow-hidden group">
+                                            {s.poster_path ? <img src={`https://image.tmdb.org/t/p/w185${s.poster_path}`} className="w-full h-full object-cover transition-transform group-hover:scale-105" /> : null}
                                             <div className="absolute top-0 right-0 bg-[#1D9BF0] text-white text-[8px] font-bold px-1 py-0.5">
                                                 {Math.round(s.vote_average * 10)}%
                                             </div>
-                                            <div className="absolute inset-0 bg-black/0 hover:bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
                                                 <span className="text-white font-bold text-xs">+</span>
                                             </div>
                                         </div>
@@ -569,65 +614,60 @@
             const [selectedGenre, setSelectedGenre] = useState(null);
             const [discoverType, setDiscoverType] = useState('movie'); 
             const [page, setPage] = useState(1);
+            const [curatorPick, setCuratorPick] = useState(null);
             
             const highRatedItems = watched.filter(w => w.rating >= 4 && w.tmdbData);
             
-            // Fetch Recommendations - FIXED LOGIC
+            // IMPROVED RECOMMENDATION ENGINE V42
             useEffect(() => {
-                if (!apiKey) return;
-                const fetchRecs = async () => {
+                if (!apiKey || highRatedItems.length < 3) return;
+                const fetchSmartRecs = async () => {
                     setLoading(true);
                     try {
                         let allRecs = [];
-                        let endpoint = '';
-                        let params = '';
-
-                        // 1. GENRE MODE (Smart Fetch)
+                        
                         if (filterMode === 'genre' && selectedGenre) {
-                            endpoint = `discover/${discoverType}`;
-                            params = `&with_genres=${selectedGenre}&sort_by=popularity.desc`;
-                        } 
-                        // 2. SOON/NEW MODE
-                        else if (filterMode === 'soon') {
-                            endpoint = discoverType === 'movie' ? 'movie/upcoming' : 'tv/on_the_air';
+                            const res = await fetch(`https://api.themoviedb.org/3/discover/${discoverType}?api_key=${apiKey}&with_genres=${selectedGenre}&sort_by=popularity.desc&language=${language}&page=${page}`);
+                            const data = await res.json();
+                            allRecs = data.results || [];
+                        } else if (filterMode === 'soon') {
+                            const endpoint = discoverType === 'movie' ? 'movie/upcoming' : 'tv/on_the_air';
+                            const res = await fetch(`https://api.themoviedb.org/3/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`);
+                            const data = await res.json();
+                            allRecs = data.results || [];
                         } else if (filterMode === 'new') {
-                            endpoint = discoverType === 'movie' ? 'movie/now_playing' : 'tv/airing_today';
-                        }
-                        // 3. TOP MATCHES (ALGO)
-                        else {
-                            // Random Seed Logic (Echo Chamber Fix)
-                            const seeds = highRatedItems.length > 0 
-                                ? [...highRatedItems].sort(() => 0.5 - Math.random()).slice(0, 3) 
-                                : [];
+                            const endpoint = discoverType === 'movie' ? 'movie/now_playing' : 'tv/airing_today';
+                            const res = await fetch(`https://api.themoviedb.org/3/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}`);
+                            const data = await res.json();
+                            allRecs = data.results || [];
+                        } else {
+                            // SMART ALGO: Mix of recommendations + cast-based discovery
+                            const seeds = highRatedItems
+                                .filter(i => (i.type === 'tv' && discoverType === 'tv') || (i.type !== 'tv' && discoverType === 'movie'))
+                                .sort(() => 0.5 - Math.random())
+                                .slice(0, 3);
                             
-                            // If we have seeds matching current type
-                            const relevantSeeds = seeds.filter(s => (s.type === 'tv' && discoverType === 'tv') || (s.type !== 'tv' && discoverType === 'movie'));
-
-                            if (relevantSeeds.length > 0) {
-                                for (const seed of relevantSeeds) {
-                                    const res = await fetch(`https://api.themoviedb.org/3/${discoverType}/${seed.tmdbData.id}/recommendations?api_key=${apiKey}&language=${language}&page=${page}`);
-                                    const data = await res.json();
-                                    if (data.results) allRecs = [...allRecs, ...data.results];
-                                }
-                            } else {
-                                endpoint = `${discoverType}/top_rated`; // Fallback
+                            for (const seed of seeds) {
+                                const type = seed.type === 'tv' ? 'tv' : 'movie';
+                                
+                                // Main recommendations
+                                const recRes = await fetch(`https://api.themoviedb.org/3/${type}/${seed.tmdbData.id}/recommendations?api_key=${apiKey}&language=${language}`);
+                                const recData = await recRes.json();
+                                allRecs.push(...(recData.results || []));
+                                
+                                // Similar
+                                const simRes = await fetch(`https://api.themoviedb.org/3/${type}/${seed.tmdbData.id}/similar?api_key=${apiKey}&language=${language}`);
+                                const simData = await simRes.json();
+                                allRecs.push(...(simData.results || []));
                             }
                         }
 
-                        if (endpoint) {
-                            const res = await fetch(`https://api.themoviedb.org/3/${endpoint}?api_key=${apiKey}&language=${language}&page=${page}${params}`);
-                            const data = await res.json();
-                            if(data.results) allRecs = [...allRecs, ...data.results];
-                        }
-
-                        // Process Results
+                        // Process & Filter
                         const processed = allRecs.map(r => ({
                             ...r,
-                            matchScore: Math.round((r.vote_average || 0) * 10),
-                            releaseDate: new Date(r.release_date || r.first_air_date || 0)
+                            matchScore: Math.min(99, Math.round((r.vote_average || 0) * 10))
                         }));
 
-                        // Filter "Top Matches" Gatekeeper (Only show unseen)
                         const cleanMatches = processed.filter(r => {
                             const isOwned = movies.some(m => m.tmdbData?.id === r.id) || tvShows.some(t => t.tmdbData?.id === r.id);
                             const isWatched = watched.some(w => w.tmdbData?.id === r.id);
@@ -635,43 +675,46 @@
                             return !isOwned && !isWatched && !isBacklog;
                         });
 
-                        // Deduplication Logic
+                        // Dedupe
+                        const unique = [...new Map(cleanMatches.map(item => [item.id, item])).values()];
+                        
                         setRecommendations(prev => {
                             const existingIds = new Set(prev.map(p => p.id));
-                            const uniqueNew = cleanMatches.filter(r => !existingIds.has(r.id));
+                            const uniqueNew = unique.filter(r => !existingIds.has(r.id));
                             return page === 1 ? uniqueNew : [...prev, ...uniqueNew];
                         });
 
-                        // Set Top Matches only on initial load
                         if (page === 1) {
-                            const top = cleanMatches.filter(r => r.matchScore >= 80).sort((a,b) => b.matchScore - a.matchScore).slice(0, 10);
+                            const top = unique.filter(r => r.matchScore >= 80).sort((a,b) => b.matchScore - a.matchScore).slice(0, 10);
                             setTopMatches(top);
+                            
+                            // Curator's Pick (random from top matches)
+                            if (top.length > 0 && highRatedItems.length >= 5) {
+                                const pick = top[Math.floor(Math.random() * Math.min(3, top.length))];
+                                const basedOn = highRatedItems[Math.floor(Math.random() * highRatedItems.length)];
+                                setCuratorPick({ item: pick, because: basedOn.title });
+                            }
                         }
-
                     } catch (e) { console.error(e); }
                     setLoading(false);
                 };
-                fetchRecs();
-            }, [apiKey, language, page, filterMode, selectedGenre, discoverType, highRatedItems.length]); // Added dependencies
+                fetchSmartRecs();
+            }, [apiKey, language, page, filterMode, selectedGenre, discoverType]);
 
-            // Reset when changing filters
-            useEffect(() => { setPage(1); setRecommendations([]); setTopMatches([]); }, [filterMode, selectedGenre, discoverType]);
-
-            // Client-side filtering is now minimal, mostly just for display safety
-            const visibleRecommendations = recommendations; 
+            useEffect(() => { setPage(1); setRecommendations([]); setTopMatches([]); setCuratorPick(null); }, [filterMode, selectedGenre, discoverType]);
 
             if (highRatedItems.length < 3 && filterMode === 'top') return (<div className="p-10 border-2 border-dashed border-gray-400 text-center text-gray-500 font-bold uppercase">{t('DISCOVER_LOCKED')} ({highRatedItems.length}/3 rated 4+)</div>);
             
             return (
                 <div className="space-y-6 pb-24">
                     <div className="flex border-2 border-black">
-                        <button onClick={()=>setDiscoverType('movie')} className={`flex-1 py-2 text-xs font-bold uppercase ${discoverType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
-                        <button onClick={()=>setDiscoverType('tv')} className={`flex-1 py-2 text-xs font-bold uppercase ${discoverType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
+                        <button onClick={()=>setDiscoverType('movie')} className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${discoverType==='movie'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_MOVIES')}</button>
+                        <button onClick={()=>setDiscoverType('tv')} className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${discoverType==='tv'?'bg-black text-bone':'bg-bone text-black'}`}>{t('DISC_TAB_TV')}</button>
                     </div>
 
                     <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                         {['top', 'new', 'soon'].map(m => (
-                            <button key={m} onClick={()=>setFilterMode(m)} className={`flex-shrink-0 px-3 py-1 text-[10px] font-bold uppercase border border-black ${filterMode===m?'bg-black text-bone':''}`}>
+                            <button key={m} onClick={()=>setFilterMode(m)} className={`flex-shrink-0 px-3 py-1 text-[10px] font-bold uppercase border border-black transition-all ${filterMode===m?'bg-black text-bone':''}`}>
                                 {m === 'top' ? t('DISC_TOP') : m === 'new' ? t('DISC_NEW') : t('DISC_SOON')}
                             </button>
                         ))}
@@ -685,13 +728,26 @@
                         </select>
                     </div>
 
+                    {/* CURATOR'S PICK */}
+                    {curatorPick && (
+                        <div className="relative overflow-hidden border-4 border-love bg-black text-bone p-6 gradient-bg animate-bounce-in">
+                            <p className="text-xs uppercase text-love mb-2 font-bold tracking-widest">{t('CURATOR_PICK')}</p>
+                            <p className="text-2xl font-black uppercase leading-tight mb-2">{curatorPick.item.title || curatorPick.item.name}</p>
+                            <p className="text-xs opacity-70 mb-4">{t('BECAUSE')} <span className="font-bold">{curatorPick.because}</span></p>
+                            <div className="flex gap-2">
+                                <button onClick={()=>onAdd({ title: curatorPick.item.title||curatorPick.item.name, ...curatorPick.item, type: discoverType })} className="bg-bone text-black px-4 py-2 text-xs font-bold uppercase btn-primary">+ ADD</button>
+                                <button onClick={()=>onInfo({ tmdbData: curatorPick.item, title: curatorPick.item.title||curatorPick.item.name, type: discoverType })} className="border-2 border-bone text-bone px-4 py-2 text-xs font-bold uppercase btn-primary">INFO</button>
+                            </div>
+                        </div>
+                    )}
+
                     {topMatches.length > 0 && (
                         <div>
                             <h3 className="font-bold uppercase text-xs mb-2 tracking-widest text-[#1D9BF0]">{t('DISC_TOP')}</h3>
                             <div className="flex overflow-x-auto gap-3 pb-4 scrollbar-hide">
                                 {topMatches.map(m => (
-                                    <div key={m.id} onClick={()=>onInfo({ tmdbData: m, title: m.title || m.name, type: discoverType })} className="w-28 flex-shrink-0 relative">
-                                        <img src={`https://image.tmdb.org/t/p/w342${m.poster_path}`} className="w-full h-40 object-cover border border-black" />
+                                    <div key={m.id} onClick={()=>onInfo({ tmdbData: m, title: m.title || m.name, type: discoverType })} className="w-28 flex-shrink-0 relative cursor-pointer group">
+                                        <img src={`https://image.tmdb.org/t/p/w342${m.poster_path}`} className="w-full h-40 object-cover border border-black transition-transform group-hover:scale-105" />
                                         <div className="absolute top-0 right-0 bg-[#1D9BF0] text-white text-[9px] font-bold px-1">{m.matchScore}%</div>
                                     </div>
                                 ))}
@@ -700,17 +756,17 @@
                     )}
 
                     <div className="grid grid-cols-2 gap-4">
-                        {visibleRecommendations.map(rec => (
-                            <div key={rec.id} className="border border-black bg-black text-bone flex flex-col h-full">
+                        {recommendations.map(rec => (
+                            <div key={rec.id} className="border border-black bg-black text-bone flex flex-col h-full group overflow-hidden">
                                 <div className="relative aspect-[2/3]" onClick={()=>onInfo({ tmdbData: rec, title: rec.title || rec.name, type: discoverType })}>
-                                    {rec.poster_path ? <img src={`https://image.tmdb.org/t/p/w342${rec.poster_path}`} className="w-full h-full object-cover" /> : <div className="w-full h-full bg-gray-800"></div>}
+                                    {rec.poster_path ? <img src={`https://image.tmdb.org/t/p/w342${rec.poster_path}`} className="w-full h-full object-cover transition-transform group-hover:scale-105" /> : <div className="w-full h-full bg-gray-800"></div>}
                                     <div className="absolute top-2 right-2 bg-verified text-white text-[10px] font-bold px-1.5 py-0.5">{rec.matchScore}%</div>
                                 </div>
                                 <div className="p-2 flex flex-col gap-2 flex-1">
                                     <p className="font-bold text-[10px] uppercase leading-tight line-clamp-2 flex-1">{rec.title || rec.name}</p>
                                     <div className="grid grid-cols-2 gap-1 mt-auto">
-                                        <button onClick={()=>onAdd({ title: rec.title||rec.name, ...rec, type: discoverType })} className="py-2 bg-bone text-black text-[9px] font-bold uppercase hover:bg-white text-center">+ ADD</button>
-                                        <button onClick={()=>onAddToWatchlist({ title: rec.title||rec.name, ...rec, type: discoverType })} className="py-2 border border-bone text-bone text-[9px] font-bold uppercase hover:bg-bone hover:text-black text-center">{t('BTN_ADD_WATCHLIST')}</button>
+                                        <button onClick={()=>onAdd({ title: rec.title||rec.name, ...rec, type: discoverType })} className="py-2 bg-bone text-black text-[9px] font-bold uppercase hover:bg-white text-center btn-primary">+ ADD</button>
+                                        <button onClick={()=>onAddToWatchlist({ title: rec.title||rec.name, ...rec, type: discoverType })} className="py-2 border border-bone text-bone text-[9px] font-bold uppercase hover:bg-bone hover:text-black text-center btn-primary">{t('BTN_ADD_WATCHLIST')}</button>
                                     </div>
                                     <button onClick={()=>onSeen(rec)} className="py-1 bg-gray-800 text-gray-400 text-[8px] font-bold uppercase hover:text-white text-center w-full">✓ {t('BTN_SEEN')}</button>
                                 </div>
@@ -718,8 +774,8 @@
                         ))}
                     </div>
                     
-                    {visibleRecommendations.length > 0 && !loading && (
-                        <button onClick={()=>setPage(p=>p+1)} className="w-full py-4 border-2 border-black font-bold uppercase hover:bg-black hover:text-bone text-xs">{t('BTN_LOAD_MORE')}</button>
+                    {recommendations.length > 0 && !loading && (
+                        <button onClick={()=>setPage(p=>p+1)} className="w-full py-4 border-2 border-black font-bold uppercase hover:bg-black hover:text-bone text-xs btn-primary">{t('BTN_LOAD_MORE')}</button>
                     )}
                     {loading && <div className="p-4 text-center text-xs animate-pulse font-bold">{t('DISCOVER_EMPTY')}</div>}
                 </div>
@@ -727,7 +783,6 @@
         }
 
         function App() {
-            // SAFE INITIALIZATION: Load from localStorage synchronously at startup
             const [movies, setMovies] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.movies)) || []);
             const [tvShows, setTvShows] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.tvShows)) || []);
             const [backlog, setBacklog] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEYS.backlog)) || []);
@@ -739,8 +794,8 @@
                 const saved = localStorage.getItem(STORAGE_KEYS.sound);
                 return saved !== null ? JSON.parse(saved) : true;
             });
+            const [winCount, setWinCount] = useState(() => parseInt(localStorage.getItem(STORAGE_KEYS.winCount)) || 0);
 
-            // Normal state
             const [currentTab, setCurrentTab] = useState('home');
             const [homeMode, setHomeMode] = useState('movie'); 
             const [isSpinning, setIsSpinning] = useState(false);
@@ -757,18 +812,16 @@
             const [editingDateId, setEditingDateId] = useState(null);
             const [isSyncing, setIsSyncing] = useState(false);
 
-            // TABS & SORTS
             const [watchlistTab, setWatchlistTab] = useState('movie');
             const [watchlistSort, setWatchlistSort] = useState('added');
             const [historyTab, setHistoryTab] = useState('movie');
             const [historySort, setHistorySort] = useState('added');
-            const [historyFilterOrigin, setHistoryFilterOrigin] = useState('all'); // all, roulette, seen
+            const [historyFilterOrigin, setHistoryFilterOrigin] = useState('all');
 
             const spinCandidatesRef = useRef([]);
             const fileInputRef = useRef(null);
             const t = (key) => TRANSLATIONS[language][key] || key;
 
-            // Persistence Effects
             useEffect(() => localStorage.setItem(STORAGE_KEYS.movies, JSON.stringify(movies)), [movies]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.tvShows, JSON.stringify(tvShows)), [tvShows]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.backlog, JSON.stringify(backlog)), [backlog]);
@@ -777,6 +830,7 @@
             useEffect(() => { if(apiKey) localStorage.setItem(STORAGE_KEYS.tmdbKey, apiKey); else localStorage.removeItem(STORAGE_KEYS.tmdbKey); }, [apiKey]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.language, language), [language]);
             useEffect(() => localStorage.setItem(STORAGE_KEYS.sound, JSON.stringify(soundEnabled)), [soundEnabled]);
+            useEffect(() => localStorage.setItem(STORAGE_KEYS.winCount, winCount.toString()), [winCount]);
 
             useEffect(() => { setFilters({ genres: [], time: null }); }, [homeMode]);
 
@@ -873,7 +927,6 @@
             const visibleCandidates = useMemo(() => currentList.filter(filterItem), [currentList, filters]);
             const displayList = useMemo(() => { if (filters.genres.length === 0 && !filters.time) return currentList; return currentList.filter(item => filterItem({ ...item, included: true })); }, [currentList, filters]);
 
-            // --- SORTING HELPERS ---
             const sortItems = (items, sortMode) => {
                 const sorted = [...items];
                 if (sortMode === 'alphabetical') sorted.sort((a,b) => a.title.localeCompare(b.title));
@@ -881,7 +934,6 @@
                 else if (sortMode === 'release_old') sorted.sort((a,b) => new Date(a.tmdbData?.release_date || a.tmdbData?.first_air_date || 0) - new Date(b.tmdbData?.release_date || b.tmdbData?.first_air_date || 0));
                 else if (sortMode === 'rating') sorted.sort((a,b) => (b.tmdbData?.vote_average || 0) - (a.tmdbData?.vote_average || 0));
                 else if (sortMode === 'runtime') sorted.sort((a,b) => (a.tmdbData?.runtime || 0) - (b.tmdbData?.runtime || 0));
-                // default is 'added' (date desc for history, insertion for backlog)
                 else if (sortMode === 'added' && items[0] && items[0].watchedDate) sorted.sort((a,b) => new Date(b.watchedDate) - new Date(a.watchedDate)); 
                 return sorted;
             };
@@ -893,7 +945,6 @@
 
             const sortedHistory = useMemo(() => {
                 const filtered = watched.filter(i => historyTab === 'movie' ? (i.type === 'movie') : (i.type !== 'movie'));
-                // Apply Source Filter
                 const sourceFiltered = filtered.filter(i => {
                     if (historyFilterOrigin === 'all') return true;
                     if (historyFilterOrigin === 'roulette') return i.origin === 'roulette';
@@ -919,6 +970,7 @@
                         const winner = spinCandidatesRef.current[Math.floor(Math.random() * spinCandidatesRef.current.length)];
                         setSelectedItem(winner); setShowResult(true); setShowConfetti(true);
                         setIsSpinning(false); if(soundEnabled) playWin();
+                        setWinCount(c => c + 1);
                         setTimeout(() => setShowConfetti(false), 4000);
                     }
                 };
@@ -942,7 +994,6 @@
                 const type = item.type || (item.tmdbData?.title ? 'movie' : 'tvShow');
                 const origin = item._isSeenAction ? 'seen' : 'roulette';
 
-                // Fetch Credits for Profile Stats
                 let credits = null;
                 if (apiKey && item.tmdbData) {
                     try {
@@ -950,7 +1001,7 @@
                         const res = await fetch(`https://api.themoviedb.org/3/${endpoint}/${item.tmdbData.id}/credits?api_key=${apiKey}`);
                         const data = await res.json();
                         credits = {
-                            cast: data.cast ? data.cast.slice(0,4).map(c => ({ name: c.name, profile_path: c.profile_path })) : [],
+                            cast: data.cast ? data.cast.slice(0,4).map(c => ({ name: c.name, profile_path: c.profile_path, id: c.id })) : [],
                             director: data.crew ? data.crew.find(c => c.job === 'Director') : null
                         };
                     } catch(e) {}
@@ -971,10 +1022,15 @@
                     }
                 }
                 
+                // Extra confetti for 5-star rating!
+                if (finalRating === 5 && soundEnabled) {
+                    setShowConfetti(true);
+                    setTimeout(() => setShowConfetti(false), 3000);
+                }
+                
                 setShowResult(false); setSelectedItem(null); setRateModalItem(null); showToast(t('TOAST_ADDED'));
             };
 
-            // SYNC OLD DATA
             const syncMetadata = async () => {
                 if (!apiKey) { showToast('API KEY REQUIRED'); return; }
                 setIsSyncing(true);
@@ -989,7 +1045,7 @@
                             const res = await fetch(`https://api.themoviedb.org/3/${type}/${item.tmdbData.id}/credits?api_key=${apiKey}`);
                             const data = await res.json();
                             item.credits = {
-                                cast: data.cast ? data.cast.slice(0,4).map(c => ({ name: c.name, profile_path: c.profile_path })) : [],
+                                cast: data.cast ? data.cast.slice(0,4).map(c => ({ name: c.name, profile_path: c.profile_path, id: c.id })) : [],
                                 director: data.crew ? data.crew.find(c => c.job === 'Director') : null
                             };
                             updatedCount++;
@@ -1002,10 +1058,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 41, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled };
+                const data = { version: 42, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled, winCount };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v41-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v42-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -1020,6 +1076,7 @@
                         if(data.watched) setWatched(data.watched);
                         if(data.blacklist) setBlacklist(data.blacklist);
                         if(data.apiKey) setApiKey(data.apiKey);
+                        if(data.winCount) setWinCount(data.winCount);
                         showToast('Import successful');
                     } catch (err) { showToast('Import failed'); }
                 };
@@ -1031,33 +1088,41 @@
                     <div className="max-w-xl mx-auto p-4 pb-24">
                         {currentTab === 'home' && (
                             <div className="pb-32">
-                                <header className="mb-6 border-[8px] border-[#722F37] p-6 relative">
-                                    <h1 className="text-4xl font-black uppercase text-center leading-none tracking-tighter">MOVIE<br/>ROULETTE</h1>
-                                    <p className="text-center text-xs uppercase tracking-[0.3em] mt-3 text-black/60">{t('SUBTITLE')}</p>
+                                <header className="relative overflow-hidden border-8 border-black bg-bone shadow-2xl mb-6">
+                                    <div className="absolute inset-0 opacity-30 gradient-bg"></div>
+                                    <div className="relative p-8 text-center">
+                                        <h1 className="text-5xl font-black tracking-tighter leading-none">
+                                            <span className="block text-love">MOVIE</span>
+                                            <span className="block -mt-3 text-black">ROULETTE</span>
+                                        </h1>
+                                        <p className="text-[11px] uppercase tracking-widest mt-4 text-black/70 font-bold">{t('SUBTITLE')}</p>
+                                        {winCount > 0 && <p className="text-[9px] uppercase text-gray-500 mt-2">🎰 {winCount} {winCount === 1 ? 'WIN' : 'WINS'}</p>}
+                                    </div>
+                                    <div className="absolute bottom-0 left-0 right-0 h-4 bg-black"></div>
                                 </header>
                                 <div className="flex border-2 border-black mb-6">
-                                    <button onClick={()=>setHomeMode('movie')} className={`flex-1 py-3 font-bold uppercase text-xs ${homeMode==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
-                                    <button onClick={()=>setHomeMode('tv')} className={`flex-1 py-3 font-bold uppercase text-xs ${homeMode==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
+                                    <button onClick={()=>setHomeMode('movie')} className={`flex-1 py-3 font-bold uppercase text-xs transition-all ${homeMode==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
+                                    <button onClick={()=>setHomeMode('tv')} className={`flex-1 py-3 font-bold uppercase text-xs transition-all ${homeMode==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
                                 </div>
                                 <div className="flex flex-col gap-2 mb-6">
                                     <div className="flex gap-2">
                                         <SearchInput type={homeMode === 'movie' ? 'movie' : 'tv'} apiKey={apiKey} language={language} placeholder={homeMode === 'movie' ? t('PLACEHOLDER_MOVIES') : t('PLACEHOLDER_TV')} onAdd={(t,m)=>handleAdd(t,{...m,type:homeMode})} />
-                                        <button className="bg-black text-bone px-4 font-bold text-xs">ADD</button>
+                                        <button className="bg-black text-bone px-4 font-bold text-xs btn-primary">ADD</button>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center mb-2"><h2 className="font-bold text-xs uppercase tracking-widest">{t('HEADER_MOVIES')} ({displayList.length})</h2><button onClick={()=>setShowFilters(!showFilters)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${showFilters || (filters.genres.length>0||filters.time) ? 'bg-black text-bone' : ''}`}>{t('FILTERS')}</button></div>
+                                <div className="flex justify-between items-center mb-2"><h2 className="font-bold text-xs uppercase tracking-widest">{t('HEADER_MOVIES')} ({displayList.length})</h2><button onClick={()=>setShowFilters(!showFilters)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase transition-all ${showFilters || (filters.genres.length>0||filters.time) ? 'bg-black text-bone' : ''}`}>{t('FILTERS')}</button></div>
                                 <FilterPanel isOpen={showFilters} onClose={()=>setShowFilters(false)} filters={filters} setFilters={setFilters} t={t} />
                                 <div className="mb-6 max-h-64 overflow-y-auto border-t-2 border-b-2 border-black/10">
                                     {displayList.length === 0 ? <div className="p-8 text-center text-gray-400">{t('EMPTY_LIST')}</div> : displayList.map(item => (
-                                        <div key={item.id} className={`flex items-center gap-3 py-3 border-b border-gray-200 ${!item.included?'opacity-50':''}`}>
+                                        <div key={item.id} className={`flex items-center gap-3 py-3 border-b border-gray-200 transition-opacity ${!item.included?'opacity-50':''}`}>
                                             <input type="checkbox" checked={item.included} onChange={()=>toggleIncluded(item.id, item.type || (homeMode==='movie'?'movie':'tv'))} className="checkbox-receipt" />
                                             <div className="flex-1 min-w-0"><span className="font-bold uppercase text-sm truncate block">{item.title} {item.tmdbData && <VerifiedBadge />}</span>{item.tmdbData && <span className="text-[10px] text-gray-500 uppercase">{item.tmdbData.release_date?.split('-')[0]} • {item.tmdbData.vote_average} ★</span>}</div>
-                                            {item.tmdbData && <button onClick={()=>setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })} className="text-gray-400 hover:text-black"><Icons.Info/></button>}
-                                            <button onClick={()=>deleteItem(item.id, item.type||(homeMode==='movie'?'movie':'tv'))} className="text-gray-400 hover:text-red-500 px-2">✕</button>
+                                            {item.tmdbData && <button onClick={()=>setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })} className="text-gray-400 hover:text-black transition-colors"><Icons.Info/></button>}
+                                            <button onClick={()=>deleteItem(item.id, item.type||(homeMode==='movie'?'movie':'tv'))} className="text-gray-400 hover:text-red-500 px-2 transition-colors">✕</button>
                                         </div>
                                     ))}
                                 </div>
-                                <button onClick={spinRoulette} disabled={isSpinning || visibleCandidates.filter(i=>i.included).length === 0} className="w-full bg-black text-bone py-6 text-2xl font-black uppercase tracking-widest hover:bg-gray-900 active:scale-95 transition-transform disabled:opacity-50">{isSpinning ? t('SPINNING') : t('SPIN_BTN')}</button>
+                                <button onClick={spinRoulette} disabled={isSpinning || visibleCandidates.filter(i=>i.included).length === 0} className="w-full bg-black text-bone py-6 text-2xl font-black uppercase tracking-widest hover:bg-gray-900 active:scale-95 transition-all disabled:opacity-50 btn-primary">{isSpinning ? t('SPINNING') : t('SPIN_BTN')}</button>
                             </div>
                         )}
                         
@@ -1065,8 +1130,8 @@
                             <div className="pb-24">
                                 <h1 className="text-2xl font-black uppercase mb-4 border-b-4 border-black pb-2">{t('HEADER_WATCHLIST')}</h1>
                                 <div className="flex border-2 border-black mb-4">
-                                    <button onClick={()=>setWatchlistTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs ${watchlistTab==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
-                                    <button onClick={()=>setWatchlistTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs ${watchlistTab==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
+                                    <button onClick={()=>setWatchlistTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${watchlistTab==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
+                                    <button onClick={()=>setWatchlistTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${watchlistTab==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
                                 </div>
                                 <div className="flex justify-end mb-4">
                                     <select value={watchlistSort} onChange={(e)=>setWatchlistSort(e.target.value)} className="bg-transparent text-[10px] font-bold uppercase border-none outline-none text-right">
@@ -1087,7 +1152,7 @@
                                                 <span className="font-bold uppercase text-sm">{item.title}</span>
                                                 <div className="text-[10px] text-gray-500 uppercase mt-1 mb-2">{item.type} • {item.tmdbData?.release_date?.split('-')[0]} • {item.tmdbData?.vote_average?.toFixed(1)}★</div>
                                                 <div className="flex gap-2">
-                                                    <button onClick={()=>promoteFromVault(item)} className="bg-black text-bone px-3 py-1 text-[10px] font-bold uppercase">{t('BTN_MOVE_TO_ROULETTE')}</button>
+                                                    <button onClick={()=>promoteFromVault(item)} className="bg-black text-bone px-3 py-1 text-[10px] font-bold uppercase btn-primary">{t('BTN_MOVE_TO_ROULETTE')}</button>
                                                     <button onClick={()=>deleteItem(item.id, 'backlog')} className="text-red-500 text-[10px] font-bold uppercase underline">Remove</button>
                                                 </div>
                                             </div>
@@ -1101,7 +1166,7 @@
                         
                         {currentTab === 'swipe' && (
                             <div className="h-[80vh] flex flex-col">
-                                <SwipeTab watched={watched} backlog={backlog} movies={movies} tvShows={tvShows} blacklist={blacklist} apiKey={apiKey} language={language} homeMode={homeMode} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onInfo={setInfoItem} t={t} />
+                                <SwipeTab watched={watched} backlog={backlog} movies={movies} tvShows={tvShows} blacklist={blacklist} apiKey={apiKey} language={language} homeMode={homeMode} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onBlacklist={handleBlacklist} onInfo={setInfoItem} t={t} soundEnabled={soundEnabled} />
                             </div>
                         )}
 
@@ -1111,8 +1176,8 @@
                                 <ProfileStats watched={watched} t={t} />
                                 
                                 <div className="flex border-2 border-black mb-4">
-                                    <button onClick={()=>setHistoryTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs ${historyTab==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
-                                    <button onClick={()=>setHistoryTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs ${historyTab==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
+                                    <button onClick={()=>setHistoryTab('movie')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab==='movie'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_MOVIES')}</button>
+                                    <button onClick={()=>setHistoryTab('tv')} className={`flex-1 py-2 font-bold uppercase text-xs transition-all ${historyTab==='tv'?'bg-black text-bone':'bg-transparent'}`}>{t('TOGGLE_TV')}</button>
                                 </div>
                                 <div className="flex justify-between mb-4">
                                     <select value={historyFilterOrigin} onChange={(e)=>setHistoryFilterOrigin(e.target.value)} className="bg-transparent text-[10px] font-bold uppercase border-none outline-none">
@@ -1144,7 +1209,7 @@
                                             )}
                                         </div>
                                         <div className="flex gap-2 items-center">
-                                            <button onClick={()=>setRateModalItem(item)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase ${typeof item.rating === 'number' && item.rating >= 4 ? 'bg-love text-white' : ''}`}>
+                                            <button onClick={()=>setRateModalItem(item)} className={`text-[10px] font-bold border border-black px-2 py-1 uppercase transition-all ${typeof item.rating === 'number' && item.rating >= 4 ? 'bg-love text-white' : ''}`}>
                                                 {item.rating ? (typeof item.rating === 'number' ? `${item.rating}/5` : item.rating) : t('RATE_LABEL_ADD')}
                                             </button>
                                             <button onClick={()=>setInfoItem({ tmdbData: item.tmdbData, title: item.title, type: item.type })}><Icons.Info /></button>
@@ -1165,20 +1230,24 @@
                                     
                                     <div className="pt-6 border-t-2 border-black">
                                         <h3 className="font-bold uppercase text-xs mb-2">Sync</h3>
-                                        <button onClick={syncMetadata} disabled={isSyncing} className="w-full py-3 bg-[#1D9BF0] text-white font-bold uppercase hover:bg-blue-600 disabled:opacity-50 mb-1">{isSyncing ? 'SYNCING...' : t('SYNC_DATA')}</button>
+                                        <button onClick={syncMetadata} disabled={isSyncing} className="w-full py-3 bg-[#1D9BF0] text-white font-bold uppercase hover:bg-blue-600 disabled:opacity-50 mb-1 btn-primary">{isSyncing ? 'SYNCING...' : t('SYNC_DATA')}</button>
                                         <p className="text-[10px] text-gray-500">{t('SYNC_DESC')}</p>
                                     </div>
 
                                     <div className="pt-6 border-t-2 border-black">
                                         <h3 className="font-bold uppercase text-xs mb-2">Data</h3>
-                                        <button onClick={()=>fileInputRef.current.click()} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone">{t('IMPORT')}</button>
+                                        <button onClick={()=>fileInputRef.current.click()} className="w-full py-3 border-2 border-black mb-2 font-bold uppercase hover:bg-black hover:text-bone btn-primary">{t('IMPORT')}</button>
                                         <input ref={fileInputRef} type="file" className="hidden" onChange={e => importData(e.target.files[0])} />
-                                        <button onClick={exportData} className="w-full py-3 bg-black text-bone font-bold uppercase hover:bg-gray-800">{t('EXPORT')}</button>
+                                        <button onClick={exportData} className="w-full py-3 bg-black text-bone font-bold uppercase hover:bg-gray-800 btn-primary">{t('EXPORT')}</button>
                                     </div>
                                     <div className="pt-6 border-t-4 border-red-600">
                                         <h3 className="text-red-600 font-bold uppercase text-xs mb-4">{t('DANGER_ZONE')}</h3>
-                                        <button onClick={()=>clearList('movies')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white mb-2">{t('BTN_CLEAR_MOVIES')}</button>
-                                        <button onClick={()=>clearList('tv')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white">{t('BTN_CLEAR_TV')}</button>
+                                        <button onClick={()=>clearList('movies')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white mb-2 btn-primary">{t('BTN_CLEAR_MOVIES')}</button>
+                                        <button onClick={()=>clearList('tv')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white btn-primary">{t('BTN_CLEAR_TV')}</button>
+                                    </div>
+                                    <div className="text-center pt-4 text-[10px] text-gray-400">
+                                        <p>VERSION 42 PRO</p>
+                                        <p className="mt-1">Made with ❤️ & 🎰</p>
                                     </div>
                                 </div>
                             </div>
@@ -1187,7 +1256,7 @@
 
                     <div className="fixed bottom-0 left-0 right-0 bg-[#EFEEE5] border-t-4 border-black z-50 h-16 flex justify-around items-center pb-safe">
                         {['home','watchlist','discover','swipe','history','settings'].map(tab => (
-                            <button key={tab} onClick={()=>setCurrentTab(tab)} className={`flex-1 flex flex-col items-center justify-center h-full ${currentTab===tab?'text-black':'text-gray-400'}`}>
+                            <button key={tab} onClick={()=>setCurrentTab(tab)} className={`flex-1 flex flex-col items-center justify-center h-full transition-colors ${currentTab===tab?'text-black':'text-gray-400'}`}>
                                 {tab==='home' && <Icons.Home />} 
                                 {tab==='watchlist' && <Icons.Watchlist />}
                                 {tab==='discover' && <Icons.Discover />} 
@@ -1216,7 +1285,7 @@
                                             <div className="w-32 h-48 bg-gray-800 border-2 border-bone flex items-center justify-center"><span className="text-4xl">?</span></div>
                                         )}
                                         <div className="flex-1 text-left">
-                                            <p className="text-xs font-bold text-[#722F37] bg-bone inline-block px-2 py-1 mb-2 tracking-widest uppercase">WINNER</p>
+                                            <p className="text-xs font-bold text-love bg-bone inline-block px-2 py-1 mb-2 tracking-widest uppercase">🎰 WIN #{winCount}</p>
                                             <h2 className="text-2xl font-black uppercase leading-tight font-sans mb-2">{selectedItem.title} <VerifiedBadge /></h2>
                                             <div className="flex flex-wrap gap-3 text-xs font-mono text-gray-400 mb-4">
                                                 <span>{selectedItem.tmdbData ? selectedItem.tmdbData.release_date?.split('-')[0] : ''}</span>
@@ -1225,7 +1294,7 @@
                                         </div>
                                     </div>
                                     <p className="text-sm text-gray-300 line-clamp-4 leading-relaxed font-sans">{selectedItem.tmdbData ? selectedItem.tmdbData.overview : 'No description available.'}</p>
-                                    <button onClick={()=>initiateMarkAsWatched(selectedItem)} className="w-full px-6 py-4 bg-bone text-black text-sm font-bold uppercase tracking-wider hover:bg-white transition-colors">✓ {t('BTN_WATCHED')}</button>
+                                    <button onClick={()=>initiateMarkAsWatched(selectedItem)} className="w-full px-6 py-4 bg-bone text-black text-sm font-bold uppercase tracking-wider hover:bg-white transition-all btn-primary">✓ {t('BTN_WATCHED')}</button>
                                 </div>
                             </div>
                         </div>
