@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Movie Roulette V44 (Final Polish)</title>
+    <title>Movie Roulette V45 (Logic Fixed)</title>
     
     <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1vdmllIFJvdWxldHRlIiwKICAic2hvcnRfbmFtZSI6ICJNb3ZpZSBSb3VsZXR0ZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRUZFRUU1IiwKICAidGhlbWVfY29sb3IiOiAiIzAwMDAwMCIsCiAgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNiM1YwZEQxaU1qQXdJaUIyYVdWM1FtOTRQU0l3SURBZ01UQXdJREV3TUNJZ2VHMXNibk05SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpJd01EQXZjM1puSWo0OGRHVjRkQ0I1UFNJdU9XVnRJaUJtYjI1MExYTnBlbVU5SWprd0lqN3duNEdwUEM5MFpYaDBQand2YzNablBnPT0iLCJzaXplcyI6ICIxOTJ4MTkyIiwidHlwZSI6ICJpbWFnZS9zdmcreG1sIn1dfQ==" />
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48c3R5bGU+YmFja2dyb3VuZC1jb2xvcjojMDAwMDAwPC9zdHlsZT48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5Gp8J+OsDwvdGV4dD48L3N2Zz4=" />
@@ -293,7 +293,7 @@
                                                 <span>{g}</span>
                                                 <span>{c}</span>
                                             </div>
-                                            <div className="h-2 bg-gray-200 w-full"><div className="h-full bg-black" style={{width: `${(c / (stats.topGenres[0][1] || 1)) * 100}%`}}></div></div>
+                                            <div className="h-2 bg-gray-200 w-full"><div className="h-full bg-black transition-all" style={{width: `${(c / (stats.topGenres[0][1] || 1)) * 100}%`}}></div></div>
                                         </div>
                                     </div>
                                 ))}
@@ -332,7 +332,7 @@
             );
         }
 
-        function SwipeTab({ watched, backlog, movies, tvShows, blacklist, apiKey, language, onAddToWatchlist, onSeen, onBlacklist, onInfo, t, soundEnabled }) {
+        function SwipeTab({ watched, backlog, movies, tvShows, blacklist, apiKey, language, homeMode, onAddToWatchlist, onSeen, onBlacklist, onInfo, t, soundEnabled }) {
             const [queue, setQueue] = useState([]);
             const [page, setPage] = useState(1);
             const [loading, setLoading] = useState(false);
@@ -660,7 +660,10 @@
                                 const data = await res.json();
                                 if(data.results) allRecs = data.results;
                             } else {
-                                seeds = highRatedItems.sort(() => 0.5 - Math.random()).slice(0, 5);
+                                // STRICT FILTER: Only seeds of current Type
+                                const validSeeds = highRatedItems.filter(i => (discoverType === 'movie' && i.type !== 'tv') || (discoverType === 'tv' && (i.type === 'tv' || i.type === 'tvShow')));
+                                seeds = validSeeds.sort(() => 0.5 - Math.random()).slice(0, 5);
+                                
                                 setLoadingProgress('Checking seeds...');
                                 
                                 for (const seed of seeds) {
@@ -727,6 +730,16 @@
                 fetchSmartRecs();
             }, [apiKey, language, page, filterMode, selectedGenre, discoverType, antiRut, highRatedItems.length]); // Dependencies
 
+            // REAL-TIME FILTERING (Fix 1: Bad Review Persistence)
+            const visibleRecommendations = useMemo(() => {
+                return recommendations.filter(r => {
+                     const isWatched = watched.some(w => w.tmdbData?.id === r.id);
+                     const isBacklog = backlog.some(b => b.tmdbData?.id === r.id);
+                     const isOwned = movies.some(m => m.tmdbData?.id === r.id) || tvShows.some(t => t.tmdbData?.id === r.id);
+                     return !isWatched && !isBacklog && !isOwned;
+                });
+            }, [recommendations, watched, backlog, movies, tvShows]);
+
             useEffect(() => { setPage(1); setRecommendations([]); setTopMatches([]); }, [filterMode, selectedGenre, discoverType, antiRut]);
 
             if (highRatedItems.length < 3 && filterMode === 'top') return (<div className="p-10 border-2 border-dashed border-gray-400 text-center text-gray-500 font-bold uppercase">{t('DISCOVER_LOCKED')} ({highRatedItems.length}/3 rated 4+)</div>);
@@ -775,7 +788,7 @@
                     )}
 
                     <div className="grid grid-cols-2 gap-4">
-                        {recommendations.map(rec => (
+                        {visibleRecommendations.map(rec => (
                             <div key={rec.id} className="border border-black bg-black text-bone flex flex-col h-full animate-fade-in">
                                 <div className="relative aspect-[2/3]" onClick={()=>onInfo({ tmdbData: rec, title: rec.title || rec.name, type: discoverType })}>
                                     {rec.poster_path ? <img src={`https://image.tmdb.org/t/p/w342${rec.poster_path}`} className="w-full h-full object-cover" /> : <div className="w-full h-full bg-gray-800"></div>}
@@ -784,7 +797,6 @@
                                 <div className="p-2 flex flex-col gap-2 flex-1">
                                     <p className="font-bold text-[10px] uppercase leading-tight line-clamp-2 flex-1">{rec.title || rec.name}</p>
                                     
-                                    {/* --- RESTORED REASON TEXT --- */}
                                     {(rec.seedTitle || rec.source) && (
                                         <p className="text-[8px] text-gray-400 truncate">
                                             {rec.source === 'cast' && rec.actorName ? `★ ${rec.actorName}` : 
@@ -803,7 +815,7 @@
                         ))}
                     </div>
                     
-                    {recommendations.length > 0 && !loading && (
+                    {visibleRecommendations.length > 0 && !loading && (
                         <button onClick={()=>setPage(p=>p+1)} className="w-full py-4 border-2 border-black font-bold uppercase hover:bg-black hover:text-bone text-xs btn-primary">{t('BTN_LOAD_MORE')}</button>
                     )}
                     {loading && <div className="p-4 text-center text-xs animate-pulse font-bold">{t('DISCOVER_EMPTY')}</div>}
@@ -1131,10 +1143,10 @@
             };
 
             const exportData = () => {
-                const data = { version: 44, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled, winCount };
+                const data = { version: 45, exportDate: new Date().toISOString(), movies, tvShows, backlog, watched, blacklist, apiKey, language, soundEnabled, winCount };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v44-final-${new Date().toISOString().split('T')[0]}.json`;
+                const a = document.createElement('a'); a.href = url; a.download = `movie-roulette-v45-final-${new Date().toISOString().split('T')[0]}.json`;
                 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
                 showToast(t('EXPORT'));
             };
@@ -1259,7 +1271,7 @@
                             </div>
                         )}
 
-                        {currentTab === 'discover' && <DiscoverTab watched={watched} backlog={backlog} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} movies={movies} tvShows={tvShows} t={t} />}
+                        {currentTab === 'discover' && <DiscoverTab watched={watched} backlog={backlog} apiKey={apiKey} language={language} onAdd={handleAddRecommendation} onAddToWatchlist={handleAddToWatchlist} onSeen={handleSeenRecommendation} onInfo={setInfoItem} movies={movies} tvShows={tvShows} t={t} showToast={showToast} />}
                         
                         {currentTab === 'swipe' && (
                             <div className="h-[80vh] flex flex-col">
@@ -1342,7 +1354,7 @@
                                         <button onClick={()=>clearList('movies')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white mb-2 btn-primary">{t('BTN_CLEAR_MOVIES')}</button>
                                         <button onClick={()=>clearList('tv')} className="w-full py-3 border-2 border-red-600 text-red-600 font-bold uppercase hover:bg-red-600 hover:text-white btn-primary">{t('BTN_CLEAR_TV')}</button>
                                     </div>
-                                    <div className="text-center pt-4 text-[10px] text-gray-400"><p>V44 FINAL PRO</p><p className="mt-1">Made with ❤️ & 🎰</p></div>
+                                    <div className="text-center pt-4 text-[10px] text-gray-400"><p>V45 FINAL PRO</p><p className="mt-1">Made with ❤️ & 🎰</p></div>
                                 </div>
                             </div>
                         )}
