@@ -78,17 +78,18 @@ export const MovieDetailPage = memo(function MovieDetailPage({
       setTrailer(null);
 
       const signal = getSignal();
-      const type: MediaType = normalizeMediaType(item.type);
-      const endpoint = type === 'movie' ? 'movie' : 'tv';
+      const mediaType: MediaType = normalizeMediaType(item.type);
+      const endpoint = mediaType === 'movie' ? 'movie' : 'tv';
       const region = language === 'pt-PT' ? 'PT' : 'US';
+      const tmdbId = item.tmdbData!.id;
 
       try {
         // Fetch all in parallel
         const [creditsRes, similarRes, provRes, vidRes] = await Promise.all([
-          fetch(`${TMDB_BASE_URL}/${endpoint}/${item.tmdbData.id}/credits?api_key=${apiKey}&language=${language}`, { signal }),
-          fetch(`${TMDB_BASE_URL}/${endpoint}/${item.tmdbData.id}/similar?api_key=${apiKey}&language=${language}&page=1`, { signal }),
-          fetch(`${TMDB_BASE_URL}/${endpoint}/${item.tmdbData.id}/watch/providers?api_key=${apiKey}`, { signal }),
-          fetch(`${TMDB_BASE_URL}/${endpoint}/${item.tmdbData.id}/videos?api_key=${apiKey}&language=${language}`, { signal }),
+          fetch(`${TMDB_BASE_URL}/${endpoint}/${tmdbId}/credits?api_key=${apiKey}&language=${language}`, { signal }),
+          fetch(`${TMDB_BASE_URL}/${endpoint}/${tmdbId}/similar?api_key=${apiKey}&language=${language}&page=1`, { signal }),
+          fetch(`${TMDB_BASE_URL}/${endpoint}/${tmdbId}/watch/providers?api_key=${apiKey}`, { signal }),
+          fetch(`${TMDB_BASE_URL}/${endpoint}/${tmdbId}/videos?api_key=${apiKey}&language=${language}`, { signal }),
         ]);
 
         const [creditsData, similarData, provData, vidData] = await Promise.all([
@@ -116,7 +117,7 @@ export const MovieDetailPage = memo(function MovieDetailPage({
         // If no trailer in current language, try English
         if (!vid && language !== 'en-US') {
           const vidResEn = await fetch(
-            `${TMDB_BASE_URL}/${endpoint}/${item.tmdbData.id}/videos?api_key=${apiKey}&language=en-US`,
+            `${TMDB_BASE_URL}/${endpoint}/${tmdbId}/videos?api_key=${apiKey}&language=en-US`,
             { signal }
           );
           const vidDataEn = await vidResEn.json();
@@ -151,7 +152,6 @@ export const MovieDetailPage = memo(function MovieDetailPage({
   if (!item?.tmdbData) return null;
 
   const data = item.tmdbData;
-  const type = normalizeMediaType(item.type);
 
   return (
     <div className="fixed inset-0 z-[80] bg-[#EFEEE5] overflow-y-auto animate-slide-up">

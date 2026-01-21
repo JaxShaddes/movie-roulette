@@ -137,7 +137,7 @@ export function App() {
   // Cache posters
   usePosterCache([...movies, ...tvShows, ...backlog, ...watched], POSTER_CACHE_LIMIT);
 
-  // Curator Pick
+  // Curator Pick - filters out already watched/owned movies
   useEffect(() => {
     if (watched.length < 5 || curatorPick || !apiKey) return;
 
@@ -157,11 +157,22 @@ export function App() {
         const data = await res.json();
 
         if (data.results?.length > 0) {
-          setCuratorPick({
-            item: data.results[0],
-            because: seed.title,
-            reason: t('BECAUSE'),
+          // Filter out movies that are already watched, in backlog, or in lists
+          const validPick = data.results.find((item: TMDBData) => {
+            const isWatched = watched.some((w) => w.tmdbData?.id === item.id);
+            const isInBacklog = backlog.some((b) => b.tmdbData?.id === item.id);
+            const isInMovies = movies.some((m) => m.tmdbData?.id === item.id);
+            const isInTvShows = tvShows.some((t) => t.tmdbData?.id === item.id);
+            return !isWatched && !isInBacklog && !isInMovies && !isInTvShows;
           });
+
+          if (validPick) {
+            setCuratorPick({
+              item: validPick,
+              because: seed.title,
+              reason: t('BECAUSE'),
+            });
+          }
         }
       } catch (e) {
         console.error('Curator fetch error:', e);
@@ -169,7 +180,7 @@ export function App() {
     };
 
     fetchCurator();
-  }, [watched, apiKey, language, curatorPick, t]);
+  }, [watched, backlog, movies, tvShows, apiKey, language, curatorPick, t]);
 
   // Reset filters when mode changes
   useEffect(() => {
@@ -261,6 +272,13 @@ export function App() {
       vibrate(10);
       const type: MediaType = item.name && !item.title ? 'tv' : 'movie';
 
+      // Check if already in watched list by TMDB ID
+      const alreadyWatched = watched.some((w) => w.tmdbData?.id === item.id);
+      if (alreadyWatched) {
+        showToast(t('TOAST_EXIST'));
+        return;
+      }
+
       setRateModalItem({
         id: generateId(),
         title: item.title || item.name || '',
@@ -269,7 +287,7 @@ export function App() {
         _isSeenAction: true,
       });
     },
-    []
+    [watched, showToast, t]
   );
 
   const handleBlacklist = useCallback(
@@ -340,12 +358,26 @@ export function App() {
 
       const finalRating = rating === 'skip' ? null : rating;
 
-      // If already in watched, just update rating
+      // If already in watched (check by internal ID), just update rating
       if (watched.some((w) => w.id === item.id)) {
         setWatched((prev) =>
           prev.map((w) => (w.id === item.id ? { ...w, rating: finalRating } : w))
         );
         setRateModalItem(null);
+        return;
+      }
+
+      // Also check by TMDB ID to prevent duplicates from external sources
+      const existingByTmdbId = watched.find((w) => w.tmdbData?.id === item.tmdbData?.id);
+      if (existingByTmdbId && item.tmdbData?.id) {
+        // Update the existing entry's rating instead of creating duplicate
+        setWatched((prev) =>
+          prev.map((w) =>
+            w.tmdbData?.id === item.tmdbData?.id ? { ...w, rating: finalRating } : w
+          )
+        );
+        setRateModalItem(null);
+        showToast(t('TOAST_ADDED'));
         return;
       }
 
