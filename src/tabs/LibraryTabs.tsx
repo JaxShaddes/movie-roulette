@@ -12,9 +12,8 @@ import {
   Button,
   ToggleButtons,
   EmptyState,
+  PosterImage,
 } from '@/components/ui';
-import { OptimizedPoster } from '@/components/LazyImage';
-import { HistoryItemSkeleton, StatsSkeleton } from '@/components/Skeleton';
 import type {
   BacklogItem,
   WatchedItem,
